@@ -104,6 +104,11 @@
     var model = o.getAttribute("data-model");
     if (model) f.setAttribute("data-model", model);
     var rec = { f: f, o: o, k: k };
+    if (k === "code") {
+      // 코드 칸은 원본 편집기(codekit)를 그대로 옮겨 쓴다(실행·불러오기 기능 유지).
+      moveEditor(o, f);
+      return;
+    }
     if (k === "radio" || k === "select") {
       var opts = k === "radio" ? $$("input[type=radio]", o).map(function (r) { return r.value; })
         : $$("option", o).filter(function (x) { return x.value; }).map(function (x) { return x.value; });
@@ -156,6 +161,19 @@
     }
     bound.push(rec);
   }
+  function moveEditor(ta, spot) {
+    var box = ta.closest(".mycode") || ta.closest(".ck-ed") || ta;
+    spot.innerHTML = "";
+    spot.appendChild(box);
+    spot.classList.add("x-k-code");
+  }
+  // <div class="x-ed" data-starter="T1-1"></div> : 채점 안 되는 연습 편집기를 옮겨 온다.
+  function renderEd(spot) {
+    var id = spot.getAttribute("data-starter");
+    var ta = document.querySelector('.wrap textarea[data-starter="' + id + '"]');
+    if (!ta) { spot.innerHTML = '<span class="x-err">편집기 없음: ' + esc(id) + "</span>"; return; }
+    moveEditor(ta, spot);
+  }
   function pull(rec) { rec.pull && rec.pull(); }
   function pullAll() { bound.forEach(pull); }
 
@@ -167,6 +185,7 @@
     $$(".x-arr", page).forEach(renderArr);
     $$("pre.x-code", page).forEach(renderCode);
     $$(".x-f[data-bind]", page).forEach(renderField);
+    $$(".x-ed[data-starter]", page).forEach(renderEd);
     pullAll();
     // 원본 저장 스크립트가 자동 보관·불러오기로 원본 칸을 바꾸면 새 칸에도 다시 옮긴다.
     var msg = document.getElementById("sb-msg");

@@ -108,30 +108,32 @@
 
   <div class="x-screen" data-title="SORTED에서 23 찾기">
     <div class="x-arr" data-name="SORTED" data-v="2,5,8,12,16,23,38,56,72,91"></div>
-    <div class="x-given"><span><b>목표</b>23</span><span><b>판정 쓰는 법</b>23&gt;16 → lo=5</span></div>
+    <div class="x-given"><span><b>목표</b>23</span><span><b>한 줄</b>= 비교 1회</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>lo</th><th>hi</th><th>mid</th><th>a[mid]</th><th>판정</th></tr>
-      <tr><td>1</td><td><span class="x-f" data-bind="A2.t23.r1.c1"></span></td><td><span class="x-f" data-bind="A2.t23.r1.c2"></span></td><td><span class="x-f" data-bind="A2.t23.r1.c3"></span></td><td><span class="x-f" data-bind="A2.t23.r1.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r1.c5"></span></td></tr>
-      <tr><td>2</td><td><span class="x-f" data-bind="A2.t23.r2.c1"></span></td><td><span class="x-f" data-bind="A2.t23.r2.c2"></span></td><td><span class="x-f" data-bind="A2.t23.r2.c3"></span></td><td><span class="x-f" data-bind="A2.t23.r2.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r2.c5"></span></td></tr>
-      <tr><td>3</td><td><span class="x-f" data-bind="A2.t23.r3.c1"></span></td><td><span class="x-f" data-bind="A2.t23.r3.c2"></span></td><td><span class="x-f" data-bind="A2.t23.r3.c3"></span></td><td><span class="x-f" data-bind="A2.t23.r3.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r3.c5"></span></td></tr>
-      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A2.t23.r4.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A2.t23.r4.c2"></span></td><td><span class="x-f" data-bind="A2.t23.r4.c3"></span></td><td><span class="x-f" data-bind="A2.t23.r4.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r4.c5"></span></td></tr>
-      <tr class="opt"><td>5</td><td><span class="x-f" data-bind="A2.t23.r5.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A2.t23.r5.c2"></span></td><td><span class="x-f" data-bind="A2.t23.r5.c3"></span></td><td><span class="x-f" data-bind="A2.t23.r5.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r5.c5"></span></td></tr>
+      <tr><th>단계</th><th>lo<small>왼쪽 끝 인덱스</small></th><th>hi<small>오른쪽 끝 인덱스</small></th><th>mid<small>(lo+hi)//2</small></th><th>a[mid]<small>mid 칸의 값</small></th><th>판정<small>비교 결과 → 바뀐 값</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>0</td><td>4</td><td>2</td><td>9</td><td>14&gt;9 → lo=3</td></tr>
+      <tr><td>1</td><td><span class="x-f" data-bind="A2.t23.r1.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r1.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r1.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r1.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r1.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>2</td><td><span class="x-f" data-bind="A2.t23.r2.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r2.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r2.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r2.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r2.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>3</td><td><span class="x-f" data-bind="A2.t23.r3.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r3.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r3.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r3.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r3.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A2.t23.r4.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A2.t23.r4.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r4.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r4.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r4.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>5</td><td><span class="x-f" data-bind="A2.t23.r5.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A2.t23.r5.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r5.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t23.r5.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t23.r5.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
     </table></div>
-    <div class="x-line">결과 <span class="x-f" data-bind="A2.t23.result" data-ph="인덱스 또는 없음"></span></div>
+    <div class="x-line">결과 <span class="x-f" data-bind="A2.t23.result" data-ph="예: 인덱스 3 / 없음"></span></div>
   </div>
 
   <div class="x-screen" data-title="SORTED에서 40 찾기 (없는 값)">
     <div class="x-arr" data-name="SORTED" data-v="2,5,8,12,16,23,38,56,72,91"></div>
     <div class="x-given"><span><b>목표</b>40</span><span><b>끝나는 때</b>lo &gt; hi</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>lo</th><th>hi</th><th>mid</th><th>a[mid]</th><th>판정</th></tr>
-      <tr><td>1</td><td><span class="x-f" data-bind="A2.t40.r1.c1"></span></td><td><span class="x-f" data-bind="A2.t40.r1.c2"></span></td><td><span class="x-f" data-bind="A2.t40.r1.c3"></span></td><td><span class="x-f" data-bind="A2.t40.r1.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r1.c5"></span></td></tr>
-      <tr><td>2</td><td><span class="x-f" data-bind="A2.t40.r2.c1"></span></td><td><span class="x-f" data-bind="A2.t40.r2.c2"></span></td><td><span class="x-f" data-bind="A2.t40.r2.c3"></span></td><td><span class="x-f" data-bind="A2.t40.r2.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r2.c5"></span></td></tr>
-      <tr><td>3</td><td><span class="x-f" data-bind="A2.t40.r3.c1"></span></td><td><span class="x-f" data-bind="A2.t40.r3.c2"></span></td><td><span class="x-f" data-bind="A2.t40.r3.c3"></span></td><td><span class="x-f" data-bind="A2.t40.r3.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r3.c5"></span></td></tr>
-      <tr><td>4</td><td><span class="x-f" data-bind="A2.t40.r4.c1"></span></td><td><span class="x-f" data-bind="A2.t40.r4.c2"></span></td><td><span class="x-f" data-bind="A2.t40.r4.c3"></span></td><td><span class="x-f" data-bind="A2.t40.r4.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r4.c5"></span></td></tr>
-      <tr class="opt"><td>5</td><td><span class="x-f" data-bind="A2.t40.r5.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A2.t40.r5.c2"></span></td><td><span class="x-f" data-bind="A2.t40.r5.c3"></span></td><td><span class="x-f" data-bind="A2.t40.r5.c4"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r5.c5"></span></td></tr>
+      <tr><th>단계</th><th>lo<small>왼쪽 끝 인덱스</small></th><th>hi<small>오른쪽 끝 인덱스</small></th><th>mid<small>(lo+hi)//2</small></th><th>a[mid]<small>mid 칸의 값</small></th><th>판정<small>비교 결과 → 바뀐 값</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>0</td><td>4</td><td>2</td><td>9</td><td>14&gt;9 → lo=3</td></tr>
+      <tr><td>1</td><td><span class="x-f" data-bind="A2.t40.r1.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r1.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r1.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r1.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r1.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>2</td><td><span class="x-f" data-bind="A2.t40.r2.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r2.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r2.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r2.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r2.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>3</td><td><span class="x-f" data-bind="A2.t40.r3.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r3.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r3.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r3.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r3.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>4</td><td><span class="x-f" data-bind="A2.t40.r4.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r4.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r4.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r4.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r4.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>5</td><td><span class="x-f" data-bind="A2.t40.r5.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A2.t40.r5.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r5.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A2.t40.r5.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A2.t40.r5.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
     </table></div>
-    <div class="x-line">결과 <span class="x-f" data-bind="A2.t40.result" data-ph="인덱스 또는 없음"></span></div>
+    <div class="x-line">결과 <span class="x-f" data-bind="A2.t40.result" data-ph="예: 인덱스 3 / 없음"></span></div>
   </div>
 
   <div class="x-screen" data-title="비교 횟수 세기">
@@ -141,8 +143,8 @@
     </ul>
     <table class="x-trace">
       <tr><th>목표</th><th>규칙대로</th><th>하나씩</th></tr>
-      <tr><td>23</td><td><span class="x-f" data-bind="A2.cnt.bin23"></span></td><td><span class="x-f" data-bind="A2.cnt.lin23"></span></td></tr>
-      <tr><td>40</td><td><span class="x-f" data-bind="A2.cnt.bin40"></span></td><td><span class="x-f" data-bind="A2.cnt.lin40"></span></td></tr>
+      <tr><td>23</td><td><span class="x-f" data-bind="A2.cnt.bin23" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A2.cnt.lin23" data-ph="횟수"></span></td></tr>
+      <tr><td>40</td><td><span class="x-f" data-bind="A2.cnt.bin40" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A2.cnt.lin40" data-ph="횟수"></span></td></tr>
     </table>
   </div>
 
@@ -187,42 +189,45 @@
   <div class="x-screen" data-title="UNS에서 23 찾기">
     <div class="x-arr" data-name="UNS" data-v="38,5,72,16,91,2,23,56,12,8"></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>lo</th><th>hi</th><th>mid</th><th>a[mid]</th><th>판정</th></tr>
-      <tr><td>1</td><td><span class="x-f" data-bind="A3.t23.r1.c1"></span></td><td><span class="x-f" data-bind="A3.t23.r1.c2"></span></td><td><span class="x-f" data-bind="A3.t23.r1.c3"></span></td><td><span class="x-f" data-bind="A3.t23.r1.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r1.c5"></span></td></tr>
-      <tr><td>2</td><td><span class="x-f" data-bind="A3.t23.r2.c1"></span></td><td><span class="x-f" data-bind="A3.t23.r2.c2"></span></td><td><span class="x-f" data-bind="A3.t23.r2.c3"></span></td><td><span class="x-f" data-bind="A3.t23.r2.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r2.c5"></span></td></tr>
-      <tr><td>3</td><td><span class="x-f" data-bind="A3.t23.r3.c1"></span></td><td><span class="x-f" data-bind="A3.t23.r3.c2"></span></td><td><span class="x-f" data-bind="A3.t23.r3.c3"></span></td><td><span class="x-f" data-bind="A3.t23.r3.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r3.c5"></span></td></tr>
-      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A3.t23.r4.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A3.t23.r4.c2"></span></td><td><span class="x-f" data-bind="A3.t23.r4.c3"></span></td><td><span class="x-f" data-bind="A3.t23.r4.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r4.c5"></span></td></tr>
+      <tr><th>단계</th><th>lo<small>왼쪽 끝 인덱스</small></th><th>hi<small>오른쪽 끝 인덱스</small></th><th>mid<small>(lo+hi)//2</small></th><th>a[mid]<small>mid 칸의 값</small></th><th>판정<small>비교 결과 → 바뀐 값</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>0</td><td>4</td><td>2</td><td>9</td><td>14&gt;9 → lo=3</td></tr>
+      <tr><td>1</td><td><span class="x-f" data-bind="A3.t23.r1.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r1.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r1.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r1.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r1.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>2</td><td><span class="x-f" data-bind="A3.t23.r2.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r2.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r2.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r2.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r2.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>3</td><td><span class="x-f" data-bind="A3.t23.r3.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r3.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r3.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r3.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r3.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A3.t23.r4.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A3.t23.r4.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r4.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t23.r4.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t23.r4.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
     </table></div>
-    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="A3.t23.result" data-ph="인덱스 또는 없음"></span></div>
-    <div class="x-line">실제 위치 <span class="x-f" data-bind="A3.t23.actual" data-ph="UNS를 직접 보고"></span></div>
+    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="A3.t23.result" data-ph="예: 인덱스 3 / 없음"></span></div>
+    <div class="x-line">실제 위치 <span class="x-f" data-bind="A3.t23.actual" data-ph="예: 인덱스 6"></span></div>
     <div class="x-f" data-bind="A3.t23.verdict"></div>
   </div>
 
   <div class="x-screen" data-title="UNS에서 56 찾기">
     <div class="x-arr" data-name="UNS" data-v="38,5,72,16,91,2,23,56,12,8"></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>lo</th><th>hi</th><th>mid</th><th>a[mid]</th><th>판정</th></tr>
-      <tr><td>1</td><td><span class="x-f" data-bind="A3.t56.r1.c1"></span></td><td><span class="x-f" data-bind="A3.t56.r1.c2"></span></td><td><span class="x-f" data-bind="A3.t56.r1.c3"></span></td><td><span class="x-f" data-bind="A3.t56.r1.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r1.c5"></span></td></tr>
-      <tr><td>2</td><td><span class="x-f" data-bind="A3.t56.r2.c1"></span></td><td><span class="x-f" data-bind="A3.t56.r2.c2"></span></td><td><span class="x-f" data-bind="A3.t56.r2.c3"></span></td><td><span class="x-f" data-bind="A3.t56.r2.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r2.c5"></span></td></tr>
-      <tr><td>3</td><td><span class="x-f" data-bind="A3.t56.r3.c1"></span></td><td><span class="x-f" data-bind="A3.t56.r3.c2"></span></td><td><span class="x-f" data-bind="A3.t56.r3.c3"></span></td><td><span class="x-f" data-bind="A3.t56.r3.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r3.c5"></span></td></tr>
-      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A3.t56.r4.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A3.t56.r4.c2"></span></td><td><span class="x-f" data-bind="A3.t56.r4.c3"></span></td><td><span class="x-f" data-bind="A3.t56.r4.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r4.c5"></span></td></tr>
+      <tr><th>단계</th><th>lo<small>왼쪽 끝 인덱스</small></th><th>hi<small>오른쪽 끝 인덱스</small></th><th>mid<small>(lo+hi)//2</small></th><th>a[mid]<small>mid 칸의 값</small></th><th>판정<small>비교 결과 → 바뀐 값</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>0</td><td>4</td><td>2</td><td>9</td><td>14&gt;9 → lo=3</td></tr>
+      <tr><td>1</td><td><span class="x-f" data-bind="A3.t56.r1.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r1.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r1.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r1.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r1.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>2</td><td><span class="x-f" data-bind="A3.t56.r2.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r2.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r2.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r2.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r2.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>3</td><td><span class="x-f" data-bind="A3.t56.r3.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r3.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r3.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r3.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r3.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A3.t56.r4.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A3.t56.r4.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r4.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t56.r4.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t56.r4.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
     </table></div>
-    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="A3.t56.result" data-ph="인덱스 또는 없음"></span></div>
-    <div class="x-line">실제 위치 <span class="x-f" data-bind="A3.t56.actual" data-ph="UNS를 직접 보고"></span></div>
+    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="A3.t56.result" data-ph="예: 인덱스 3 / 없음"></span></div>
+    <div class="x-line">실제 위치 <span class="x-f" data-bind="A3.t56.actual" data-ph="예: 인덱스 6"></span></div>
     <div class="x-f" data-bind="A3.t56.verdict"></div>
   </div>
 
   <div class="x-screen" data-title="UNS에서 5 찾기">
     <div class="x-arr" data-name="UNS" data-v="38,5,72,16,91,2,23,56,12,8"></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>lo</th><th>hi</th><th>mid</th><th>a[mid]</th><th>판정</th></tr>
-      <tr><td>1</td><td><span class="x-f" data-bind="A3.t5.r1.c1"></span></td><td><span class="x-f" data-bind="A3.t5.r1.c2"></span></td><td><span class="x-f" data-bind="A3.t5.r1.c3"></span></td><td><span class="x-f" data-bind="A3.t5.r1.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r1.c5"></span></td></tr>
-      <tr><td>2</td><td><span class="x-f" data-bind="A3.t5.r2.c1"></span></td><td><span class="x-f" data-bind="A3.t5.r2.c2"></span></td><td><span class="x-f" data-bind="A3.t5.r2.c3"></span></td><td><span class="x-f" data-bind="A3.t5.r2.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r2.c5"></span></td></tr>
-      <tr class="opt"><td>3</td><td><span class="x-f" data-bind="A3.t5.r3.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A3.t5.r3.c2"></span></td><td><span class="x-f" data-bind="A3.t5.r3.c3"></span></td><td><span class="x-f" data-bind="A3.t5.r3.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r3.c5"></span></td></tr>
-      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A3.t5.r4.c1" data-ph="필요하면"></span></td><td><span class="x-f" data-bind="A3.t5.r4.c2"></span></td><td><span class="x-f" data-bind="A3.t5.r4.c3"></span></td><td><span class="x-f" data-bind="A3.t5.r4.c4"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r4.c5"></span></td></tr>
+      <tr><th>단계</th><th>lo<small>왼쪽 끝 인덱스</small></th><th>hi<small>오른쪽 끝 인덱스</small></th><th>mid<small>(lo+hi)//2</small></th><th>a[mid]<small>mid 칸의 값</small></th><th>판정<small>비교 결과 → 바뀐 값</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>0</td><td>4</td><td>2</td><td>9</td><td>14&gt;9 → lo=3</td></tr>
+      <tr><td>1</td><td><span class="x-f" data-bind="A3.t5.r1.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r1.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r1.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r1.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r1.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr><td>2</td><td><span class="x-f" data-bind="A3.t5.r2.c1" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r2.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r2.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r2.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r2.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>3</td><td><span class="x-f" data-bind="A3.t5.r3.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A3.t5.r3.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r3.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r3.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r3.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
+      <tr class="opt"><td>4</td><td><span class="x-f" data-bind="A3.t5.r4.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A3.t5.r4.c2" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r4.c3" data-ph="인덱스"></span></td><td><span class="x-f" data-bind="A3.t5.r4.c4" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A3.t5.r4.c5" data-ph="예: 14&gt;9 → lo=3"></span></td></tr>
     </table></div>
-    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="A3.t5.result" data-ph="인덱스 또는 없음"></span></div>
-    <div class="x-line">실제 위치 <span class="x-f" data-bind="A3.t5.actual" data-ph="UNS를 직접 보고"></span></div>
+    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="A3.t5.result" data-ph="예: 인덱스 3 / 없음"></span></div>
+    <div class="x-line">실제 위치 <span class="x-f" data-bind="A3.t5.actual" data-ph="예: 인덱스 6"></span></div>
     <div class="x-f" data-bind="A3.t5.verdict"></div>
     <div class="quiz" data-answer="2">
       <p class="q">5는 찾았어요. 그럼 UNS에서 이 규칙을 믿어도 될까요?</p>
@@ -278,13 +283,14 @@
     <div class="x-arr" data-name="ARR8" data-v="38,27,43,3,9,82,10,15" data-cls="0:pivot"></div>
     <ul class="x-pts"><li>먼저 가른 덩어리부터 한 줄씩. 빈 쪽은 <b>[ ]</b>.</li><li>5·6번 줄은 시간이 없으면 비교 횟수만.</li></ul>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>#</th><th>가를 대상</th><th>피벗</th><th>작은 쪽</th><th>큰 쪽</th><th>비교</th></tr>
-      <tr><td>1</td><td class="wide"><span class="x-f" data-bind="A4.quick.r1.c1"></span></td><td><span class="x-f" data-bind="A4.quick.r1.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r1.c3"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r1.c4"></span></td><td><span class="x-f" data-bind="A4.quick.r1.c5"></span></td></tr>
-      <tr><td>2</td><td class="wide"><span class="x-f" data-bind="A4.quick.r2.c1"></span></td><td><span class="x-f" data-bind="A4.quick.r2.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r2.c3"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r2.c4"></span></td><td><span class="x-f" data-bind="A4.quick.r2.c5"></span></td></tr>
-      <tr><td>3</td><td class="wide"><span class="x-f" data-bind="A4.quick.r3.c1"></span></td><td><span class="x-f" data-bind="A4.quick.r3.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r3.c3"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r3.c4"></span></td><td><span class="x-f" data-bind="A4.quick.r3.c5"></span></td></tr>
-      <tr><td>4</td><td class="wide"><span class="x-f" data-bind="A4.quick.r4.c1"></span></td><td><span class="x-f" data-bind="A4.quick.r4.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r4.c3"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r4.c4"></span></td><td><span class="x-f" data-bind="A4.quick.r4.c5"></span></td></tr>
-      <tr><td>5</td><td class="wide"><span class="x-f" data-bind="A4.quick.r5.c1"></span></td><td><span class="x-f" data-bind="A4.quick.r5.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r5.c3"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r5.c4"></span></td><td><span class="x-f" data-bind="A4.quick.r5.c5"></span></td></tr>
-      <tr><td>6</td><td class="wide"><span class="x-f" data-bind="A4.quick.r6.c1"></span></td><td><span class="x-f" data-bind="A4.quick.r6.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r6.c3"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r6.c4"></span></td><td><span class="x-f" data-bind="A4.quick.r6.c5"></span></td></tr>
+      <tr><th>#</th><th>가를 대상<small>리스트</small></th><th>피벗<small>맨 앞 값</small></th><th>작은 쪽<small>피벗보다 작은 값들</small></th><th>큰 쪽<small>나머지</small></th><th>비교<small>횟수</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>[6, 2, 7, 1]</td><td>6</td><td>[2, 1]</td><td>[7]</td><td>3</td></tr>
+      <tr><td>1</td><td class="wide"><span class="x-f" data-bind="A4.quick.r1.c1" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r1.c2" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r1.c3" data-ph="예: [2, 1]"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r1.c4" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r1.c5" data-ph="횟수"></span></td></tr>
+      <tr><td>2</td><td class="wide"><span class="x-f" data-bind="A4.quick.r2.c1" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r2.c2" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r2.c3" data-ph="예: [2, 1]"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r2.c4" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r2.c5" data-ph="횟수"></span></td></tr>
+      <tr><td>3</td><td class="wide"><span class="x-f" data-bind="A4.quick.r3.c1" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r3.c2" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r3.c3" data-ph="예: [2, 1]"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r3.c4" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r3.c5" data-ph="횟수"></span></td></tr>
+      <tr><td>4</td><td class="wide"><span class="x-f" data-bind="A4.quick.r4.c1" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r4.c2" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r4.c3" data-ph="예: [2, 1]"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r4.c4" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r4.c5" data-ph="횟수"></span></td></tr>
+      <tr><td>5</td><td class="wide"><span class="x-f" data-bind="A4.quick.r5.c1" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r5.c2" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r5.c3" data-ph="예: [2, 1]"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r5.c4" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r5.c5" data-ph="횟수"></span></td></tr>
+      <tr><td>6</td><td class="wide"><span class="x-f" data-bind="A4.quick.r6.c1" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r6.c2" data-ph="값"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r6.c3" data-ph="예: [2, 1]"></span></td><td class="wide"><span class="x-f" data-bind="A4.quick.r6.c4" data-ph="예: [2, 1]"></span></td><td><span class="x-f" data-bind="A4.quick.r6.c5" data-ph="횟수"></span></td></tr>
     </table></div>
     <div class="x-line">비교 합계 <span class="x-f" data-bind="A4.quick.total" data-w="xs"></span> 회</div>
   </div>
@@ -293,14 +299,15 @@
     <div class="x-arr" data-name="ARR8" data-v="38,27,43,3,9,82,10,15"></div>
     <div class="x-flow"><span>[38][27]</span><span>[43][3]</span><span>왼쪽 넷 합치기</span><span>[9][82]</span><span>[10][15]</span><span>오른쪽 넷 합치기</span><span class="hit">마지막 둘</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>#</th><th>왼쪽</th><th>오른쪽</th><th>합친 결과</th><th>비교</th></tr>
-      <tr><td>1</td><td class="wide"><span class="x-f" data-bind="A4.merge.r1.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r1.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r1.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r1.c4"></span></td></tr>
-      <tr><td>2</td><td class="wide"><span class="x-f" data-bind="A4.merge.r2.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r2.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r2.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r2.c4"></span></td></tr>
-      <tr><td>3</td><td class="wide"><span class="x-f" data-bind="A4.merge.r3.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r3.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r3.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r3.c4"></span></td></tr>
-      <tr><td>4</td><td class="wide"><span class="x-f" data-bind="A4.merge.r4.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r4.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r4.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r4.c4"></span></td></tr>
-      <tr><td>5</td><td class="wide"><span class="x-f" data-bind="A4.merge.r5.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r5.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r5.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r5.c4"></span></td></tr>
-      <tr><td>6</td><td class="wide"><span class="x-f" data-bind="A4.merge.r6.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r6.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r6.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r6.c4"></span></td></tr>
-      <tr><td>7</td><td class="wide"><span class="x-f" data-bind="A4.merge.r7.c1"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r7.c2"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r7.c3"></span></td><td><span class="x-f" data-bind="A4.merge.r7.c4"></span></td></tr>
+      <tr><th>#</th><th>왼쪽<small>리스트</small></th><th>오른쪽<small>리스트</small></th><th>합친 결과<small>정렬된 리스트</small></th><th>비교<small>횟수</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>[2, 6]</td><td>[1, 7]</td><td>[1, 2, 6, 7]</td><td>3</td></tr>
+      <tr><td>1</td><td class="wide"><span class="x-f" data-bind="A4.merge.r1.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r1.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r1.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r1.c4" data-ph="횟수"></span></td></tr>
+      <tr><td>2</td><td class="wide"><span class="x-f" data-bind="A4.merge.r2.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r2.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r2.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r2.c4" data-ph="횟수"></span></td></tr>
+      <tr><td>3</td><td class="wide"><span class="x-f" data-bind="A4.merge.r3.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r3.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r3.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r3.c4" data-ph="횟수"></span></td></tr>
+      <tr><td>4</td><td class="wide"><span class="x-f" data-bind="A4.merge.r4.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r4.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r4.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r4.c4" data-ph="횟수"></span></td></tr>
+      <tr><td>5</td><td class="wide"><span class="x-f" data-bind="A4.merge.r5.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r5.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r5.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r5.c4" data-ph="횟수"></span></td></tr>
+      <tr><td>6</td><td class="wide"><span class="x-f" data-bind="A4.merge.r6.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r6.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r6.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r6.c4" data-ph="횟수"></span></td></tr>
+      <tr><td>7</td><td class="wide"><span class="x-f" data-bind="A4.merge.r7.c1" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r7.c2" data-ph="예: [27, 38]"></span></td><td class="wide"><span class="x-f" data-bind="A4.merge.r7.c3" data-ph="예: [27, 38]"></span></td><td><span class="x-f" data-bind="A4.merge.r7.c4" data-ph="횟수"></span></td></tr>
     </table></div>
     <div class="x-line">비교 합계 <span class="x-f" data-bind="A4.merge.total" data-w="xs"></span> 회</div>
   </div>
@@ -350,9 +357,9 @@
     <ul class="x-pts"><li>숫자만 쓰세요. 모르면 ‘모름’.</li><li>방식 가는 깊이 대신 <b>합치는 층 수</b>.</li></ul>
     <table class="x-trace">
       <tr><th>방식</th><th>비교 횟수</th><th>깊이 / 층</th></tr>
-      <tr><td>나 · 첫 원소 피벗</td><td><span class="x-f" data-bind="A5.sort8.first.cnt"></span></td><td><span class="x-f" data-bind="A5.sort8.first.depth"></span></td></tr>
-      <tr><td>나 · 가운데 피벗</td><td><span class="x-f" data-bind="A5.sort8.mid.cnt"></span></td><td><span class="x-f" data-bind="A5.sort8.mid.depth"></span></td></tr>
-      <tr><td>가 · 쪼개 합치기</td><td><span class="x-f" data-bind="A5.sort8.merge.cnt"></span></td><td><span class="x-f" data-bind="A5.sort8.merge.depth"></span></td></tr>
+      <tr><td>나 · 첫 원소 피벗</td><td><span class="x-f" data-bind="A5.sort8.first.cnt" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A5.sort8.first.depth" data-ph="숫자"></span></td></tr>
+      <tr><td>나 · 가운데 피벗</td><td><span class="x-f" data-bind="A5.sort8.mid.cnt" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A5.sort8.mid.depth" data-ph="숫자"></span></td></tr>
+      <tr><td>가 · 쪼개 합치기</td><td><span class="x-f" data-bind="A5.sort8.merge.cnt" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A5.sort8.merge.depth" data-ph="숫자"></span></td></tr>
     </table>
   </div>
 
@@ -361,8 +368,8 @@
     <ul class="x-pts"><li>첫 원소 피벗은 A4에서 구한 값이에요.</li></ul>
     <table class="x-trace">
       <tr><th>방식</th><th>비교 횟수</th><th>깊이</th></tr>
-      <tr><td>나 · 첫 원소 피벗</td><td><span class="x-f" data-bind="A5.arr8.first.cnt"></span></td><td><span class="x-f" data-bind="A5.arr8.first.depth"></span></td></tr>
-      <tr><td>나 · 가운데 피벗</td><td><span class="x-f" data-bind="A5.arr8.mid.cnt"></span></td><td><span class="x-f" data-bind="A5.arr8.mid.depth"></span></td></tr>
+      <tr><td>나 · 첫 원소 피벗</td><td><span class="x-f" data-bind="A5.arr8.first.cnt" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A5.arr8.first.depth" data-ph="숫자"></span></td></tr>
+      <tr><td>나 · 가운데 피벗</td><td><span class="x-f" data-bind="A5.arr8.mid.cnt" data-ph="횟수"></span></td><td><span class="x-f" data-bind="A5.arr8.mid.depth" data-ph="숫자"></span></td></tr>
     </table>
   </div>
 

@@ -389,7 +389,10 @@
       showSheet("info", "아직 안 쓴 칸이 " + empty.length + "개 있어요", "나중에 돌아와서 써도 돼요. 한 번 더 누르면 넘어가요.");
       primary.textContent = "그래도 넘어가기";
       // 포커스를 옮기면 경고가 바로 꺼지므로, 빈 칸은 보이게 스크롤하고 반짝이기만 한다.
-      empty.forEach(function (f) { f.classList.remove("duo-blink"); void f.offsetWidth; f.classList.add("duo-blink"); });
+      empty.forEach(function (f) {
+        f.classList.remove("duo-blink"); void f.offsetWidth; f.classList.add("duo-blink");
+        setTimeout(function () { f.classList.remove("duo-blink"); }, 2600);
+      });
       empty[0].scrollIntoView({ block: "center", behavior: "smooth" });
       return;
     }

@@ -21,9 +21,33 @@
 .x-given > span > b { font: 900 15px var(--f-mono); color: var(--duo-ink); margin-right: 8px; }
 .x-given code { font: 700 15px var(--f-mono); }
 
+/* 등장 애니메이션: 화면 안 요소가 차례로 떠오른다(투명도는 건드리지 않아 멈춰도 다 보인다) */
+@keyframes x-rise { from { transform: translateY(14px) scale(.985); } to { transform: none; } }
+@keyframes x-pop { 0% { transform: scale(.6); } 70% { transform: scale(1.12); } 100% { transform: none; } }
+.duo-screen:not([hidden]) .x-step > *, .duo-screen:not([hidden]) .duo-intro-head > *, .duo-screen:not([hidden]) .duo-start > * { animation: x-rise .42s cubic-bezier(.2,.8,.3,1.15) backwards; }
+.duo-screen:not([hidden]) .x-step > :nth-child(2), .duo-screen:not([hidden]) .duo-start > :nth-child(2) { animation-delay: .06s; }
+.duo-screen:not([hidden]) .x-step > :nth-child(3), .duo-screen:not([hidden]) .duo-start > :nth-child(3) { animation-delay: .12s; }
+.duo-screen:not([hidden]) .x-step > :nth-child(4), .duo-screen:not([hidden]) .duo-start > :nth-child(4) { animation-delay: .18s; }
+.duo-screen:not([hidden]) .x-step > :nth-child(5), .duo-screen:not([hidden]) .duo-start > :nth-child(5) { animation-delay: .24s; }
+.duo-screen:not([hidden]) .x-step > :nth-child(n+6) { animation-delay: .3s; }
+.duo-screen:not([hidden]) .x-cell { animation: x-pop .38s ease-out backwards; }
+.duo-screen:not([hidden]) .x-cell:nth-child(2) { animation-delay: .03s; } .duo-screen:not([hidden]) .x-cell:nth-child(3) { animation-delay: .06s; }
+.duo-screen:not([hidden]) .x-cell:nth-child(4) { animation-delay: .09s; } .duo-screen:not([hidden]) .x-cell:nth-child(5) { animation-delay: .12s; }
+.duo-screen:not([hidden]) .x-cell:nth-child(6) { animation-delay: .15s; } .duo-screen:not([hidden]) .x-cell:nth-child(7) { animation-delay: .18s; }
+.duo-screen:not([hidden]) .x-cell:nth-child(n+8) { animation-delay: .21s; }
+.duo-screen:not([hidden]) .x-rules > li { animation: x-rise .45s cubic-bezier(.2,.8,.3,1.15) backwards; }
+.duo-screen:not([hidden]) .x-rules > li:nth-child(2) { animation-delay: .1s; } .duo-screen:not([hidden]) .x-rules > li:nth-child(3) { animation-delay: .2s; } .duo-screen:not([hidden]) .x-rules > li:nth-child(4) { animation-delay: .3s; }
+.duo-foot.ok .duo-sheet-t, .duo-foot.warn .duo-sheet-t { animation: x-pop .35s ease-out; display: inline-block; }
+@media (prefers-reduced-motion: reduce) { .duo-screen * { animation: none !important; } }
+
 /* 빈 칸 경고 때 반짝임 */
 @keyframes duo-blink { 0%, 100% { box-shadow: none; } 30%, 70% { box-shadow: 0 0 0 4px rgba(255,150,0,.45); } }
-.duo-blink .x-in, .duo-blink .x-opt, .duo-blink .x-check, .duo-blink input, .duo-blink.x-in { animation: duo-blink 1.2s ease-in-out 2; border-color: var(--duo-orange) !important; }
+.duo-blink .x-in, .duo-blink .x-opt, .duo-blink .x-check, .duo-blink input, .duo-blink.x-in { animation: duo-blink 1.2s ease-in-out 2; }
+
+/* 표 머리의 설명 줄과 예시 줄 */
+.duo-app table th small { display: block; font: 600 11.5px var(--f-body); color: var(--duo-faint); margin-top: 2px; letter-spacing: 0; white-space: nowrap; }
+.duo-app table tr.x-ex td { font: 700 15px var(--f-mono); color: #5b7c99; background: #f3f9ff; border-bottom: 2px dashed #cfe6fb; }
+.duo-app table tr.x-ex td:first-child { font: 900 13px var(--f-round); color: var(--duo-blue-d); }
 
 /* 규칙 카드: 단계마다 번호·이름·식·작은 그림 */
 .x-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: r; }
