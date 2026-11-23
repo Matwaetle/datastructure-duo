@@ -17,36 +17,175 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
+<div class="x-page" hidden data-title="12주차 실습 코드 3부 · 함정 탐색 T1~T4" data-lead="bisect를 잘못 쓰면 어떻게 되는지 예측하고 실행해서 확인해요.">
+
+<section class="x-act" data-id="T1" data-title="순서 없는 리스트에 bisect" data-meta="A10 필수">
+  <ul class="x-pts"><li>예측·실제·원인은 활동지 2부 A10 표에 적어요.</li></ul>
+
+  <div class="x-screen" data-title="정렬된 리스트에서 견주기">
+    <div class="x-cards">
+      <div><b>bisect_left(a, x)</b>이진 탐색으로 자리 찾기</div>
+      <div><b>a.index(x)</b>앞에서부터 하나씩 보며 찾기</div>
+    </div>
+    <div class="x-arr" data-name="SMALL" data-v="10,20,30,40"></div>
+    <div class="x-ed" data-starter="T1-p1"></div>
+  </div>
+
+  <div class="x-screen" data-title="UNS에서 예측하기">
+    <div class="x-arr" data-name="UNS" data-v="38,5,72,16,91,2,23,56,12,8" data-label="A3의 순서 없는 배열 · 23은 6번 칸"></div>
+    <pre class="x-code">print("bisect_left:", bisect_left(UNS, 23))
+print("index      :", UNS.index(23))</pre>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">실행하면 두 줄은 어떻게 될까요?</p>
+      <div class="opts"><button type="button">같은 자리를 돌려준다</button><button type="button">다른 자리를 돌려준다</button><button type="button">오류가 난다</button></div>
+      <p class="why">bisect는 정렬됐다고 믿고 절반을 버려요. 오류 없이 엉뚱한 자리를 줘요.</p>
+    </div>
+    <ul class="x-pts"><li>고른 답을 A10 T1 [예측] 칸에 먼저 적고 실행해요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="실행하고 정리하기">
+    <div class="x-arr" data-name="UNS" data-v="38,5,72,16,91,2,23,56,12,8"></div>
+    <ul class="x-pts"><li>출력 → [실제] 칸, 까닭 → [원인 한 줄] 칸</li><li>막히면 lo, hi, mid를 손으로 따라가 봐요</li></ul>
+    <div class="x-f" data-bind="A10.t1.mycode"></div>
+  </div>
+</section>
+
+<section class="x-act" data-id="T2" data-title="시간을 재 본다" data-meta="A10 필수 · 상대 비교만">
+  <ul class="x-pts"><li>100만 개에서 index와 bisect_left의 시간 차를 자릿수로 봐요.</li></ul>
+
+  <div class="x-screen" data-title="e 표기 읽기">
+    <div class="x-given"><span><b>2e-05</b>= 0.00002 (소수점 왼쪽으로 5칸)</span></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">3e-03 초는?</p>
+      <div class="opts"><button type="button">0.003초</button><button type="button" data-hint="왼쪽으로 세 칸이에요.">0.03초</button><button type="button" data-hint="한 칸 더 옮겼어요.">0.0003초</button></div>
+      <p class="why">3을 소수점 왼쪽으로 세 칸 → 0.003.</p>
+    </div>
+    <div class="quiz" data-answer="2">
+      <p class="q">3e-03 초와 3e-05 초는 몇 자릿수 차이?</p>
+      <div class="opts"><button type="button" data-hint="지수 차이를 봐요.">한 자릿수</button><button type="button">두 자릿수 (100배)</button><button type="button" data-hint="−3과 −5의 차이예요.">다섯 자릿수</button></div>
+      <p class="why">지수가 2 다르면 100배예요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="시간 재기 예측하고 실행">
+    <div class="x-given"><span><b>big</b>정렬된 100만 개</span><span><b>목표</b>마지막 값</span><span><b>index</b>20번 평균</span><span><b>bisect_left</b>2000번 평균</span></div>
+    <div class="quiz predict" data-answer="4">
+      <p class="q">index 한 번은 bisect_left 한 번보다 몇 배쯤 오래 걸릴까요?</p>
+      <div class="opts"><button type="button">비슷하다</button><button type="button">10배쯤</button><button type="button">100배쯤</button><button type="button">1만 배 이상</button></div>
+      <p class="why">index는 100만 개를 지나고, bisect는 약 20번 견줘요.</p>
+    </div>
+    <ul class="x-pts"><li>예측은 A10 T2 [예측] 칸에 먼저</li><li>출력된 두 시간 → [한 번에 걸린 시간], 자릿수 차이 → [비율]</li><li>값은 컴퓨터마다 달라요. 크기 차이만 봐요</li></ul>
+    <div class="x-f" data-bind="A10.t2.mycode"></div>
+  </div>
+</section>
+
+<section class="x-act" data-id="T3" data-title="경계 코드를 하나 고쳐 썼다" data-meta="A10 필수 · 반복 상한 20회">
+  <ul class="x-pts"><li>한 군데 바꾼 lower_bound가 어디서 끝나지 않는지 찾고 고쳐요.</li></ul>
+
+  <div class="x-screen" data-title="고쳐 쓴 함수 예측하기">
+    <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
+    <ul class="x-pts"><li>반복이 20번을 넘으면 "무한 반복"을 돌려줘요 (멈춤 장치)</li><li>x = 12, 0, 4, 20을 차례로 넣어요</li></ul>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">x = 12를 넣으면 무엇이 출력될까요?</p>
+      <div class="opts"><button type="button">8</button><button type="button">무한 반복</button><button type="button">오류가 난다</button></div>
+      <p class="why">lo와 hi가 같아져도 hi = mid라 범위가 줄지 않아요.</p>
+    </div>
+    <ul class="x-pts"><li>x = 12와 x = 0의 예측을 A10 T3 [예측] 칸에 적어요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="반복마다 따라가기">
+    <div class="x-given"><span><b>a</b>[5]</span><span><b>x</b>0</span><span><b>시작</b>lo=0, hi=len(a)−1=0</span></div>
+    <div class="x-ed" data-starter="T3-p1"></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">step 0~3에서 lo, hi, mid는?</p>
+      <div class="opts"><button type="button" data-hint="출력 네 줄을 비교해 봐요.">점점 줄어든다</button><button type="button">매번 같다</button><button type="button" data-hint="출력 네 줄을 비교해 봐요.">점점 커진다</button></div>
+      <p class="why">네 줄 모두 lo=0, hi=0, mid=0. 범위가 안 줄어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="A7과 견주어 고치기">
+    <pre class="x-code">def lower_bound(a, x):      # A7의 함수
+    lo, hi = 0, len(a)      # 후보 범위 [lo, hi)
+    while lo &lt; hi:
+        mid = (lo + hi) // 2
+        if a[mid] &lt; x:
+            lo = mid + 1
+        else:
+            hi = mid
+    return lo</pre>
+    <ul class="x-pts">
+      <li>함수 이름 <b>lower_bound_bad</b>는 그대로 두기</li>
+      <li>위와 줄 단위로 견주어 다른 줄을 고치기</li>
+      <li>[▶ 실행] → [✔ 점검]: <b>T3 점검 통과</b>면 완성</li>
+      <li>원인은 A10 T3 [실제]·[원인 한 줄] 칸에</li>
+    </ul>
+    <pre class="x-code">print(lower_bound_bad(DUP, 12))   #=> 8 (고친 뒤)</pre>
+    <div class="x-f" data-bind="A10.t3.mycode"></div>
+  </div>
+</section>
+
+<section class="x-act" data-id="T4" data-title="선택 과제 · key= 와 insort" data-meta="선택 · 파이썬 3.10 이상">
+  <ul class="x-pts"><li>쌍 목록에서 bisect 쓰기, 계속 끼워 넣을 때의 시간을 봐요.</li></ul>
+
+  <div class="x-screen" data-title="key= 인자 읽기">
+    <div class="x-given"><span><b>students</b>[("D", 55), ("A", 70), ("C", 70), ("B", 90)]</span><span><b>정렬 기준</b>점수 오름차순</span></div>
+    <div class="x-cards"><div><b>key=lambda s: s[1]</b>쌍에서 두 번째 값(점수)만 꺼내 비교</div><div><b>insort</b>정렬을 유지하며 끼워 넣기</div></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">s = ("A", 70) 일 때 s[1]은?</p>
+      <div class="opts"><button type="button" data-hint="번호는 0부터 세요.">"A"</button><button type="button">70</button><button type="button" data-hint="쌍 전체가 아니라 한 값이에요.">("A", 70)</button></div>
+      <p class="why">s[1]은 두 번째 값 70이에요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="예측하고 실행하기">
+    <ul class="x-pts"><li>(가) 점수 70이 들어갈 왼쪽·오른쪽 자리</li><li>(나) 정렬된 20만 개에 홀수 2000개 insort 시간</li></ul>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">(가)에서 출력되는 두 값은?</p>
+      <div class="opts"><button type="button">0 4</button><button type="button">1 3</button><button type="button">1 4</button></div>
+      <p class="why">70은 1, 2번 칸 → left 1, right 3.</p>
+    </div>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">(나) 2000번 끼워 넣는 시간은?</p>
+      <div class="opts"><button type="button">0.001초보다 짧다</button><button type="button">0.01초에서 1초 사이</button><button type="button">1초보다 길다</button></div>
+      <p class="why">자리 찾기는 빠르지만, 끼워 넣을 때 뒤 원소를 미느라 시간이 들어요.</p>
+    </div>
+    <ul class="x-pts"><li>예측 → A10 T4 [예측], 출력 → [실제], 까닭 → [원인 한 줄]</li></ul>
+    <div class="x-f" data-bind="A10.t4.mycode"></div>
+  </div>
+</section>
+</div>
+
+
 <div class="wrap">
 <header>
   <div class="prompt">&gt;&gt;&gt; lab.week(12)  # 학생용 · 실습 코드 3부(A10)</div>
   <h1>12주차 실습 코드 3부 — 함정 탐색 T1~T4</h1>
-  <p class="lead">A10에서 A9를 마친 뒤 써요. 함정 코드를 읽고 결과를 먼저 예측해요. 그다음 실행해서 맞춰 봐요.</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 써요.</span></p>
+  <p class="lead">A10에서 A9를 마친 뒤 쓴다. 함정 코드를 읽고 결과를 먼저 예측한 뒤, 실행해서 맞춰 보자.</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 쓴다.</span></p>
 </header>
 <nav><a href="#how">#사용법</a><a href="#T1">#T1</a><a href="#T2">#T2</a><a href="#T3">#T3</a><a href="#T4">#T4</a><a href="index.html">목록</a></nav>
 <section id="how">
 <h2>사용법<small>#how</small></h2>
 <ul>
-<li>편집기에는 실행할 코드가 미리 들어 있어요. 코드를 읽고 예측한 뒤 [&#9654; 실행]을 눌러요.</li>
-<li>예측과 실제 값은 활동지 2부 A10의 표에 써요. 이 쪽은 앞 쪽의 코드가 없어도 돼요.</li>
-<li>편집기에 쓴 내용은 자동으로 보관돼요. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만들어요.</li>
+<li>편집기에는 실행할 코드가 미리 들어 있다. 코드를 읽고 예측한 뒤 [&#9654; 실행]을 누른다.</li>
+<li>예측과 실제 값은 활동지 2부 A10의 표에 적는다. 이 쪽은 앞 쪽의 코드가 필요하지 않다.</li>
+<li>편집기에 쓴 내용은 자동으로 보관된다. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만든다.</li>
 </ul>
 <details class="more"><summary>단축키와 오류가 날 때</summary>
 <ul>
-<li>Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기예요. [처음 코드로]는 편집기를 처음 상태로 되돌려요.</li>
-<li>오류가 나면 맨 아래 줄부터 읽어요. 오류 이름과 이유가 거기에 있어요.</li>
-<li>이 쪽에는 정답 점검이 없어요(T3의 [&#10004; 점검]만 있어요). 내 예측과 실제 출력의 차이로 확인해요.</li>
-<li>실행이 15초를 넘기면 멈춰요. 반복이 끝나지 않는 곳이 있는지 확인해요.</li>
+<li>Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기이다. [처음 코드로]는 편집기를 처음 상태로 되돌린다.</li>
+<li>오류가 나면 맨 아래 줄부터 읽는다. 오류 이름과 까닭이 거기에 있다.</li>
+<li>이 쪽에는 정답 점검이 없다(T3의 [&#10004; 점검]만 있다). 내 예측과 실제 출력의 차이가 확인 수단이다.</li>
+<li>실행이 15초를 넘기면 멈춘다. 반복이 끝나지 않는 곳이 있는지 확인한다.</li>
 </ul>
 </details>
 </section>
 <section id="T1" class="sheet lesson">
 <h2>T1 · 순서 없는 리스트에 bisect<small>A10 필수 · 오류가 나는가? 값은?</small></h2>
-<p class="lead">순서 없는 리스트에 <code class="i">bisect_left</code>를 부르면 오류가 날까요? 아니면 <code class="i">list.index</code>와 같은 자리를 줄까요?</p>
+<p class="lead">순서 없는 리스트에 <code class="i">bisect_left</code>를 부르면 오류가 날까? <code class="i">list.index</code>와 같은 자리를 줄까?</p>
 
 <div class="step">
-<h3>정렬된 리스트에서 비교하기</h3>
-<p><code class="i">bisect_left(a, x)</code>는 이진 탐색으로 x의 자리를 찾아요. <code class="i">a.index(x)</code>는 앞에서부터 하나씩 보며 찾아요. 정렬된 리스트에서 둘을 불러 봐요.</p>
+<h3>정렬된 리스트에서 견주기</h3>
+<p><code class="i">bisect_left(a, x)</code>는 이진 탐색으로, <code class="i">a.index(x)</code>는 앞에서부터 하나씩 보며 x의 자리를 찾는다. 정렬된 리스트에서 둘을 불러 보자.</p>
 <script type="text/plain" data-id="T1-p1">
 from bisect import bisect_left
 
@@ -59,7 +198,7 @@ print("index      :", SMALL.index(30))          # 앞에서부터 하나씩 보�
 
 <div class="step">
 <h3>순서 없는 리스트 읽기</h3>
-<p>이번에는 A3에서 쓴 순서 없는 배열 <code class="i">UNS</code>예요. 같은 두 줄을 UNS에 불러요. 아직 실행하지 말고 읽어 봐요.</p>
+<p>이번에는 A3에서 쓴 순서 없는 배열 <code class="i">UNS</code>이다. 같은 두 줄을 UNS에 부른다. 아직 실행하지 말고 읽어 보자.</p>
 <script type="text/plain" data-id="T1-1">
 # T1 (시작 상태: UNS는 아래 그대로, 호출 전에 바꾸지 않는다)
 from bisect import bisect_left
@@ -73,43 +212,43 @@ print("index      :", UNS.index(23))
 <div class="step">
 <h3>먼저 예측하기</h3>
 <div class="quiz predict">
-<p class="q">위 코드를 실행하면 두 줄은 어떻게 될까요?</p>
+<p class="q">위 코드를 실행하면 두 줄은 어떻게 될까?</p>
 <div class="opts"><button type="button">같은 자리를 돌려준다</button><button type="button">다른 자리를 돌려준다</button><button type="button">오류가 난다</button></div>
 </div>
-<p>고른 답을 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T1 행의 [예측] 칸에 한 문장으로 써 둬요.</p>
+<p>고른 답을 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T1 행의 [예측] 칸에 한 문장으로 적어 두자.</p>
 </div>
 
 <div class="step">
 <h3>실행하고 정리하기</h3>
-<p>위 UNS 편집기에서 [&#9654; 실행]을 눌러 두 줄을 읽어요. 출력은 그대로 [실제] 칸에 써요. 왜 그런지는 [원인 한 줄] 칸에 써요.</p>
+<p>위 UNS 편집기에서 [&#9654; 실행]을 눌러 두 줄을 읽자. 출력은 그대로 [실제] 칸에, 왜 그런지는 [원인 한 줄] 칸에 쓴다.</p>
 <details class="more"><summary>막히면 · 원인 단서</summary>
-<p>A3에서 UNS에 같은 규칙을 썼을 때 무슨 일이 있었는지, 활동지 1부 A3의 내 기록을 다시 봐요. 두 값이 다르다면 bisect_left가 UNS에서 어느 자리들을 차례로 비교하는지 봐요. lo, hi, mid를 손으로 따라가 봐요.</p>
+<p>A3에서 UNS에 같은 규칙을 적용했을 때 무슨 일이 있었는지 활동지 1부 A3의 내 기록을 다시 본다. 두 값이 다르다면 bisect_left가 UNS에서 어느 자리들을 차례로 견주는지 lo, hi, mid를 손으로 따라가 본다.</p>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> UNS에서 두 줄을 실행해 활동지에 옮겼어요. 다음 T2에서는 두 방법의 시간을 재 봐요.</p>
+<p class="wrapup"><b>여기까지</b> UNS에서 두 줄을 실행해 활동지에 옮겼다. 다음 T2에서는 두 방법의 시간을 재 본다.</p>
 </section>
 <section id="T2" class="sheet lesson">
 <h2>T2 · 시간을 재 본다<small>A10 필수 · 상대 비교만</small></h2>
-<p class="lead">100만 개에서 한 번 찾는 데 <code class="i">list.index</code>와 <code class="i">bisect_left</code>는 몇 자릿수나 차이 날까요? 시간을 재서 확인해 봐요.</p>
+<p class="lead">100만 개에서 한 번 찾는 데 <code class="i">list.index</code>와 <code class="i">bisect_left</code>는 몇 자릿수나 차이 날까? 시간을 재서 확인해 보자.</p>
 
 <div class="step">
 <h3>e 표기 읽는 법</h3>
-<p>파이썬은 아주 작은 시간을 <code class="i">2e-05</code>처럼 써요. <code class="i">e-05</code>는 소수점을 왼쪽으로 다섯 칸 옮긴다는 뜻이에요. 그래서 <code class="i">2e-05</code>는 0.00002예요.</p>
+<p>파이썬은 아주 작은 시간을 <code class="i">2e-05</code>처럼 쓴다. <code class="i">e-05</code>는 소수점을 왼쪽으로 다섯 칸 옮긴다는 뜻이어서 <code class="i">2e-05</code>는 0.00002이다.</p>
 <div class="quiz" data-answer="1">
-<p class="q"><code class="i">3e-03</code>초는 몇 초일까요?</p>
+<p class="q"><code class="i">3e-03</code>초는 몇 초일까?</p>
 <div class="opts"><button type="button">0.003초</button><button type="button" data-hint="e-03은 소수점을 왼쪽으로 세 칸 옮긴다. 0.03은 두 칸이다.">0.03초</button><button type="button" data-hint="0.0003은 네 칸 옮긴 값이다. e-03은 세 칸이다.">0.0003초</button></div>
-<p class="why">3을 소수점 왼쪽으로 세 칸 옮긴 0.003이에요.</p>
+<p class="why">3을 소수점 왼쪽으로 세 칸 옮긴 0.003이다.</p>
 </div>
 <div class="quiz" data-accept="2" data-hint="지수 -3과 -5는 얼마나 다른가? 그 차이가 자릿수 차이이다.">
-<p class="q"><code class="i">3e-03</code>초와 <code class="i">3e-05</code>초는 몇 자릿수 차이일까요?</p>
+<p class="q"><code class="i">3e-03</code>초와 <code class="i">3e-05</code>초는 몇 자릿수 차이일까?</p>
 <div class="ans"><input type="text" aria-label="자릿수 차이" placeholder="숫자 하나"><button type="button">확인</button></div>
-<p class="why">지수가 2 다르면 100배, 즉 두 자릿수 차이예요.</p>
+<p class="why">지수가 2 다르면 100배, 곧 두 자릿수 차이이다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>시간 재는 코드 읽기</h3>
-<p>정렬된 100만 개에서 맨 끝 값을 찾아요. <code class="i">index</code>는 20번, <code class="i">bisect_left</code>는 2000번 불러요. 그리고 한 번에 걸린 평균을 내요.</p>
+<p>정렬된 100만 개에서 맨 끝 값을 찾는다. <code class="i">index</code>는 20번, <code class="i">bisect_left</code>는 2000번 부르고, 한 번에 걸린 평균을 낸다.</p>
 <script type="text/plain" data-id="T2-1">
 # T2 (시작 상태: big은 정렬된 100만 개. 목표는 마지막 값)
 # time: 걸린 시간을 재는 모듈이다
@@ -138,29 +277,29 @@ print("bisect_left 한 번(초):", t_bis)
 <div class="step">
 <h3>먼저 예측하기</h3>
 <div class="quiz predict">
-<p class="q"><code class="i">index</code> 한 번은 <code class="i">bisect_left</code> 한 번보다 몇 배쯤 오래 걸릴까요?</p>
+<p class="q"><code class="i">index</code> 한 번은 <code class="i">bisect_left</code> 한 번보다 몇 배쯤 오래 걸릴까?</p>
 <div class="opts"><button type="button">비슷하다</button><button type="button">10배쯤</button><button type="button">100배쯤</button><button type="button">1만 배 이상</button></div>
 </div>
-<p>고른 답을 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T2 행의 [예측] 칸에 써 둬요.</p>
+<p>고른 답을 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T2 행의 [예측] 칸에 적어 두자.</p>
 </div>
 
 <div class="step">
 <h3>실행하고 정리하기</h3>
-<p>[&#9654; 실행]을 누르면 몇 초 걸려요. 출력된 두 시간은 [한 번에 걸린 시간] 두 칸에 써요. 크기 차이(자릿수)는 [비율] 칸에 써요.</p>
-<p class="tip">잠깐! 컴퓨터마다 시간이 달라요. 값이 아니라 두 시간의 크기 차이만 써요.</p>
+<p>[&#9654; 실행]을 누르면 몇 초 걸린다. 출력된 두 시간을 [한 번에 걸린 시간] 두 칸에, 크기 차이(자릿수)를 [비율] 칸에 쓴다.</p>
+<p class="tip">컴퓨터마다 시간이 다르다. 값이 아니라 두 시간의 크기 차이만 쓴다.</p>
 <details class="more"><summary>막히면 · 비교와 원인 단서</summary>
-<p>두 값을 e 표기로 읽고 지수의 차이를 봐요. 원인은 이렇게 생각해 봐요. 100만 개에서 index가 마지막 값을 찾으려고 몇 개의 원소를 지나는지, bisect_left는 몇 번쯤 비교하는지요. 이 차이는 N이 커질수록 어떻게 변할까요?</p>
+<p>두 값을 e 표기로 읽고 지수의 차이를 본다. 원인은 100만 개에서 index가 마지막 값을 찾으려 얼마나 많은 원소를 지나는지, bisect_left가 몇 번쯤 견주는지 생각해 본다. 이 차이는 N이 커질수록 어떻게 변할까?</p>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 두 시간을 재서 활동지에 옮겼어요. 다음 T3에서는 경계 코드를 한 군데 고쳐 쓴 함수를 살펴봐요.</p>
+<p class="wrapup"><b>여기까지</b> 두 시간을 재서 활동지에 옮겼다. 다음 T3에서는 경계 코드를 한 군데 고쳐 쓴 함수를 살펴본다.</p>
 </section>
 <section id="T3" class="sheet lesson">
-<h2>T3 · 경계 코드를 한 군데 고쳐 썼어요<small>A10 필수 · 반복 상한 20회 장치 포함</small></h2>
-<p class="lead">A7의 <code class="i">lower_bound</code>를 한 군데 고쳐 쓰면, 어떤 입력에서 반복이 끝나지 않을까요? 먼저 예측하고 원인을 찾아 봐요.</p>
+<h2>T3 · 경계 코드를 하나 고쳐 썼다<small>A10 필수 · 반복 상한 20회 장치 포함</small></h2>
+<p class="lead">A7의 <code class="i">lower_bound</code>를 한 군데 고쳐 쓰면 어떤 입력에서 반복이 끝나지 않을까? 먼저 예측하고 원인을 찾아 보자.</p>
 
 <div class="step">
 <h3>고쳐 쓴 함수 읽기</h3>
-<p>아래 함수는 반복이 20번을 넘으면 <code class="i">"무한 반복"</code>을 돌려줘요. 컴퓨터가 멈추지 않게 하는 장치예요. 이 함수에 x = 12, 0, 4, 20을 차례로 넣어요.</p>
+<p>아래 함수는 반복이 20번을 넘으면 <code class="i">"무한 반복"</code>을 돌려준다. 컴퓨터가 멈추지 않게 하는 장치이다. 이 함수에 x = 12, 0, 4, 20을 차례로 넣는다.</p>
 <script type="text/plain" data-id="T3-1">
 # T3 (시작 상태: DUP는 아래 그대로. 반복 상한 20회는 컴퓨터가 멈추지 않게 하는 장치이다)
 DUP = [1, 3, 3, 3, 5, 7, 7, 9, 12, 12, 12, 12, 15]
@@ -196,20 +335,20 @@ print("T3 점검 통과")
 <div class="step">
 <h3>먼저 예측하기</h3>
 <div class="quiz predict">
-<p class="q">x = 12를 넣으면 무엇이 출력될까요?</p>
+<p class="q">x = 12를 넣으면 무엇이 출력될까?</p>
 <div class="opts"><button type="button">8</button><button type="button">무한 반복</button><button type="button">오류가 난다</button></div>
 </div>
-<p>x = 12와 x = 0의 결과를 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T3 행의 [예측] 칸에 써 둬요.</p>
+<p>x = 12와 x = 0의 결과를 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T3 행의 [예측] 칸에 적어 두자.</p>
 </div>
 
 <div class="step">
 <h3>실행해서 읽기</h3>
-<p>위 편집기에서 [&#9654; 실행]을 누르고 네 줄을 읽어요. 예측과 같은 줄은 어느 것이고, 다른 줄은 어느 것인가요?</p>
+<p>위 편집기에서 [&#9654; 실행]을 누르고 네 줄을 읽자. 예측과 같은 줄은 어느 것이고 다른 줄은 어느 것인가?</p>
 </div>
 
 <div class="step">
 <h3>반복마다 따라가기</h3>
-<p>왜 그런지 작은 예로 따라가 봐요. 원소가 하나뿐인 리스트 <code class="i">[5]</code>에서 x = 0을 찾아요. 반복마다 lo, hi, mid를 찍어요.</p>
+<p>왜 그런지 작은 사례로 따라가 보자. 원소가 하나뿐인 리스트 <code class="i">[5]</code>에서 x = 0을 찾고, 반복마다 lo, hi, mid를 찍는다.</p>
 <script type="text/plain" data-id="T3-p1">
 # 원소가 하나뿐인 리스트에서 x = 0을 찾는다. 반복마다 lo, hi, mid를 찍는다.
 a = [5]
@@ -227,16 +366,16 @@ for step in range(4):                  # 네 번만 따라간다
 </script>
 <div class="mycode"><textarea class="in code" rows="14" data-type="code" data-starter="T3-p1" data-label="연습 · 반복마다 따라가기" spellcheck="false"></textarea></div>
 <div class="quiz" data-answer="2">
-<p class="q">step 0부터 step 3까지 lo, hi, mid는 어떻게 되었을까요?</p>
+<p class="q">step 0부터 step 3까지 lo, hi, mid는 어떻게 되었을까?</p>
 <div class="opts"><button type="button" data-hint="출력의 hi를 줄마다 견주어 보자. 값이 줄었는가?">점점 줄어든다</button><button type="button">매번 같다</button><button type="button" data-hint="lo가 늘어난 줄이 있었는지 다시 읽어 보자.">점점 커진다</button></div>
-<p class="why">네 줄 모두 lo = 0, hi = 0, mid = 0이에요.</p>
+<p class="why">네 줄 모두 lo = 0, hi = 0, mid = 0이다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>고쳐서 점검하기</h3>
-<p>첫 편집기의 함수를 고쳐요. 함수 이름은 그대로 둬요. A7의 <code class="i">lower_bound</code>와 한 줄씩 비교해서 다른 줄을 찾아요. 고친 뒤 [&#9654; 실행]과 [&#10004; 점검]을 눌러요.</p>
-<p>원인은 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T3 행의 [실제]와 [원인 한 줄] 칸에 써요.</p>
+<p>첫 편집기의 함수를 고친다. 함수 이름은 그대로 두고, A7의 <code class="i">lower_bound</code>와 줄 단위로 견주어 다른 줄을 찾는다. 고친 뒤 [&#9654; 실행]과 [&#10004; 점검]을 누른다.</p>
+<p>원인은 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표 T3 행의 [실제]와 [원인 한 줄] 칸에 쓴다.</p>
 <details class="more"><summary>A7의 lower_bound 보기</summary>
 <pre class="fig">def lower_bound(a, x):
     lo, hi = 0, len(a)               # 후보 범위 [lo, hi)
@@ -249,26 +388,26 @@ for step in range(4):                  # 네 번만 따라간다
     return lo</pre>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 끝나지 않는 반복의 원인을 찾아 고쳤어요. 다음 T4는 선택 과제예요.</p>
+<p class="wrapup"><b>여기까지</b> 끝나지 않는 반복의 원인을 찾아 고쳤다. 다음 T4는 선택 과제이다.</p>
 </section>
 <section id="T4" class="sheet lesson">
 <h2>T4 · 선택 과제<small>선택 · 3.10 이상 필요(key= 인자)</small></h2>
-<p class="lead">정렬된 쌍의 목록에서도 bisect를 쓸 수 있을까요? 값을 계속 끼워 넣으면 시간은 어떻게 될까요?</p>
+<p class="lead">정렬된 쌍의 목록에서도 bisect를 쓸 수 있을까? 값을 계속 끼워 넣으면 시간은 어떻게 될까?</p>
 
 <div class="step">
 <h3>key= 인자 읽기</h3>
-<p>(이름, 점수) 쌍이 점수 오름차순으로 놓여 있어요. 쌍 전체가 아니라 점수만 비교하고 싶을 땐 <code class="i">key=</code>에 점수를 꺼내는 함수를 줘요. <code class="i">lambda s: s[1]</code>은 s의 두 번째 값을 꺼내는 이름 없는 함수예요.</p>
+<p>(이름, 점수) 쌍이 점수 오름차순으로 놓여 있다. 쌍 전체가 아니라 점수만 견주고 싶을 때 <code class="i">key=</code>에 점수를 꺼내는 함수를 준다. <code class="i">lambda s: s[1]</code>은 s의 두 번째 값을 꺼내는 이름 없는 함수이다.</p>
 <div class="quiz" data-answer="2">
-<p class="q"><code class="i">s = ("A", 70)</code>일 때 <code class="i">s[1]</code>은 무엇일까요?</p>
+<p class="q"><code class="i">s = ("A", 70)</code>일 때 <code class="i">s[1]</code>은 무엇일까?</p>
 <div class="opts"><button type="button" data-hint="s[0]이 첫 번째 값이다. 번호는 0부터 센다.">"A"</button><button type="button">70</button><button type="button" data-hint="s[1]은 쌍 전체가 아니라 그 안의 한 값이다.">("A", 70)</button></div>
-<p class="why">번호는 0부터 세니까 s[1]은 두 번째 값 70이에요.</p>
+<p class="why">번호는 0부터 세므로 s[1]은 두 번째 값 70이다.</p>
 </div>
-<p class="tip">잠깐! key= 인자는 파이썬 3.10 이상에서만 돌아가요.</p>
+<p class="tip">key= 인자는 파이썬 3.10 이상에서만 돌아간다.</p>
 </div>
 
 <div class="step">
 <h3>두 코드 읽기</h3>
-<p>(가)는 점수 70이 들어갈 왼쪽 자리와 오른쪽 자리를 찾아요. (나)는 홀수 2000개를 정렬된 리스트에 하나씩 끼워 넣는 시간을 재요. <code class="i">insort</code>는 정렬을 유지하며 끼워 넣는 함수예요.</p>
+<p>(가)는 점수 70이 들어갈 왼쪽 자리와 오른쪽 자리를 찾는다. (나)는 홀수 2000개를 정렬된 리스트에 하나씩 끼워 넣는 시간을 잰다. <code class="i">insort</code>는 정렬을 유지하며 끼워 넣는 함수이다.</p>
 <script type="text/plain" data-id="T4-1">
 # T4 선택 (가) 점수 오름차순 리스트에서 key= 인자 (파이썬 3.10 이상)
 # insort: 정렬된 상태를 유지하며 값을 끼워 넣는 함수이다
@@ -299,17 +438,17 @@ print("insort 2000번(초):", time.perf_counter() - t0)
 <p class="q">(나)에서 2000번 끼워 넣는 데 걸리는 시간은?</p>
 <div class="opts"><button type="button">0.001초보다 짧다</button><button type="button">0.01초에서 1초 사이</button><button type="button">1초보다 길다</button></div>
 </div>
-<p>고른 답은 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표의 T4 줄 &lsquo;예측&rsquo; 칸에 써 둬요.</p>
+<p>고른 답은 활동지 <a class="xlink" href="student_workbook_part2.html#A10">2부 A10</a> 표의 T4 줄 &lsquo;예측&rsquo; 칸에 적어 두자.</p>
 </div>
 
 <div class="step">
 <h3>실행하고 정리하기</h3>
-<p>[&#9654; 실행]을 누르면 (가)의 두 값이 한 줄, (나)의 시간이 한 줄 나와요. (나)는 15초를 넘기면 멈춰요. 결과는 같은 T4 줄의 &lsquo;실제&rsquo;와 &lsquo;원인 한 줄&rsquo; 칸에 써요.</p>
+<p>[&#9654; 실행]을 누르면 (가)의 두 값이 한 줄, (나)의 시간이 한 줄 나온다. (나)는 15초를 넘기면 멈춘다. 같은 T4 줄의 &lsquo;실제&rsquo;와 &lsquo;원인 한 줄&rsquo; 칸에 적는다.</p>
 <details class="more"><summary>막히면 · 원인 단서</summary>
-<p>insort는 자리를 찾는 일과 그 자리에 끼워 넣는 일로 나뉘어요. 둘 중 어느 쪽이 리스트 길이에 비례할지 생각해 봐요.</p>
+<p>insort는 자리를 찾는 일과 그 자리에 끼워 넣는 일로 나뉜다. 둘 중 어느 쪽이 리스트 길이에 비례하는지 생각해 본다.</p>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 함정 탐색 T1~T4를 마쳤어요. 다음 A11에서는 두 정렬의 비교 횟수를 코드로 세요.</p>
+<p class="wrapup"><b>여기까지</b> 함정 탐색 T1~T4를 마쳤다. 다음 A11에서는 두 정렬의 비교 횟수를 코드로 센다.</p>
 </section>
 </div>
 <script id="week12-submit">

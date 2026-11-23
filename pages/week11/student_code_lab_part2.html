@@ -1,0 +1,187 @@
+<div class="x-page" hidden data-title="11주차 실습 코드 2부 · 함정 탐색과 방향 순서" data-lead="함정 코드의 결과를 먼저 예측하고, 실행해서 맞춰 봐요.">
+
+<!-- ========== A8 ========== -->
+<section class="x-act" data-id="A8" data-title="함정 탐색: 예측 후 실행" data-meta="13분 · 개인">
+  <ul class="x-pts"><li>같은 BFS·DFS 코드도 쓰는 방법에 따라 함정이 돼요.</li><li>걸음마다 예측 → 실행 → 한 줄 정리.</li></ul>
+
+  <div class="x-screen" data-title="1부 코드 준비하기">
+    <div class="x-flow"><span>[앞 쪽 코드 불러오기]</span><span>[▶ 실행]</span><span class="hit">세 줄 확인</span></div>
+    <div class="x-given"><span><b>1줄</b>['A', 'B', 'C', 'D', 'E']</span><span><b>2줄</b>['B', 'C']</span><span><b>3줄</b>10</span></div>
+    <div class="x-ed" data-starter="A8-p0"></div>
+    <ul class="x-pts"><li><b>NameError</b> = 이 쪽에 없는 이름 → 불러오기를 다시 눌러요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="불러오기가 안 될 때만">
+    <ul class="x-pts">
+      <li>1부 제공 코드와 내 <code>grid_neighbors</code>, <code>shortest_path_len</code>, <code>bfs_order</code></li>
+      <li>아래 칸에 붙여 넣고 [▶ 실행] 한 번. 불러오기가 됐으면 비워 둬요.</li>
+    </ul>
+    <div class="x-f" data-bind="A8.prep"></div>
+  </div>
+
+  <div class="x-screen" data-title="T1-a 방문 표시의 자리">
+    <div class="x-cards">
+      <div><b>1부 bfs_order</b>큐에 <b>넣을 때</b> visited에 적음</div>
+      <div><b>bfs_late</b>한 줄만 다름</div>
+    </div>
+    <pre class="x-code">u = q.popleft()
+visited.add(u)
+order.append(u)
+for v in neighbors(g, u):
+    if v not in visited:
+        q.append(v)</pre>
+    <div class="quiz" data-answer="3">
+      <p class="q">1부와 다른 한 줄은?</p>
+      <div class="opts"><button type="button" data-hint="순서 기록은 1부에도 있어요.">order.append(u)</button><button type="button" data-hint="큐에 넣는 줄은 같아요. 표시하는 때를 봐요.">q.append(v)</button><button type="button">visited.add(u) 가 꺼낸 직후에 있다</button></div>
+      <p class="why">1부는 넣을 때 적고, 이 코드는 꺼낸 뒤에 적어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="T1-a 예측하고 실행">
+    <div class="x-given"><span><b>G1</b>친구 관계 그래프</span><span><b>시작</b>A</span></div>
+    <div class="x-given"><span><b>A</b>B, C</span><span><b>B</b>A, D</span><span><b>C</b>A, D</span><span><b>D</b>B, C, E</span><span><b>E</b>D</span></div>
+    <ul class="x-pts"><li>D에 닿는 길(B 쪽, C 쪽)을 세어 봐요.</li></ul>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">출력에서 D는 몇 번 나올까?</p>
+      <div class="opts"><button type="button">한 번</button><button type="button">두 번</button><button type="button">세 번</button></div>
+      <p class="why">B와 C가 둘 다 D를 큐에 넣어요. 꺼낼 때에야 표시하니 막지 못해요.</p>
+    </div>
+    <div class="x-f" data-bind="A8.code.T1a"></div>
+    <p class="x-q">한 줄 정리 · T1-a<small>예측과 실제 출력(또는 오류 이름)을 그대로</small></p>
+    <div class="x-f" data-bind="A8.memo.T1a" data-ph="예: 예측 한 번 / 실제 ['A', 'B', …]"></div>
+  </div>
+
+  <div class="x-screen" data-title="T1-b 큐에 넣은 횟수">
+    <div class="x-given"><span><b>OPEN4</b>벽 없는 4×4 격자 · 16칸</span><span><b>시작</b>(0, 0)</span></div>
+    <div class="x-cards">
+      <div><b>"enqueue"</b>큐에 넣을 때 ‘봤다’ 표시</div>
+      <div><b>"dequeue"</b>꺼낼 때 ‘봤다’ 표시</div>
+    </div>
+    <div class="x-given"><span><b>출력</b>(큐에 넣은 횟수, 큐 길이 최댓값)</span></div>
+    <div class="quiz predict" data-answer="1">
+      <p class="q">"dequeue" 방식은 큐에 넣는 횟수가 16번보다?</p>
+      <div class="opts"><button type="button">많다</button><button type="button">같다</button><button type="button">적다</button></div>
+      <p class="why">한 칸이 여러 이웃에게서 중복으로 들어가요.</p>
+    </div>
+    <div class="x-f" data-bind="A8.code.T1b"></div>
+    <p class="x-q">한 줄 정리 · T1-b<small>두 줄 출력의 숫자를 그대로</small></p>
+    <div class="x-f" data-bind="A8.memo.T1b" data-ph="예: enqueue (9, 3) / dequeue (12, 5)"></div>
+  </div>
+
+  <div class="x-screen" data-title="T2 list와 deque 비교">
+    <div class="x-cards">
+      <div><b>list</b><code>a.pop(0)</code> 맨 앞 꺼내기</div>
+      <div><b>deque</b><code>d.popleft()</code> 맨 앞 꺼내기</div>
+    </div>
+    <div class="x-flow"><span>n = 10000</span><span>n = 100000</span><span class="hit">시간 몇 배?</span></div>
+    <ul class="x-pts"><li>시간 값은 컴퓨터마다 달라요. <b>배수</b>만 봐요.</li></ul>
+    <div class="quiz predict" data-answer="3">
+      <p class="q">n이 10배면 list(pop(0)) 시간은?</p>
+      <div class="opts"><button type="button">약 10배</button><button type="button">거의 그대로</button><button type="button">10배보다 훨씬 많이</button></div>
+      <p class="why">pop(0)은 뒤 원소를 모두 한 칸씩 당겨요. 그래서 n²에 가깝게 늘어요.</p>
+    </div>
+    <div class="x-f" data-bind="A8.code.T2"></div>
+    <p class="x-q">한 줄 정리 · T2<small>세 줄의 배수를 그대로</small></p>
+    <div class="x-f" data-bind="A8.memo.T2" data-ph="예: list 50.2배 / deque 9.8배 / 비율 300.1"></div>
+  </div>
+
+  <div class="x-screen" data-title="T3 한 줄로 이어진 땅">
+    <div class="x-arr mini" data-v="1,1,1,1,…,1" data-noidx></div>
+    <div class="x-given"><span><b>땅</b>1 × width, 모두 '1'</span><span><b>width</b>500, 1500</span><span><b>탐색</b>재귀 explore_rec</span></div>
+    <ul class="x-pts"><li>첫 줄에 파이썬 <b>재귀 한도</b>가 나와요.</li><li>한 칸 옆으로 갈 때마다 호출이 한 겹 깊어져요.</li></ul>
+    <div class="quiz predict" data-answer="1">
+      <p class="q">너비 1500이면?</p>
+      <div class="opts"><button type="button">오류가 난다</button><button type="button">1500칸을 모두 방문한다</button></div>
+      <p class="why">1500겹은 재귀 한도를 넘어 RecursionError가 나요.</p>
+    </div>
+    <div class="x-f" data-bind="A8.code.T3"></div>
+    <p class="x-q">한 줄 정리 · T3<small>재귀 한도와 두 너비의 결과</small></p>
+    <div class="x-f" data-bind="A8.memo.T3" data-ph="예: 한도 2000 / 500 → 방문 500 / 1500 → 오류 이름"></div>
+  </div>
+
+  <div class="x-screen" data-title="T4 기본 인자 (선택)">
+    <pre class="x-code">def dfs_bad(g, u, visited=set()):
+    ...
+print(dfs_bad(g, "A"))
+print(dfs_bad(g, "A"))
+print(dfs_bad(g, "B"))</pre>
+    <ul class="x-pts"><li>첫 두 호출: 같은 g, 같은 시작 A</li><li><code>visited=set()</code> 은 함수를 만들 때 <b>한 번만</b> 만들어져요.</li></ul>
+    <div class="quiz predict" data-answer="1">
+      <p class="q">둘째 줄 출력은 첫 줄과?</p>
+      <div class="opts"><button type="button">다르다</button><button type="button">같다</button></div>
+      <p class="why">첫 호출의 visited가 남아 있어 둘째 호출은 A만 돌려줘요.</p>
+    </div>
+    <div class="x-f" data-bind="A8.code.T4"></div>
+    <p class="x-q">한 줄 정리 · T4<small>세 줄 출력을 그대로</small></p>
+    <div class="x-f" data-bind="A8.memo.T4" data-ph="예: ['A', 'C'] / ['B'] / []"></div>
+  </div>
+
+  <div class="x-screen" data-title="활동지에 옮기기">
+    <ul class="x-pts">
+      <li>한 줄 정리의 예측·실제를 <b>활동지 2부 A8</b> 표에 옮겨요.</li>
+      <li>원인 칸과 정리 질문 4개도 활동지에.</li>
+    </ul>
+    <div class="x-cards">
+      <div><b>코드 줄 때문</b>잘못 쓴 한 줄이 원인</div>
+      <div><b>입력 때문</b>코드는 같아도 입력 크기가 원인</div>
+    </div>
+    <div class="quiz" data-answer="2">
+      <p class="q">T3(너비 1500)의 오류는 어느 쪽에 가까울까?</p>
+      <div class="opts"><button type="button" data-hint="500에서는 잘 돌았어요.">코드 줄 때문</button><button type="button">입력 때문</button></div>
+      <p class="why">같은 코드가 500에선 되고 1500에선 막혀요.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== A9 ========== -->
+<section class="x-act" data-id="A9" data-title="같은 미로에서 깊이 우선과 비교" data-meta="9분 · 개인">
+  <ul class="x-pts"><li>MAZE에서 DFS가 처음 찾은 길 vs BFS 최단 거리</li><li>이웃을 보는 방향 순서를 바꿔 가며 봐요.</li></ul>
+
+  <div class="x-screen" data-title="방향 순서 DIRS 읽기">
+    <pre class="x-code">DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]   # 우 하 좌 상</pre>
+    <div class="x-given"><span><b>(행 변화, 열 변화)</b>한 항목</span><span><b>grid_neighbors</b>이 순서대로 이웃을 내줌</span></div>
+    <div class="quiz" data-answer="3">
+      <p class="q">3×3 격자 가운데 (1, 1)에서 맨 먼저 나오는 이웃은?</p>
+      <div class="opts"><button type="button" data-hint="(0, 1)은 변화량이에요. 더해 봐요.">(0, 1)</button><button type="button" data-hint="그건 둘째 방향(하)이에요.">(2, 1)</button><button type="button">(1, 2)</button></div>
+      <p class="why">첫 항목 (0, 1)은 열 +1, 오른쪽이에요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="실행하기 전에 예측하기">
+    <div class="x-given"><span><b>방향 순서</b>4×3×2×1 = 24가지</span><span><b>예</b>우하좌상, 하우좌상</span></div>
+    <ul class="x-pts"><li>DFS 첫 길의 간선 수 = BFS 최단 거리가 되는 순서는 몇 가지?</li><li>숫자로 <b>활동지 2부 A9 ‘예측’</b> 칸에 써요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="24가지 모두 실행하기">
+    <div class="x-cards">
+      <div><b>first_path_len</b>DFS가 처음 닿은 길의 간선 수 (완성본)</div>
+      <div><b>실행 틀</b>24가지를 모두 돌려 출력</div>
+    </div>
+    <ul class="x-pts"><li>읽기만 하고 [▶ 실행].</li><li>NameError → [앞 쪽 코드 불러오기] 후 다시.</li></ul>
+    <div class="x-f" data-bind="A9.code"></div>
+  </div>
+
+  <div class="x-screen" data-title="출력 읽기">
+    <pre class="x-code">BFS 값의 종류: {…}      # 첫 줄: BFS 값을 중복 없이
+우하좌상 …                # 둘째 줄부터: 순서 이름, DFS 값
+하우좌상 …                # 이런 줄이 24개</pre>
+    <ul class="x-pts">
+      <li>DFS 값이 BFS 값과 <b>같은 줄 2개</b>, <b>다른 줄 2개</b>를 골라요.</li>
+      <li>활동지 2부 A9 표 4줄에. 순서는 ‘우하좌상’처럼 첫 글자로.</li>
+    </ul>
+  </div>
+
+  <div class="x-screen" data-title="돌아보기">
+    <ul class="x-pts">
+      <li>같은 DFS 값이 나온 순서끼리 묶어요.</li>
+      <li>순서 이름의 <b>글자 위치</b>를 비교: 어떤 두 방향의 앞뒤가 같은가?</li>
+      <li>찾은 규칙은 활동지 질문 칸에.</li>
+    </ul>
+    <div class="quiz" data-answer="2">
+      <p class="q">방향 순서를 바꿨을 때 BFS 최단 거리는?</p>
+      <div class="opts"><button type="button" data-hint="첫 줄의 ‘BFS 값의 종류’ 개수를 봐요.">순서마다 달라진다</button><button type="button">늘 같다</button></div>
+      <p class="why">BFS는 가까운 칸부터 다 보므로 최단 거리가 순서와 상관없어요.</p>
+    </div>
+  </div>
+</section>
+</div>

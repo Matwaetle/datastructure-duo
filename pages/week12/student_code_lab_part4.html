@@ -1,0 +1,171 @@
+<div class="x-page" hidden data-title="12주차 실습 코드 4부 · 정렬 코드와 과제 마무리" data-lead="두 정렬을 코드로 옮겨 비교 횟수를 세고, 실습 과제 세 함수를 마무리해요.">
+
+<section class="x-act" data-id="A11" data-title="정렬 코드와 비교 횟수 측정" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>A4에서 손으로 한 두 정렬을 코드로 옮기고 비교를 세요.</li></ul>
+
+  <div class="x-screen" data-title="합칠 때 비교 세기">
+    <div class="x-given"><span><b>l</b>[1, 4]</span><span><b>r</b>[2, 3]</span></div>
+    <div class="x-flow"><span>1·2 → [1]</span><span>4·2 → [1, 2]</span><span>4·3 → [1, 2, 3]</span><span class="hit">r 빔 → 4는 그냥 붙임</span></div>
+    <ul class="x-pts"><li>앞끼리 한 번 견주기 = 비교 1번 → 여기선 3번</li></ul>
+    <div class="quiz" data-answer="2">
+      <p class="q">l = [1, 2], r = [3, 4] 를 합칠 때 비교는?</p>
+      <div class="opts"><button type="button" data-hint="1·3 다음에 2·3도 견줘요.">1번</button><button type="button">2번</button><button type="button" data-hint="l이 비면 나머지는 비교 없이 붙어요.">3번</button><button type="button" data-hint="l이 비면 나머지는 비교 없이 붙어요.">4번</button></div>
+      <p class="why">1·3, 2·3 두 번. l이 비면 3, 4는 그냥 붙어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="피벗으로 나누기">
+    <div class="x-given"><span><b>입력</b>[4, 2, 6, 4]</span><span><b>피벗</b>첫 원소</span><span><b>같은 값</b>big으로</span></div>
+    <ul class="x-tree"><li><span><i class="pv">4</i> → small <b class="sm">[2]</b> · big <b class="bg">[6, 4]</b> <em>비교 3</em></span></li></ul>
+    <div class="quiz" data-answer="1">
+      <p class="q">[3, 1, 2] 에서 피벗 3이면 big에 담기는 원소는?</p>
+      <div class="opts"><button type="button">0개</button><button type="button" data-hint="1과 2 모두 3보다 작아요.">1개</button><button type="button" data-hint="1과 2 모두 3보다 작아요.">2개</button></div>
+      <p class="why">1, 2 모두 small. big은 비어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="cnt 칸과 리스트 자르기">
+    <div class="x-cards">
+      <div><b>cnt = [0]</b>숫자 하나 담은 칸 · 함수 안에서 cnt[0] += 1</div>
+      <div><b>l[i:]</b>i번째부터 끝까지</div>
+      <div><b>+</b>리스트 이어 붙이기</div>
+    </div>
+    <div class="x-ed" data-starter="A11-p1"></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">l = [1, 4, 6], i = 1 일 때 l[i:]는?</p>
+      <div class="opts"><button type="button">[4, 6]</button><button type="button" data-hint="그건 l[:i]예요.">[1]</button><button type="button" data-hint="i번째부터 끝까지예요.">[1, 4]</button></div>
+      <p class="why">1번째부터 끝까지 → [4, 6].</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="merge_sort · quick_sort 완성하기">
+    <ol class="x-rules">
+      <li class="r1"><b>merge_sort ⑫⑬⑭</b>
+        <div class="fx"><code>⑫</code><span>더 쪼갤 수 없을 때의 조건</span></div>
+        <div class="fx"><code>⑬</code><span>l[i]를 꺼낼 조건 (같으면 왼쪽 먼저)</span></div>
+        <div class="fx"><code>⑭</code><span>out에 남은 것을 이어 붙인 결과</span></div></li>
+      <li class="r2"><b>quick_sort ⑮⑯⑰</b>
+        <div class="fx"><code>⑮</code><span>피벗 (첫 원소)</span></div>
+        <div class="fx"><code>⑯</code><span>small에 넣는 조건 (같은 값은 big)</span></div>
+        <div class="fx"><code>⑰</code><span>small 정렬 + 피벗 + big 정렬을 이은 리스트</span></div></li>
+    </ol>
+    <pre class="x-code">tc = [0]
+print(merge_sort([4, 1, 3, 2], tc), tc[0])   #=> [1, 2, 3, 4] 5
+tc = [0]
+print(quick_sort([3, 1, 2], tc), tc[0])      #=> [1, 2, 3] 3</pre>
+    <ul class="x-pts">
+      <li>NameError: '____13____' → 그 번호 자리가 아직 비었어요</li>
+      <li>[✔ 점검] → <b>A11 점검 통과</b> + ARR8 비교 횟수 두 값</li>
+      <li>두 값은 활동지 3부 A11 [ARR8] 칸에, A4 손 계산과 견주기</li>
+    </ul>
+    <div class="x-f" data-bind="A11.mycode"></div>
+  </div>
+
+  <div class="x-screen" data-title="불러서 확인하기">
+    <ul class="x-pts"><li>위 편집기를 실행한 뒤 눌러요.</li></ul>
+    <div class="x-ed" data-starter="A11-pm"></div>
+    <div class="x-ed" data-starter="A11-pq"></div>
+  </div>
+
+  <div class="x-screen" data-title="큰 입력에서 예측하고 측정하기">
+    <div class="x-given"><span><b>섞은</b>200 · 500 · 1000개</span><span><b>정렬된</b>200 · 500 · 2000개</span><span><b>재귀 한계</b>1000</span></div>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">정렬된 2000개에 첫 원소 피벗 퀵 정렬을 하면?</p>
+      <div class="opts"><button type="button">비교 횟수가 나온다</button><button type="button">오류가 난다</button></div>
+      <p class="why">한쪽이 늘 비어 깊이가 2000 → 재귀 한계를 넘어요.</p>
+    </div>
+    <ul class="x-pts"><li>활동지 3부 A11 [예측] 칸 먼저 → 실행 → [실제] 칸</li><li>퀵 칸에 오류 이름이 나오면 그대로 써요</li></ul>
+    <div class="x-ed" data-starter="A11-3"></div>
+  </div>
+</section>
+
+<section class="x-act" data-id="A14" data-title="과제 마무리 점검과 밧줄 자르기" data-meta="14분 · 개인">
+  <ul class="x-pts"><li>실습 과제 세 함수를 한 칸에 모으고, 큰 입력까지 점검해요.</li></ul>
+
+  <div class="x-screen" data-title="가까운 값 찾기">
+    <div class="x-arr" data-name="S" data-v="10,20,40" data-cls="1:hit" data-label="x = 26 → 20과 거리 6, 40과 거리 14 → 20"></div>
+    <ul class="x-pts"><li>거리가 같으면 <b>작은 값</b></li></ul>
+    <div class="quiz" data-answer="1">
+      <p class="q">x = 30이면 가장 가까운 값은?</p>
+      <div class="opts"><button type="button">20</button><button type="button" data-hint="둘 다 거리 10이면 작은 값이에요.">40</button></div>
+      <p class="why">20, 40 모두 거리 10 → 작은 값 20.</p>
+    </div>
+    <div class="x-ed" data-starter="A14-g1"></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">x = 26일 때 bisect_left(S, x)는?</p>
+      <div class="opts"><button type="button" data-hint="26 이상인 첫 값은 40이에요.">1</button><button type="button">2</button><button type="button" data-hint="그건 S의 길이예요.">3</button></div>
+      <p class="why">40이 2번 칸. 답 후보는 i와 그 바로 앞 칸이에요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="세 함수 한 칸에 모으기">
+    <ol class="x-rules">
+      <li class="r1"><b>1) count_equal, count_in_range</b><div class="fx"><span>2부 A9 [내 코드] 칸에서 복사해 붙이기 (자동으로 안 넘어옴)</span></div></li>
+      <li class="r2"><b>2) closest_value(a, x)</b><div class="fx"><span>x와 가장 가까운 원소 · 동률이면 작은 값 · 빈 리스트면 None</span></div></li>
+      <li class="r4"><b>조건</b><div class="fx"><span>bisect로 O(log N) · 입력을 바꾸거나 다시 정렬하지 않기 · 입력은 오름차순</span></div></li>
+    </ol>
+    <pre class="x-code">TA = [2, 2, 2, 6, 6, 10, 14, 14, 14, 14, 18]
+print(count_equal(TA, 6))          #=> 2
+print(count_in_range(TA, 7, 9))    #=> 0
+print(closest_value([10, 20, 40], 30))   #=> 20
+print(closest_value([], 5))        #=> None</pre>
+    <ul class="x-pts"><li>NameError면 두 함수를 맨 위에 붙이고 칸 전체를 실행했는지 봐요</li></ul>
+    <div class="x-f" data-bind="A14.mycode"></div>
+  </div>
+
+  <div class="x-screen" data-title="과제 점검하기">
+    <ul class="x-pts">
+      <li>위 칸 [✔ 점검]: count 두 함수 값 · 입력 불변 · 100만 개에 질의 10만 번</li>
+      <li>통과하면 <b>A14 값 점검 통과</b>, <b>큰 입력 점검 끝: …초</b> (약 1초 안쪽)</li>
+      <li>closest_value는 아래 편집기 [✔ 점검] (TA를 먼저 실행)</li>
+      <li>느리면 list.count나 for로 전부 훑는 곳이 없는지 봐요</li>
+      <li>결과는 활동지 3부 A14 점검표에 표시</li>
+    </ul>
+    <div class="x-ed" data-starter="A14-1 A14-cv"></div>
+  </div>
+
+  <div class="x-screen" data-title="절반씩 줄이면 몇 번?">
+    <div class="x-flow"><span>N</span><span>N/2</span><span>N/4</span><span>…</span><span class="hit">0</span></div>
+    <div class="x-ed" data-starter="A14-st"></div>
+    <div class="x-given"><span><b>N</b>리스트 길이</span><span><b>O(log N)</b>절반씩 줄이는 횟수 꼴</span></div>
+    <p class="x-q">구현 계획 다시 쓰기<small>A7 계획을 O( ) 표기로 다듬고, 달라진 점 한 줄</small></p>
+    <div class="x-f" data-bind="A14.plan" data-parts="다듬은 계획=예: bisect로 경계 ○개를 찾아 O(…)|달라진 점=예: A7에서는 …였는데 지금은 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="복잡도 쓰기">
+    <div class="x-given"><span><b>N</b>리스트 길이</span><span><b>함수</b>count_equal · count_in_range · closest_value</span></div>
+    <p class="x-q">시간<small>경계 함수를 몇 번 부르고, 한 번에 몇 번쯤 견주나</small></p>
+    <div class="x-f" data-bind="A14.cx.time" data-parts="시간 복잡도=예: O(N²)|근거=예: bisect를 ○번 부르고 한 번에 약 ○번 비교"></div>
+    <p class="x-q">공간<small>새 리스트를 만드나</small></p>
+    <div class="x-f" data-bind="A14.cx.space" data-parts="공간 복잡도=예: O(N)|근거=예: 새로 만드는 것은 …뿐"></div>
+    <p class="x-q">하나씩 세는 방법과 비교<small>한 줄</small></p>
+    <div class="x-f" data-bind="A14.cx.alt" data-ph="예: 하나씩 세면 N개를 모두 봐서 O(…), 100만 개면 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="밧줄 자르기 (선택 · 채점 안 함)">
+    <ul class="x-pts"><li>모두 같은 길이 L로 자르면 조각 수 = 밧줄마다 <code>r // L</code>의 합</li></ul>
+    <div class="x-given"><span><b>ropes</b>[10, 7]</span><span><b>L = 3</b>3 + 2 = 5조각</span></div>
+    <div class="x-ed" data-starter="A14-rp"></div>
+    <div class="quiz" data-answer="3">
+      <p class="q">[10, 7]을 L = 2로 자르면 조각은?</p>
+      <div class="opts"><button type="button" data-hint="7 // 2 도 더해요.">5개</button><button type="button" data-hint="7 // 2 는 3이에요.">9개</button><button type="button">8개</button></div>
+      <p class="why">5 + 3 = 8개.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="max_piece_length 완성하기 (선택)">
+    <div class="x-given"><span><b>ropes</b>[120, 85, 47, 63]</span><span><b>k</b>9</span><span><b>목표</b>조각이 k개 이상인 가장 긴 L</span></div>
+    <ol class="x-rules">
+      <li class="r1"><b>범위</b><div class="fx"><code>lo, hi = 1, max(ropes)</code><span>답 후보 [lo, hi]</span></div><div class="fx"><code>mid = (lo + hi + 1) // 2</code></div></li>
+      <li class="r3"><b>갈림길</b>
+        <div class="cases">
+          <div class="c-up"><code>⑱ mid로 조각이 충분</code><i>→</i><span><code>lo = mid</code></span></div>
+          <div class="c-dn"><code>else</code><i>→</i><span><code>hi = ⑲</code></span></div>
+        </div></li>
+    </ol>
+    <pre class="x-code">print(max_piece_length([10, 7], 5))   #=> 3</pre>
+    <ul class="x-pts"><li>[▶ 실행] → [✔ 점검]: 가장 긴 L과 count_pieces 호출 횟수</li><li>두 값은 활동지 3부 A14 [코드 결과] 칸에</li></ul>
+    <div class="x-f" data-bind="A14.rope.mycode"></div>
+  </div>
+</section>
+</div>

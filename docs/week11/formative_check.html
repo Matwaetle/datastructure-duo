@@ -13,35 +13,190 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
+<div class="x-page" hidden data-title="11주차 형성 평가 · BFS와 DFS 구별" data-lead="상황에 맞는 탐색을 고르고, 방문 순서와 visited 함정을 손으로 따라가요.">
+
+<!-- ========== Q1 ========== -->
+<section class="x-act" data-id="Q1" data-title="상황별 구별" data-meta="수업 A14 · 6분 · 개인">
+  <ul class="x-pts"><li>시험이에요. AI 없이 손으로 풀어요.</li><li>값은 수업 때와 달라요.</li><li>시간이 모자라면 (c)(d)(e) 근거는 비워도 돼요. (e)는 선택.</li></ul>
+
+  <div class="x-screen" data-title="쓰는 법">
+    <div class="x-given"><span><b>선택</b>BFS / DFS / 둘 다 가능</span><span><b>근거</b>조건을 넣은 한 문장</span></div>
+    <div class="x-cards">
+      <div><b>최단 거리 보장</b>걸음 수가 가장 적은 길이 필요한가</div>
+      <div><b>연결 요소 추적</b>이어진 묶음을 모두 찾거나 세는가</div>
+    </div>
+    <ul class="x-pts"><li>“빠르다” 같은 말만 쓰지 않아요.</li><li>(e)만 <b>메모리</b>를 근거로 써요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="(a) 출구까지 최소 걸음">
+    <div class="x-given"><span><b>상황</b>창문 없는 건물에서 출구까지 최소 몇 걸음인가</span></div>
+    <div class="x-f" data-bind="Q1.a.choice"></div>
+    <div class="x-f" data-bind="Q1.a.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+  </div>
+
+  <div class="x-screen" data-title="(b) 호수의 개수">
+    <div class="x-given"><span><b>상황</b>격자 지도에서 호수가 몇 개인가</span><span><b>호수</b>연결된 물 칸 묶음</span></div>
+    <div class="x-f" data-bind="Q1.b.choice"></div>
+    <div class="x-f" data-bind="Q1.b.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+  </div>
+
+  <div class="x-screen" data-title="(c) 3단계 이내 소문">
+    <div class="x-given"><span><b>상황</b>소문이 3단계 이내에 닿는 친구는 누구인가</span></div>
+    <div class="x-f" data-bind="Q1.c.choice"></div>
+    <div class="x-f" data-bind="Q1.c.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+  </div>
+
+  <div class="x-screen" data-title="(d) 이어져 있는가">
+    <div class="x-given"><span><b>상황</b>두 지점이 어떤 길로든 이어져 있는가</span></div>
+    <div class="x-f" data-bind="Q1.d.choice"></div>
+    <div class="x-f" data-bind="Q1.d.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+  </div>
+
+  <div class="x-screen" data-title="(e) (선택) 메모리를 덜 쓰는 쪽">
+    <div class="x-given"><span><b>구조</b>갈래가 수천 개로 넓음</span><span><b>깊이</b>20 이하</span><span><b>목적</b>닿는 곳이 있는지만</span></div>
+    <ul class="x-pts"><li>메모리를 덜 쓰는 쪽을 골라요. 근거도 메모리로.</li></ul>
+    <div class="x-f" data-bind="Q1.e.choice"></div>
+    <div class="x-f" data-bind="Q1.e.why" data-ph="예: ○○는 한 번에 ○○만 기억하므로 메모리를 덜 쓴다"></div>
+  </div>
+</section>
+
+<!-- ========== Q2 ========== -->
+<section class="x-act" data-id="Q2" data-title="방문 순서와 경로 추적" data-meta="개인">
+  <ul class="x-pts"><li>그래프 F에서 BFS와 재귀 DFS를 손으로 따라가요.</li></ul>
+
+  <div class="x-screen" data-title="그래프 F">
+    <div class="x-given"><span><b>간선</b>(P,Q) (P,R) (Q,S) (R,S) (R,T) (S,U) (T,U)</span><span><b>무방향</b>양쪽으로 갈 수 있음</span></div>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>노드</th><th>이웃 목록<small>이 순서대로 봄</small></th></tr>
+      <tr><td>P</td><td>Q, R</td></tr><tr><td>Q</td><td>P, S</td></tr><tr><td>R</td><td>P, S, T</td></tr>
+      <tr><td>S</td><td>Q, R, U</td></tr><tr><td>T</td><td>R, U</td></tr><tr><td>U</td><td>S, T</td></tr>
+    </table></div>
+    <ol class="x-rules">
+      <li class="r1"><b>큐 규칙(BFS)</b><div class="fx"><span>앞에서 꺼내 방문 기록 → 안 본 이웃을 목록 순서로 뒤에 넣기</span></div></li>
+      <li class="r2"><b>재귀 DFS</b><div class="fx"><span>목록 앞부터, 안 본 이웃으로 바로 들어감</span></div></li>
+      <li class="r3"><b>간선 수</b><div class="fx"><span>시작에서 지나는 간선 개수</span></div></li>
+    </ol>
+  </div>
+
+  <div class="x-screen" data-title="BFS: 시작 P">
+    <div class="x-given"><span><b>시작</b>P</span><span><b>목표</b>U</span><span><b>이웃</b>P:[Q,R] Q:[P,S] R:[P,S,T] S:[Q,R,U] T:[R,U] U:[S,T]</span></div>
+    <div class="x-line">방문 순서 <span class="x-f" data-bind="Q2.bfs.order" data-w="l" data-ph="예: A, B, C, D"></span></div>
+    <div class="x-line">P→U 최소 간선 수 <span class="x-f" data-bind="Q2.bfs.len" data-w="xs" data-ph="숫자"></span></div>
+  </div>
+
+  <div class="x-screen" data-title="재귀 DFS: 시작 P">
+    <div class="x-given"><span><b>시작</b>P</span><span><b>목표</b>U</span><span><b>이웃</b>P:[Q,R] Q:[P,S] R:[P,S,T] S:[Q,R,U] T:[R,U] U:[S,T]</span></div>
+    <ul class="x-pts"><li>U에 처음 닿는 순간의 호출 경로를 써요.</li></ul>
+    <div class="x-line">처음 찾은 P→U 경로 <span class="x-f" data-bind="Q2.dfs.path" data-w="l" data-ph="예: A-B-C"></span></div>
+    <div class="x-line">그 경로의 간선 수 <span class="x-f" data-bind="Q2.dfs.len" data-w="xs" data-ph="숫자"></span></div>
+  </div>
+
+  <div class="x-screen" data-title="두 값이 다른 이유">
+    <p class="x-q">BFS와 재귀 DFS의 P→U 간선 수가 다른 이유<small>한 문장: 어느 쪽이 더 큰지 + 그 까닭</small></p>
+    <div class="x-f" data-bind="Q2.why" data-ph="예: ○○가 더 큰데, ○○는 … 하기 때문이다"></div>
+  </div>
+</section>
+
+<!-- ========== Q3 ========== -->
+<section class="x-act" data-id="Q3" data-title="visited 함정" data-meta="개인">
+  <ul class="x-pts"><li>코드를 줄 단위로 따라가며 큐 내용을 적어 봐요.</li></ul>
+
+  <div class="x-screen" data-title="시작 노드를 표시하지 않는 BFS">
+    <pre class="x-code">F = {"P": ["Q", "R"], "Q": ["P", "S"], "R": ["P", "S", "T"],
+     "S": ["Q", "R", "U"], "T": ["R", "U"], "U": ["S", "T"]}
+
+def bfs_nostart(g, start):
+    q = deque([start])
+    visited = set()          # 시작 노드를 넣지 않음
+    order = []
+    while q:
+        u = q.popleft()
+        order.append(u)
+        for v in g[u]:
+            if v not in visited:
+                visited.add(v)
+                q.append(v)
+    return order
+
+print(bfs_nostart(F, "P"))</pre>
+    <div class="x-given"><span><b>시작 상태</b>큐 [P], visited 비어 있음</span><span><b>출력</b>order에 쓰인 순서</span></div>
+    <div class="x-line">출력 <span class="x-f" data-bind="Q3.out" data-w="full" data-ph="예: ['X', 'Y', 'Z']"></span></div>
+  </div>
+
+  <div class="x-screen" data-title="왜, 그리고 어떻게 고칠까">
+    <div class="x-given"><span><b>문제 줄</b>visited = set()</span><span><b>시작 상태</b>큐 [P], visited 비어 있음</span></div>
+    <p class="x-q">중복이 생기는 이유<small>한 문장</small></p>
+    <div class="x-f" data-bind="Q3.why" data-ph="예: ○○가 visited에 없어서 … 때 다시 들어간다"></div>
+    <p class="x-q">고치는 방법<small>한 문장. 시간이 없으면 비워도 돼요.</small></p>
+    <div class="x-f" data-bind="Q3.fix" data-ph="예: ○○ 줄을 … 로 바꾼다"></div>
+    <div class="x-f" data-bind="Q.noai">AI를 사용하지 않고 풀었다</div>
+  </div>
+</section>
+
+<!-- ========== Q4 ========== -->
+<section class="x-act" data-id="Q4" data-title="보조 문항: 격자 적용" data-meta="수업 밖 · 선택·과제">
+  <ul class="x-pts"><li>수업 밖에서 선택으로 풀어요. 코드나 손 계산 모두 돼요.</li></ul>
+
+  <div class="x-screen" data-title="격자 FM">
+    <div class="x-given"><span><b>S</b>(0,0)</span><span><b>E</b>(4,5)</span><span><b>#</b>벽</span><span><b>방향 순서</b>우 → 하 → 좌 → 상</span></div>
+    <div class="x-arr mini" data-label="0행" data-v="S,.,.,.,.,." data-noidx data-cls="0:pivot"></div>
+    <div class="x-arr mini" data-label="1행" data-v=".,.,.,.,.,." data-noidx></div>
+    <div class="x-arr mini" data-label="2행" data-v=".,.,.,#,.,." data-noidx data-cls="3:miss"></div>
+    <div class="x-arr mini" data-label="3행" data-v=".,#,#,.,#,#" data-noidx data-cls="1-2:miss,4-5:miss"></div>
+    <div class="x-arr mini" data-label="4행" data-v=".,.,.,.,.,E" data-noidx data-cls="5:hit"></div>
+    <div class="x-given"><span><b>거리</b>간선(한 칸 이동) 수</span></div>
+    <div class="x-line">BFS 최단 거리 <span class="x-f" data-bind="Q4.bfs" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">재귀 DFS가 처음 찾은 길의 간선 수 <span class="x-f" data-bind="Q4.dfs" data-w="xs" data-ph="숫자"></span></div>
+  </div>
+
+  <div class="x-screen" data-title="두 값의 차이">
+    <div class="x-given"><span><b>FM</b>S=(0,0), E=(4,5)</span><span><b>방향 순서</b>우 하 좌 상</span></div>
+    <p class="x-q">차이가 생긴 까닭<small>1~2문장. 같으면 ‘같다’ + 까닭</small></p>
+    <div class="x-f" data-bind="Q4.why" data-ph="예: DFS는 ○쪽부터 … 해서 돌아갔다"></div>
+  </div>
+
+  <div class="x-screen" data-title="(선택 보조) 섬 격자 FI">
+    <div class="x-given"><span><b>1</b>땅</span><span><b>0</b>바다</span><span><b>이웃</b>4방향(상하좌우)</span></div>
+    <div class="x-arr mini" data-label="0행" data-v="1,1,0,0,1,0" data-noidx data-cls="0-1:done,4:done"></div>
+    <div class="x-arr mini" data-label="1행" data-v="1,0,0,0,1,1" data-noidx data-cls="0:done,4-5:done"></div>
+    <div class="x-arr mini" data-label="2행" data-v="0,0,1,0,0,0" data-noidx data-cls="2:done"></div>
+    <div class="x-arr mini" data-label="3행" data-v="0,1,1,0,1,0" data-noidx data-cls="1-2:done,4:done"></div>
+    <div class="x-arr mini" data-label="4행" data-v="0,0,0,0,1,1" data-noidx data-cls="4-5:done"></div>
+    <div class="x-line">섬 개수 <span class="x-f" data-bind="Q4.isl" data-w="xs" data-ph="숫자"></span></div>
+  </div>
+</section>
+</div>
+
+
 <div class="wrap">
 <header>
   <div class="prompt">&gt;&gt;&gt; check.week(11)  # 형성평가 A14 · AI 미사용(시험 운영 규칙)</div>
   <h1>11주차 형성평가 — BFS와 DFS 구별</h1>
-  <p class="lead">성취기준 [12자구04-01]. 평가 의도: 조건(최단 거리 보장/연결 요소 추적)에 따라 BFS와 DFS를 구별해 쓸 수 있는가? 이 평가는 혼자 풀어요. 시험 상황이라 AI를 쓰지 않아요(수업 운영 규칙이에요. 계획서의 위반 처리는 이 평가에 적용하지 않아요).</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 써요.</span><span>A14 · 6분 (필수 Q1~Q3) · Q4는 수업 밖 선택·과제</span></p>
+  <p class="lead">성취기준 [12자구04-01]. 평가 의도: 조건(최단 거리 보장/연결 요소 추적)에 따라 BFS와 DFS를 구별해 적용할 수 있는가? 이 평가는 개별로 풀며, 시험 상황이므로 AI를 사용하지 않는다(수업 운영 규칙이며 계획서의 위반 처리는 이 평가에 적용하지 않는다).</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 쓴다.</span><span>A14 · 6분 (필수 Q1~Q3) · Q4는 수업 밖 선택·과제</span></p>
 </header>
 <nav><a href="#Q1">Q1~Q3</a><a href="#Q4">Q4</a><a href="index.html">목록</a></nav>
 
 <section id="Q1" class="sheet">
 <h2>Q1~Q3 · 상황별 구별, 방문 순서·경로 추적, visited 함정<small>수업 시간 A14 · 6분</small></h2>
-<p class="note">혼자 풀어요. 시험 상황이라 AI를 쓰지 않아요. 시간이 모자라면 Q1의 (c)(d)(e)와 Q3의 &ldquo;고치는 방법&rdquo; 서술은 빼도 돼요((e)는 선택 문항이에요). 이 문항의 값은 수업 시간에 쓴 값과 달라요.</p>
+<p class="note">개별로 푼다. 시험 상황이므로 AI를 사용하지 않는다. 시간이 모자라면 Q1의 (c)(d)(e)와 Q3의 &ldquo;고치는 방법&rdquo; 서술을 생략할 수 있다((e)는 선택 문항이다). 이 문항의 값은 수업 시간에 쓴 값과 다르다.</p>
 <div class="learn-box"><span class="lb-title">학습 내용 · 풀이 순서와 쓰는 법</span>
 <ul>
-<li><b>Q1</b>: 상황마다 목적을 먼저 읽고 BFS, DFS, 둘 다 가능 중 하나를 골라요. 근거에는 &ldquo;빠르다&rdquo; 같은 말 대신 조건(최단 거리 보장이 필요한가, 연결 요소 추적인가)을 써요.</li>
-<li><b>Q2</b>: 큐 규칙은 A2처럼 해요. 앞에서 꺼내 방문 기록에 쓰고, 방문하지 않은 이웃을 목록 순서대로 뒤에 넣어요. 거리는 시작에서 지나는 간선 수예요. 재귀 DFS는 A3처럼 목록의 앞에서부터, 방문하지 않은 이웃으로 바로 들어가요. 목표에 처음 닿는 순간의 호출 경로를 써요.</li>
-<li><b>Q3</b>: 코드를 줄 단위로 따라가며 큐의 내용을 적어요. 출력은 order에 쓰인 순서예요.</li>
-<li>모두 손으로 풀고, AI는 쓰지 않아요.</li>
+<li><b>Q1</b>: 상황마다 목적을 먼저 읽고 BFS, DFS, 둘 다 가능 중 하나를 고른다. 근거에는 &ldquo;빠르다&rdquo; 같은 말 대신 조건(최단 거리 보장이 필요한가, 연결 요소 추적인가)을 쓴다.</li>
+<li><b>Q2</b>: 큐 규칙은 A2처럼 앞에서 꺼내 방문 기록에 쓰고 방문하지 않은 이웃을 목록 순서대로 뒤에 넣는다. 거리는 시작에서 지나는 간선 수이다. 재귀 DFS는 A3처럼 목록의 앞에서부터 방문하지 않은 이웃으로 바로 들어가며, 목표에 처음 닿는 순간의 호출 경로를 쓴다.</li>
+<li><b>Q3</b>: 코드를 줄 단위로 따라가며 큐의 내용을 적는다. 출력은 order에 쓰인 순서이다.</li>
+<li>모두 손으로 풀고 AI는 쓰지 않는다.</li>
 </ul></div>
 <h3>Q1 · 상황별 구별</h3>
-<p>각 상황에서 BFS, DFS, 둘 다 가능 중 하나를 골라요. 그리고 <b>조건</b>(최단 거리 보장이 필요한가, 연결 요소 추적인가)을 근거로 한 문장을 써요. (e)는 위 두 조건 대신 메모리 사용량을 근거로 써요.</p><p class="hint"><b>쓰는 법</b> 선택 칸은 목록에서 골라요. 근거 칸에는 한 문장을 써요. 문장에는 조건 이름(&ldquo;최단 거리 보장&rdquo; 또는 &ldquo;연결 요소 추적&rdquo;)을 넣어요. &ldquo;빠르다&rdquo; 같은 말만 쓰면 안 돼요. (e)만 &ldquo;메모리&rdquo;를 근거로 써요.</p><div class="scroll"><table class="fill"><tr><th style="width:40%">상황</th><th style="width:16%">선택</th><th>근거 한 문장</th></tr><tr><td class="lab">(a) 창문 없는 건물에서 출구까지 최소 몇 걸음인가</td><td class="in-cell"><select class="in" data-key="Q1.a.choice" data-label="Q1 (a) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.a.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (a) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(b) 격자 지도에서 호수(연결된 물 칸 묶음)가 몇 개인가</td><td class="in-cell"><select class="in" data-key="Q1.b.choice" data-label="Q1 (b) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.b.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (b) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(c) 소문이 3단계 이내에 닿는 친구는 누구인가</td><td class="in-cell"><select class="in" data-key="Q1.c.choice" data-label="Q1 (c) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.c.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (c) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(d) 두 지점이 어떤 길로든 이어져 있는가</td><td class="in-cell"><select class="in" data-key="Q1.d.choice" data-label="Q1 (d) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.d.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (d) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(e) (선택) 갈래가 수천 개로 넓게 퍼지고 깊이는 20 이하인 구조에서 닿는 곳이 있는지만 확인한다. 메모리를 덜 쓰는 쪽을 고르시오</td><td class="in-cell"><select class="in" data-key="Q1.e.choice" data-label="Q1 (e) 선택(선택 문항)"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.e.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (e) 근거 한 문장(선택 문항)"></textarea></td></tr></table></div>
+<p>각 상황에서 BFS, DFS, 둘 다 가능 중 하나를 고르고, <b>조건</b>(최단 거리 보장이 필요한가, 연결 요소 추적인가)에 근거해 한 문장으로 쓰시오. (e)는 위 두 조건 대신 메모리 사용량을 근거로 쓴다.</p><p class="hint"><b>쓰는 법</b> 선택 칸은 목록에서 고르고, 근거 칸에는 한 문장을 쓴다. 문장에는 조건 이름(&ldquo;최단 거리 보장&rdquo; 또는 &ldquo;연결 요소 추적&rdquo;)을 넣고, &ldquo;빠르다&rdquo; 같은 말만 쓰지 않는다. (e)만 &ldquo;메모리&rdquo;를 근거로 쓴다.</p><div class="scroll"><table class="fill"><tr><th style="width:40%">상황</th><th style="width:16%">선택</th><th>근거 한 문장</th></tr><tr><td class="lab">(a) 창문 없는 건물에서 출구까지 최소 몇 걸음인가</td><td class="in-cell"><select class="in" data-key="Q1.a.choice" data-label="Q1 (a) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.a.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (a) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(b) 격자 지도에서 호수(연결된 물 칸 묶음)가 몇 개인가</td><td class="in-cell"><select class="in" data-key="Q1.b.choice" data-label="Q1 (b) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.b.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (b) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(c) 소문이 3단계 이내에 닿는 친구는 누구인가</td><td class="in-cell"><select class="in" data-key="Q1.c.choice" data-label="Q1 (c) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.c.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (c) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(d) 두 지점이 어떤 길로든 이어져 있는가</td><td class="in-cell"><select class="in" data-key="Q1.d.choice" data-label="Q1 (d) 선택"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.d.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (d) 조건에 근거한 한 문장"></textarea></td></tr><tr><td class="lab">(e) (선택) 갈래가 수천 개로 넓게 퍼지고 깊이는 20 이하인 구조에서 닿는 곳이 있는지만 확인한다. 메모리를 덜 쓰는 쪽을 고르시오</td><td class="in-cell"><select class="in" data-key="Q1.e.choice" data-label="Q1 (e) 선택(선택 문항)"><option value=""></option><option value="BFS">BFS</option><option value="DFS">DFS</option><option value="둘 다 가능">둘 다 가능</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.e.why" placeholder="조건을 넣은 한 문장" data-label="Q1 (e) 근거 한 문장(선택 문항)"></textarea></td></tr></table></div>
 <h3>Q2 · 방문 순서와 경로 추적</h3>
-<p>무방향 그래프 F의 간선은 <code class="i">(P,Q) (P,R) (Q,S) (R,S) (R,T) (S,U) (T,U)</code>이고, 이웃 목록은 아래와 같아요. 이웃 순서는 목록 순서예요.</p>
+<p>무방향 그래프 F의 간선은 <code class="i">(P,Q) (P,R) (Q,S) (R,S) (R,T) (S,U) (T,U)</code>이고 이웃 목록은 다음과 같다. 이웃 순서는 목록 순서이다.</p>
 <pre class="diagram">P: [Q, R]   Q: [P, S]   R: [P, S, T]   S: [Q, R, U]   T: [R, U]   U: [S, T]</pre>
-<p>시작 P에서 네 가지를 써요. 큐 규칙(BFS)의 방문 순서, P&rarr;U의 최소 간선 수, 이웃 목록 순서대로 재귀 DFS를 했을 때 처음 찾은 P&rarr;U 경로와 그 간선 수예요.</p><p class="hint"><b>쓰는 법</b> 방문 순서 칸은 노드 이름만 쉼표로(예: P, Q, R) 써요. 간선 수 칸은 숫자 하나만 써요. 경로 칸은 시작 노드부터 끝 노드까지 하이픈으로 이어서(예: A-B-C) 써요.</p><div class="scroll"><table class="fill"><tr><th style="width:44%">항목</th><th>답</th></tr><tr><td class="lab">큐 규칙(BFS) 방문 순서</td><td class="in-cell"><input type="text" class="in" data-key="Q2.bfs.order" placeholder="노드 이름만 쉼표로" data-label="Q2 BFS 방문 순서" autocomplete="off"></td></tr><tr><td class="lab">P&rarr;U 최소 간선 수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.bfs.len" placeholder="숫자만" data-label="Q2 P에서 U 최소 간선 수" autocomplete="off"></td></tr><tr><td class="lab">재귀 DFS가 처음 찾은 P&rarr;U 경로</td><td class="in-cell"><input type="text" class="in" data-key="Q2.dfs.path" placeholder="시작-…-끝 모양" data-label="Q2 DFS 처음 찾은 경로" autocomplete="off"></td></tr><tr><td class="lab">그 경로의 간선 수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.dfs.len" placeholder="숫자만" data-label="Q2 DFS 경로 간선 수" autocomplete="off"></td></tr></table></div>
-<p class="qtext">BFS와 재귀 DFS의 P&rarr;U 간선 수가 다른 이유를 한 문장으로 써요.</p>
-<p class="hint"><b>쓰는 법</b> 한 문장. 두 값 중 어느 쪽이 더 큰지와 그 까닭을 써요.</p>
+<p>시작 P에서 큐 규칙(BFS)의 방문 순서와 P&rarr;U의 최소 간선 수, 그리고 이웃 목록 순서대로 재귀 DFS를 했을 때 처음 찾은 P&rarr;U 경로와 그 간선 수를 쓰시오.</p><p class="hint"><b>쓰는 법</b> 방문 순서 칸은 노드 이름만 쉼표로(예: P, Q, R), 간선 수 칸은 숫자 하나만, 경로 칸은 시작 노드부터 끝 노드까지 하이픈으로 이은 모양(예: A-B-C)으로 쓴다.</p><div class="scroll"><table class="fill"><tr><th style="width:44%">항목</th><th>답</th></tr><tr><td class="lab">큐 규칙(BFS) 방문 순서</td><td class="in-cell"><input type="text" class="in" data-key="Q2.bfs.order" placeholder="노드 이름만 쉼표로" data-label="Q2 BFS 방문 순서" autocomplete="off"></td></tr><tr><td class="lab">P&rarr;U 최소 간선 수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.bfs.len" placeholder="숫자만" data-label="Q2 P에서 U 최소 간선 수" autocomplete="off"></td></tr><tr><td class="lab">재귀 DFS가 처음 찾은 P&rarr;U 경로</td><td class="in-cell"><input type="text" class="in" data-key="Q2.dfs.path" placeholder="시작-…-끝 모양" data-label="Q2 DFS 처음 찾은 경로" autocomplete="off"></td></tr><tr><td class="lab">그 경로의 간선 수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.dfs.len" placeholder="숫자만" data-label="Q2 DFS 경로 간선 수" autocomplete="off"></td></tr></table></div>
+<p class="qtext">BFS와 재귀 DFS의 P&rarr;U 간선 수가 다른 이유를 한 문장으로 쓰시오.</p>
+<p class="hint"><b>쓰는 법</b> 한 문장. 두 값 중 어느 쪽이 더 큰지와 그 까닭을 쓴다.</p>
 <div class="ans-row"><span class="n">이유</span><textarea class="in" rows="2" data-key="Q2.why" data-label="Q2 두 값이 다른 이유 한 문장"></textarea></div>
 <h3>Q3 · visited 함정</h3>
-<p>아래 코드를 F에서 시작 P로 실행했을 때 <b>출력되는 방문 순서</b>를 써요. 그리고 중복이 생기는 이유와 고치는 방법을 한 문장씩 써요.</p><div class="codewrap"><button class="copy" type="button">복사</button><pre><code class="language-python" data-role="demo" data-id="F3-1">from collections import deque
+<p>아래 코드를 F에서 시작 P로 실행했을 때 <b>출력되는 방문 순서</b>를 쓰고, 중복이 생기는 이유와 고치는 방법을 한 문장씩 쓰시오.</p><div class="codewrap"><button class="copy" type="button">복사</button><pre><code class="language-python" data-role="demo" data-id="F3-1">from collections import deque
 
 # F: 인접 리스트(Q2와 같은 그래프). 이웃 순서는 목록 순서이다.
 F = {"P": ["Q", "R"], "Q": ["P", "S"], "R": ["P", "S", "T"], "S": ["Q", "R", "U"], "T": ["R", "U"], "U": ["S", "T"]}
@@ -60,24 +215,24 @@ def bfs_nostart(g, start):                   # 시작 상태: 큐 [start], visit
     return order
 
 print(bfs_nostart(F, "P"))</code></pre></div>
-<p class="hint"><b>쓰는 법</b> 출력된 리스트를 대괄호까지 그대로 써요(예: [&#39;X&#39;, &#39;Y&#39;]).</p>
+<p class="hint"><b>쓰는 법</b> 출력된 리스트를 대괄호까지 그대로 쓴다(예: [&#39;X&#39;, &#39;Y&#39;]).</p>
 <div class="ans-row"><span class="n">출력</span><input type="text" class="in" data-key="Q3.out" data-label="Q3 출력되는 방문 순서" autocomplete="off"></div>
-<p class="hint"><b>쓰는 법</b> 한 문장. 중복이 생기는 이유를 써요.</p>
+<p class="hint"><b>쓰는 법</b> 한 문장. 중복이 생기는 이유를 쓴다.</p>
 <div class="ans-row"><span class="n">이유</span><textarea class="in" rows="2" data-key="Q3.why" data-label="Q3 중복이 생기는 이유 한 문장"></textarea></div>
-<p class="hint"><b>쓰는 법</b> 한 문장. 고치는 방법을 써요.</p>
+<p class="hint"><b>쓰는 법</b> 한 문장. 고치는 방법을 쓴다.</p>
 <div class="ans-row"><span class="n">방법</span><textarea class="in" rows="2" data-key="Q3.fix" data-label="Q3 고치는 방법 한 문장"></textarea></div>
 <p><label class="ck"><input type="checkbox" data-key="Q.noai" data-label="Q 확인: AI를 사용하지 않고 풀었다"> AI를 사용하지 않고 풀었다</label></p>
 </section>
 <section id="Q4" class="sheet">
 <h2>Q4 · 보조 문항: 격자 적용<small>수업 밖 선택·과제</small></h2>
-<p class="note">이 문항은 보조 문항이에요. 수업 시간(A14)에는 Q1~Q3만 풀어요. Q4는 수업 밖에서 선택으로 풀거나, 주간 과제의 일부로 풀어요. 내 코드로 풀어도, 손으로 계산해도 돼요.</p>
-<p>격자 FM(S=(0,0), E=(4,5), 방향 순서 우 하 좌 상, &lsquo;#&rsquo;는 벽)에서 BFS 최단 거리와, 재귀 DFS가 처음 찾은 길의 간선 수를 구해요. 그리고 두 값의 차이를 설명해요.</p>
+<p class="note">이 문항은 보조 문항이다. 수업 시간(A14)에는 Q1~Q3만 풀고, Q4는 수업 밖에서 선택으로 풀거나 주간 과제의 일부로 푼다. 내 코드나 손 계산 어느 쪽이든 된다.</p>
+<p>격자 FM(S=(0,0), E=(4,5), 방향 순서 우 하 좌 상, &lsquo;#&rsquo;는 벽)에서 BFS 최단 거리와 재귀 DFS가 처음 찾은 길의 간선 수를 구하고, 두 값의 차이를 설명하시오.</p>
 <pre class="diagram">FM = ["S.....",
       "......",
       "...#..",
       ".##.##",
-      ".....E"]</pre><p class="hint"><b>쓰는 법</b> 두 칸 모두 숫자 하나만 써요. 거리는 간선(한 칸 이동) 수예요.</p><div class="scroll"><table class="fill"><tr><th style="width:44%">항목</th><th>답</th></tr><tr><td class="lab">BFS 최단 거리</td><td class="in-cell"><input type="text" class="in" data-key="Q4.bfs" placeholder="숫자만" data-label="Q4 BFS 최단 거리" autocomplete="off"></td></tr><tr><td class="lab">재귀 DFS가 처음 찾은 길의 간선 수</td><td class="in-cell"><input type="text" class="in" data-key="Q4.dfs" placeholder="숫자만" data-label="Q4 DFS 처음 찾은 길" autocomplete="off"></td></tr></table></div>
-<p class="hint"><b>쓰는 법</b> 1~2문장. 두 값의 차이가 생긴 까닭을 써요. 두 값이 같으면 &ldquo;같다&rdquo;라고 쓰고 그 까닭을 써요.</p>
+      ".....E"]</pre><p class="hint"><b>쓰는 법</b> 두 칸 모두 숫자 하나만 쓴다. 거리는 간선(한 칸 이동) 수이다.</p><div class="scroll"><table class="fill"><tr><th style="width:44%">항목</th><th>답</th></tr><tr><td class="lab">BFS 최단 거리</td><td class="in-cell"><input type="text" class="in" data-key="Q4.bfs" placeholder="숫자만" data-label="Q4 BFS 최단 거리" autocomplete="off"></td></tr><tr><td class="lab">재귀 DFS가 처음 찾은 길의 간선 수</td><td class="in-cell"><input type="text" class="in" data-key="Q4.dfs" placeholder="숫자만" data-label="Q4 DFS 처음 찾은 길" autocomplete="off"></td></tr></table></div>
+<p class="hint"><b>쓰는 법</b> 1~2문장. 두 값의 차이가 생긴 까닭을 쓴다. 두 값이 같으면 &ldquo;같다&rdquo;라고 쓰고 그 까닭을 쓴다.</p>
 <div class="ans-row"><span class="n">설명</span><textarea class="in" rows="3" data-key="Q4.why" data-label="Q4 두 값의 차이 설명"></textarea></div>
 <p>(선택 보조) 섬 격자 FI의 4방향 섬 개수를 쓰시오. <code class="i">FI = ["110010", "100011", "001000", "011010", "000011"]</code> <input type="text" class="in" data-key="Q4.isl" placeholder="숫자" data-label="Q4 FI 섬 개수" autocomplete="off" style="width:6em;display:inline-block"></p>
 </section>

@@ -17,52 +17,207 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
+<div class="x-page" hidden data-title="13주차 실습 코드 2부 · 거스름돈과 반례 탐색" data-lead="큰 동전부터 내는 법과 표로 최소를 구하는 법을 코드로 옮기고, 둘이 갈라지는 금액을 찾아요.">
+
+<section class="x-act" data-id="A8" data-title="거스름돈 두 방법을 코드로" data-meta="14분 · 개인">
+  <ul class="x-pts"><li>A4의 규칙과 A5의 표를 함수 두 개로 옮겨요.</li></ul>
+
+  <div class="x-screen" data-title="편집기 쓰는 법">
+    <div class="x-cards">
+      <div><b>▶ 실행</b>Ctrl(⌘)+Enter</div>
+      <div><b>✔ 점검</b>내 코드가 맞는지 확인</div>
+      <div><b>____4____</b>채울 자리. 비면 NameError</div>
+      <div><b>A9</b>A8 편집기의 함수를 써요. 먼저 실행</div>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="큰 동전부터 내 보기">
+    <div class="x-given"><span><b>동전</b>[1, 5, 10]</span><span><b>금액</b>17원</span></div>
+    <div class="x-flow"><span>17원</span><span>10원 1개 → 7원</span><span>5원 1개 → 2원</span><span class="hit">1원 2개 → 0원 · 모두 4개</span></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">28원이면 10원을 몇 개 쓰고 얼마가 남나요?</p>
+      <div class="opts"><button type="button" data-hint="쓸 수 있는 만큼 다 써요.">1개, 18원</button><button type="button">2개, 8원</button><button type="button" data-hint="30원은 28원보다 커요.">3개, 모자람</button></div>
+      <p class="why">28에서 10을 2번 빼면 8.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="몫, 나머지, 거꾸로 훑기">
+    <div class="x-cards"><div><b>a // b</b>몫</div><div><b>a % b</b>나머지</div><div><b>reversed(목록)</b>뒤에서부터 하나씩</div></div>
+    <div class="quiz predict" data-answer="1">
+      <p class="q">아래 코드 첫 줄 <code>print(17 // 10, 17 % 10)</code> 의 출력은?</p>
+      <div class="opts"><button type="button">1 7</button><button type="button">7 1</button><button type="button">1.7 0</button></div>
+      <p class="why">실행해서 확인해요.</p>
+    </div>
+    <div class="x-ed" data-starter="A8-p1"></div>
+  </div>
+
+  <div class="x-screen" data-title="만들 수 없는 금액과 INF">
+    <ul class="x-pts"><li><b>dp[a]</b> = a원을 만드는 최소 동전 개수</li><li><b>INF</b> = 무한대. 만들 수 없는 칸에 적어요.</li></ul>
+    <div class="x-arr" data-name="동전 [2, 5]의 dp" data-v="0,INF,1,INF,2,1"></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">dp[3] 이 INF 인 까닭은?</p>
+      <div class="opts"><button type="button">2, 5로 3원을 만들 수 없다</button><button type="button" data-hint="개수와는 상관없어요.">개수가 너무 많다</button><button type="button" data-hint="동전은 2와 5뿐이에요.">3원짜리 동전이 있다</button></div>
+      <p class="why">2와 5를 몇 개 합쳐도 3이 안 돼요.</p>
+    </div>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">아래 코드 둘째 줄 <code>print(X + 1 &lt; X)</code> 은?</p>
+      <div class="opts"><button type="button">True</button><button type="button">False</button></div>
+      <p class="why">무한대에 1을 더해도 무한대예요.</p>
+    </div>
+    <div class="x-ed" data-starter="A8-p3"></div>
+  </div>
+
+  <div class="x-screen" data-title="칸 채우는 규칙">
+    <ol class="x-rules">
+      <li class="r1"><b>시작</b><div class="fx"><code>모든 칸 = INF</code><code>dp[0] = 0</code></div></li>
+      <li class="r2"><b>후보</b><div class="fx"><code>dp[a − c] + 1</code><span>동전 c를 마지막으로 쓸 때</span></div></li>
+      <li class="r3"><b>바꾸기</b><div class="cases"><div class="c-up"><code>후보 &lt; dp[a]</code><i>→</i><span>dp[a] = 후보</span></div><div class="c-eq"><code>아니면</code><i>→</i><span>그대로</span></div></div></li>
+    </ol>
+    <div class="x-arr mini" data-name="동전 [2, 5]의 dp" data-v="0,INF,1,INF,2,1"></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">a = 5, c = 5 이면 후보는?</p>
+      <div class="opts"><button type="button">1</button><button type="button" data-hint="dp[5 − 5] + 1 이에요.">2</button><button type="button" data-hint="dp[0] 은 0이에요.">INF</button></div>
+      <p class="why">dp[0] + 1 = 1.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="두 함수 코드 (채점)">
+    <ul class="x-pts">
+      <li><b>④</b> 큰 동전부터 훑는 목록 · <b>⑤</b> 남은 금액</li>
+      <li><b>⑥</b> 처음 칸 값(이름 INF) · <b>⑦</b> 0원의 개수</li>
+      <li><b>⑧</b> 후보가 dp[a]보다 작은가 · <b>⑨</b> dp[a]에 넣을 값</li>
+      <li>coins 는 오름차순, 1 포함. 만들 수 없으면 −1</li>
+      <li>실행 전 활동지 2부 A8의 6원 예측을 먼저 써요.</li>
+    </ul>
+    <pre class="x-code">greedy_coins([1, 5, 10], 17)   #=> 4
+dp_coins([1, 5, 10], 17)       #=> 4
+dp_coins([2, 5], 3)            #=> -1
+# ⑥ 전에 실행하면: greedy_coins: 3 뒤 NameError: ____6____ (정상)</pre>
+    <div class="x-f" data-bind="A8.mycode"></div>
+    <ul class="x-pts"><li>[✔ 점검] → <b>A8 점검 통과</b>. 6원 결과 두 줄은 활동지 ‘실제’ 칸에.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="17원 확인">
+    <pre class="x-code">print(greedy_coins([1, 5, 10], 17))   #=> 4</pre>
+    <div class="x-ed" data-starter="A8-p2"></div>
+  </div>
+</section>
+
+<section class="x-act" data-id="A9" data-title="반례 탐색기 만들기" data-meta="13분 · 개인">
+  <ul class="x-pts"><li>두 방법이 갈라지는 금액을 모두 찾는 함수를 만들어요.</li></ul>
+
+  <div class="x-screen" data-title="반례란">
+    <div class="x-cards"><div><b>반례</b>큰 동전부터 쓴 개수 ≠ 최소 개수인 금액</div></div>
+    <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>6원 큰 동전부터</b>4+1+1 = 3개</span><span><b>6원 최소</b>3+3 = 2개</span></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">[1, 3, 4]에서 8원은 반례인가요?</p>
+      <div class="opts"><button type="button" data-hint="큰 동전부터 하면 4+4예요.">반례이다</button><button type="button">반례가 아니다</button></div>
+      <p class="why">4+4 = 2개, 동전 하나로는 못 만드니 최소도 2개.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="두 함수 나란히 불러 보기">
+    <ul class="x-pts"><li>NameError: greedy_coins 면 A8 편집기를 먼저 실행해요.</li></ul>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">[1, 3, 4]로 5, 6, 7원 중 두 숫자가 다른 줄은?</p>
+      <div class="opts"><button type="button">5원</button><button type="button">6원</button><button type="button">7원</button></div>
+      <p class="why">실행해서 확인해요.</p>
+    </div>
+    <div class="x-ed" data-starter="A9-p1"></div>
+  </div>
+
+  <div class="x-screen" data-title="find_failures 코드 (채점)">
+    <ul class="x-pts">
+      <li><b>할 일</b>: 1 ~ limit 원 중 두 개수가 다른 금액만 모아 돌려주기</li>
+      <li><b>⑩</b> greedy_coins 와 dp_coins 의 개수가 다른가</li>
+      <li>점검은 A8의 두 함수를 써요.</li>
+    </ul>
+    <pre class="x-code">def find_failures(coins, limit):   # 돌려줌: 금액 리스트
+find_failures([1, 5, 10], 30)      #=> []</pre>
+    <div class="x-f" data-bind="A9.mycode"></div>
+    <ul class="x-pts"><li>[✔ 점검] → <b>A9 점검 통과</b>. 실패 메시지의 앞쪽 목록이 내 결과.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="[1, 3, 4] 로 돌려 보기">
+    <div class="quiz predict" data-answer="2">
+      <p class="q">find_failures([1, 3, 4], 10) 의 목록에는 금액이 몇 개?</p>
+      <div class="opts"><button type="button">1개</button><button type="button">2개</button><button type="button">3개</button></div>
+      <p class="why">실행해서 확인해요.</p>
+    </div>
+    <div class="x-ed" data-starter="A9-p2"></div>
+  </div>
+
+  <div class="x-screen" data-title="동전 체계 4개 + 내 체계 (채점)">
+    <div class="x-given"><span><b>체계</b>[1,3,4] · [1,4,6] · 한국 동전 · [1,5,10,20,25]</span><span><b>limit</b>30, 50 → 8줄</span></div>
+    <ul class="x-pts">
+      <li>활동지 2부 A9 표에 예측을 먼저 쓰고 실행해요.</li>
+      <li>맨 아래에 <b>내 체계 2개</b> 줄을 더해요 (이 칸이 제출돼요).</li>
+      <li>하나는 맞을 것 같은 체계, 하나는 틀릴 것 같은 체계</li>
+      <li>1 포함 · 오름차순. 결과는 활동지 ‘내 동전 체계’ 표에</li>
+    </ul>
+    <pre class="x-code">print([1, 2, 7], find_failures([1, 2, 7], 30))   # 이런 꼴로 두 줄 더하기
+#=> [1, 2, 7] […]</pre>
+    <div class="x-f" data-bind="A9.mine"></div>
+  </div>
+
+  <div class="x-screen" data-title="검사 범위">
+    <div class="x-given"><span><b>[1, 5, 10, 20, 25]</b>limit 30 → [] · limit 50 → [40, …]</span></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">limit 30에서 못 찾은 까닭은?</p>
+      <div class="opts"><button type="button">반례 40원이 범위 30 밖</button><button type="button" data-hint="limit 50에서는 잘 찾았어요.">find_failures 가 틀려서</button><button type="button" data-hint="limit 50 결과에 40이 있어요.">40원은 반례가 아니라서</button></div>
+      <p class="why">30까지만 시험하면 40원은 안 보여요.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+
 <div class="wrap">
 <header>
   <div class="prompt">&gt;&gt;&gt; lab.week(13)  # 학생용 · 실습 코드 2부와 실습 과제 안내</div>
   <h1>13주차 실습 코드 2부 — 거스름돈 두 방법과 반례 탐색기</h1>
-  <p class="lead">거스름돈을 두 방법으로 구하고, 두 방법이 달라지는 금액을 찾아요. A8 시작 때 써요. 실습 과제 안내와 AI 활용 3단계도 이 파일에 있어요.</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 써요.</span></p>
+  <p class="lead">거스름돈을 두 방법으로 구하고, 두 방법이 달라지는 금액을 찾는다. A8 시작 때 쓴다. 실습 과제 안내와 AI 활용 3단계도 이 파일에 있다.</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 쓴다.</span></p>
 </header>
 <nav><a href="#how">#사용법</a><a href="#A8">#A8</a><a href="#A9">#A9</a><a href="#assign">#실습과제</a><a href="#ai">#AI활용</a><a href="index.html">목록</a></nav>
 <section id="how">
 <h2>사용법<small>#how</small></h2>
 <ul>
-<li>편집기에는 필요한 코드가 미리 들어 있어요. <code class="i">____4____</code> 같은 자리를 채우고 [&#9654; 실행]을 눌러요.</li>
-<li>[&#10004; 점검]은 내 코드가 맞는지 확인해 줘요. [처음 코드로]는 편집기를 처음 상태로 되돌려요.</li>
-<li>편집기에 쓴 내용은 자동으로 보관돼요. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만들어요.</li>
+<li>편집기에는 필요한 코드가 미리 들어 있다. <code class="i">____4____</code> 같은 자리를 채우고 [&#9654; 실행]을 누른다.</li>
+<li>[&#10004; 점검]은 내 코드가 맞는지 확인해 준다. [처음 코드로]는 편집기를 처음 상태로 되돌린다.</li>
+<li>편집기에 쓴 내용은 자동으로 보관된다. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만든다.</li>
 </ul>
 <details class="more"><summary>단축키와 오류가 날 때</summary>
 <ul>
-<li>Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기예요.</li>
-<li>오류가 나면 맨 아래 줄부터 읽어요. <code class="i">NameError: name '____4____' is not defined</code>는 그 번호의 자리가 아직 비어 있다는 뜻이에요.</li>
-<li>같은 쪽의 편집기는 파이썬 환경을 함께 써요. A9는 A8 편집기에서 만든 함수를 써요. 그래서 쪽을 새로 열었다면 A8 편집기를 먼저 실행해요.</li>
-<li>실행이 15초를 넘기면 멈춰요. 끝나지 않는 반복이 있는지 확인해 봐요.</li>
+<li>Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기이다.</li>
+<li>오류가 나면 맨 아래 줄부터 읽는다. <code class="i">NameError: name '____4____' is not defined</code>는 그 번호의 자리가 아직 비어 있다는 뜻이다.</li>
+<li>같은 쪽의 편집기는 파이썬 환경을 함께 쓴다. A9는 A8 편집기에서 만든 함수를 쓰므로, 쪽을 새로 열었다면 A8 편집기를 먼저 실행한다.</li>
+<li>실행이 15초를 넘기면 멈춘다. 끝나지 않는 반복이 있는지 확인한다.</li>
 </ul>
 </details>
 </section>
 <section id="A8" class="sheet lesson">
 <h2>A8 · 거스름돈 두 방법을 코드로<small>14분 · 개인(순회 개별 피드백)</small></h2>
-<p class="lead">A4의 규칙과 A5의 표를 코드로 옮겨 봐요.</p>
+<p class="lead">A4의 규칙과 A5의 표를 코드로 옮겨 보자.</p>
 
 <div class="step">
 <h3>큰 동전부터 내 보기</h3>
-<p>동전 1원, 5원, 10원으로 17원을 만들어요. 큰 동전부터 쓸 수 있는 만큼 쓰고, 남은 금액을 다음으로 넘겨요.</p>
+<p>동전 1원, 5원, 10원으로 17원을 만든다. 큰 동전부터 쓸 수 있는 만큼 쓰고 남은 금액을 넘긴다.</p>
 <pre class="fig">동전 [1, 5, 10], 17원
 10원: 1개 쓰고, 남은 금액 7원
  5원: 1개 쓰고, 남은 금액 2원
  1원: 2개 쓰고, 남은 금액 0원   → 모두 4개</pre>
 <div class="quiz" data-answer="2">
-<p class="q">28원이면 10원 동전을 몇 개 쓰고 얼마가 남을까요?</p>
+<p class="q">28원이면 10원 동전을 몇 개 쓰고 얼마가 남을까?</p>
 <div class="opts"><button type="button" data-hint="10원을 1개만 쓰면 18원이 남는다. 큰 동전부터는 쓸 수 있는 만큼 쓴다.">1개, 18원 남음</button><button type="button">2개, 8원 남음</button><button type="button" data-hint="28원은 10원 동전을 2개 쓸 수 있다.">3개, 모자람</button></div>
-<p class="why">28에서 10을 2번 빼면 8이 남아요.</p>
+<p class="why">28에서 10을 2번 빼면 8이 남는다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>몫, 나머지, 거꾸로 훑기</h3>
-<p>몫은 <code class="i">//</code>, 나머지는 <code class="i">%</code>로 구해요. <code class="i">reversed(목록)</code>은 뒤에서부터 하나씩 꺼내 줘요.</p>
+<p>몫은 <code class="i">//</code>, 나머지는 <code class="i">%</code>로 구한다. <code class="i">reversed(목록)</code>은 뒤에서부터 하나씩 내준다.</p>
 <div class="quiz predict">
-<p class="q">아래 코드의 첫 줄에는 무엇이 나올까요?</p>
+<p class="q">아래 코드의 첫 줄에는 무엇이 나올까?</p>
 <div class="opts"><button type="button">1 7</button><button type="button">7 1</button><button type="button">1.7 0</button></div>
 </div>
 <script type="text/plain" data-id="A8-p1">
@@ -76,8 +231,8 @@ for c in reversed(cs):        # 뒤에서부터 하나씩
 
 <div class="step">
 <h3>큰 동전 함수 채우기 ④⑤</h3>
-<p>먼저 활동지 <a class="xlink" href="student_workbook_part2.html#A8">2부 A8</a>의 6원 예측 칸을 채워 두세요. 그다음 <code class="i">greedy_coins(coins, amount)</code>의 ④⑤를 채워요. 큰 동전부터 쓴 개수를 돌려주는 함수예요.</p>
-<p class="tip">④는 큰 동전부터 훑는 목록, ⑤는 남은 금액이에요. 실행하면 <code class="i">greedy_coins: 3</code> 뒤에 <code class="i">NameError: ____6____</code>이 나와요. 정상이에요. dp_coins는 뒤 걸음에서 채워요.</p>
+<p><code class="i">greedy_coins(coins, amount)</code>의 ④⑤를 채우자. 큰 동전부터 쓴 개수를 돌려주는 함수이다. 먼저 활동지 <a class="xlink" href="student_workbook_part2.html#A8">2부 A8</a>의 6원 예측 칸을 채워 두자.</p>
+<p class="tip">④는 큰 동전부터 훑는 목록, ⑤는 남은 금액이다. 실행하면 <code class="i">greedy_coins: 3</code> 뒤에 <code class="i">NameError: ____6____</code>이 나오는 것이 정상이다. dp_coins는 뒤 걸음에서 채운다.</p>
 <script type="text/plain" data-id="A8-1">
 # A8: 거스름돈 두 가지 방법. coins는 오름차순이고 1을 포함한다.
 # INF: 어떤 수와 비교해도 더 큰 값(무한대)이다.
@@ -144,7 +299,7 @@ for coins in ([1, 3, 4], [1, 4, 6], [1, 5, 10, 20, 25], [5, 7], [2], [3, 5, 9], 
 print("A8 점검 통과")
 </script>
 <div class="mycode"><textarea class="in code" rows="26" data-type="code" data-key="A8.mycode" data-starter="A8-1 A8-2 A8-4" data-check="A8-3" data-label="A8 (greedy_coins, dp_coins 작성) 내 코드" spellcheck="false"></textarea></div>
-<p>아래에서 1걸음의 17원을 확인해 봐요.</p>
+<p>아래에서 1걸음의 17원을 확인하자.</p>
 <script type="text/plain" data-id="A8-p2">
 print(greedy_coins([1, 5, 10], 17))     # 1걸음의 손 계산과 같은가
 </script>
@@ -153,22 +308,22 @@ print(greedy_coins([1, 5, 10], 17))     # 1걸음의 손 계산과 같은가
 
 <div class="step">
 <h3>만들 수 없는 금액</h3>
-<p>dp[a]는 a원을 만드는 최소 개수예요. 동전이 [2, 5]뿐이면 1원과 3원은 만들 수 없어요. 이런 칸에는 <b>INF</b>(무한대, 아주 큰 값)를 적어요.</p>
+<p>dp[a]는 a원을 만드는 최소 개수이다. 동전이 [2, 5]뿐이면 1원과 3원은 만들 수 없다. 이런 칸에는 <b>INF</b>(무한대, 아주 큰 값)를 적는다.</p>
 <pre class="fig">동전 [2, 5]
 a       0    1    2    3    4    5
 dp[a]   0    INF  1    INF  2    1</pre>
 <div class="quiz" data-answer="1">
-<p class="q">dp[3]이 INF인 까닭은 뭘까요?</p>
+<p class="q">dp[3]이 INF인 까닭은?</p>
 <div class="opts"><button type="button">3원은 동전 2, 5로 만들 수 없다</button><button type="button" data-hint="3원을 만드는 개수가 많은 것이 아니라, 아예 만들 수 없다.">3원은 개수가 너무 많다</button><button type="button" data-hint="동전은 2원과 5원뿐이다. 3원짜리는 없다.">3원짜리 동전이 있다</button></div>
-<p class="why">2와 5를 몇 개 합쳐도 3이 되지 않아요.</p>
+<p class="why">2와 5를 몇 개 합쳐도 3이 되지 않는다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>표 시작하기 ⑥⑦</h3>
-<p>표는 모든 칸을 INF로 시작하고, 0원만 0개로 정해요. <code class="i">[x] * k</code>는 x를 k개 늘어놓은 리스트예요.</p>
+<p>표는 모든 칸을 INF로 시작하고 0원만 0개로 정한다. <code class="i">[x] * k</code>는 x를 k개 늘어놓은 리스트이다.</p>
 <div class="quiz predict">
-<p class="q">아래 코드의 둘째 줄에는 무엇이 나올까요?</p>
+<p class="q">아래 코드의 둘째 줄에는 무엇이 나올까?</p>
 <div class="opts"><button type="button">True</button><button type="button">False</button></div>
 </div>
 <script type="text/plain" data-id="A8-p3">
@@ -179,55 +334,55 @@ print(row)
 print(X + 1 < X)
 </script>
 <div class="mycode"><textarea class="in code" rows="6" data-type="code" data-starter="A8-p3" data-label="연습 · 무한대 표" spellcheck="false"></textarea></div>
-<p>위 편집기의 <code class="i">dp_coins</code>에서 ⑥⑦을 채워 봐요. ⑥은 이미 있는 이름 <code class="i">INF</code>를 써요.</p>
+<p>위 편집기의 <code class="i">dp_coins</code>에서 ⑥⑦을 채우자. ⑥은 이미 있는 이름 <code class="i">INF</code>를 쓴다.</p>
 </div>
 
 <div class="step">
 <h3>칸 채우기 ⑧⑨</h3>
-<p>동전 c를 마지막으로 쓰면 a원의 개수는 <code class="i">dp[a - c] + 1</code>이에요. 이 후보가 지금의 dp[a]보다 작을 때만 바꿔요.</p>
+<p>동전 c를 마지막으로 쓰면 a원의 개수는 <code class="i">dp[a - c] + 1</code>이다. 이 후보가 지금의 dp[a]보다 작을 때만 바꾼다.</p>
 <div class="quiz" data-accept="1" data-hint="dp[5 - 5]는 dp[0]이다. 표에서 dp[0]의 값을 찾아 1을 더해 보자.">
-<p class="q">위 표에서 a = 5, c = 5이면 후보는 얼마일까요?</p>
+<p class="q">위 표에서 a = 5, c = 5이면 후보는 얼마일까?</p>
 <div class="ans"><input type="text" aria-label="후보 값" placeholder="숫자"><button type="button">확인</button></div>
-<p class="why">dp[0] + 1 = 1이에요.</p>
+<p class="why">dp[0] + 1 = 1이다.</p>
 </div>
-<p>⑧은 후보가 dp[a]보다 작은지 묻는 조건이에요. ⑨는 dp[a]에 넣을 값이고요. ⑧을 먼저 정하면 ⑨는 같은 후보예요.</p>
+<p>⑧은 후보가 dp[a]보다 작은지 묻는 조건, ⑨는 dp[a]에 넣을 값이다. ⑧을 먼저 정하면 ⑨는 같은 후보이다.</p>
 </div>
 
 <div class="step">
 <h3>점검하고 6원 비교하기</h3>
-<p>[&#10004; 점검]을 눌러요. <code class="i">A8 점검 통과</code>가 나오면 완성이에요.</p>
-<p>실행 때 맨 끝에 나온 6원 결과 두 줄을 &lsquo;실제&rsquo; 칸에 써요.</p>
+<p>[&#10004; 점검]을 누르자. <code class="i">A8 점검 통과</code>가 나오면 완성이다.</p>
+<p>실행 때 맨 끝에 나온 6원 결과 두 줄을 &lsquo;실제&rsquo; 칸에 쓴다.</p>
 
 <details class="more"><summary>끝까지 막혔다면 · 빈칸 답</summary>
 <p>④ <code class="i">reversed(coins)</code> ⑤ <code class="i">amount % c</code> ⑥ <code class="i">INF</code> ⑦ <code class="i">0</code> ⑧ <code class="i">dp[a - c] + 1 &lt; dp[a]</code> ⑨ <code class="i">dp[a - c] + 1</code></p>
-<p>선택 도전: 12주차의 <code class="i">bisect_right(coins, a) - 1</code>은 a 이하에서 가장 큰 동전의 자리를 알려 줘요. 이 식으로 greedy_coins를 다시 써 봐도 좋아요.</p>
+<p>선택 도전: 12주차의 <code class="i">bisect_right(coins, a) - 1</code>은 a 이하의 가장 큰 동전의 자리를 준다. 이 식으로 greedy_coins를 다시 써 보아도 된다.</p>
 </details>
 </div>
 
-<p class="wrapup"><b>여기까지</b> 두 방법을 함수로 옮겼어요. 잘했어요. 갈라지는 곳과 착수 메모는 활동지 <a class="xlink" href="student_workbook_part2.html#A8">2부 A8</a>에 적어요.</p>
+<p class="wrapup"><b>여기까지</b> 두 방법을 함수로 옮겼다. 갈라지는 곳과 착수 메모는 활동지 <a class="xlink" href="student_workbook_part2.html#A8">2부 A8</a>에 적는다.</p>
 </section>
 <section id="A9" class="sheet lesson">
 <h2>A9 · 반례 탐색기 만들기<small>13분 · 개인</small></h2>
-<p class="lead">A8에서 두 방법이 6원에서 갈라지는 걸 봤어요. 이번에는 갈라지는 금액을 모두 찾아 주는 함수를 만들어 봐요.</p>
+<p class="lead">A8에서 두 방법이 6원에서 갈라지는 것을 보았다. 갈라지는 금액을 모두 찾아 주는 함수를 만들어 보자.</p>
 
 <div class="step">
 <h3>갈라지는 금액 하나 보기</h3>
-<p>[1, 3, 4]로 6원을 만들 때 큰 동전부터 쓰면 4+1+1 = 3개예요. 하지만 최소는 3+3 = 2개예요. 이렇게 큰 동전부터 쓴 개수가 최소 개수와 다른 금액을 <b>반례</b>라고 불러요.</p>
+<p>[1, 3, 4]로 6원을 만들 때 큰 동전부터 쓰면 4+1+1 = 3개이고, 최소는 3+3 = 2개이다. 이렇게 큰 동전부터 쓴 개수가 최소 개수와 다른 금액을 <b>반례</b>라 부른다.</p>
 <div class="quiz" data-answer="2">
-<p class="q">[1, 3, 4]에서 8원은 반례일까요?</p>
+<p class="q">[1, 3, 4]에서 8원은 반례일까?</p>
 <div class="opts"><button type="button" data-hint="큰 동전부터 하면 8원은 4+4로 몇 개가 되는지 세어 보자.">반례이다</button><button type="button">반례가 아니다</button></div>
-<p class="why">큰 동전부터 하면 4+4 = 2개예요. 동전 하나로는 8원을 만들 수 없으니 2개가 최소예요. 두 개수가 같아요.</p>
+<p class="why">큰 동전부터 하면 4+4 = 2개이다. 동전 하나로는 8원을 만들 수 없으니 2개가 최소이고, 두 개수가 같다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>두 함수 나란히 불러 보기</h3>
-<p>A8에서 만든 두 함수를 같은 금액으로 불러서 개수를 나란히 찍어 봐요.</p>
+<p>A8에서 만든 두 함수를 같은 금액에 불러 개수를 나란히 찍어 보자.</p>
 <div class="quiz predict">
-<p class="q">5원, 6원, 7원 중 두 숫자가 다른 줄은 어느 것일까요?</p>
+<p class="q">5원, 6원, 7원 중 두 숫자가 다른 줄은 어느 것일까?</p>
 <div class="opts"><button type="button">5원</button><button type="button">6원</button><button type="button">7원</button></div>
 </div>
-<p class="tip">잠깐! <code class="i">NameError: name 'greedy_coins' is not defined</code>가 나오면 위 A8의 편집기를 먼저 [&#9654; 실행]해요.</p>
+<p class="tip"><code class="i">NameError: name 'greedy_coins' is not defined</code>가 나오면 위 A8의 편집기를 먼저 [&#9654; 실행]한다.</p>
 <script type="text/plain" data-id="A9-p1">
 for a in (5, 6, 7):
     print(a, "원:", greedy_coins([1, 3, 4], a), dp_coins([1, 3, 4], a))
@@ -237,7 +392,7 @@ for a in (5, 6, 7):
 
 <div class="step">
 <h3>목록 함수 채우기 ⑩</h3>
-<p>1원부터 <code class="i">limit</code>원까지 하나씩 보면서, 두 개수가 다른 금액만 목록에 모으는 함수예요. ⑩에는 &ldquo;두 개수가 다른가&rdquo;를 묻는 조건을 써요.</p>
+<p>1원부터 <code class="i">limit</code>원까지 하나씩 보며 두 개수가 다른 금액만 목록에 모으는 함수이다. ⑩에는 &ldquo;두 개수가 다른가&rdquo;를 묻는 조건을 쓴다.</p>
 <script type="text/plain" data-id="A9-1">
 def find_failures(coins, limit):
     bad = []                       # 두 방법의 개수가 다른 금액을 모을 리스트
@@ -280,9 +435,9 @@ for coins in ([1, 3, 4], [1, 4, 6], [1, 2, 5], [1, 10, 50, 100, 500]):
 print("A9 점검 통과")
 </script>
 <div class="mycode"><textarea class="in code" rows="9" data-type="code" data-key="A9.mycode" data-starter="A9-1" data-check="A9-2" data-label="A9 (find_failures 작성) 내 코드" spellcheck="false"></textarea></div>
-<p>실행해서 함수를 정의해요. 그다음 아래에서 [1, 3, 4]를 limit 10으로 돌려 봐요.</p>
+<p>실행해 함수를 정의한 뒤, 아래에서 [1, 3, 4]를 limit 10으로 돌려 보자.</p>
 <div class="quiz predict">
-<p class="q">목록에는 금액이 몇 개 들어갈까요?</p>
+<p class="q">목록에는 금액이 몇 개 들어갈까?</p>
 <div class="opts"><button type="button">1개</button><button type="button">2개</button><button type="button">3개</button></div>
 </div>
 <script type="text/plain" data-id="A9-p2">
@@ -293,13 +448,13 @@ print(find_failures([1, 3, 4], 10))
 
 <div class="step">
 <h3>점검하고 완성하기</h3>
-<p>[&#10004; 점검]은 A8 편집기에서 만든 <code class="i">greedy_coins</code>와 <code class="i">dp_coins</code>를 써요. <code class="i">A9 점검 통과</code>가 나오면 완성이에요.</p>
-<p class="tip">잠깐! 점검이 실패하면 메시지에서 앞쪽 목록이 내 결과예요.</p>
+<p>[&#10004; 점검]은 A8 편집기에서 만든 <code class="i">greedy_coins</code>와 <code class="i">dp_coins</code>를 쓴다. <code class="i">A9 점검 통과</code>가 나오면 완성이다.</p>
+<p class="tip">점검이 실패하면 메시지에서 앞쪽 목록이 내 결과이다.</p>
 </div>
 
 <div class="step">
 <h3>동전 체계 4개 돌려 보기</h3>
-<p>동전 체계 4개를 limit 30과 50으로 돌리는 코드가 들어 있어요. 먼저 활동지 <a class="xlink" href="student_workbook_part2.html#A9">2부 A9</a>의 표에 예측을 써요. 그다음 실행하면 8줄이 나와요. 실제 목록은 그 표에 그대로 옮겨 써요.</p>
+<p>동전 체계 4개를 limit 30과 50으로 돌리는 코드가 들어 있다. 먼저 활동지 <a class="xlink" href="student_workbook_part2.html#A9">2부 A9</a>의 표에 예측을 쓴 뒤 실행하면 8줄이 나온다. 실제 목록은 그 표에 그대로 옮기자.</p>
 <script type="text/plain" data-id="A9-3">
 # 체계 4개를 limit 30과 50으로 실행한다. 예측을 활동지에 먼저 적는다.
 # (이름, 동전 목록) 쌍을 모은 리스트
@@ -314,59 +469,59 @@ for name, coins in SYSTEMS:  # 쌍을 풀어 name, coins에 담는다
 </script>
 <div class="mycode"><textarea class="in code" rows="14" data-type="code" data-key="A9.mine" data-starter="A9-3" data-label="A9 내 동전 체계로 실행한 코드" spellcheck="false"></textarea></div>
 <div class="quiz" data-answer="1">
-<p class="q">[1, 5, 10, 20, 25]는 limit 30에서 [], limit 50에서 [40, …]이 나왔어요. limit 30에서 못 찾은 까닭은 뭘까요?</p>
+<p class="q">[1, 5, 10, 20, 25]는 limit 30에서 [], limit 50에서 [40, …]이 나왔다. limit 30에서 못 찾은 까닭은?</p>
 <div class="opts"><button type="button">반례인 40원이 검사 범위 30 밖에 있어서</button><button type="button" data-hint="같은 함수가 limit 50에서는 40을 찾았다.">limit 30에서는 find_failures가 틀려서</button><button type="button" data-hint="limit 50의 목록에 40이 들어 있다.">40원은 반례가 아니라서</button></div>
-<p class="why">30까지만 시험하면 40원은 보이지 않아요.</p>
+<p class="why">30까지만 시험하면 40원은 보이지 않는다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>내 동전 체계로 돌려 보기</h3>
-<p>같은 편집기 맨 아래에 줄을 더해서 내 체계 두 개를 돌려 봐요(이 칸의 내용이 제출돼요). 하나는 큰 동전부터가 맞을 것 같은 체계, 하나는 틀릴 것 같은 체계로 해요. 1을 넣고, 오름차순으로 써요.</p>
+<p>같은 편집기 맨 아래에 줄을 더해 내 체계 두 개를 돌려 보자(이 칸의 내용이 제출된다). 하나는 큰 동전부터가 맞을 것 같은 체계, 하나는 틀릴 것 같은 체계로 한다. 1을 포함해 오름차순으로 쓴다.</p>
 <pre class="fig">print([1, ?, ?], find_failures([1, ?, ?], 30))</pre>
-<p>결과는 활동지 <a class="xlink" href="student_workbook_part2.html#A9">2부 A9</a>의 &lsquo;내 동전 체계&rsquo; 표에 옮겨요. 반례가 나온 체계 하나로 같은 쪽에서 증명 문장도 써 봐요.</p>
+<p>결과는 활동지 <a class="xlink" href="student_workbook_part2.html#A9">2부 A9</a>의 &lsquo;내 동전 체계&rsquo; 표에 옮긴다. 반례가 나온 체계 하나로 같은 쪽에서 증명 문장도 써 보자.</p>
 <details class="more"><summary>끝까지 막혔다면 · ⑩ 답</summary>
 <p>⑩ <code class="i">greedy_coins(coins, a) != dp_coins(coins, a)</code></p>
 </details>
 </div>
 
-<p class="wrapup"><b>여기까지</b> 두 방법이 달라지는 금액을 찾는 함수를 만들고, 여러 체계에 돌려 봤어요. 잘했어요. 이어서 실습 과제 안내를 읽어요.</p>
+<p class="wrapup"><b>여기까지</b> 두 방법이 달라지는 금액을 찾는 함수를 만들고 여러 체계에 돌려 보았다. 이어서 실습 과제 안내를 읽는다.</p>
 </section>
 <section id="assign" class="sheet">
 <h2>실습 과제 안내 · DP 테이블 설계와 반례 도출<small>A8 착수 · A9·A11 이어짐 · A14 마무리 · 잔여는 주간 과제</small></h2>
 <div class="grid">
 <div class="card"><b class="h">무엇을 만드는가</b><ul>
-<li><code class="i">min_coins(coins, amount)</code>: 동전을 무한히 쓸 수 있을 때 <code class="i">amount</code>를 만드는 최소 동전 개수를 돌려줘요. 만들 수 없으면 <code class="i">-1</code>, <code class="i">amount == 0</code>이면 <code class="i">0</code>이에요. <code class="i">coins</code>는 정렬되어 있지 않을 수 있고, 1이 없을 수도 있어요. 1차원 DP 표로 만들어요.</li>
-<li><code class="i">grid_paths(grid)</code>: 0 = 통행, 1 = 막힘인 R×C 격자가 있어요. 왼쪽 위에서 오른쪽 아래까지 오른쪽·아래로만 가는 경로 수를 돌려줘요. 시작이나 도착이 막혀 있으면 0이에요. 2차원 DP 표로 만들어요.</li>
-<li><code class="i">greedy_counterexample(coins)</code>: <code class="i">coins</code>는 오름차순이고 1이 들어 있어요. 큰 동전부터 쓴 개수가 최소 개수와 다른 <b>가장 작은 금액</b>(반례)을 돌려줘요. 검사 범위는 1 ~ 2×가장 큰 동전이고, 없으면 <code class="i">None</code>이에요.</li>
-<li>서술(3~5문장): 반례가 나오는 동전 체계 1개를 직접 설계해서 금액·두 조합·개수를 써요. 그리고 <code class="i">min_coins</code>의 상태 정의·전이·초기값을 내 말로 적어요.</li>
+<li><code class="i">min_coins(coins, amount)</code>: 동전을 무한히 쓸 수 있을 때 <code class="i">amount</code>를 만드는 최소 동전 개수를 돌려준다. 만들 수 없으면 <code class="i">-1</code>, <code class="i">amount == 0</code>이면 <code class="i">0</code>이다. <code class="i">coins</code>는 정렬되어 있다고 가정하지 않고 1이 없을 수 있다. 1차원 DP 표로 구현한다.</li>
+<li><code class="i">grid_paths(grid)</code>: 0 = 통행, 1 = 막힘인 R×C 격자에서 좌상단에서 우하단까지 오른쪽·아래로만 가는 경로 수를 돌려준다. 시작이나 도착이 막혀 있으면 0이다. 2차원 DP 표로 구현한다.</li>
+<li><code class="i">greedy_counterexample(coins)</code>: <code class="i">coins</code>는 오름차순이고 1을 포함한다. 큰 동전부터 쓴 개수가 최소 개수와 다른 <b>가장 작은 금액</b>(반례)을 돌려준다. 검사 범위는 1 ~ 2×가장 큰 동전이고, 없으면 <code class="i">None</code>이다.</li>
+<li>서술(3~5문장): 반례가 나오는 동전 체계 1개를 내가 설계해 금액·두 조합·개수를 쓰고, <code class="i">min_coins</code>의 상태 정의·전이·초기값을 내 말로 적는다.</li>
 </ul></div>
 <div class="card"><b class="h">어디에 내는가</b><ul>
-<li><a class="xlink" href="student_code_lab_part4.html#assign">실습 코드 4부</a>의 &lsquo;실습 과제 작성 칸&rsquo;에 쓰고, 그 쪽의 [저장(JSON)] 한 번으로 내요. 활동지와 <code class="i">.py</code> 파일은 내지 않아요.</li>
-<li>코드 3칸(<code class="i">assign.min_coins</code>, <code class="i">assign.grid_paths</code>, <code class="i">assign.greedy_counterexample</code>)과 서술 3칸(<code class="i">assign.essay.*</code>)을 채워요.</li>
-<li>각 코드의 맨 첫 줄에 구현 계획 한 줄을 주석(<code class="i">#</code>)으로 써요. 상태 정의와 목표 비용을 내 말로 적어요.</li>
-<li>복잡도와 그 근거도 각 과제 코드 칸 첫 줄의 구현 계획 주석에 함께 써요(예: <code class="i"># 구현 계획: …, 시간 O(…)·공간 O(…), 까닭 …</code>).</li>
-<li>A8·A11에서 만든 코드를 복사해 와서 과제 이름과 요건에 맞게 고쳐요.</li>
-<li>A8에서 시작하고, A9·A11에서 이어 쓰고, A14에서 마무리 점검해요. 못 끝낸 부분은 주간 과제로 이어져요.</li>
+<li><a class="xlink" href="student_code_lab_part4.html#assign">실습 코드 4부</a>의 &lsquo;실습 과제 작성 칸&rsquo;에 쓰고, 그 쪽의 [저장(JSON)] 한 번으로 낸다. 활동지와 <code class="i">.py</code> 파일은 내지 않는다.</li>
+<li>코드 3칸(<code class="i">assign.min_coins</code>, <code class="i">assign.grid_paths</code>, <code class="i">assign.greedy_counterexample</code>)과 서술 3칸(<code class="i">assign.essay.*</code>)을 채운다.</li>
+<li>각 코드의 맨 첫 줄에 구현 계획 한 줄을 주석(<code class="i">#</code>)으로 쓴다. 상태 정의와 목표 비용을 내 말로 적는다.</li>
+<li>복잡도와 그 근거는 각 과제 코드 칸 첫 줄의 구현 계획 주석에 함께 쓴다(예: <code class="i"># 구현 계획: …, 시간 O(…)·공간 O(…), 까닭 …</code>).</li>
+<li>A8·A11에서 만든 코드를 복사해 와서 과제 이름과 요건에 맞게 고친다.</li>
+<li>A8에서 착수하고 A9·A11에서 이어 쓰며 A14에서 마무리 점검한다. 미완 부분은 주간 과제로 이어진다.</li>
 </ul></div>
-<div class="card"><b class="h">평가 (100점)</b><ul><li>요구사항 구현 정확성 50</li><li>복잡도 분석 타당성 30</li><li>코드 품질 20</li><li>4단계 채점기준은 <a href="rubric.html">rubric.html</a>에서 확인해요(A13 직후 공개).</li></ul></div>
+<div class="card"><b class="h">평가 (100점)</b><ul><li>요구사항 구현 정확성 50</li><li>복잡도 분석 타당성 30</li><li>코드 품질 20</li><li>4단계 채점기준은 <a href="rubric.html">rubric.html</a>에서 확인한다(A13 직후 공개).</li></ul></div>
 </div>
 <details class="more"><summary>제출 전 확인과 주의 · A14에서 펼친다</summary>
 <ul>
-<li>제출 전에 세 코드 칸을 각각 [&#9654; 실행]해서 정의되는지 확인해요. A14 점검 출력이 &lsquo;점검 기대값&rsquo;과 같은지도 봐요. 서술 3칸도 채워요.</li>
-<li><code class="i">min_coins</code>는 <code class="i">amount</code>가 커도(예: 20000) <code class="i">RecursionError</code> 없이 끝나야 해요. 그러니 표를 반복문으로 채우는 방식으로 써요.</li>
-<li>세 함수는 입력 리스트를 <b>바꾸지 않아요</b>. 정렬이 필요하면 복사본을 정렬해요.</li>
-<li>구현 계획 주석에는 <code class="i">min_coins</code>와 <code class="i">grid_paths</code>의 시간·공간 복잡도를 써요. 반복문 구조를 근거로 들어요. 채점기준표의 &ldquo;복잡도 분석 타당성&rdquo;과 같은 문구예요.</li>
-<li>[앞 쪽 코드 불러오기]는 함수를 실행 환경에만 올리고 편집기 칸은 채우지 않아요. 그래서 과제 코드에는 쓰지 않아요.</li>
+<li>제출 전에 세 코드 칸을 각각 [&#9654; 실행]해 정의되는지, A14 점검 출력이 &lsquo;점검 기대값&rsquo;과 같은지 확인한다. 서술 3칸도 채운다.</li>
+<li><code class="i">min_coins</code>는 <code class="i">amount</code>가 커도(예: 20000) <code class="i">RecursionError</code> 없이 끝나야 한다. 표를 반복문으로 채우는 방식으로 쓴다.</li>
+<li>세 함수는 입력 리스트를 <b>바꾸지 않는다</b>. 정렬이 필요하면 복사본을 정렬한다.</li>
+<li>구현 계획 주석에는 <code class="i">min_coins</code>와 <code class="i">grid_paths</code>의 시간·공간 복잡도를 반복문 구조에 근거해 쓴다. 채점기준표의 &ldquo;복잡도 분석 타당성&rdquo;과 같은 문구이다.</li>
+<li>[앞 쪽 코드 불러오기]는 함수를 실행 환경에만 올리고 편집기 칸을 채우지 않으므로 과제 코드에는 쓰지 않는다.</li>
 </ul>
 </details>
 </section>
 <section id="ai" class="sheet">
 <h2>AI 활용 3단계 · 이 과제에 맞춘 예<small>허용 · 조건부 허용 · 금지</small></h2>
-<p>기준은 &ldquo;AI에게 무엇을 시켰는가&rdquo;예요. 개념·용어·오류 원인을 묻는 것은 허용이에요. 과제 요구사항·완성된 구현·설계 판단을 시켜서 받은 결과물을 제출하는 것은 금지예요.</p><div class="grid">
-<div class="card" style="--c:#1d7a4f"><b class="h">허용</b><ul><li>&ldquo;메모이제이션과 타뷸레이션은 무엇이 달라?&rdquo;, &ldquo;탐욕 알고리즘이 최적이 되려면 어떤 성질이 필요해?&rdquo; 같은 개념·용어 질의</li><li>&ldquo;RecursionError가 무슨 뜻이야?&rdquo;, &ldquo;IndexError가 왜 나오는지 해설&rdquo; 같은 오류 메시지 해설</li><li>&ldquo;dynamic programming이라는 이름은 어디서 유래했어?&rdquo; 같은 용어 번역·개념 요약, 수업 자료 복습 질문(코드는 받지 않음)</li><li>내 코드 결과가 TEST와 다를 때 원인 힌트만 요청하기(고치는 건 직접 해요)</li></ul></div>
-<div class="card" style="--c:#8a6d1f"><b class="h">조건부 허용</b><ul><li>복잡도 검토 요청: 내가 쓴 분석문과 코드가 맞는지 검토만 맡겨요. 분석을 대신 세우게 하지는 않아요</li><li>엣지 케이스 브레인스토밍(amount = 0, 만들 수 없는 금액, 동전 1개, 시작이나 도착이 막힌 격자, 1×1 격자)</li><li>내 코드의 경계 조건·성능 검토 요청(고치는 건 직접 해요)</li><li>내 코드와 서술을 더 낫게 할 아이디어 요청(제안은 참고만 하고 직접 다시 써요)</li></ul></div>
-<div class="card" style="--c:#b3401f"><b class="h">금지 — 적발 시 계획서의 위반 처리방안 적용</b><ul><li>과제 문장(&ldquo;최소 동전 개수를 구하는 함수, 격자 경로 수를 구하는 함수, 큰 동전부터 쓰는 방식과 최솟값이 달라지는 가장 작은 금액(반례)을 구하는 함수를 작성하라&rdquo;)을 그대로 입력해 전체 코드 생성</li><li>AI가 쓴 <code class="i">min_coins</code>/<code class="i">grid_paths</code>/<code class="i">greedy_counterexample</code>를 그대로, 또는 변수명만 바꿔 제출</li><li>상태 정의·전이 방정식·초기값·계산 순서 같은 DP 설계 판단, 또는 반례가 되는 동전 체계·금액을 AI가 대신 찾기</li><li>복잡도 분석이나 구현 계획(상태 정의와 목표 비용 포함)을 AI가 대신 세우게 해서 제출하기</li><li>상태 정의·전이 설계나 반례 증명 문장을 AI가 대신 쓰게 해서 제출하기</li></ul></div></div>
+<p>기준은 &ldquo;AI에게 무엇을 시켰는가&rdquo;이다. 개념·용어·오류 원인을 묻는 것은 허용이고, 과제 요구사항·완성된 구현·설계 판단을 시켜 결과물을 받아 제출하는 것은 금지이다.</p><div class="grid">
+<div class="card" style="--c:#1d7a4f"><b class="h">허용</b><ul><li>&ldquo;메모이제이션과 타뷸레이션은 무엇이 달라?&rdquo;, &ldquo;탐욕 알고리즘이 최적이 되려면 어떤 성질이 필요해?&rdquo; 같은 개념·용어 질의</li><li>&ldquo;RecursionError가 무슨 뜻이야?&rdquo;, &ldquo;IndexError가 왜 나오는지 해설&rdquo; 같은 오류 메시지 해설</li><li>&ldquo;dynamic programming이라는 이름은 어디서 유래했어?&rdquo; 같은 용어 번역·개념 요약, 수업 자료 복습 질문(코드는 받지 않음)</li><li>내 코드 결과가 TEST와 다를 때 원인 힌트만 요청(수정은 직접 한다)</li></ul></div>
+<div class="card" style="--c:#8a6d1f"><b class="h">조건부 허용</b><ul><li>복잡도 검토 요청: 내가 쓴 분석문과 코드가 맞는지 검토만 맡긴다. 분석을 대신 세우게 하지 않는다</li><li>엣지 케이스 브레인스토밍(amount = 0, 만들 수 없는 금액, 동전 1개, 시작이나 도착이 막힌 격자, 1×1 격자)</li><li>내 코드의 경계 조건·성능 검토 요청(수정은 직접 한다)</li><li>내 코드와 서술의 개선 아이디어 제안 요청(제안만 참고하고 직접 다시 작성)</li></ul></div>
+<div class="card" style="--c:#b3401f"><b class="h">금지 — 적발 시 계획서의 위반 처리방안 적용</b><ul><li>과제 문장(&ldquo;최소 동전 개수를 구하는 함수, 격자 경로 수를 구하는 함수, 큰 동전부터 쓰는 방식과 최솟값이 달라지는 가장 작은 금액(반례)을 구하는 함수를 작성하라&rdquo;)을 그대로 입력해 전체 코드 생성</li><li>AI가 쓴 <code class="i">min_coins</code>/<code class="i">grid_paths</code>/<code class="i">greedy_counterexample</code>를 그대로, 또는 변수명만 바꿔 제출</li><li>상태 정의·전이 방정식·초기값·계산 순서 등 DP 설계 판단, 반례가 되는 동전 체계·금액을 AI가 대신 찾음</li><li>복잡도 분석이나 구현 계획(상태 정의와 목표 비용 포함)을 AI에게 대신 세우게 하여 제출</li><li>상태 정의·전이 설계나 반례 증명 문장을 AI가 대신 쓰게 하여 제출</li></ul></div></div>
 <div class="note"><b>수업 운영 규칙</b> 수업 중 활동(A1~A15)은 AI 도움 없이 한다. A12·A13의 일반화 문장은 내가 직접 쓴다. A15 형성평가는 AI를 쓰지 않는 시험 상황이며 위 위반 처리는 적용하지 않는다. 위 3단계는 주간 과제를 제출할 때 적용된다.</div>
 <div class="note"><b>AI 도우미</b>(화면 오른쪽 아래)는 &lsquo;허용&rsquo; 범위인 개념·문법 설명, 오류 원인, 힌트만 해 주고 과제 코드와 활동지 답은 알려 주지 않는다. 학교 계정으로 로그인해야 하며 질문과 답은 교사가 볼 수 있게 기록된다. 수업 중 AI 금지 활동에서는 교사가 꺼 둔다.</div>
 </section>

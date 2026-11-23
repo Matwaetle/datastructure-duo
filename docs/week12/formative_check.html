@@ -13,46 +13,167 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
+<div class="x-page" hidden data-title="12주차 형성평가 · 이진 탐색과 경계" data-lead="상황 판단, 경계와 개수, 오류 진단을 혼자 풀어요. AI는 쓰지 않아요.">
+
+<!-- ========== Q1 ========== -->
+<section class="x-act" data-id="Q1" data-title="상황 판단" data-meta="6분 · 개별 · Q1~Q3">
+  <ul class="x-pts">
+    <li>푼 만큼 내요. 막힌 칸은 ‘모름’.</li>
+    <li>시간이 모자라면 Q1 (c)(d), Q3 (ii) 고치는 방법은 생략 가능.</li>
+    <li>수업 때와 값이 달라요.</li>
+  </ul>
+
+  <div class="x-screen" data-title="판단 기준">
+    <div class="x-cards">
+      <div><b>가능</b>이진 탐색 전제(정렬)를 이미 만족</div>
+      <div><b>불가</b>전제가 깨져 있음</div>
+      <div><b>조건부</b>추가 조치나 조건이 있어야 함</div>
+    </div>
+    <ul class="x-pts"><li>근거 한 문장에 <b>정렬되어 있다 / 뒤섞여 있다</b> 또는 <b>질의가 ○번이다</b>를 넣어요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="(a) 학번 명단">
+    <div class="x-given"><span><b>데이터</b>학번이 오름차순인 명단</span><span><b>할 일</b>한 학번의 자리 찾기</span></div>
+    <div class="x-f" data-bind="Q1.a.choice"></div>
+    <div class="x-f" data-bind="Q1.a.why" data-ph="예: 값이 뒤섞여 있으므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(b) 센서 로그">
+    <div class="x-given"><span><b>데이터</b>도착 순서대로 쌓임, 값은 뒤섞임</span><span><b>할 일</b>값 하나가 있는지 한 번만 확인</span></div>
+    <div class="x-f" data-bind="Q1.b.choice"></div>
+    <div class="x-f" data-bind="Q1.b.why" data-ph="예: 정렬되어 있으므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(c) 점수 구간 세기">
+    <div class="x-given"><span><b>데이터</b>오름차순인 점수 목록</span><span><b>할 일</b>60점 이상 80점 미만 학생 수 세기</span></div>
+    <div class="x-f" data-bind="Q1.c.choice"></div>
+    <div class="x-f" data-bind="Q1.c.why" data-ph="예: 질의가 1번이므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(d) 10만 번 질문">
+    <div class="x-given"><span><b>데이터</b>뒤섞인 값 10만 개</span><span><b>할 일</b>“이 값이 있나?” 질문 10만 번</span></div>
+    <div class="x-f" data-bind="Q1.d.choice"></div>
+    <div class="x-f" data-bind="Q1.d.why" data-ph="예: 질의가 ○번이고 … 하면 …"></div>
+  </div>
+</section>
+
+<!-- ========== Q2 ========== -->
+<section class="x-act" data-id="Q2" data-title="경계와 개수" data-meta="Q1~Q3 안에서">
+  <div class="x-screen" data-title="F의 경계">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <div class="x-cards">
+      <div><b>bisect_left(F, x)</b>처음 x 이상인 칸 (lower bound)</div>
+      <div><b>bisect_right(F, x)</b>처음 x 초과인 칸 (upper bound)</div>
+    </div>
+    <ul class="x-pts"><li>칸 번호는 0부터, 숫자만.</li></ul>
+    <div class="x-line">bisect_left(F, 9) = <span class="x-f" data-bind="Q2.l9" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">bisect_right(F, 9) = <span class="x-f" data-bind="Q2.r9" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">F에서 9의 개수 <span class="x-f" data-bind="Q2.c9" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">x = 10 의 left, right <span class="x-f" data-bind="Q2.lr10" data-w="s" data-ph="예: 2, 5"></span></div>
+  </div>
+
+  <div class="x-screen" data-title="구간 [5, 20] 개수">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <ul class="x-pts"><li><b>[5, 20]</b> = 값이 5 이상 20 이하 (양끝 포함)</li></ul>
+    <div class="x-line">원소 개수 <span class="x-f" data-bind="Q2.range" data-w="xs" data-ph="숫자"></span></div>
+    <p class="x-q">구한 식과 근거<small>위 개수와 맞아야 해요</small></p>
+    <div class="x-f" data-bind="Q2.why" data-parts="식=bisect_○(F, ○) − bisect_○(F, ○)|근거=예: 오른쪽 끝을 포함하려면 …"></div>
+  </div>
+</section>
+
+<!-- ========== Q3 ========== -->
+<section class="x-act" data-id="Q3" data-title="전제와 경계 오류 진단" data-meta="Q1~Q3 안에서">
+  <div class="x-screen" data-title="(i) G에서 13 찾기">
+    <div class="x-arr" data-name="G" data-v="31,7,20,4,9,13,9,4,20,9"></div>
+    <ol class="x-rules">
+      <li class="r1"><b>시작</b><div class="fx"><code>lo = 0</code><code>hi = 마지막 인덱스</code></div></li>
+      <li class="r2"><b>가운데</b><div class="fx"><code>mid = (lo + hi) // 2</code></div></li>
+      <li class="r3"><b>비교</b><div class="cases">
+        <div class="c-eq"><code>목표 = a[mid]</code><i>→</i><span>찾음</span></div>
+        <div class="c-up"><code>목표 &gt; a[mid]</code><i>→</i><span><code>lo = mid + 1</code></span></div>
+        <div class="c-dn"><code>목표 &lt; a[mid]</code><i>→</i><span><code>hi = mid − 1</code></span></div></div></li>
+      <li class="r4"><b>끝</b><div class="cases"><div class="c-end"><code>lo &gt; hi</code><i>→</i><span>‘없음’</span></div></div></li>
+    </ol>
+    <div class="x-given"><span><b>목표</b>13</span></div>
+    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="Q3.i.result" data-w="s" data-ph="예: 인덱스 2 / 없음"></span></div>
+    <div class="x-f" data-bind="Q3.i.why" data-ph="원인 한 문장 · 예: G가 … 이므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(ii) 틀린 개수 식">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <div class="x-given"><span><b>구간</b>[5, 20] (양끝 포함)</span><span><b>쓴 식</b>bisect_left(F, 20) − bisect_left(F, 5)</span></div>
+    <div class="x-line">이 식의 결과 <span class="x-f" data-bind="Q3.ii.wrong" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">올바른 결과 <span class="x-f" data-bind="Q3.ii.right" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-f" data-bind="Q3.ii.fix" data-ph="○○를 ○○로 바꾼다 (한 문장)"></div>
+  </div>
+</section>
+
+<!-- ========== Q4 ========== -->
+<section class="x-act" data-id="Q4" data-title="보조 문항: 가까운 값과 정렬 선택" data-meta="수업 밖 · 선택·과제">
+  <div class="x-screen" data-title="closest_value(F, x)">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <ul class="x-pts"><li>F에서 x와 가장 가까운 값. 거리가 같으면 <b>작은 값</b>.</li><li>예: x = 8 → 7과 9 거리 1로 같음 → 7</li></ul>
+    <table class="x-trace">
+      <tr><th>x</th><th>closest_value<small>F의 값 하나</small></th></tr>
+      <tr><td>10</td><td><span class="x-f" data-bind="Q4.c10" data-ph="F의 값"></span></td></tr>
+      <tr><td>25</td><td><span class="x-f" data-bind="Q4.c25" data-ph="F의 값"></span></td></tr>
+      <tr><td>14</td><td><span class="x-f" data-bind="Q4.c14" data-ph="F의 값"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="x-screen" data-title="어느 정렬이 안전할까">
+    <div class="x-given"><span><b>입력</b>이미 정렬돼 있을 가능성이 높은 로그</span></div>
+    <div class="x-cards">
+      <div><b>병합 정렬</b>쪼갠 뒤 합치기</div>
+      <div><b>퀵 정렬 (첫 원소 피벗)</b>맨 앞 값으로 가르기</div>
+    </div>
+    <div class="x-f" data-bind="Q4.sort"></div>
+    <div class="x-f" data-bind="Q4.sort.why" data-ph="정렬 상태나 비교 횟수를 근거로 한 문장"></div>
+  </div>
+</section>
+</div>
+
+
 <div class="wrap">
 <header>
   <div class="prompt">&gt;&gt;&gt; formative.week(12)  # 학생용 · 형성평가(A15)</div>
   <h1>12주차 형성평가 — 이진 탐색과 경계로 개수 구하기</h1>
-  <p class="lead">성취기준 [12자구04-02]. 평가 의도: bisect 모듈로 Lower/Upper Bound 개념을 써서 데이터 빈도를 구할 수 있을까요? 이 평가는 혼자 풀어요. 시험이니까 AI는 쓰지 않아요(수업 운영 규칙이에요. 계획서의 위반 처리는 이 평가에 적용하지 않아요).</p><p class="meta"><span>학번과 이름은 위쪽 저장 바에 써요.</span></p>
+  <p class="lead">성취기준 [12자구04-02]. 평가 의도: bisect 모듈로 Lower/Upper Bound 개념을 적용해 데이터 빈도를 산출할 수 있는가? 이 평가는 개별로 풀며, 시험 상황이므로 AI를 사용하지 않는다(수업 운영 규칙이며 계획서의 위반 처리는 이 평가에 적용하지 않는다).</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 쓴다.</span></p>
 </header>
 <nav><a href="#Q1">Q1~Q3</a><a href="#Q4">Q4</a><a href="index.html">목록</a></nav>
 <section id="Q1" class="sheet">
 <h2>Q1~Q3 · 상황 판단, 경계와 개수 산출, 전제와 경계 오류 진단<small>수업 시간 A15 · 6분</small></h2>
-<p class="note">끝까지 못 풀어도 괜찮아요. 푼 만큼 내요. 혼자 풀고, 시험이니까 AI는 쓰지 않아요. 시간이 모자라면 Q1의 (c)(d)와 Q3 (ii)의 &ldquo;고치는 방법&rdquo; 서술은 빼도 돼요. 이 문항의 값은 수업 시간에 쓴 값과 달라요. 숫자 칸에는 숫자만 쓰고(인덱스는 0부터), 서술 칸은 한 문장으로 써요. 막혀서 못 쓴 칸은 &lsquo;x&rsquo;나 &lsquo;-&rsquo; 대신 <b>모름</b>이라고 써요.</p>
+<p class="note">끝까지 못 풀어도 괜찮다. 푼 만큼 낸다. 개별로 푼다. 시험 상황이므로 AI를 사용하지 않는다. 시간이 모자라면 Q1의 (c)(d)와 Q3 (ii)의 &ldquo;고치는 방법&rdquo; 서술을 생략할 수 있다. 이 문항의 값은 수업 시간에 쓴 값과 다르다. 숫자 칸에는 숫자만 쓰고(인덱스는 0부터), 서술 칸은 한 문장으로 쓴다. 막혀서 못 쓴 칸은 &lsquo;x&rsquo;나 &lsquo;-&rsquo; 대신 <b>모름</b>이라고 쓴다.</p>
 <div class="learn-box"><span class="lb-title">학습 내용 · 판단 기준과 쓰는 법</span>
 <ul>
-<li>&ldquo;가능&rdquo;은 이진 탐색·bisect의 전제를 이미 만족할 때예요. &ldquo;불가&rdquo;는 전제가 깨져 있을 때, &ldquo;조건부&rdquo;는 추가 조치나 조건이 필요할 때예요. 근거 한 문장에는 정렬 여부나 질의 횟수를 써요.</li>
-<li>lower bound = 처음으로 x 이상이 나오는 자리, upper bound = 처음으로 x 초과가 나오는 자리예요. 각각 bisect_left, bisect_right예요. 닫힌 구간 [lo, hi]는 양끝을 포함하고, 인덱스는 0부터 세요.</li>
-<li>Q3 (i)의 규칙(A2 규칙 ①~④): lo = 0, hi = 마지막 인덱스로 시작해요. mid = (lo + hi) // 2의 원소와 목표를 비교해요. 같으면 끝, 목표가 더 크면 lo = mid + 1, 더 작으면 hi = mid − 1로 해요. lo &gt; hi이면 &ldquo;없음&rdquo;이에요.</li>
+<li>&ldquo;가능&rdquo;은 이진 탐색·bisect의 전제를 이미 만족할 때, &ldquo;불가&rdquo;는 전제가 깨져 있을 때, &ldquo;조건부&rdquo;는 추가 조치나 조건이 필요할 때이다. 근거 한 문장에는 정렬 여부나 질의 횟수를 쓴다.</li>
+<li>lower bound = 처음으로 x 이상이 나오는 자리, upper bound = 처음으로 x 초과가 나오는 자리이고 각각 bisect_left, bisect_right이다. 닫힌 구간 [lo, hi]는 양끝을 포함하고, 인덱스는 0부터 센다.</li>
+<li>Q3 (i)의 규칙(A2 규칙 ①~④): lo = 0, hi = 마지막 인덱스로 시작한다. mid = (lo + hi) // 2의 원소와 목표를 견주어 같으면 끝, 목표가 더 크면 lo = mid + 1, 더 작으면 hi = mid − 1로 한다. lo &gt; hi이면 &ldquo;없음&rdquo;이다.</li>
 </ul>
 </div>
 <h3>Q1 · 상황 판단</h3>
-<p>각 상황에서 이진 탐색(또는 bisect)을 쓸 수 있는지 &ldquo;가능 / 불가 / 조건부&rdquo; 중 하나를 골라요. 그리고 <b>정렬 전제 또는 질의 횟수</b>를 근거로 한 문장을 써요.</p><p class="hint"><b>쓰는 법</b> 판단 칸은 목록에서 하나를 골라요. 근거 칸에는 &ldquo;정렬되어 있다/뒤섞여 있다&rdquo; 또는 &ldquo;질의가 ○번이다&rdquo;를 넣은 한 문장을 써요.</p>
+<p>각 상황에서 이진 탐색(또는 bisect)을 쓸 수 있는지 &ldquo;가능 / 불가 / 조건부&rdquo; 중 하나를 고르고, <b>정렬 전제 또는 질의 횟수</b>에 근거해 한 문장으로 쓰시오.</p><p class="hint"><b>쓰는 법</b> 판단 칸은 목록에서 하나를 고른다. 근거 칸에는 &ldquo;정렬되어 있다/뒤섞여 있다&rdquo; 또는 &ldquo;질의가 ○번이다&rdquo;를 넣은 한 문장을 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:42%">상황</th><th style="width:18%">판단</th><th>근거 한 문장</th></tr><tr><td class="lab">(a) 학번이 오름차순으로 정리된 명단에서 한 학번이 있는 자리를 찾는다.</td><td class="in-cell"><select class="in" data-key="Q1.a.choice" data-label="Q1 (a) 선택"><option value=""></option><option value="가능">이진 탐색·bisect 가능</option><option value="불가">불가</option><option value="조건부">조건부</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.a.why" placeholder="정렬 여부나 질의 횟수를 넣은 한 문장" data-label="Q1 (a) 근거 한 문장"></textarea></td></tr><tr><td class="lab">(b) 도착한 순서대로 쌓인 센서 로그(값은 뒤섞여 있음)에서 값 하나가 있는지 한 번만 확인한다.</td><td class="in-cell"><select class="in" data-key="Q1.b.choice" data-label="Q1 (b) 선택"><option value=""></option><option value="가능">이진 탐색·bisect 가능</option><option value="불가">불가</option><option value="조건부">조건부</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.b.why" placeholder="정렬 여부나 질의 횟수를 넣은 한 문장" data-label="Q1 (b) 근거 한 문장"></textarea></td></tr><tr><td class="lab">(c) 오름차순으로 정리된 점수 목록에서 60점 이상 80점 미만인 학생이 몇 명인지 센다.</td><td class="in-cell"><select class="in" data-key="Q1.c.choice" data-label="Q1 (c) 선택"><option value=""></option><option value="가능">이진 탐색·bisect 가능</option><option value="불가">불가</option><option value="조건부">조건부</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.c.why" placeholder="정렬 여부나 질의 횟수를 넣은 한 문장" data-label="Q1 (c) 근거 한 문장"></textarea></td></tr><tr><td class="lab">(d) 뒤섞인 데이터 10만 개에서 &ldquo;이 값이 있는가?&rdquo;라는 질문이 10만 번 들어온다.</td><td class="in-cell"><select class="in" data-key="Q1.d.choice" data-label="Q1 (d) 선택"><option value=""></option><option value="가능">이진 탐색·bisect 가능</option><option value="불가">불가</option><option value="조건부">조건부</option></select></td><td class="in-cell"><textarea class="in" rows="2" data-key="Q1.d.why" placeholder="정렬 여부나 질의 횟수를 넣은 한 문장" data-label="Q1 (d) 근거 한 문장"></textarea></td></tr></table></div>
 <h3>Q2 · 경계와 개수 산출</h3>
-<p>정렬된 리스트 <code class="i">F</code>에 대해 답해요(인덱스는 0부터).</p>
+<p>정렬된 리스트 <code class="i">F</code>에 대해 답하시오(인덱스는 0부터).</p>
 <pre class="diagram">F = [4, 4, 7, 9, 9, 9, 13, 20, 20, 31]
 인덱스  0  1  2  3  4  5   6   7   8   9</pre>
-<p class="hint"><b>쓰는 법</b> 다섯 칸 모두 숫자로 써요. bisect_left(F, 10)과 bisect_right(F, 10) 칸에는 두 수를 &ldquo;○, ○&rdquo;처럼 쉼표로 이어 써요(왼쪽 값이 left, 오른쪽 값이 right).</p><div class="scroll"><table class="fill"><tr><th style="width:46%">항목</th><th>답</th></tr><tr><td class="lab">bisect_left(F, 9)</td><td class="in-cell"><input type="text" class="in" data-key="Q2.l9" placeholder="숫자" data-label="Q2 bisect_left(F, 9)" autocomplete="off"></td></tr><tr><td class="lab">bisect_right(F, 9)</td><td class="in-cell"><input type="text" class="in" data-key="Q2.r9" placeholder="숫자" data-label="Q2 bisect_right(F, 9)" autocomplete="off"></td></tr><tr><td class="lab">F에서 9의 개수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.c9" placeholder="숫자" data-label="Q2 9의 개수" autocomplete="off"></td></tr><tr><td class="lab">bisect_left(F, 10)과 bisect_right(F, 10)</td><td class="in-cell"><input type="text" class="in" data-key="Q2.lr10" placeholder="○, ○" data-label="Q2 x=10의 left와 right" autocomplete="off"></td></tr><tr><td class="lab">닫힌 구간 [5, 20]의 원소 개수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.range" placeholder="숫자" data-label="Q2 구간 [5, 20]의 원소 개수" autocomplete="off"></td></tr></table></div>
-<p>구간 [5, 20]의 개수를 구한 식과 그 근거를 한 문장으로 써요.</p><p class="hint"><b>쓰는 법</b> &ldquo;식: bisect_○(F, ○) &minus; bisect_○(F, ○). 근거: …&rdquo; 모양으로 한 줄에 써요. 위 &ldquo;[5, 20]의 원소 개수&rdquo; 칸의 값과 맞아야 해요.</p>
+<p class="hint"><b>쓰는 법</b> 다섯 칸 모두 숫자로 쓴다. bisect_left(F, 10)과 bisect_right(F, 10) 칸에는 두 수를 &ldquo;○, ○&rdquo;처럼 쉼표로 이어 쓴다(왼쪽 값이 left, 오른쪽 값이 right).</p><div class="scroll"><table class="fill"><tr><th style="width:46%">항목</th><th>답</th></tr><tr><td class="lab">bisect_left(F, 9)</td><td class="in-cell"><input type="text" class="in" data-key="Q2.l9" placeholder="숫자" data-label="Q2 bisect_left(F, 9)" autocomplete="off"></td></tr><tr><td class="lab">bisect_right(F, 9)</td><td class="in-cell"><input type="text" class="in" data-key="Q2.r9" placeholder="숫자" data-label="Q2 bisect_right(F, 9)" autocomplete="off"></td></tr><tr><td class="lab">F에서 9의 개수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.c9" placeholder="숫자" data-label="Q2 9의 개수" autocomplete="off"></td></tr><tr><td class="lab">bisect_left(F, 10)과 bisect_right(F, 10)</td><td class="in-cell"><input type="text" class="in" data-key="Q2.lr10" placeholder="○, ○" data-label="Q2 x=10의 left와 right" autocomplete="off"></td></tr><tr><td class="lab">닫힌 구간 [5, 20]의 원소 개수</td><td class="in-cell"><input type="text" class="in" data-key="Q2.range" placeholder="숫자" data-label="Q2 구간 [5, 20]의 원소 개수" autocomplete="off"></td></tr></table></div>
+<p>구간 [5, 20]의 개수를 구한 식과 그 근거를 한 문장으로 쓴다.</p><p class="hint"><b>쓰는 법</b> &ldquo;식: bisect_○(F, ○) &minus; bisect_○(F, ○). 근거: …&rdquo; 모양으로 한 줄에 쓴다. 위 &ldquo;[5, 20]의 원소 개수&rdquo; 칸의 값과 맞아야 한다.</p>
 <div class="ans-row"><span class="n">식과 근거</span><textarea class="in" rows="3" data-key="Q2.why" placeholder="식: bisect_○(F, ○) − bisect_○(F, ○). 근거: …" data-label="Q2 구간 개수 식의 근거 한 문장"></textarea></div>
 <h3>Q3 · 전제와 경계 오류 진단</h3>
 <pre class="diagram">G = [31, 7, 20, 4, 9, 13, 9, 4, 20, 9]
 인덱스  0  1   2  3  4   5  6  7   8  9</pre>
-<p><b>(i)</b> 리스트 G에 A2의 규칙 ①~④(닫힌 구간 [lo, hi], mid = (lo + hi) // 2)를 그대로 써서 <b>13</b>을 찾아요. 규칙대로 한 결과와 그 원인을 한 문장으로 써요.</p>
+<p><b>(i)</b> 리스트 G에 A2의 규칙 ①~④(닫힌 구간 [lo, hi], mid = (lo + hi) // 2)를 그대로 적용해 <b>13</b>을 찾는다. 규칙대로 한 결과와 그 원인을 한 문장으로 쓰시오.</p>
 <div class="ans-row"><span class="n">결과</span><input type="text" class="in" data-key="Q3.i.result" placeholder="인덱스 숫자 또는 없음" data-label="Q3 (i) 규칙대로 13을 찾은 결과" autocomplete="off" style="width:10em"></div>
 <div class="ans-row"><span class="n">원인</span><textarea class="in" rows="2" data-key="Q3.i.why" placeholder="원인 한 문장" data-label="Q3 (i) 원인 한 문장"></textarea></div>
-<p><b>(ii)</b> 정렬된 F에서 구간 [5, 20]의 개수를 <code class="i">bisect_left(F, 20) &minus; bisect_left(F, 5)</code>로 구했어요. 이 식의 결과가 올바른 결과와 얼마나 다른지, 그리고 고치는 방법을 한 문장으로 써요.</p>
+<p><b>(ii)</b> 정렬된 F에서 구간 [5, 20]의 개수를 <code class="i">bisect_left(F, 20) &minus; bisect_left(F, 5)</code>로 구했다. 이 식의 결과와 올바른 결과의 차이, 그리고 고치는 방법을 한 문장으로 쓰시오.</p>
 <div class="ans-row"><span class="n">식의 결과</span><input type="text" class="in" data-key="Q3.ii.wrong" placeholder="숫자" data-label="Q3 (ii) 틀린 식의 결과" autocomplete="off" style="width:8em"><span class="n">올바른 결과</span><input type="text" class="in" data-key="Q3.ii.right" placeholder="숫자" data-label="Q3 (ii) 올바른 결과" autocomplete="off" style="width:8em"></div>
 <div class="ans-row"><span class="n">고치는 방법</span><textarea class="in" rows="2" data-key="Q3.ii.fix" placeholder="○○를 ○○로 바꾼다" data-label="Q3 (ii) 고치는 방법 한 문장"></textarea></div>
 </section>
 <section id="Q4" class="sheet">
 <h2>Q4 · 보조 문항: 가장 가까운 값과 정렬 선택<small>수업 밖 선택·과제</small></h2>
-<p>정렬된 F에 대해 <code class="i">closest_value(F, x)</code>(가장 가까운 원소, 동률이면 작은 값)를 직접 계산해요. 그리고 <b>입력이 이미 정렬되어 있을 가능성이 높은 로그</b>를 정렬해야 할 때, 병합 정렬과 퀵 정렬(첫 원소 피벗) 중 더 안전한 쪽을 근거와 함께 골라요.</p>
+<p>정렬된 F에 대해 <code class="i">closest_value(F, x)</code>(가장 가까운 원소, 동률이면 작은 값)를 직접 계산한다. 그리고 병합 정렬과 퀵 정렬(첫 원소 피벗) 중에서 <b>입력이 이미 정렬되어 있을 가능성이 높은 로그</b>를 정렬해야 할 때 더 안전한 쪽을 근거와 함께 고른다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:30%">x</th><th>closest_value(F, x)</th></tr><tr><td class="lab">10</td><td class="in-cell"><input type="text" class="in" data-key="Q4.c10" placeholder="F의 값 하나" data-label="Q4 x=10 가장 가까운 값" autocomplete="off"></td></tr><tr><td class="lab">25</td><td class="in-cell"><input type="text" class="in" data-key="Q4.c25" placeholder="F의 값 하나" data-label="Q4 x=25 가장 가까운 값" autocomplete="off"></td></tr><tr><td class="lab">14</td><td class="in-cell"><input type="text" class="in" data-key="Q4.c14" placeholder="F의 값 하나" data-label="Q4 x=14 가장 가까운 값" autocomplete="off"></td></tr></table></div>
 <div class="ans-row"><span class="n">선택</span><span class="rg" data-key="Q4.sort" data-type="radio" data-label="Q4 정렬 방식 선택"><label><input type="radio" name="r_Q4_sort" value="병합 정렬"> 병합 정렬</label><label><input type="radio" name="r_Q4_sort" value="퀵 정렬(첫 원소 피벗)"> 퀵 정렬(첫 원소 피벗)</label></span></div>
 <div class="ans-row"><span class="n">선택 이유</span><textarea class="in" rows="3" data-key="Q4.sort.why" placeholder="정렬 상태나 비교 횟수를 근거로 한 문장" data-label="Q4 정렬 방식을 고른 근거"></textarea></div>

@@ -25,7 +25,7 @@
   var AUTHORED = false, FIELD = "[data-key]";
   function fieldValue(f) {
     if (f.hasAttribute("data-bind")) {
-      var o = document.querySelector('.wrap [data-key="' + f.getAttribute("data-bind") + '"]');
+      var o = document.querySelector('[data-key="' + f.getAttribute("data-bind") + '"]');
       return o ? fieldValue(o) : "";
     }
     if (f.getAttribute("data-type") === "radio") { var r = $("input[type=radio]:checked", f); return r ? r.value : ""; }

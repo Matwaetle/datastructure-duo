@@ -1,0 +1,119 @@
+<div class="x-page" hidden data-title="12주차 형성평가 · 이진 탐색과 경계" data-lead="상황 판단, 경계와 개수, 오류 진단을 혼자 풀어요. AI는 쓰지 않아요.">
+
+<!-- ========== Q1 ========== -->
+<section class="x-act" data-id="Q1" data-title="상황 판단" data-meta="6분 · 개별 · Q1~Q3">
+  <ul class="x-pts">
+    <li>푼 만큼 내요. 막힌 칸은 ‘모름’.</li>
+    <li>시간이 모자라면 Q1 (c)(d), Q3 (ii) 고치는 방법은 생략 가능.</li>
+    <li>수업 때와 값이 달라요.</li>
+  </ul>
+
+  <div class="x-screen" data-title="판단 기준">
+    <div class="x-cards">
+      <div><b>가능</b>이진 탐색 전제(정렬)를 이미 만족</div>
+      <div><b>불가</b>전제가 깨져 있음</div>
+      <div><b>조건부</b>추가 조치나 조건이 있어야 함</div>
+    </div>
+    <ul class="x-pts"><li>근거 한 문장에 <b>정렬되어 있다 / 뒤섞여 있다</b> 또는 <b>질의가 ○번이다</b>를 넣어요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="(a) 학번 명단">
+    <div class="x-given"><span><b>데이터</b>학번이 오름차순인 명단</span><span><b>할 일</b>한 학번의 자리 찾기</span></div>
+    <div class="x-f" data-bind="Q1.a.choice"></div>
+    <div class="x-f" data-bind="Q1.a.why" data-ph="예: 값이 뒤섞여 있으므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(b) 센서 로그">
+    <div class="x-given"><span><b>데이터</b>도착 순서대로 쌓임, 값은 뒤섞임</span><span><b>할 일</b>값 하나가 있는지 한 번만 확인</span></div>
+    <div class="x-f" data-bind="Q1.b.choice"></div>
+    <div class="x-f" data-bind="Q1.b.why" data-ph="예: 정렬되어 있으므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(c) 점수 구간 세기">
+    <div class="x-given"><span><b>데이터</b>오름차순인 점수 목록</span><span><b>할 일</b>60점 이상 80점 미만 학생 수 세기</span></div>
+    <div class="x-f" data-bind="Q1.c.choice"></div>
+    <div class="x-f" data-bind="Q1.c.why" data-ph="예: 질의가 1번이므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(d) 10만 번 질문">
+    <div class="x-given"><span><b>데이터</b>뒤섞인 값 10만 개</span><span><b>할 일</b>“이 값이 있나?” 질문 10만 번</span></div>
+    <div class="x-f" data-bind="Q1.d.choice"></div>
+    <div class="x-f" data-bind="Q1.d.why" data-ph="예: 질의가 ○번이고 … 하면 …"></div>
+  </div>
+</section>
+
+<!-- ========== Q2 ========== -->
+<section class="x-act" data-id="Q2" data-title="경계와 개수" data-meta="Q1~Q3 안에서">
+  <div class="x-screen" data-title="F의 경계">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <div class="x-cards">
+      <div><b>bisect_left(F, x)</b>처음 x 이상인 칸 (lower bound)</div>
+      <div><b>bisect_right(F, x)</b>처음 x 초과인 칸 (upper bound)</div>
+    </div>
+    <ul class="x-pts"><li>칸 번호는 0부터, 숫자만.</li></ul>
+    <div class="x-line">bisect_left(F, 9) = <span class="x-f" data-bind="Q2.l9" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">bisect_right(F, 9) = <span class="x-f" data-bind="Q2.r9" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">F에서 9의 개수 <span class="x-f" data-bind="Q2.c9" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">x = 10 의 left, right <span class="x-f" data-bind="Q2.lr10" data-w="s" data-ph="예: 2, 5"></span></div>
+  </div>
+
+  <div class="x-screen" data-title="구간 [5, 20] 개수">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <ul class="x-pts"><li><b>[5, 20]</b> = 값이 5 이상 20 이하 (양끝 포함)</li></ul>
+    <div class="x-line">원소 개수 <span class="x-f" data-bind="Q2.range" data-w="xs" data-ph="숫자"></span></div>
+    <p class="x-q">구한 식과 근거<small>위 개수와 맞아야 해요</small></p>
+    <div class="x-f" data-bind="Q2.why" data-parts="식=bisect_○(F, ○) − bisect_○(F, ○)|근거=예: 오른쪽 끝을 포함하려면 …"></div>
+  </div>
+</section>
+
+<!-- ========== Q3 ========== -->
+<section class="x-act" data-id="Q3" data-title="전제와 경계 오류 진단" data-meta="Q1~Q3 안에서">
+  <div class="x-screen" data-title="(i) G에서 13 찾기">
+    <div class="x-arr" data-name="G" data-v="31,7,20,4,9,13,9,4,20,9"></div>
+    <ol class="x-rules">
+      <li class="r1"><b>시작</b><div class="fx"><code>lo = 0</code><code>hi = 마지막 인덱스</code></div></li>
+      <li class="r2"><b>가운데</b><div class="fx"><code>mid = (lo + hi) // 2</code></div></li>
+      <li class="r3"><b>비교</b><div class="cases">
+        <div class="c-eq"><code>목표 = a[mid]</code><i>→</i><span>찾음</span></div>
+        <div class="c-up"><code>목표 &gt; a[mid]</code><i>→</i><span><code>lo = mid + 1</code></span></div>
+        <div class="c-dn"><code>목표 &lt; a[mid]</code><i>→</i><span><code>hi = mid − 1</code></span></div></div></li>
+      <li class="r4"><b>끝</b><div class="cases"><div class="c-end"><code>lo &gt; hi</code><i>→</i><span>‘없음’</span></div></div></li>
+    </ol>
+    <div class="x-given"><span><b>목표</b>13</span></div>
+    <div class="x-line">규칙대로 결과 <span class="x-f" data-bind="Q3.i.result" data-w="s" data-ph="예: 인덱스 2 / 없음"></span></div>
+    <div class="x-f" data-bind="Q3.i.why" data-ph="원인 한 문장 · 예: G가 … 이므로 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(ii) 틀린 개수 식">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <div class="x-given"><span><b>구간</b>[5, 20] (양끝 포함)</span><span><b>쓴 식</b>bisect_left(F, 20) − bisect_left(F, 5)</span></div>
+    <div class="x-line">이 식의 결과 <span class="x-f" data-bind="Q3.ii.wrong" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">올바른 결과 <span class="x-f" data-bind="Q3.ii.right" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-f" data-bind="Q3.ii.fix" data-ph="○○를 ○○로 바꾼다 (한 문장)"></div>
+  </div>
+</section>
+
+<!-- ========== Q4 ========== -->
+<section class="x-act" data-id="Q4" data-title="보조 문항: 가까운 값과 정렬 선택" data-meta="수업 밖 · 선택·과제">
+  <div class="x-screen" data-title="closest_value(F, x)">
+    <div class="x-arr" data-name="F" data-v="4,4,7,9,9,9,13,20,20,31"></div>
+    <ul class="x-pts"><li>F에서 x와 가장 가까운 값. 거리가 같으면 <b>작은 값</b>.</li><li>예: x = 8 → 7과 9 거리 1로 같음 → 7</li></ul>
+    <table class="x-trace">
+      <tr><th>x</th><th>closest_value<small>F의 값 하나</small></th></tr>
+      <tr><td>10</td><td><span class="x-f" data-bind="Q4.c10" data-ph="F의 값"></span></td></tr>
+      <tr><td>25</td><td><span class="x-f" data-bind="Q4.c25" data-ph="F의 값"></span></td></tr>
+      <tr><td>14</td><td><span class="x-f" data-bind="Q4.c14" data-ph="F의 값"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="x-screen" data-title="어느 정렬이 안전할까">
+    <div class="x-given"><span><b>입력</b>이미 정렬돼 있을 가능성이 높은 로그</span></div>
+    <div class="x-cards">
+      <div><b>병합 정렬</b>쪼갠 뒤 합치기</div>
+      <div><b>퀵 정렬 (첫 원소 피벗)</b>맨 앞 값으로 가르기</div>
+    </div>
+    <div class="x-f" data-bind="Q4.sort"></div>
+    <div class="x-f" data-bind="Q4.sort.why" data-ph="정렬 상태나 비교 횟수를 근거로 한 문장"></div>
+  </div>
+</section>
+</div>

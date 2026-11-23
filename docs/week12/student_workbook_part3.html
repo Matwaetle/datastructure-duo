@@ -17,122 +17,441 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
+<div class="x-page" hidden data-title="12주차 활동지 3부 · 측정, 일반화, 전이" data-lead="두 정렬의 비교 횟수를 재고, 이번 주 생각을 한 문장으로 다듬어요.">
+
+<!-- ========== A11 ========== -->
+<section class="x-act" data-id="A11" data-title="비교 횟수 예측과 측정" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>먼저 어림하고, 코드로 센 값과 견줘요.</li></ul>
+
+  <div class="x-screen" data-title="먼저 예측 쓰기">
+    <div class="x-cards">
+      <div><b>병합</b>항상 절반으로 쪼개 합치기</div>
+      <div><b>퀵</b>첫 원소를 피벗으로 가르기</div>
+    </div>
+    <ul class="x-pts">
+      <li>실습 코드 4부 A11 <b>[예측하고 측정하기]</b> 실행 <b>전에</b> 써요.</li>
+      <li>비교 횟수를 어림한 숫자. 정렬된 2000개 퀵은 무슨 일이 생길지도.</li>
+      <li>틀려도 나중에 고치지 않아요.</li>
+    </ul>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>입력</th><th>병합 예측<small>비교 횟수 어림</small></th><th>퀵 예측<small>비교 횟수 어림</small></th></tr>
+      <tr class="x-ex"><td>예 · 섞은 50개</td><td>220쯤</td><td>300쯤</td></tr>
+      <tr><td>섞은 200개</td><td><span class="x-f" data-bind="A11.s200.c1" data-ph="예: 300쯤"></span></td><td><span class="x-f" data-bind="A11.s200.c3" data-ph="예: 300쯤"></span></td></tr>
+      <tr><td>섞은 500개</td><td><span class="x-f" data-bind="A11.s500.c1" data-ph="예: 300쯤"></span></td><td><span class="x-f" data-bind="A11.s500.c3" data-ph="예: 300쯤"></span></td></tr>
+      <tr><td>섞은 1000개</td><td><span class="x-f" data-bind="A11.s1000.c1" data-ph="예: 300쯤"></span></td><td><span class="x-f" data-bind="A11.s1000.c3" data-ph="예: 300쯤"></span></td></tr>
+      <tr><td>정렬된 200개</td><td><span class="x-f" data-bind="A11.o200.c1" data-ph="예: 300쯤"></span></td><td><span class="x-f" data-bind="A11.o200.c3" data-ph="예: 300쯤"></span></td></tr>
+      <tr><td>정렬된 500개</td><td><span class="x-f" data-bind="A11.o500.c1" data-ph="예: 300쯤"></span></td><td><span class="x-f" data-bind="A11.o500.c3" data-ph="예: 300쯤"></span></td></tr>
+      <tr><td>정렬된 2000개</td><td><span class="x-f" data-bind="A11.o2000.c1" data-ph="예: 300쯤"></span></td><td><span class="x-f" data-bind="A11.o2000.c3" data-ph="예: 300쯤 / 멈출 것 같다"></span></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="측정값 옮기기">
+    <ul class="x-pts">
+      <li>코드가 출력한 6줄의 값을 그대로 옮겨요.</li>
+      <li>퀵 칸에 숫자 대신 <b>오류 이름</b>이 나오면 그 이름을 그대로.</li>
+    </ul>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>입력</th><th>병합 실제<small>출력된 숫자</small></th><th>퀵 실제<small>출력된 숫자 / 오류 이름</small></th></tr>
+      <tr class="x-ex"><td>예 · 섞은 50개</td><td>221</td><td>287</td></tr>
+      <tr><td>섞은 200개</td><td><span class="x-f" data-bind="A11.s200.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.s200.c4" data-ph="숫자"></span></td></tr>
+      <tr><td>섞은 500개</td><td><span class="x-f" data-bind="A11.s500.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.s500.c4" data-ph="숫자"></span></td></tr>
+      <tr><td>섞은 1000개</td><td><span class="x-f" data-bind="A11.s1000.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.s1000.c4" data-ph="숫자"></span></td></tr>
+      <tr><td>정렬된 200개</td><td><span class="x-f" data-bind="A11.o200.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.o200.c4" data-ph="숫자"></span></td></tr>
+      <tr><td>정렬된 500개</td><td><span class="x-f" data-bind="A11.o500.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.o500.c4" data-ph="숫자"></span></td></tr>
+      <tr><td>정렬된 2000개</td><td><span class="x-f" data-bind="A11.o2000.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.o2000.c4" data-ph="숫자 / 예: ValueError"></span></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="ARR8 횟수 견주기">
+    <div class="x-arr" data-name="ARR8" data-v="38,27,43,3,9,82,10,15"></div>
+    <ul class="x-pts"><li>코드 4부 <b>[✔ 점검]</b>이 낸 ARR8의 두 횟수를 써요.</li></ul>
+    <div class="x-line">병합 <span class="x-f" data-bind="A11.arr8.merge" data-w="s" data-ph="숫자"></span> 회</div>
+    <div class="x-line">퀵 <span class="x-f" data-bind="A11.arr8.quick" data-w="s" data-ph="숫자"></span> 회</div>
+    <p class="x-q">A4에서 손으로 센 합계와 같나요?</p>
+    <div class="x-f" data-bind="A11.arr8.same"></div>
+  </div>
+
+  <div class="x-screen" data-title="작은 사례로 생각하기">
+    <div class="x-arr" data-v="1,2,3,4" data-cls="0:pivot,1-3:big"></div>
+    <ul class="x-pts"><li>첫 원소 피벗 퀵, 이미 정렬된 [1, 2, 3, 4]</li><li>x &lt; 피벗 → small, 아니면 big</li></ul>
+    <div class="quiz" data-answer="3">
+      <p class="q">피벗 1로 가르면 big에는 몇 개?</p>
+      <div class="opts"><button type="button" data-hint="1보다 작은 값이 있나요?">0개</button><button type="button" data-hint="2만 볼 게 아니에요.">1개</button><button type="button">3개</button></div>
+      <p class="why">2, 3, 4가 모두 1보다 작지 않아 big으로.</p>
+    </div>
+    <ul class="x-tree"><li><span>[1, 2, 3, 4] <em>비교 3</em></span>
+      <ul><li><span><b class="sm">[ ]</b></span></li><li><span><b class="bg">[2, 3, 4]</b> <em>비교 2</em></span>
+        <ul><li><span><b class="sm">[ ]</b></span></li><li><span><b class="bg">[3, 4]</b> <em>비교 1</em></span></li></ul></li></ul></li></ul>
+  </div>
+
+  <div class="x-screen" data-title="정렬된 입력의 퀵">
+    <ul class="x-pts"><li>방금 그림처럼 한쪽이 늘 비어요.</li><li>측정값 표의 정렬된 200개 · 500개 값을 써서 배수를 구해요.</li></ul>
+    <div class="x-given"><span><b>N</b>200 → 500 (2.5배)</span></div>
+    <p class="x-q">퀵 횟수가 병합보다 훨씬 큰 까닭과 배수<small>배수는 측정값 ÷ 측정값, 소수 첫째 자리까지</small></p>
+    <div class="x-f" data-bind="A11.q1" data-parts="퀵이 훨씬 큰 까닭=예: 피벗이 늘 … 이라 … 쪽이 비어서|배수=예: 퀵 약 ○.○배, 병합 약 ○.○배"></div>
+    <p class="x-q">정렬된 2000개에서 무슨 일이 있었나요?</p>
+    <div class="x-f" data-bind="A11.q2" data-parts="일어난 일=예: 오류 이름과 그 까닭|8주차 재귀와의 연결=예: 8주차에서 본 … 와 같다"></div>
+  </div>
+
+  <div class="x-screen" data-title="실전이라면 어느 정렬?">
+    <div class="x-cards">
+      <div><b>(가)</b>항상 섞여 있다</div>
+      <div><b>(나)</b>이미 정렬돼 있을 가능성이 높다</div>
+      <div><b>(다)</b>메모리가 매우 부족하다</div>
+    </div>
+    <p class="x-q">하나를 골라 쓸 정렬과 이유</p>
+    <div class="x-f" data-bind="A11.q3" data-parts="고른 상황=(가)/(나)/(다) 중 하나|쓸 정렬=예: 병합 / 퀵 / sorted()|이유=예: 이 상황에서 … 가 … 되기 때문"></div>
+  </div>
+
+  <div class="x-screen" data-title="더 해 보기 (선택)">
+    <ul class="x-pts"><li>섞은 입력에서도 비교 횟수는 병합이 더 적어요.</li><li>그래도 퀵이 널리 쓰이는 까닭은?</li></ul>
+    <div class="x-f" data-bind="A11.q4" data-parts="가설 1=예: … 때문일 것이다|가설 2=가설 1과 다른 까닭|확인 방법=예: … 를 측정한다|약점 줄이기=예: 코드의 … 부분을 … 로 바꾼다"></div>
+    <ul class="x-pts"><li>측정값(최대 2000개)의 배수로 8만 개를 어림해, A5에서 한 짐작과 견줘요.</li></ul>
+    <div class="x-f" data-bind="A11.q5" data-parts="맞은 점=예: A5에서 … 라고 했는데 측정도 …|틀린 점=예: … 는 생각보다 … (없으면 없음)"></div>
+  </div>
+</section>
+
+<!-- ========== A12 ========== -->
+<section class="x-act" data-id="A12" data-title="일반화 초안 카드" data-meta="3분 · 개인">
+  <ul class="x-pts"><li>여러 사례에 통하는 한 문장을 써요. 완성도는 평가하지 않아요.</li></ul>
+
+  <div class="x-screen" data-title="일반화 문장 알아보기">
+    <div class="x-cards"><div><b>일반화</b>개념 + 개념 + 관계, 사례 이름 없이</div></div>
+    <div class="x-cards">
+      <div><b>(가)</b>G1에서 A부터 BFS를 하면 B, C, D 순으로 방문했다.</div>
+      <div><b>(나)</b>BFS는 가까운 정점부터 한 겹씩 방문하므로, 가중치 없는 그래프에서 최소 간선 수를 구할 수 있다.</div>
+    </div>
+    <div class="quiz" data-answer="2">
+      <p class="q">일반화는 어느 쪽?</p>
+      <div class="opts"><button type="button" data-hint="G1이라는 한 사례 이야기예요.">(가)</button><button type="button">(나)</button></div>
+      <p class="why">(나)는 사례 이름 없이 개념과 관계로 썼어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="내 말로 한 문장 쓰기">
+    <ul class="x-pts"><li>A1~A11에서 생각이 가장 크게 바뀐 주제 하나를 골라요.</li></ul>
+    <div class="x-f" data-bind="A12.topic"></div>
+    <div class="x-given"><span><b>틀</b>개념 ○○와(과) 개념 ○○는 ○○한 관계가 있다</span></div>
+    <p class="x-q">고른 주제로 한 문장<small>사례 이름이 들어가도 괜찮아요</small></p>
+    <div class="x-f" data-bind="A12.draft" data-ph="예: 병합 정렬과 보조 메모리는 … 한 관계가 있다"></div>
+  </div>
+
+  <div class="x-screen" data-title="예시 이름 지우기">
+    <ul class="x-pts"><li>‘SORTED’, ‘사전’ 같은 한 예시의 이름을 지워도 말이 되나요?</li><li>되면 지운 채로 다시 써요. 지울 이름이 없으면 “그대로 둔다”.</li></ul>
+    <div class="x-f" data-bind="A12.draft2" data-ph="예: 다시 쓴 한 문장 / 그대로 둔다"></div>
+  </div>
+</section>
+
+<!-- ========== A13 ========== -->
+<section class="x-act" data-id="A13" data-title="일반화 정리와 구별 기준표" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>A12 초안을 새 상황에서도 통하게 다듬어요.</li></ul>
+
+  <div class="x-screen" data-title="초안에 던질 질문">
+    <div class="x-cards"><div><b>정제</b>사례 이름 → 개념어, 빠진 조건 채우기</div></div>
+    <ul class="x-pts">
+      <li>‘정렬된 숫자 배열’을 지워도 성립하나?</li>
+      <li>질의가 1번뿐이어도 쓰겠나?</li>
+      <li>값이 여럿이거나 없으면? 정렬이 안 돼 있으면?</li>
+    </ul>
+    <div class="quiz" data-answer="2">
+      <p class="q">정제할 때 하지 않는 일은?</p>
+      <div class="opts"><button type="button" data-hint="그게 정제의 첫 단계예요.">사례 이름을 개념어로</button><button type="button">사례 값을 더 많이 넣기</button><button type="button" data-hint="빠진 조건을 채우는 것도 정제예요.">성립 조건 덧붙이기</button></div>
+      <p class="why">사례가 아니라 개념과 조건으로 써요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="G1~G2 쓰기">
+    <div class="x-cards">
+      <div><b>G1</b>성립 조건과 속도</div>
+      <div><b>G2</b>분할 균형</div>
+      <div><b>G3</b>경계와 개수</div>
+      <div><b>G4</b>정렬 투자와 질의 횟수</div>
+    </div>
+    <ul class="x-pts"><li>사례 이름(SORTED 등)은 쓰지 않아요.</li><li>A12 주제가 G3·G4면 그 칸은 선택 화면에서도 써요.</li></ul>
+    <p class="x-q">G1 · 성립 조건과 속도<small>다듬은 문장 1~2개</small></p>
+    <div class="x-f" data-bind="A13.g1" data-ph="예: ○○는 ○○라는 성질 덕분에 …지만, 그 성질이 없으면 …"></div>
+    <p class="x-q">G2 · 분할 균형<small>다듬은 문장 1~2개</small></p>
+    <div class="x-f" data-bind="A13.g2" data-ph="예: 나누는 균형이 … 하면 … 이고, 치우치면 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="구별 기준표 상황 1~2">
+    <ul class="x-pts">
+      <li>상황은 <b>내가 새로</b> 만들어요.</li>
+      <li>이진 탐색·bisect를 쓸 수 있는지 골라요.</li>
+      <li>근거는 정렬 전제 · 질의 횟수 · 경계 정의 중 하나로.</li>
+    </ul>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>번호</th><th>상황<small>데이터와 하려는 일</small></th><th>쓸 수 있는가<small>가능 / 불가 / 조건부</small></th><th>근거<small>세 기준 중 하나로 한 문장</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>가나다 순 단어장에서 단어 하나 찾기</td><td>가능</td><td>정렬돼 있어 절반씩 버릴 수 있다</td></tr>
+      <tr><td>1</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r1.c1" data-ph="예: ○○ 순으로 된 ○○에서 ○○ 찾기"></div></td><td><div class="x-f" data-bind="A13.cmp.r1.c2"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r1.c3" data-ph="예: 정렬돼 있어 …"></div></td></tr>
+      <tr><td>2</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r2.c1" data-ph="예: 1과 다른 판단이 나올 상황"></div></td><td><div class="x-f" data-bind="A13.cmp.r2.c2"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r2.c3" data-ph="예: 질의가 … 이라 …"></div></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="수정 이력">
+    <ul class="x-pts">
+      <li>다시 볼 질문: 사례를 지워도 남나? O(log N)은 어떤 전제가 있어야 하나? 질의 1번이면?</li>
+      <li>남의 문장을 베끼지 말고 <b>내 문장</b>에서 고친 곳을 써요.</li>
+    </ul>
+    <div class="x-f" data-bind="A13.history" data-parts="무엇을=예: G2의 ‘ARR8에서’ 라는 말|어떻게=예: ‘섞인 입력에서’ 로 바꿨다|왜=예: 사례 이름이라서 (고칠 곳 없으면 고칠 곳 없음)"></div>
+  </div>
+
+  <div class="x-screen" data-title="더 해 보기 (선택) · G3·G4">
+    <div class="x-cards">
+      <div><b>lower bound</b>처음 x 이상이 나오는 자리</div>
+      <div><b>upper bound</b>처음 x 초과가 나오는 자리</div>
+    </div>
+    <p class="x-q">G3 · 경계와 개수<small>다듬은 문장 1~2개</small></p>
+    <div class="x-f" data-bind="A13.g3" data-ph="예: 개수는 두 경계의 … 로 구하고, …"></div>
+    <p class="x-q">G4 · 정렬 투자와 질의 횟수<small>(선택) 문장 1~2개</small></p>
+    <div class="x-f" data-bind="A13.g4" data-ph="예: 정렬 비용은 … 이라 질의가 … 할 때 이득이다"></div>
+  </div>
+
+  <div class="x-screen" data-title="더 해 보기 (선택) · 상황 3~4">
+    <ul class="x-pts"><li>이번엔 ‘조건부’가 나올 만한 상황을 만들어 봐요.</li></ul>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>번호</th><th>상황<small>데이터와 하려는 일</small></th><th>쓸 수 있는가<small>가능 / 불가 / 조건부</small></th><th>근거<small>세 기준 중 하나로 한 문장</small></th></tr>
+      <tr class="x-ex"><td>예</td><td>가나다 순 단어장에서 단어 하나 찾기</td><td>가능</td><td>정렬돼 있어 절반씩 버릴 수 있다</td></tr>
+      <tr><td>3</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r3.c1" data-ph="예: 뒤섞인 ○개에 질의가 ○번"></div></td><td><div class="x-f" data-bind="A13.cmp.r3.c2"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r3.c3" data-ph="예: 질의가 … 하면 …"></div></td></tr>
+      <tr><td>4</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r4.c1" data-ph="예: 값이 자꾸 바뀌는 ○○에서 …"></div></td><td><div class="x-f" data-bind="A13.cmp.r4.c2"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r4.c3" data-ph="예: 바뀔 때마다 …"></div></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="더 해 보기 (선택) · 입장 카드">
+    <div class="x-arr" data-v="1,3,3,3,7" data-cls="1-3:hit"></div>
+    <p class="x-q">카드 1 · 3이 여럿일 때 어느 자리를 돌려줘야 할까?<small>입장, 이유, 개수·삽입 자리를 물을 때</small></p>
+    <div class="x-f" data-bind="A13.debate1" data-parts="내 입장=예: 아무 3이나 / 가장 왼쪽 / 가장 오른쪽|이유=예: … 이기 때문|개수·삽입을 물으면=예: … 쪽이어야 한다"></div>
+    <p class="x-q">카드 2 · “정렬은 언제나 이득이다”</p>
+    <div class="x-f" data-bind="A13.debate2" data-parts="입장=동의 / 반대 / 조건부|이유=예: 정렬 비용 O(N log N) 이 …|반례 상황=예: … 하는 경우"></div>
+  </div>
+</section>
+
+<!-- ========== A14 ========== -->
+<section class="x-act" data-id="A14" data-title="과제 점검과 전이 기록" data-meta="14분 · 개인">
+  <ul class="x-pts"><li>내 과제 코드가 새 입력에도 통하는지 보고, 밧줄 문제로 옮겨 봐요.</li></ul>
+
+  <div class="x-screen" data-title="점검 결과 표시하기">
+    <ul class="x-pts"><li>실습 코드 4부 A14 점검 결과를 표시해요. 실행 못 했으면 비워 둬요.</li></ul>
+    <div class="x-f" data-bind="A14.chk.eq">count_equal 점검을 통과했다</div>
+    <div class="x-f" data-bind="A14.chk.rg">count_in_range 점검을 통과했다</div>
+    <div class="x-f" data-bind="A14.chk.cl">closest_value 점검을 통과했다</div>
+    <div class="x-f" data-bind="A14.chk.nofix">코드를 고치지 않고 새 입력에서 통과했다</div>
+    <p class="x-q">고쳐야 했던 곳<small>없으면 “없었다”</small></p>
+    <div class="x-f" data-bind="A14.fixed" data-parts="함수=예: count_equal|고친 부분=예: 빈 리스트일 때 …|방법=예: … 를 추가했다"></div>
+  </div>
+
+  <div class="x-screen" data-title="새 입력 점검 줄마다">
+    <div class="x-cards">
+      <div><b>빈 리스트</b>a = [ ]</div>
+      <div><b>lo &gt; hi</b>구간이 거꾸로</div>
+      <div><b>값이 없을 때</b>찾는 값이 리스트에 없음</div>
+    </div>
+    <p class="x-q">세 경우를 점검했는지 줄마다</p>
+    <div class="x-f" data-bind="A14.rope.q3" data-parts="빈 리스트=점검했다 / 점검하지 않았다, 결과|lo &gt; hi=점검했다 / 점검하지 않았다, 결과|값이 없을 때=점검했다 / 점검하지 않았다, 결과"></div>
+  </div>
+
+  <div class="x-screen" data-title="밧줄 조각 수 손으로 세기">
+    <div class="x-arr" data-name="ropes" data-v="120,85,47,63" data-label="밧줄 4개의 길이"></div>
+    <div class="x-given"><span><b>k</b>9 (필요한 조각 수)</span><span><b>L</b>모두 같게 자를 길이</span></div>
+    <pre class="x-code">조각 수 = 각 r // L 의 합
+# 예: L = 50 → 2 + 1 + 0 + 1 = 4</pre>
+    <ul class="x-pts"><li>목표: 조각이 9개 이상인 가장 긴 L</li><li>코드 보기 전에. 못 구하면 “모름”.</li></ul>
+    <div class="x-line">L = 5 → <span class="x-f" data-bind="A14.rope.p5" data-w="s" data-ph="숫자"></span> 개</div>
+    <div class="x-line">L = 10 → <span class="x-f" data-bind="A14.rope.p10" data-w="s" data-ph="숫자"></span> 개</div>
+    <div class="x-line">L = 20 → <span class="x-f" data-bind="A14.rope.p20" data-w="s" data-ph="숫자"></span> 개</div>
+    <div class="quiz" data-answer="2">
+      <p class="q">L을 5 → 10 → 20으로 키우면 조각 수는?</p>
+      <div class="opts"><button type="button" data-hint="세 값을 다시 봐요.">늘어난다</button><button type="button">줄어든다</button><button type="button" data-hint="세 값이 같았나요?">그대로</button></div>
+      <p class="why">길게 자를수록 조각은 줄어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="L = 30, 40도 세기">
+    <div class="x-arr" data-name="ropes" data-v="120,85,47,63"></div>
+    <div class="x-given"><span><b>조각 수</b>각 r // L 의 합</span><span><b>k</b>9</span></div>
+    <div class="x-line">L = 30 → <span class="x-f" data-bind="A14.rope.p30" data-w="s" data-ph="숫자"></span> 개</div>
+    <div class="x-line">L = 40 → <span class="x-f" data-bind="A14.rope.p40" data-w="s" data-ph="숫자"></span> 개</div>
+  </div>
+
+  <div class="x-screen" data-title="코드 결과 쓰기">
+    <ul class="x-pts"><li>실습 코드 4부 밧줄 점검이 낸 값을 그대로.</li><li><b>가장 긴 L</b> = 조각이 9개 이상인 L 중 가장 큰 값</li></ul>
+    <div class="x-line">가장 긴 L <span class="x-f" data-bind="A14.rope.best" data-w="s" data-ph="숫자"></span></div>
+    <div class="x-line">count_pieces 호출 <span class="x-f" data-bind="A14.rope.calls" data-w="s" data-ph="숫자"></span> 번</div>
+    <div class="x-flow"><span>후보 1~120</span><span>가운데 L 확인</span><span>절반 버림</span><span>…</span><span class="hit">답</span></div>
+    <p class="x-q">몇 번 만에 답을 찾았나요?<small>위 호출 횟수를 근거로 한 문장</small></p>
+    <div class="x-f" data-bind="A14.rope.q2" data-ph="예: 후보 범위 ○~○에서 … 해 count_pieces를 ○번 불렀다"></div>
+  </div>
+
+  <div class="x-screen" data-title="더 해 보기 (선택) · 참과 거짓">
+    <div class="x-given"><span><b>조건</b>조각 수 ≥ 9</span><span><b>L</b>5, 10, 20, 30, 40</span></div>
+    <div class="x-f" data-bind="A14.rope.pattern" data-parts="참/거짓=예: L=5 참, L=10 …|늘어선 모양=예: 참이 이어지다 …|이용하는 방법=예: 가운데 L을 확인해 …"></div>
+    <p class="x-q">밧줄 문제에서 ‘정렬된 배열’은 어디에 있다고 할 수 있나요?<small>한두 문장</small></p>
+    <div class="x-f" data-bind="A14.rope.q1" data-ph="예: 배열은 따로 없지만 … 가 정렬된 후보처럼 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="더 해 보기 (선택) · mid의 +1">
+    <pre class="x-code">mid = (lo + hi + 1) // 2   # 밧줄 코드
+mid = (lo + hi) // 2       # lower_bound
+# 조건이 참이면 lo = mid</pre>
+    <div class="x-f" data-bind="A14.rope.q4" data-parts="+1을 하는 이유=예: 조건이 참일 때 … 이므로|끝나지 않는 입력=예: lo=○, hi=○ 이면 mid=○ 이라 …"></div>
+  </div>
+</section>
+
+<!-- ========== A16 ========== -->
+<section class="x-act" data-id="A16" data-title="오개념 점검과 다음 주" data-meta="3분 · 개인">
+  <ul class="x-pts"><li>맞는 말과 틀린 말이 섞여 있어요.</li></ul>
+
+  <div class="x-screen" data-title="오개념 점검 1~3">
+    <ul class="x-pts"><li>판단을 고르고, 이유는 한 문장.</li><li>이유에 활동에서 본 값(T1 결과, A11 표 등)을 하나 이상.</li></ul>
+    <p class="x-q">1 · 정렬이 안 된 데이터에도 bisect를 쓸 수 있다.</p>
+    <div class="x-f" data-bind="A16.mis1.v"></div>
+    <div class="x-f" data-bind="A16.mis1.why" data-ph="예: ○○에서 ○○를 넣었더니 ○가 나왔다"></div>
+    <p class="x-q">2 · 정렬된 리스트에서 bisect_left(a, x)가 준 자리에 x를 끼우면 계속 정렬돼 있다.</p>
+    <div class="x-f" data-bind="A16.mis5.v"></div>
+    <div class="x-f" data-bind="A16.mis5.why" data-ph="예: 그 자리의 왼쪽은 모두 …, 오른쪽은 모두 …"></div>
+    <p class="x-q">3 · 찾는 값이 없으면 bisect_left와 bisect_right는 쓸모 있는 값을 못 준다.</p>
+    <div class="x-f" data-bind="A16.mis2.v"></div>
+    <div class="x-f" data-bind="A16.mis2.why" data-ph="예: 없는 값 ○에서 left=○, right=○ 이었다"></div>
+  </div>
+
+  <div class="x-screen" data-title="오개념 점검 4~6">
+    <ul class="x-pts"><li>같은 방식으로. A11 측정값 표를 떠올려요.</li></ul>
+    <p class="x-q">4 · 퀵 정렬은 항상 병합 정렬보다 빠르다.</p>
+    <div class="x-f" data-bind="A16.mis3.v"></div>
+    <div class="x-f" data-bind="A16.mis3.why" data-ph="예: ○○ 입력에서 퀵 ○번, 병합 ○번이었다"></div>
+    <p class="x-q">5 · 첫 원소 피벗 퀵은 이미 정렬된 입력에서 병합보다 훨씬 많이 비교한다.</p>
+    <div class="x-f" data-bind="A16.mis6.v"></div>
+    <div class="x-f" data-bind="A16.mis6.why" data-ph="예: 정렬된 ○개에서 퀵 ○번, 병합 ○번"></div>
+    <p class="x-q">6 · 이진 탐색은 항상 정렬 비용을 넘어서는 이득이 있다.</p>
+    <div class="x-f" data-bind="A16.mis4.v"></div>
+    <div class="x-f" data-bind="A16.mis4.why" data-ph="예: 질의가 ○번뿐이면 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="14주차 도구 목록">
+    <div class="x-flow"><span>13주차 · DP</span><span class="hit">14주차 · 문제 해결 수행평가 90분</span></div>
+    <p class="x-q">14주차에 쓸 도구 3개 이상<small>도구 이름(언제 쓰는지), 쉼표로 구분</small></p>
+    <div class="x-f" data-bind="A16.tools" data-ph="예: 선형 탐색(정렬 안 된 데이터에서 한 번 찾을 때), …"></div>
+  </div>
+</section>
+</div>
+
+
 <div class="wrap">
 <header>
   <div class="prompt">&gt;&gt;&gt; workbook.week(12)  # 학생용 · 탐구 활동지 A11~A16 기록</div>
   <h1>12주차 탐구 활동지 3부 — 측정하고, 문장으로 정리하고, 점검하기 (A11~A16)</h1>
-  <p class="lead">3차시에 쓰는 기록 쪽이에요. 핵심 질문은 &ldquo;10억 개의 정렬된 데이터에서 원하는 값이나 구간을 어떻게 단번에(O(log N)) 찾을까?&rdquo;예요. 예측은 실행하기 전에 써요. 일반화 문장은 내 말로 먼저 쓰고, 닫힌 상자는 그다음에 열어요.</p><p class="meta"><span>제출하지 않고 혼자 공부하는 활동지예요. 쓴 내용은 이 브라우저에 자동으로 저장돼요.</span></p>
+  <p class="lead">3차시에 쓰는 기록 쪽이다. 핵심질문은 &ldquo;10억 개의 정렬된 데이터에서 원하는 값이나 구간을 어떻게 단번에(O(log N)) 찾을까?&rdquo;이다. 예측은 실행하기 전에, 일반화 문장은 내 말로 먼저 쓰고 닫힌 상자는 그다음에 연다.</p><p class="meta"><span>제출하지 않고 스스로 학습하는 활동지이다. 쓴 내용은 이 브라우저에 자동으로 보관된다.</span></p>
 </header>
 <nav><a href="#A11">A11</a><a href="#A12">A12</a><a href="#A13">A13</a><a href="#A14">A14</a><a href="#A16">A16</a><a href="index.html">목록</a></nav>
 <section id="A11" class="sheet lesson">
 <h2>A11 · 정렬 코드의 비교 횟수 예측과 측정<small>3차시 · 12분 · 개인</small></h2>
-<p class="lead">두 정렬이 입력에 따라 비교를 몇 번 하는지 먼저 어림해 봐요. 그다음 코드로 센 값과 비교해요.</p>
+<p class="lead">두 정렬이 입력에 따라 비교를 몇 번 하는지 먼저 어림하고, 코드로 센 값과 견주어 보자.</p>
 
 <div class="step">
 <h3>먼저 예측 쓰기</h3>
-<p>실습 코드 <a class="xlink" href="student_code_lab_part4.html#A11">4부 A11</a>의 [예측하고 측정하기]를 실행하기 전에 써요. 비교 횟수를 어림해 쓰고, 마지막 입력에서는 무슨 일이 생길지도 써요. 예측이 틀려도 고치지 않아요.</p>
+<p>실습 코드 <a class="xlink" href="student_code_lab_part4.html#A11">4부 A11</a>의 [예측하고 측정하기]를 실행하기 전에 쓴다. 비교 횟수를 어림해 쓰고, 마지막 입력은 무슨 일이 생길지도 쓴다. 예측이 틀려도 고치지 않는다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:34%">입력</th><th>병합 예측</th><th>퀵 예측</th></tr><tr><td class="lab">섞은 200개</td><td class="in-cell"><input type="text" class="in" data-key="A11.s200.c1" data-label="A11 섞은 200개 병합 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A11.s200.c3" data-label="A11 섞은 200개 퀵 예측" autocomplete="off"></td></tr><tr><td class="lab">섞은 500개</td><td class="in-cell"><input type="text" class="in" data-key="A11.s500.c1" data-label="A11 섞은 500개 병합 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A11.s500.c3" data-label="A11 섞은 500개 퀵 예측" autocomplete="off"></td></tr><tr><td class="lab">섞은 1000개</td><td class="in-cell"><input type="text" class="in" data-key="A11.s1000.c1" data-label="A11 섞은 1000개 병합 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A11.s1000.c3" data-label="A11 섞은 1000개 퀵 예측" autocomplete="off"></td></tr><tr><td class="lab">정렬된 200개</td><td class="in-cell"><input type="text" class="in" data-key="A11.o200.c1" data-label="A11 정렬된 200개 병합 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A11.o200.c3" data-label="A11 정렬된 200개 퀵 예측" autocomplete="off"></td></tr><tr><td class="lab">정렬된 500개</td><td class="in-cell"><input type="text" class="in" data-key="A11.o500.c1" data-label="A11 정렬된 500개 병합 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A11.o500.c3" data-label="A11 정렬된 500개 퀵 예측" autocomplete="off"></td></tr><tr><td class="lab">정렬된 2000개</td><td class="in-cell"><input type="text" class="in" data-key="A11.o2000.c1" data-label="A11 정렬된 2000개 병합 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A11.o2000.c3" data-label="A11 정렬된 2000개 퀵 예측" autocomplete="off"></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>측정값 옮기기</h3>
-<p>코드가 출력한 6줄에서 값을 옮겨 써요. 퀵 칸에 숫자 대신 오류 이름이 나오면 그 이름을 그대로 써요.</p>
+<p>코드가 출력한 6줄에서 값을 옮겨 쓴다. 퀵 칸에 숫자 대신 오류 이름이 나오면 그 이름을 그대로 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:34%">입력</th><th>병합 실제</th><th>퀵 실제</th></tr><tr><td class="lab">섞은 200개</td><td class="in-cell"><input type="text" class="in" data-key="A11.s200.c2" data-label="A11 섞은 200개 병합 실제" autocomplete="off" data-model="1280"></td><td class="in-cell"><input type="text" class="in" data-key="A11.s200.c4" data-label="A11 섞은 200개 퀵 실제" autocomplete="off" data-model="1562"></td></tr><tr><td class="lab">섞은 500개</td><td class="in-cell"><input type="text" class="in" data-key="A11.s500.c2" data-label="A11 섞은 500개 병합 실제" autocomplete="off" data-model="3851"></td><td class="in-cell"><input type="text" class="in" data-key="A11.s500.c4" data-label="A11 섞은 500개 퀵 실제" autocomplete="off" data-model="4856"></td></tr><tr><td class="lab">섞은 1000개</td><td class="in-cell"><input type="text" class="in" data-key="A11.s1000.c2" data-label="A11 섞은 1000개 병합 실제" autocomplete="off" data-model="8715"></td><td class="in-cell"><input type="text" class="in" data-key="A11.s1000.c4" data-label="A11 섞은 1000개 퀵 실제" autocomplete="off" data-model="12430"></td></tr><tr><td class="lab">정렬된 200개</td><td class="in-cell"><input type="text" class="in" data-key="A11.o200.c2" data-label="A11 정렬된 200개 병합 실제" autocomplete="off" data-model="732"></td><td class="in-cell"><input type="text" class="in" data-key="A11.o200.c4" data-label="A11 정렬된 200개 퀵 실제" autocomplete="off" data-model="19900"></td></tr><tr><td class="lab">정렬된 500개</td><td class="in-cell"><input type="text" class="in" data-key="A11.o500.c2" data-label="A11 정렬된 500개 병합 실제" autocomplete="off" data-model="2216"></td><td class="in-cell"><input type="text" class="in" data-key="A11.o500.c4" data-label="A11 정렬된 500개 퀵 실제" autocomplete="off" data-model="124750"></td></tr><tr><td class="lab">정렬된 2000개</td><td class="in-cell"><input type="text" class="in" data-key="A11.o2000.c2" data-label="A11 정렬된 2000개 병합 실제" autocomplete="off" data-model="10864"></td><td class="in-cell"><input type="text" class="in" data-key="A11.o2000.c4" data-label="A11 정렬된 2000개 퀵 실제" autocomplete="off" data-model="RecursionError"></td></tr></table></div>
 </div>
 
 <div class="step">
-<h3>ARR8 횟수 비교하기</h3>
-<p>코드 4부의 [✔ 점검]이 낸 ARR8의 두 횟수를 써요. 그리고 A4에서 손으로 센 값과 같은지 골라요.</p>
+<h3>ARR8 횟수 견주기</h3>
+<p>코드 4부의 [✔ 점검]이 낸 ARR8의 두 횟수를 쓰고, A4에서 손으로 센 값과 같은지 고른다.</p>
 <div class="ans-row"><span class="n">ARR8</span><span>병합 </span><input type="text" class="in" data-key="A11.arr8.merge" placeholder="숫자" data-label="A11 ARR8 코드의 병합 비교 횟수" autocomplete="off" style="width:6em;display:inline-block"><span> 퀵 </span><input type="text" class="in" data-key="A11.arr8.quick" placeholder="숫자" data-label="A11 ARR8 코드의 퀵 비교 횟수" autocomplete="off" style="width:6em;display:inline-block"><span> A4에서 손으로 구한 값과 같은가 </span><span class="rg" data-key="A11.arr8.same" data-type="radio" data-label="A11 ARR8 코드와 A4에서 손으로 구한 값이 같은가"><label><input type="radio" name="r_A11_arr8_same" value="같다"> 같다</label><label><input type="radio" name="r_A11_arr8_same" value="다르다"> 다르다</label></span></div>
 </div>
 
 <div class="step">
 <h3>작은 사례로 생각하기</h3>
-<p>첫 원소를 피벗으로 쓰는 퀵 정렬에 이미 정렬된 리스트를 넣으면 어떻게 나뉠까요?</p>
+<p>첫 원소를 피벗으로 쓰는 퀵 정렬에 이미 정렬된 리스트를 넣으면 어떻게 나뉠까?</p>
 <div class="quiz" data-answer="3">
-<p class="q"><code class="i">[1, 2, 3, 4]</code>에서 피벗 1을 고르면 big에는 몇 개가 담길까요?</p>
+<p class="q"><code class="i">[1, 2, 3, 4]</code>에서 피벗 1을 고르면 big에는 몇 개가 담길까?</p>
 <div class="opts"><button type="button" data-hint="피벗 1보다 작은 원소가 있는가? 2, 3, 4는 1보다 작지 않다.">0개</button><button type="button" data-hint="나머지는 2, 3, 4 세 개이다. 모두 1보다 작은가?">1개</button><button type="button">3개</button></div>
-<p class="why">2, 3, 4는 모두 1보다 작지 않아서 big에 들어가요.</p>
+<p class="why">2, 3, 4가 모두 1보다 작지 않아 big에 들어간다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>관찰한 것 쓰기</h3>
-<p>정렬된 입력에서 퀵의 횟수는 왜 병합보다 훨씬 클까요? 200개에서 500개로(2.5배) 늘 때 두 방식은 각각 몇 배가 되었나요?</p>
+<p>정렬된 입력에서 퀵의 횟수는 병합보다 왜 훨씬 큰가? 200개에서 500개로(2.5배) 늘 때 두 방식은 각각 몇 배가 되었는가?</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">1</span><textarea class="in" rows="4" data-key="A11.q1" placeholder="① 퀵이 훨씬 큰 까닭 ② 퀵 약 ○배, 병합 약 ○배" data-label="A11 정렬된 입력에서 퀵의 횟수는 왜 병합보다 훨씬 큰가 N이 2.5배가 되면 퀵의 횟수는 몇 배가 되었는가"></textarea></div>
-<p>정렬된 2000개에서는 무슨 일이 일어났나요? 8주차 재귀와 어떻게 이어질까요?</p>
+<p>정렬된 2000개에서 무슨 일이 일어났는가? 8주차 재귀와 어떻게 이어지는가?</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">2</span><textarea class="in" rows="3" data-key="A11.q2" placeholder="① 일어난 일 ② 8주차 재귀와의 연결" data-label="A11 정렬된 2000개에서 일어난 일과 8주차 재귀와의 연결"></textarea></div>
-<p>입력이 (가) 항상 섞여 있다, (나) 이미 정렬되어 있을 가능성이 높다, (다) 메모리가 매우 부족하다 중 하나를 골라요. 그때 어느 정렬을 쓰겠어요? 이유도 써요.</p>
+<p>입력이 (가) 항상 섞여 있다, (나) 이미 정렬되어 있을 가능성이 높다, (다) 메모리가 매우 부족하다 중 하나를 고르면 어느 정렬을 쓰겠는가? 이유도 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">3</span><textarea class="in" rows="2" data-key="A11.q3" placeholder="(가)/(나)/(다) 중 하나, 정렬 방법, 이유" data-label="A11 실전에서는 무엇을 쓰는가"></textarea></div>
 <details class="more"><summary>더 해 보기 (선택)</summary>
-<p>섞은 입력에서도 비교 횟수만 보면 병합이 더 적어요. 그런데도 퀵 정렬을 널리 쓰는 까닭을 가설로 2가지 써요. 확인할 방법과, 정렬된 입력에서 약점을 줄일 코드 부분도 써요.</p>
+<p>섞은 입력에서도 비교 횟수만 보면 병합이 더 적다. 그런데도 퀵 정렬이 널리 쓰이는 까닭의 가설을 2가지 쓰고, 확인 방법과 정렬된 입력에서 약점을 줄일 코드 부분도 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">선택 1</span><textarea class="in" rows="5" data-key="A11.q4" placeholder="(선택) 가설 1과 확인 방법, 가설 2와 확인 방법, 바꿀 코드 부분" data-label="A11 퀵 정렬이 널리 쓰이는 까닭의 가설 2가지, 확인 방법, 정렬된 입력에서 약점을 줄이는 방법"></textarea></div>
-<p>측정값(최대 2000개)으로 8만 개일 때를 어림해 봐요. A5에서 짐작한 것과 비교하고, 맞은 점과 틀린 점을 써요.</p>
+<p>측정값(최대 2000개)으로 8만 개를 어림해 A5에서 짐작한 것과 견주고, 맞은 점과 틀린 점을 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">선택 2</span><textarea class="in" rows="3" data-key="A11.q5" placeholder="(선택) 맞은 점 / 틀린 점" data-label="A11 A5의 8만 개 짐작과 측정값 비교(맞은 점, 틀린 점)"></textarea></div>
 </details>
 </div>
 
 <div class="step">
 <h3>닫힌 상자와 대조하기</h3>
-<p>위 칸을 내 값과 말로 채운 뒤에 상자를 열어요.</p>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 비교 횟수 값과 코드 빈칸 풀이 (시드 12)</summary>
+<p>위 칸을 내 값과 말로 채운 뒤 상자를 연다.</p>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 비교 횟수 값과 코드 빈칸 풀이 (시드 12)</summary>
 <div class="scroll"><table><tr><th>입력</th><th>병합</th><th>퀵(첫 원소 피벗)</th></tr><tr><td>섞은 200개</td><td>1280</td><td>1562</td></tr><tr><td>섞은 500개</td><td>3851</td><td>4856</td></tr><tr><td>섞은 1000개</td><td>8715</td><td>12430</td></tr><tr><td>정렬된 200개</td><td>732</td><td>19900 (= 200×199/2)</td></tr><tr><td>정렬된 500개</td><td>2216</td><td>124750 (= 500×499/2)</td></tr><tr><td>정렬된 2000개</td><td>10864</td><td>RecursionError</td></tr></table></div>
 <ul>
-<li>섞은 입력의 값은 코드 그대로 실행했을 때만 같아요(시드 12를 한 번만 걸고 200 → 500 → 1000 순서로 섞음). ARR8은 병합 17, 퀵 18로 A4 손 추적과 같아요. SORT8은 병합 12, 퀵 28이에요.</li>
-<li>질문 1: 정렬된 입력에서는 첫 원소가 늘 최솟값이에요. 그래서 작은 쪽은 비고 큰 쪽에 N − 1개가 남아요. 그러면 N − 1, N − 2, …번 비교하게 돼요(약 N²/2). N이 2.5배(200 → 500)가 되면 퀵은 약 6.3배(19900 → 124750), 병합은 약 3.0배(732 → 2216)가 돼요.</li>
-<li>질문 2: 정렬된 입력에서는 재귀 깊이가 N에 가까워져 기본 재귀 한계(1000)를 넘어요. 8주차의 재귀 한계와 같은 일이에요. 질문 3: 이미 정렬되어 있을 가능성이 높다면 첫 원소 피벗 퀵은 위험해요. 병합 정렬이나 sorted()가 안전해요.</li>
-<li>실전에서 쓰는 도구: 파이썬이 쓰는 정렬은 Timsort예요. 최악에도 O(N log N)이고, 안정 정렬(같은 값의 원래 순서를 유지)이에요.</li>
-<li>같은 값의 순서가 뒤바뀌면 정렬의 안정성이 깨져요. 같은 값을 어느 쪽으로 보낼지는 방식 설명의 약속을 따라요. 코드 빈칸의 정답은 이 쪽에 싣지 않아요.</li>
+<li>섞은 입력의 값은 코드 그대로(시드 12를 한 번만 걸고 200 → 500 → 1000 순서로 섞음) 실행했을 때만 같다. ARR8은 병합 17, 퀵 18로 A4 손 추적과 같고, SORT8은 병합 12, 퀵 28이다.</li>
+<li>질문 1: 정렬된 입력에서는 첫 원소가 늘 최솟값이라 작은 쪽이 비고 큰 쪽이 N − 1개 남아 N − 1, N − 2, …번 견주게 된다(약 N²/2). N이 2.5배(200 → 500)가 되면 퀵은 약 6.3배(19900 → 124750), 병합은 약 3.0배(732 → 2216)가 된다.</li>
+<li>질문 2: 정렬된 입력에서 재귀 깊이가 N에 가까워져 기본 재귀 한계(1000)를 넘는다. 8주차의 재귀 한계와 같은 일이다. 질문 3: 이미 정렬되어 있을 가능성이 높다면 첫 원소 피벗 퀵은 위험하고 병합 정렬이나 sorted()가 안전하다.</li>
+<li>실전에서 쓰는 도구: 파이썬이 쓰는 정렬은 Timsort이다. 최악에도 O(N log N)이고 안정 정렬(같은 값의 원래 순서를 유지)이다.</li>
+<li>같은 값의 순서가 뒤바뀌면 정렬의 안정성이 깨진다. 같은 값을 어느 쪽으로 보내는지는 방식 설명의 약속을 따른다. 코드 빈칸의 정답은 이 쪽에 싣지 않는다.</li>
 </ul>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 두 정렬의 비교 횟수를 예측하고 측정했어요. 다음 A12에서는 이번 주에 한 생각을 한 문장으로 써 봐요.</p>
+<p class="wrapup"><b>여기까지</b> 두 정렬의 비교 횟수를 예측하고 측정했다. 다음 A12에서는 이번 주 생각을 한 문장으로 써 본다.</p>
 </section>
 <section id="A12" class="sheet lesson">
 <h2>A12 · 일반화 초안 카드 (개인 메모)<small>3차시 · 3분 · 개인</small></h2>
-<p class="lead">이번 주에 알게 된 것을 한 문장으로 써 봐요. 한 사례가 아니라 여러 사례에 통하는 문장이어야 해요. 일반화를 연습하는 거라 완성도는 평가하지 않아요.</p>
+<p class="lead">이번 주에 알게 된 것을 한 사례가 아니라 여러 사례에 통하는 한 문장으로 써 보자. 일반화를 쓰는 연습이므로 완성도는 평가하지 않는다.</p>
 
 <div class="step">
 <h3>일반화 문장 알아보기</h3>
-<p>일반화는 한 사례가 아니라 여러 사례에 통하는 문장이에요. &ldquo;개념 + 개념 + 관계&rdquo;로 써요. 지난주 내용으로 비교해 봐요.</p>
+<p>일반화는 한 사례가 아니라 여러 사례에 통하는 문장이다. &ldquo;개념 + 개념 + 관계&rdquo;로 쓴다. 지난주 내용으로 견주어 보자.</p>
 <div class="quiz" data-answer="2">
-<p class="q">(가) &ldquo;G1에서 A부터 BFS를 하면 B, C, D 순으로 방문했다.&rdquo; (나) &ldquo;BFS는 가까운 정점부터 한 겹씩 방문하므로, 가중치 없는 그래프에서 최소 간선 수를 구할 수 있다.&rdquo; 어느 쪽이 일반화일까요?</p>
+<p class="q">(가) &ldquo;G1에서 A부터 BFS를 하면 B, C, D 순으로 방문했다.&rdquo; (나) &ldquo;BFS는 가까운 정점부터 한 겹씩 방문하므로, 가중치 없는 그래프에서 최소 간선 수를 구할 수 있다.&rdquo; 일반화는 어느 쪽일까?</p>
 <div class="opts"><button type="button" data-hint="(가)는 G1 하나에서 본 결과이다. 다른 그래프에도 통하는 말인가?">(가)</button><button type="button">(나)</button></div>
-<p class="why">(나)는 사례 이름 없이 개념(BFS, 가중치 없는 그래프, 최소 간선 수)과 관계로 썼어요.</p>
+<p class="why">(나)는 사례 이름 없이 개념(BFS, 가중치 없는 그래프, 최소 간선 수)과 관계로 썼다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>내 말로 한 문장 쓰기</h3>
-<p>A1~A11에서 내 생각이 가장 크게 바뀐 주제를 하나 골라요. 그 주제를 한 문장으로 써요. &ldquo;개념 ○○와(과) 개념 ○○는 ○○한 관계가 있다&rdquo; 틀을 써도 돼요.</p>
+<p>A1~A11에서 내 생각이 가장 크게 바뀐 주제를 하나 고르고, 그 주제를 한 문장으로 쓴다. 틀 &ldquo;개념 ○○와(과) 개념 ○○는 ○○한 관계가 있다&rdquo;를 써도 된다.</p>
 <p><span class="rg" data-key="A12.topic" data-type="radio" data-label="A12 고른 주제" data-model="성립 조건과 속도"><label><input type="radio" name="r_A12_topic" value="성립 조건과 속도"> 성립 조건과 속도</label><label><input type="radio" name="r_A12_topic" value="분할 균형"> 분할 균형</label><label><input type="radio" name="r_A12_topic" value="경계와 개수"> 경계와 개수</label><label><input type="radio" name="r_A12_topic" value="정렬 투자와 질의 횟수"> 정렬 투자와 질의 횟수</label></span></p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">초안</span><textarea class="in" rows="4" data-key="A12.draft" placeholder="개념 ○○와(과) 개념 ○○는 ○○한 관계가 있다" data-label="A12 내 일반화 초안 한 문장"></textarea></div>
 </div>
 
 <div class="step">
 <h3>예시 이름 지우기</h3>
-<p>문장에서 &lsquo;SORTED&rsquo;나 &lsquo;사전&rsquo; 같은 한 예시의 이름을 지워도 말이 될까요? 되면 지운 채로 다시 써요. 지울 이름이 없었으면 &ldquo;그대로 둔다&rdquo;라고 써요.</p>
+<p>문장에서 &lsquo;SORTED&rsquo;나 &lsquo;사전&rsquo; 같은 한 예시의 이름을 지워도 말이 되는가? 되면 지운 채로 다시 쓰고, 지울 이름이 없었으면 &ldquo;그대로 둔다&rdquo;라고 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">다시</span><textarea class="in" rows="3" data-key="A12.draft2" placeholder="다시 쓴 한 문장 또는 그대로 둔다" data-label="A12 예시를 지운 초안"></textarea></div>
 </div>
-<p class="wrapup"><b>여기까지</b> 내 일반화 초안이 생겼어요. 다음 A13에서 초안을 다듬어요.</p>
+<p class="wrapup"><b>여기까지</b> 내 일반화 초안이 생겼다. 다음 A13에서 초안을 다듬는다.</p>
 </section>
 <section id="A13" class="sheet lesson">
 <h2>A13 · 일반화 정리와 구별 기준표<small>3차시 · 12분 · 개인</small></h2>
-<p class="lead">A12 초안을 다듬어서 새 상황에서도 맞는 문장으로 만들어 봐요. 정렬하고 이진 탐색을 쓰는 게 이득이 아닐 때도 찾아봐요.</p>
+<p class="lead">A12 초안을 다듬어 새 상황에서도 성립하는 문장으로 만들자. 정렬하고 이진 탐색을 쓰는 것이 이득이 아닌 때도 찾아 본다.</p>
 
 <div class="step">
 <h3>내 초안 다시 읽기</h3>
-<p>다듬는 일을 정제라고 해요. 사례 이름은 개념어로 바꾸고, 빠진 조건은 채워요. 초안에 아래 질문을 던져 봐요.</p>
+<p>다듬는 일을 정제라 한다. 사례 이름을 개념어로 바꾸고 빠진 조건을 채운다. 초안에 아래 질문을 던져 보자.</p>
 <ul>
-<li>&lsquo;정렬된 숫자 배열&rsquo;이라는 말을 지워도 문장이 맞을까요?</li>
-<li>질의가 1번뿐이어도 쓸까요?</li>
-<li>값이 여럿이거나 없으면, 또 정렬되어 있지 않으면 어떻게 될까요?</li>
+<li>&lsquo;정렬된 숫자 배열&rsquo;이라는 말을 지워도 문장이 성립하는가?</li>
+<li>질의가 1번뿐이면 쓰겠는가?</li>
+<li>값이 여럿이거나 없으면, 정렬되어 있지 않으면 어떻게 되는가?</li>
 </ul>
 </div>
 
 <div class="step">
 <h3>일반화 문장 G1~G2 쓰기</h3>
-<p>칸 이름 G1, G2는 정리용 번호예요. 내가 다듬은 문장을 한두 개씩 써요. A12에서 고른 주제가 G3·G4이면 아래 선택 상자의 칸에 써요. 사례 이름(SORTED 등)은 쓰지 않아요.</p>
+<p>칸의 이름 G1, G2는 정리용 번호이다. 내가 다듬은 문장을 한두 개씩 쓴다. A12에서 고른 주제가 G3·G4이면 아래 선택 상자의 칸에 쓴다. 사례 이름(SORTED 등)은 쓰지 않는다.</p>
 <p><b>G1</b> 성립 조건과 속도</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">1</span><textarea class="in" rows="3" data-key="A13.g1" placeholder="내가 다듬은 일반화 문장 1~2개" data-label="A13 일반화 G1"></textarea></div>
 <p><b>G2</b> 분할 균형</p>
@@ -141,25 +460,25 @@
 
 <div class="step">
 <h3>구별 기준표 만들기</h3>
-<p>상황을 내가 새로 만들어요. 이진 탐색·bisect를 쓸 수 있는지(가능·불가·조건부) 골라요. 근거는 정렬 전제, 질의 횟수, 경계 정의 가운데 하나로 써요. 상황 1~2를 써요.</p>
+<p>상황을 내가 새로 만든다. 이진 탐색·bisect를 쓸 수 있는지(가능·불가·조건부) 고르고, 정렬 전제, 질의 횟수, 경계 정의 가운데 하나를 근거로 쓴다. 상황 1~2를 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:70px">번호</th><th style="width:32%">상황</th><th style="width:22%">쓸 수 있는가</th><th>근거</th></tr><tr><td class="lab">상황 1</td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r1.c1" data-label="A13 구별 기준표 상황 1"></textarea></td><td class="in-cell"><span class="rg" data-key="A13.cmp.r1.c2" data-type="radio" data-label="A13 구별 기준표 상황 1 판단" data-model="가능"><label><input type="radio" name="r_A13_cmp_r1_c2" value="가능"> 가능</label><label><input type="radio" name="r_A13_cmp_r1_c2" value="불가"> 불가</label><label><input type="radio" name="r_A13_cmp_r1_c2" value="조건부"> 조건부</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r1.c3" data-label="A13 구별 기준표 상황 1 근거"></textarea></td></tr><tr><td class="lab">상황 2</td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r2.c1" data-label="A13 구별 기준표 상황 2"></textarea></td><td class="in-cell"><span class="rg" data-key="A13.cmp.r2.c2" data-type="radio" data-label="A13 구별 기준표 상황 2 판단" data-model="불가"><label><input type="radio" name="r_A13_cmp_r2_c2" value="가능"> 가능</label><label><input type="radio" name="r_A13_cmp_r2_c2" value="불가"> 불가</label><label><input type="radio" name="r_A13_cmp_r2_c2" value="조건부"> 조건부</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r2.c3" data-label="A13 구별 기준표 상황 2 근거"></textarea></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>닫힌 상자와 대조하기</h3>
-<p>위 칸을 내 말로 쓴 뒤에 상자를 열어 비교해요. 문장을 베끼지 말고, 내 문장에서 고칠 곳을 써요.</p>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 정제 문장 G1~G4와 대조 질문</summary>
+<p>위 칸을 내 말로 쓴 뒤 상자를 열어 비교한다. 문장을 베끼지 않고 내 문장에서 고칠 곳을 쓴다.</p>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 정제 문장 G1~G4와 대조 질문</summary>
 <ul>
-<li><b>G1</b> 이진 탐색은 데이터가 정렬되어 있다는 성질 덕분에 한 번 비교할 때마다 후보 범위의 절반을 통째로 버릴 수 있어요. 그래서 비교 횟수가 N이 아니라 log N에 비례해요. 하지만 그 성질이 성립하지 않는 입력에서는 오류 없이 빠르게 틀린 답을 내요. 그러니 알고리즘의 속도는 입력이 만족해야 하는 전제 조건과 한 쌍으로 이해해야 해요.</li>
-<li><b>G2</b> 분할 정복 정렬의 비용은 얼마나 고르게 쪼개는지가 결정해요. 병합 정렬은 항상 절반으로 나눠서 입력 순서와 상관없이 O(N log N)이지만, 합칠 때 보조 메모리를 써요. 퀵 정렬은 피벗이 고르게 나누면 평균 O(N log N)이지만, 한쪽으로 치우치면 O(N²)과 깊은 재귀로 무너져요. 그래서 입력의 성질과 피벗 선택에 따라 어느 쪽이 안전한지가 갈려요.</li>
-<li><b>G3</b> 정렬된 데이터에서 같은 값이 여러 개이거나 없는 값을 다루려면, &ldquo;있는가&rdquo;가 아니라 &ldquo;조건이 처음 참이 되는 경계(처음 x 이상 = lower bound, 처음 x 초과 = upper bound)&rdquo;를 찾는 문제로 일반화해야 해요. 두 경계의 차이로 개수와 구간 빈도를 O(log N)에 구할 수 있어요. 경계를 포함할지 말지 정하는 방식에 따라 답이 하나씩 틀어져요.</li>
-<li><b>G4</b> 정렬은 O(N log N)을 한 번 내고, 그 뒤 질의마다 O(log N)을 얻는 선행 투자예요. 그래서 질의가 많고 데이터가 고정일수록 이득이고, 질의가 적거나 데이터가 자주 바뀌면 손해일 수 있어요. (이 문장의 나머지 반은 A14 활동 뒤에 이어서 만나요.)</li>
-<li>대조 질문: 내 문장과 같은 점, 다른 점, 빠진 조건은 무엇인가요? 사례를 지워도 남나요? O(log N)이라는 말은 어떤 전제가 없으면 성립하지 않나요? 질의가 1번뿐이라면 이진 탐색을 쓸까요? 문장을 베끼지 말고, 내 문장에서 고칠 곳을 수정 이력에 써요.</li>
-<li>오늘의 질문으로 돌아가 봐요. 후보를 절반씩 버리면 N = 10, 1000, 10<sup>6</sup>, 10<sup>9</sup>일 때 비교 횟수 상한이 4, 10, 20, 30이에요. 10억 개 속에서도 최대 30번이에요. 단, 정렬되어 있다면요. 실습 과제 채점기준표 rubric.html은 이 확인 뒤에 열어요.</li>
-<li>다음 주 예고: 병합 정렬은 쪼갠 부분이 겹치지 않았어요. 부분 문제가 겹친다면 어떨까요?</li>
+<li><b>G1</b> 이진 탐색은 정렬되어 있다는 성질 덕분에 한 번의 비교로 후보 범위의 절반을 통째로 버릴 수 있어 비교 횟수가 N이 아니라 log N에 비례하지만, 그 성질이 성립하지 않는 입력에서는 오류 없이 빠르게 틀린 답을 내므로 알고리즘의 속도는 입력이 만족해야 하는 전제 조건과 한 쌍으로 이해해야 한다.</li>
+<li><b>G2</b> 분할 정복 정렬의 비용은 쪼개는 균형이 결정한다. 병합 정렬은 항상 절반으로 나누므로 입력 순서와 무관하게 O(N log N)이지만 합칠 때 보조 메모리를 쓰고, 퀵 정렬은 피벗이 부분을 고르게 나누면 평균 O(N log N)이나 한쪽으로 치우치면 O(N²)과 깊은 재귀로 무너지므로, 입력의 성질과 피벗 선택에 따라 어느 쪽이 안전한지가 갈린다.</li>
+<li><b>G3</b> 정렬된 데이터에서 같은 값이 여러 개이거나 없는 값을 다루려면 &ldquo;있는가&rdquo;가 아니라 &ldquo;조건이 처음 참이 되는 경계(처음 x 이상 = lower bound, 처음 x 초과 = upper bound)&rdquo;를 찾는 문제로 일반화해야 하며, 두 경계의 차이로 개수와 구간 빈도를 O(log N)에 구할 수 있다. 경계를 포함할지 말지 정하는 방식에 따라 답이 하나씩 틀어진다.</li>
+<li><b>G4</b> 정렬은 O(N log N)을 한 번 지불해 이후 질의마다 O(log N)을 얻는 선행 투자이므로 질의가 많고 데이터가 고정일수록 이득이고, 질의가 적거나 자주 바뀌면 손해일 수 있다. (이 문장의 나머지 반은 A14 활동 뒤에 이어서 만난다.)</li>
+<li>대조 질문: 내 문장과 같은 점, 다른 점, 빠진 조건은 무엇인가? 사례를 지워도 남는가? O(log N)이라는 말은 어떤 전제를 빼놓고는 성립하지 않는가? 질의가 1번뿐이라면 이진 탐색을 쓰겠는가? 문장을 베끼지 말고 내 문장에서 고칠 곳을 수정 이력에 쓴다.</li>
+<li>오늘의 질문으로 돌아가면, 후보를 절반씩 버리면 N = 10, 1000, 10<sup>6</sup>, 10<sup>9</sup>일 때 비교 횟수 상한이 4, 10, 20, 30이다. 10억 개 속에서도 최대 30번이다. 단, 정렬되어 있다면. 실습 과제 채점기준표 rubric.html은 이 확인 뒤에 연다.</li>
+<li>다음 주 예고: 병합 정렬은 쪼갠 부분이 겹치지 않았다. 부분 문제가 겹친다면?</li>
 </ul>
 </details>
-<p>무엇을 어떻게, 왜 고쳤는지 써요. 고칠 곳이 없었으면 &ldquo;고칠 곳 없음&rdquo;이라고 써요.</p>
+<p>무엇을 어떻게 고쳤고 왜 고쳤는지 쓴다. 고칠 곳이 없었으면 &ldquo;고칠 곳 없음&rdquo;이라고 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">고침</span><textarea class="in" rows="4" data-key="A13.history" placeholder="무엇을 → 어떻게 고쳤다. 이유: … (없으면 고칠 곳 없음)" data-label="A13 수정 이력"></textarea></div>
 <details class="more"><summary>더 해 보기 (선택) · G3·G4, 상황 3~4, 입장 카드</summary>
 <p><b>G3</b> 경계와 개수</p>
@@ -167,21 +486,21 @@
 <p><b>G4</b> 정렬 투자와 질의 횟수</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">4</span><textarea class="in" rows="3" data-key="A13.g4" placeholder="(선택) 일반화 문장 1~2개" data-label="A13 일반화 G4"></textarea></div>
 <div class="scroll"><table class="fill"><tr><th style="width:70px">번호</th><th style="width:32%">상황</th><th style="width:22%">쓸 수 있는가</th><th>근거</th></tr><tr><td class="lab">상황 3</td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r3.c1" data-label="A13 구별 기준표 상황 3"></textarea></td><td class="in-cell"><span class="rg" data-key="A13.cmp.r3.c2" data-type="radio" data-label="A13 구별 기준표 상황 3 판단" data-model="조건부"><label><input type="radio" name="r_A13_cmp_r3_c2" value="가능"> 가능</label><label><input type="radio" name="r_A13_cmp_r3_c2" value="불가"> 불가</label><label><input type="radio" name="r_A13_cmp_r3_c2" value="조건부"> 조건부</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r3.c3" data-label="A13 구별 기준표 상황 3 근거"></textarea></td></tr><tr><td class="lab">상황 4</td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r4.c1" data-label="A13 구별 기준표 상황 4"></textarea></td><td class="in-cell"><span class="rg" data-key="A13.cmp.r4.c2" data-type="radio" data-label="A13 구별 기준표 상황 4 판단" data-model="조건부"><label><input type="radio" name="r_A13_cmp_r4_c2" value="가능"> 가능</label><label><input type="radio" name="r_A13_cmp_r4_c2" value="불가"> 불가</label><label><input type="radio" name="r_A13_cmp_r4_c2" value="조건부"> 조건부</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A13.cmp.r4.c3" data-label="A13 구별 기준표 상황 4 근거"></textarea></td></tr></table></div>
-<p><b>카드 1</b> 같은 값이 여럿인 DUP에서 3을 찾는 이진 탐색이 2번 자리를 돌려주었어요. 한 친구는 &ldquo;3이 있는 자리 하나를 찾았으니 맞다&rdquo;고 하고, 다른 친구는 &ldquo;가장 왼쪽 3의 자리를 돌려주어야 한다&rdquo;고 해요. 나는 어느 쪽인가요? 문제가 &ldquo;3의 개수&rdquo;나 &ldquo;3을 삽입할 자리&rdquo;를 묻는다면 답이 바뀔까요?</p>
+<p><b>카드 1</b> 같은 값이 여럿인 DUP에서 3을 찾는 이진 탐색이 2번 자리를 돌려주었다. 한 친구는 &ldquo;3이 있는 자리 하나를 찾았으니 맞다&rdquo;, 다른 친구는 &ldquo;가장 왼쪽 3의 자리를 돌려주어야 한다&rdquo;고 한다. 나는 어느 쪽인가? 문제가 &ldquo;3의 개수&rdquo;나 &ldquo;3을 삽입할 자리&rdquo;를 묻는다면 답이 바뀌는가?</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">카드 1</span><textarea class="in" rows="4" data-key="A13.debate1" placeholder="나는 ○○ 쪽이다. 이유: … 개수·삽입 자리를 물으면 …" data-label="A13 입장 카드 1: 같은 값이 여럿일 때 어느 자리를 돌려줄지에 대한 내 입장과 이유"></textarea></div>
-<p><b>카드 2</b> &ldquo;정렬해 두면 O(log N)에 찾으니 정렬은 언제나 이득이다.&rdquo; 동의, 반대, 조건부 중 하나를 골라요. 반대나 조건부라면 반례 상황을 하나 써요.</p>
+<p><b>카드 2</b> &ldquo;정렬해 두면 O(log N)에 찾으니 정렬은 언제나 이득이다.&rdquo; 동의, 반대, 조건부 중 하나를 고르고, 반대나 조건부라면 반례 상황 하나를 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">카드 2</span><textarea class="in" rows="4" data-key="A13.debate2" placeholder="동의/반대/조건부 중 하나, 이유, 반례 상황" data-label="A13 입장 카드 2: 정렬은 언제나 이득인가에 대한 입장, 반례 상황"></textarea></div>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 내 일반화 문장과 기준표가 생겼어요. 다음 A14에서는 과제 코드를 점검해요.</p>
+<p class="wrapup"><b>여기까지</b> 내 일반화 문장과 기준표가 생겼다. 다음 A14에서는 과제 코드를 점검한다.</p>
 </section>
 <section id="A14" class="sheet lesson">
 <h2>A14 · 과제 마무리 점검표와 전이 기록<small>3차시 · 14분 · 개인</small></h2>
-<p class="lead">내 과제 코드가 새 입력에서도 통하는지 확인해 봐요. 그다음 정렬된 배열이 없는 밧줄 문제에도 같은 생각을 쓸 수 있는지 봐요.</p>
+<p class="lead">내 과제 코드가 새 입력에서도 통하는지 확인하자. 그다음 정렬된 배열이 없는 밧줄 문제에도 같은 생각이 쓰이는지 본다.</p>
 
 <div class="step">
 <h3>점검 결과 표시하기</h3>
-<p>실습 코드 <a class="xlink" href="student_code_lab_part4.html#A14">4부 A14</a>의 점검 결과를 표시해요. 고쳐야 했던 곳이 있으면 어느 함수의 어느 부분을 어떻게 고쳤는지 써요. 없으면 &ldquo;없었다&rdquo;라고 써요.</p>
+<p>실습 코드 <a class="xlink" href="student_code_lab_part4.html#A14">4부 A14</a>의 점검 결과를 표시한다. 고쳐야 했던 곳이 있으면 어느 함수의 어느 부분을 어떻게 고쳤는지 쓰고, 없으면 &ldquo;없었다&rdquo;라고 쓴다.</p>
 <p><label class="ck"><input type="checkbox" data-key="A14.chk.eq" data-label="A14 점검: count_equal이 점검을 통과했다"> count_equal 점검을 통과했다</label><label class="ck"><input type="checkbox" data-key="A14.chk.rg" data-label="A14 점검: count_in_range가 점검을 통과했다"> count_in_range 점검을 통과했다</label><label class="ck"><input type="checkbox" data-key="A14.chk.cl" data-label="A14 점검: closest_value가 점검을 통과했다"> closest_value 점검을 통과했다(실행하지 못했으면 비워 둔다)</label><label class="ck"><input type="checkbox" data-key="A14.chk.nofix" data-label="A14 점검: 코드를 고치지 않고 새 입력에서 통과했다"> 코드를 고치지 않고 새 입력에서 통과했다</label></p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">고침</span><textarea class="in" rows="3" data-key="A14.fixed" placeholder="함수 이름, 고친 부분, 방법 / 없었다" data-label="A14 점검에서 고쳐야 했던 곳"></textarea></div>
 </div>
@@ -192,114 +511,114 @@
 k = 9                        # 필요한 조각 수
 같은 길이 L로 자를 때 조각 수 = 각 밧줄의 r // L 의 합
 목표: 조각이 k = 9개 이상이 되는 가장 긴 L</pre>
-<p>코드를 보기 전에 L = 5, 10, 20일 때의 조각 수를 손으로 구해 써요. 계산하지 못한 칸은 &ldquo;모름&rdquo;이라고 써요.</p>
+<p>코드를 보기 전에 L = 5, 10, 20일 때의 조각 수를 손으로 구해 쓴다. 계산하지 못한 칸은 &ldquo;모름&rdquo;이라고 쓴다.</p>
 <div class="ans-row"><span class="n">조각 수</span><span>L = 5일 때 </span><input type="text" class="in" data-key="A14.rope.p5" placeholder="숫자" data-label="A14 ROPE L=5 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="62"><span>, L = 10일 때 </span><input type="text" class="in" data-key="A14.rope.p10" placeholder="숫자" data-label="A14 ROPE L=10 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="30"><span>, L = 20일 때 </span><input type="text" class="in" data-key="A14.rope.p20" placeholder="숫자" data-label="A14 ROPE L=20 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="15"></div>
 <div class="quiz" data-answer="2">
-<p class="q">세 값을 보면, L을 5, 10, 20으로 키울수록 조각 수는 어떻게 될까요?</p>
+<p class="q">세 값을 보면 L을 5, 10, 20으로 키울수록 조각 수는 어떻게 될까?</p>
 <div class="opts"><button type="button" data-hint="손으로 구한 조각 수를 차례로 견주어 보자.">늘어난다</button><button type="button">줄어든다</button><button type="button" data-hint="세 값이 모두 같은가?">그대로이다</button></div>
-<p class="why">62, 30, 15로 줄어들어요.</p>
+<p class="why">62, 30, 15로 줄어든다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>코드 결과 쓰기</h3>
-<p>실습 코드 4부의 밧줄 점검이 낸 값을 그대로 써요. &ldquo;가장 긴 L&rdquo;은 조각이 9개 이상인 L 가운데 가장 큰 값이에요.</p>
+<p>실습 코드 4부의 밧줄 점검이 낸 값을 그대로 쓴다. &ldquo;가장 긴 L&rdquo;은 조각이 9개 이상인 L 가운데 가장 큰 값이다.</p>
 <div class="ans-row"><span class="n">코드 결과</span><span>가장 긴 L </span><input type="text" class="in" data-key="A14.rope.best" placeholder="숫자" data-label="A14 ROPE 가장 긴 L" autocomplete="off" style="width:6em;display:inline-block" data-model="30"><span> count_pieces 호출 횟수 </span><input type="text" class="in" data-key="A14.rope.calls" placeholder="숫자" data-label="A14 ROPE count_pieces 호출 횟수" autocomplete="off" style="width:6em;display:inline-block" data-model="7"></div>
 </div>
 
 <div class="step">
 <h3>관찰한 것 쓰기</h3>
-<p>이 관찰을 이용해 몇 번 만에 답을 찾았나요? 위 호출 횟수를 근거로 써요.</p>
+<p>이 관찰을 이용해 몇 번 만에 답을 찾았는가? 위 호출 횟수를 근거로 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">1</span><textarea class="in" rows="3" data-key="A14.rope.q2" placeholder="count_pieces를 ○번 불러 …" data-label="A14 ROPE 관찰을 이용해 몇 번 만에 답을 찾았는가(호출 횟수 근거)"></textarea></div>
-<p>과제 코드가 새 입력에서도 통하나요? 빈 리스트, lo &gt; hi, 값이 없을 때를 점검했는지 줄마다 써요.</p>
+<p>과제 코드가 새 입력에서도 통하는가? 빈 리스트, lo &gt; hi, 값이 없을 때를 점검했는지 줄마다 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">2</span><textarea class="in" rows="3" data-key="A14.rope.q3" placeholder="빈 리스트: 점검했다/점검하지 않았다&#10;lo > hi: …&#10;값이 없을 때: …" data-label="A14 새 입력에서 코드를 고치지 않아도 통하는가 빈 리스트 lo가 hi보다 클 때 값이 없을 때"></textarea></div>
 <details class="more"><summary>더 해 보기 (선택)</summary>
-<p>L = 5, 10, 20으로 자를 때 조각이 9개 이상인지 참 또는 거짓으로 늘어놓아요. L을 키우면 참·거짓이 어떤 모양으로 늘어설지, 이걸 어떻게 이용할지도 써요.</p>
+<p>L = 5, 10, 20으로 자를 때 조각이 9개 이상인지를 참 또는 거짓으로 나열하고, L을 키울 때 늘어설 모양과 이를 이용하는 방법을 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">선택 1</span><textarea class="in" rows="4" data-key="A14.rope.pattern" placeholder="(선택) 1줄: L=5 ○, L=10 ○, L=20 ○&#10;2줄: 늘어설 모양&#10;3줄: 이용하는 방법" data-label="A14 밧줄: L별 조각 9개 이상 참/거짓의 순서와 이를 이용한 탐색 방법"></textarea></div>
-<p>밧줄 문제에서 &ldquo;정렬된 배열&rdquo;은 어디에 있다고 할 수 있을까요?</p>
+<p>밧줄 문제에서 &ldquo;정렬된 배열&rdquo;은 어디에 있다고 할 수 있는가?</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">선택 2</span><textarea class="in" rows="3" data-key="A14.rope.q1" placeholder="(선택) 한두 문장" data-label="A14 ROPE에서 정렬된 배열은 어디에 있는가"></textarea></div>
-<p>코드의 <code class="i">mid = (lo + hi + 1) // 2</code>는 lower_bound의 <code class="i">(lo + hi) // 2</code>와 달라요. 왜 +1을 할까요?</p>
+<p>코드의 <code class="i">mid = (lo + hi + 1) // 2</code>는 lower_bound의 <code class="i">(lo + hi) // 2</code>와 다르다. 왜 +1을 하는가?</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">선택 3</span><textarea class="in" rows="4" data-key="A14.rope.q4" placeholder="(선택) ① +1을 하는 이유 ② 끝나지 않는 입력 하나" data-label="A14 밧줄: mid에 +1을 하는 이유와 +1이 없을 때 반복이 끝나지 않는 입력"></textarea></div>
 </details>
 </div>
 
 <div class="step">
 <h3>닫힌 상자와 대조하기</h3>
-<p>위 칸을 먼저 쓰고 나서 상자를 열어요.</p>
-<details class="late"><summary>코드 결과를 본 뒤 열어 봐요 · L = 30, 40의 조각 수</summary><div class="ans-row"><span class="n">손으로 구한 조각 수</span><span>L = 30일 때 </span><input type="text" class="in" data-key="A14.rope.p30" placeholder="숫자" data-label="A14 밧줄 L=30일 때 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="9"><span>, L = 40일 때 </span><input type="text" class="in" data-key="A14.rope.p40" placeholder="숫자" data-label="A14 밧줄 L=40일 때 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="7"></div></details>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 밧줄 자르기 값과 G4의 나머지 반</summary>
+<p>위 칸을 먼저 쓴 뒤 상자를 연다.</p>
+<details class="late"><summary>코드 결과를 본 뒤 확인한다 · L = 30, 40의 조각 수</summary><div class="ans-row"><span class="n">손으로 구한 조각 수</span><span>L = 30일 때 </span><input type="text" class="in" data-key="A14.rope.p30" placeholder="숫자" data-label="A14 밧줄 L=30일 때 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="9"><span>, L = 40일 때 </span><input type="text" class="in" data-key="A14.rope.p40" placeholder="숫자" data-label="A14 밧줄 L=40일 때 조각 수" autocomplete="off" style="width:5em;display:inline-block" data-model="7"></div></details>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 밧줄 자르기 값과 G4의 나머지 반</summary>
 <div class="scroll"><table><tr><th>L</th><th>5</th><th>10</th><th>11</th><th>12</th><th>13</th><th>15</th><th>20</th><th>30</th><th>31</th></tr><tr><td>조각 수</td><td>62</td><td>30</td><td>26</td><td>25</td><td>22</td><td>20</td><td>15</td><td>9</td><td>8</td></tr></table></div>
 <ul>
-<li>L이 커질수록 조각 수는 줄어들어요. &ldquo;조각 수 ≥ 9&rdquo;는 L = 30까지 참이고 31부터 거짓이에요. 참과 거짓이 딱 한 번만 바뀌어요. 이런 성질을 <b>단조성</b>이라고 불러요.</li>
-<li><b>G4의 나머지 반</b> 경계가 한 번만 거짓에서 참으로 바뀌는 단조성만 성립하면, 정렬된 배열이 없어도 같은 방식(범위 절반 버리기)으로 답을 찾을 수 있어요.</li>
-<li>질문 1: 밧줄 문제에는 정렬된 배열이 따로 없어요. 후보 L의 범위 1~120이 정렬된 후보처럼 놓여 있고, 각 후보가 조건을 만족하는지 한 번에 확인할 수 있어요. 단조성만 성립하면 정렬된 배열이 없어도 후보 범위를 절반씩 버릴 수 있어요(G4의 나머지 반). 조건이 단조가 아니면 절반 버리기가 보장되지 않아요.</li>
-<li>질문 2: 가장 긴 L = 30이고 count_pieces를 7번 불렀어요. 후보 범위 [1, 120]은 이렇게 바뀌었어요: mid 61(3개) → hi = 60, 31(8개) → hi = 30, 16(17개) → lo = 16, 23(12개) → lo = 23, 27(10개) → lo = 27, 29(9개) → lo = 29, 30(9개) → lo = 30.</li>
-<li>질문 4: lo = 1, hi = 2이면 (lo + hi) // 2 = 1이에요. 조건이 참이면 lo = mid = 1이 되어 범위가 줄지 않아요. +1을 하면 mid = 2가 되어 범위가 줄어요. 조건이 참일 때 lo = mid로 mid를 남기기 때문에 올림이 필요해요.</li>
+<li>L이 커질수록 조각 수는 줄어든다. &ldquo;조각 수 ≥ 9&rdquo;는 L = 30까지 참이고 31부터 거짓이다. 참과 거짓이 한 번만 바뀐다. 이런 성질을 <b>단조성</b>이라 부른다.</li>
+<li><b>G4의 나머지 반</b> 경계가 한 번만 거짓에서 참으로 바뀌는 단조성만 성립하면 정렬된 배열이 없어도 같은 범위 절반 버리기로 답을 찾을 수 있다.</li>
+<li>질문 1: 밧줄 문제에는 정렬된 배열이 따로 없다. 후보 L의 범위 1~120이 정렬된 후보처럼 놓여 있고, 각 후보가 조건을 만족하는지 한 번에 확인할 수 있다. 단조성만 성립하면 정렬된 배열이 없어도 후보 범위를 절반씩 버릴 수 있다(G4의 나머지 반). 조건이 단조가 아니면 절반 버리기가 보장되지 않는다.</li>
+<li>질문 2: 가장 긴 L = 30이고 count_pieces를 7번 불렀다. 후보 범위 [1, 120]의 변화는 mid 61(3개) → hi = 60, 31(8개) → hi = 30, 16(17개) → lo = 16, 23(12개) → lo = 23, 27(10개) → lo = 27, 29(9개) → lo = 29, 30(9개) → lo = 30이다.</li>
+<li>질문 4: lo = 1, hi = 2이면 (lo + hi) // 2 = 1이고 조건이 참일 때 lo = mid = 1이 되어 범위가 줄지 않는다. +1을 하면 mid = 2가 되어 줄어든다. 조건이 참일 때 lo = mid로 mid를 남기기 때문에 올림이 필요하다.</li>
 </ul>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 과제 점검과 밧줄 기록을 정리했어요. 다음 A16에서는 오개념을 점검해요.</p>
+<p class="wrapup"><b>여기까지</b> 과제 점검과 밧줄 기록을 정리했다. 다음 A16에서는 오개념을 점검한다.</p>
 </section>
 <section id="A16" class="sheet lesson">
 <h2>A16 · 오개념 점검과 다음 주<small>3차시 · 3분 · 개인</small></h2>
-<p class="lead">아래 말이 맞는지 틀리는지 판단해 봐요. 맞는 말과 틀린 말이 섞여 있어요.</p>
+<p class="lead">아래 말이 맞는지 틀리는지 판단해 보자. 맞는 말과 틀린 말이 섞여 있다.</p>
 
 <div class="step">
 <h3>오개념 점검 1~3</h3>
-<p>맞다, 틀리다, 조건에 따라 다르다 중 하나를 골라요. 이유는 한 문장으로 써요. 이유에는 활동에서 직접 본 값(T1 결과, A11 표 등)을 하나 이상 넣어요.</p>
+<p>맞다, 틀리다, 조건에 따라 다르다 중 하나를 고르고, 이유를 한 문장으로 쓴다. 이유에는 활동에서 직접 본 값(T1 결과, A11 표 등)을 하나 이상 넣는다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:38%">말</th><th style="width:24%">판단</th><th>이유</th></tr><tr><td class="lab">정렬이 안 된 데이터에도 bisect를 쓸 수 있다.</td><td class="in-cell"><span class="rg" data-key="A16.mis1.v" data-type="radio" data-label="A16 오개념 점검 1 판단"><label><input type="radio" name="r_A16_mis1_v" value="맞다"> 맞다</label><label><input type="radio" name="r_A16_mis1_v" value="틀리다"> 틀리다</label><label><input type="radio" name="r_A16_mis1_v" value="조건에 따라 다르다"> 조건에 따라 다르다</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A16.mis1.why" placeholder="값을 넣은 한 문장" data-label="A16 오개념 점검 1 이유"></textarea></td></tr><tr><td class="lab">정렬된 리스트에서 bisect_left(a, x)가 준 자리에 x를 끼워 넣으면 리스트는 계속 정렬되어 있다.</td><td class="in-cell"><span class="rg" data-key="A16.mis5.v" data-type="radio" data-label="A16 오개념 점검 5 판단"><label><input type="radio" name="r_A16_mis5_v" value="맞다"> 맞다</label><label><input type="radio" name="r_A16_mis5_v" value="틀리다"> 틀리다</label><label><input type="radio" name="r_A16_mis5_v" value="조건에 따라 다르다"> 조건에 따라 다르다</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A16.mis5.why" placeholder="값을 넣은 한 문장" data-label="A16 오개념 점검 5 이유"></textarea></td></tr><tr><td class="lab">찾는 값이 리스트에 없으면 bisect_left와 bisect_right는 쓸모 있는 값을 주지 못한다.</td><td class="in-cell"><span class="rg" data-key="A16.mis2.v" data-type="radio" data-label="A16 오개념 점검 2 판단"><label><input type="radio" name="r_A16_mis2_v" value="맞다"> 맞다</label><label><input type="radio" name="r_A16_mis2_v" value="틀리다"> 틀리다</label><label><input type="radio" name="r_A16_mis2_v" value="조건에 따라 다르다"> 조건에 따라 다르다</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A16.mis2.why" placeholder="값을 넣은 한 문장" data-label="A16 오개념 점검 2 이유"></textarea></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>오개념 점검 4~6</h3>
-<p>같은 방식으로 나머지 세 줄을 써요.</p>
+<p>같은 방식으로 나머지 세 줄을 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:38%">말</th><th style="width:24%">판단</th><th>이유</th></tr><tr><td class="lab">퀵 정렬은 항상 병합 정렬보다 빠르다.</td><td class="in-cell"><span class="rg" data-key="A16.mis3.v" data-type="radio" data-label="A16 오개념 점검 3 판단"><label><input type="radio" name="r_A16_mis3_v" value="맞다"> 맞다</label><label><input type="radio" name="r_A16_mis3_v" value="틀리다"> 틀리다</label><label><input type="radio" name="r_A16_mis3_v" value="조건에 따라 다르다"> 조건에 따라 다르다</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A16.mis3.why" placeholder="값을 넣은 한 문장" data-label="A16 오개념 점검 3 이유"></textarea></td></tr><tr><td class="lab">첫 원소를 피벗으로 한 퀵 정렬은 이미 정렬된 입력에서 병합 정렬보다 훨씬 많이 비교한다.</td><td class="in-cell"><span class="rg" data-key="A16.mis6.v" data-type="radio" data-label="A16 오개념 점검 6 판단"><label><input type="radio" name="r_A16_mis6_v" value="맞다"> 맞다</label><label><input type="radio" name="r_A16_mis6_v" value="틀리다"> 틀리다</label><label><input type="radio" name="r_A16_mis6_v" value="조건에 따라 다르다"> 조건에 따라 다르다</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A16.mis6.why" placeholder="값을 넣은 한 문장" data-label="A16 오개념 점검 6 이유"></textarea></td></tr><tr><td class="lab">이진 탐색은 항상 정렬 비용을 넘어서는 이득이 있다.</td><td class="in-cell"><span class="rg" data-key="A16.mis4.v" data-type="radio" data-label="A16 오개념 점검 4 판단"><label><input type="radio" name="r_A16_mis4_v" value="맞다"> 맞다</label><label><input type="radio" name="r_A16_mis4_v" value="틀리다"> 틀리다</label><label><input type="radio" name="r_A16_mis4_v" value="조건에 따라 다르다"> 조건에 따라 다르다</label></span></td><td class="in-cell"><textarea class="in" rows="2" data-key="A16.mis4.why" data-label="A16 오개념 점검 4 이유"></textarea></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>14주차 도구 목록</h3>
-<p>13주차(DP) 다음에 14주차 알고리즘 문제 해결 수행평가(90분)가 이어져요. 14주차에 쓸 수 있는 도구를 지금까지 배운 것에서 3개 이상 골라 써요.</p>
+<p>13주차(DP)와 14주차 알고리즘 문제 해결 수행평가(90분)가 이어진다. 14주차에서 쓸 수 있는 도구를 지금까지 배운 것에서 골라 3개 이상 쓴다.</p>
 <div class="ans-row"><span class="n" style="white-space:nowrap">도구</span><textarea class="in" rows="3" data-key="A16.tools" placeholder="도구이름(언제 쓰는지), 도구이름(언제 쓰는지), …" data-label="A16 14주차에서 쓸 수 있는 도구 목록"></textarea></div>
 </div>
 
 <div class="step">
 <h3>닫힌 상자와 대조하기</h3>
-<p>위 칸을 먼저 쓰고 나서 상자를 열어요.</p>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 오개념 점검 해설</summary>
+<p>위 칸을 먼저 쓴 뒤 상자를 연다.</p>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 오개념 점검 해설</summary>
 <div class="scroll"><table><tr><th>말</th><th>판정</th><th>근거</th></tr><tr><td>정렬이 안 된 데이터에도 bisect를 쓸 수 있다</td><td>틀리다</td><td>호출은 되지만 정렬 여부를 검사하지 않아 오류 없이 틀린 값을 낸다(T1: UNS에서 10). 전제는 호출하는 쪽의 책임이다.</td></tr><tr><td>bisect_left(a, x)가 준 자리에 끼워 넣으면 계속 정렬되어 있다</td><td>맞다</td><td>그 자리는 처음 x 이상이 나오는 자리이므로 왼쪽은 모두 x 미만, 오른쪽은 모두 x 이상이다.</td></tr><tr><td>값이 없으면 bisect_left와 right는 쓸모 있는 값을 주지 못한다</td><td>틀리다</td><td>없는 값에서도 left = right = 삽입 위치이다(DUP의 4: 4, 4). 이 값이 정렬을 유지한 삽입과 개수 계산(right − left = 0)에 쓰인다.</td></tr><tr><td>퀵 정렬은 항상 병합 정렬보다 빠르다</td><td>틀리다</td><td>정렬된 입력에서 첫 원소 피벗 퀵은 크게 느리다(A5, A11).</td></tr><tr><td>첫 원소 피벗 퀵은 이미 정렬된 입력에서 병합 정렬보다 훨씬 많이 비교한다</td><td>맞다</td><td>정렬된 500개에서 124750 대 2216이다. 피벗이 늘 최솟값이라 한쪽이 비기 때문이다.</td></tr><tr><td>이진 탐색은 항상 정렬 비용을 넘어서는 이득이 있다</td><td>틀리다</td><td>질의가 적거나 데이터가 자주 바뀌면 손해일 수 있다. 질의가 1번뿐이면 선형 탐색이 더 싸다. &ldquo;항상&rdquo;이 틀린 부분이다.</td></tr></table></div>
 </details>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 14주차 도구 목록 예</summary>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 14주차 도구 목록 예</summary>
 <ul>
-<li>13주차는 동적 계획법과 탐욕이에요(&ldquo;부분 문제가 겹친다면?&rdquo;). 14주차는 알고리즘 문제 해결 수행평가(90분)예요.</li>
+<li>13주차는 동적 계획법과 탐욕이다(&ldquo;부분 문제가 겹친다면?&rdquo;). 14주차는 알고리즘 문제 해결 수행평가(90분)이다.</li>
 <li>오늘 배운 도구의 예: bisect_left/right, 구간 개수 세기, 경계(lower/upper bound) 판단, sorted(), 정렬 전제와 질의 횟수를 따져 쓸지 정하는 판단.</li>
 </ul>
 </details>
 </div>
-<p class="wrapup"><b>여기까지</b> 오개념을 점검하고 다음 주를 준비했어요. 모든 활동을 마치면 아래 마무리 정리를 확인해요.</p>
+<p class="wrapup"><b>여기까지</b> 오개념을 점검하고 다음 주를 준비했다. 모든 활동을 마친 뒤 아래 마무리 정리를 확인한다.</p>
 </section>
 <section id="wrapup" class="sheet">
 <h2>마무리 정리<small>모든 활동을 마친 뒤 · 별도 활동 시간 없음</small></h2>
-<details class="learn-box after" id="theory-after"><summary>다 하고 나서 확인 · 정리</summary>
-<p>A12의 일반화 초안과 A16의 오개념 점검을 내 말로 먼저 쓴 다음에 열어요.</p>
+<details class="learn-box after" id="theory-after"><summary>활동을 마친 뒤 확인 · 정리</summary>
+<p>A12에서 일반화 초안을, A16에서 오개념 점검을 내 말로 먼저 쓴 다음에 연다.</p>
 <h3>오늘의 일반화</h3>
 <ul>
-<li>정렬되어 있다는 성질 덕분에 한 번 비교할 때마다 후보 범위의 절반을 통째로 버릴 수 있어요. 그래서 비교 횟수가 N이 아니라 log N에 비례해요. 그러나 정렬되지 않은 입력에서는 오류 없이 빠르게 틀린 답을 내요. 알고리즘의 속도는 입력이 만족해야 하는 전제 조건과 한 쌍으로 이해해요.</li>
-<li>분할 정복 정렬의 비용은 얼마나 고르게 쪼개는지가 결정해요. 병합 정렬은 항상 절반으로 나눠서 입력 순서와 상관없이 O(N log N)이지만, 합칠 때 보조 메모리를 써요. 퀵 정렬은 피벗이 고르게 나누면 평균 O(N log N)이지만, 한쪽으로 치우치면 O(N²)과 깊은 재귀가 돼요.</li>
-<li>값이 여럿이거나 없을 때는 &ldquo;있는가&rdquo;가 아니라 &ldquo;조건이 처음 참이 되는 경계&rdquo;(Lower/Upper Bound)를 찾는 문제로 봐요. 두 경계의 차이로 개수와 구간 빈도를 O(log N)에 구해요. 경계를 포함할지 정하는 방식에 따라 답이 하나씩 틀어져요.</li>
-<li>정렬은 O(N log N)을 한 번 내고, 그 뒤 질의마다 O(log N)을 얻는 선행 투자예요. 질의가 많고 데이터가 고정일수록 이득이고, 질의가 적거나 데이터가 자주 바뀌면 손해일 수 있어요.</li>
+<li>정렬되어 있다는 성질 덕분에 한 번 견줄 때마다 후보 범위의 절반을 통째로 버릴 수 있다. 그래서 비교 횟수가 N이 아니라 log N에 비례한다. 그러나 정렬되지 않은 입력에서는 오류 없이 빠르게 틀린 답을 낸다. 알고리즘의 속도는 입력이 만족해야 하는 전제 조건과 한 쌍으로 이해한다.</li>
+<li>분할 정복 정렬의 비용은 쪼개는 균형이 결정한다. 병합 정렬은 항상 절반으로 나누므로 입력 순서와 무관하게 O(N log N)이지만 합칠 때 보조 메모리를 쓴다. 퀵 정렬은 피벗이 고르게 나누면 평균 O(N log N)이지만 한쪽으로 치우치면 O(N²)과 깊은 재귀가 된다.</li>
+<li>값이 여럿이거나 없을 때는 &ldquo;있는가&rdquo;가 아니라 &ldquo;조건이 처음 참이 되는 경계&rdquo;(Lower/Upper Bound)를 찾는 문제로 본다. 두 경계의 차이로 개수와 구간 빈도를 O(log N)에 구한다. 경계를 포함할지 정하는 방식에 따라 답이 하나씩 틀어진다.</li>
+<li>정렬은 O(N log N)을 한 번 지불해 이후 질의마다 O(log N)을 얻는 선행 투자이다. 질의가 많고 데이터가 고정일수록 이득이고, 질의가 적거나 자주 바뀌면 손해일 수 있다.</li>
 </ul>
 <h3>복잡도 결론</h3>
 <ul>
-<li>이진 탐색과 bisect: O(log N). 하나씩 비교하기: O(N).</li>
+<li>이진 탐색과 bisect: O(log N). 하나씩 견주기: O(N).</li>
 <li>병합 정렬: 항상 O(N log N), 보조 메모리 필요. 퀵 정렬: 평균 O(N log N), 최악 O(N²).</li>
 <li>정렬 뒤 질의 Q번: O(N log N + Q log N).</li>
 </ul>
 <h3>흔한 오개념</h3>
 <ul>
-<li>&ldquo;정렬이 안 된 리스트에 bisect를 쓰면 오류가 난다.&rdquo; 아니에요. 오류 없이 엉뚱한 값을 돌려줘요.</li>
-<li>&ldquo;없는 값을 bisect에 넣으면 오류나 -1이 나온다.&rdquo; 아니에요. Lower와 Upper가 같은 삽입 위치를 줘요.</li>
-<li>&ldquo;퀵 정렬은 언제나 병합 정렬보다 빠르다.&rdquo; 아니에요. 첫 원소를 피벗으로 쓰면 이미 정렬된 입력에서 O(N²)이 돼요.</li>
-<li>&ldquo;항상 정렬한 뒤 이진 탐색이 낫다.&rdquo; 아니에요. 질의가 한 번뿐이거나 데이터가 자주 바뀌면 손해일 수 있어요.</li>
+<li>&ldquo;정렬이 안 된 리스트에 bisect를 쓰면 오류가 난다.&rdquo; 오류 없이 엉뚱한 값을 돌려준다.</li>
+<li>&ldquo;없는 값을 bisect에 넣으면 오류나 -1이 나온다.&rdquo; Lower와 Upper가 같은 삽입 위치를 준다.</li>
+<li>&ldquo;퀵 정렬은 언제나 병합 정렬보다 빠르다.&rdquo; 첫 원소를 피벗으로 쓰면 이미 정렬된 입력에서 O(N²)이 된다.</li>
+<li>&ldquo;항상 정렬한 뒤 이진 탐색이 낫다.&rdquo; 질의가 한 번뿐이거나 데이터가 자주 바뀌면 손해일 수 있다.</li>
 </ul>
 </details>
 </section>

@@ -67,5 +67,5 @@ print(a.index(8))   #=> 1</pre>                       (#=> 뒤는 실행 결과 
 ## 작업 순서
 1. `python inspect_page.py weekNN <파일>` 로 원본 내용과 채점 칸 목록(모범답 포함)을 본다. 모범답은 이해용이고 화면에 넣지 않는다.
 2. `pages/weekNN/<파일>.html` 을 쓴다.
-3. `python build.py` 후 `node verify.mjs weekNN/<파일>` → `OK` 또는 `OK~`(코드 칸 순서만 다름)여야 한다. `XX` 면 메시지(화면에 없음/두 번/원본에 없음)를 보고 고친다.
+3. `python build.py --only weekNN/<파일>` 후 `node verify.mjs weekNN/<파일>` → `OK` 또는 `OK~`(코드 칸 순서만 다름)여야 한다. `XX` 면 메시지(화면에 없음/두 번/원본에 없음)를 보고 고친다.
 4. 다른 파일·`src/`·`build.py`·`verify.mjs`·`AUTHORING.md` 는 고치지 않는다. 부품이 모자라면 있는 부품을 조합한다.

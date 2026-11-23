@@ -1,0 +1,285 @@
+<div class="x-page" hidden data-title="13주차 실습 코드 4부 · 격자 경로와 과제" data-lead="격자 경로 수를 2차원 표로 세고, 과제 코드와 서술을 모아 점검해요.">
+
+<section class="x-act" data-id="A11" data-title="격자 경로 수를 DP로 세기" data-meta="10분 · 개인">
+  <ul class="x-pts"><li>오른쪽·아래로만 가서 도착하는 길이 몇 가지인지 세요.</li></ul>
+
+  <div class="x-screen" data-title="편집기 쓰는 법">
+    <div class="x-cards">
+      <div><b>▶ 실행</b>Ctrl(⌘)+Enter</div>
+      <div><b>____11____</b>채울 자리. 비면 NameError</div>
+      <div><b>다른 NameError</b>아직 실행 안 한 이름</div>
+      <div><b>AssertionError</b>점검 실패. 어느 입력인지 나와요</div>
+    </div>
+    <ul class="x-pts"><li>쪽을 새로 열면 위 편집기부터 다시 실행해요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="작은 격자에서 길 세기">
+    <div class="x-given"><span><b>S</b>출발 (왼쪽 위)</span><span><b>E</b>도착 (오른쪽 아래)</span><span><b>#</b>막힌 칸</span><span><b>이동</b>오른쪽 · 아래만</span></div>
+    <table class="x-trace"><tr><th></th><th>열 0</th><th>열 1</th><th>열 2</th></tr>
+      <tr><th>행 0</th><td>S</td><td>.</td><td>.</td></tr>
+      <tr><th>행 1</th><td>.</td><td>#</td><td>.</td></tr>
+      <tr><th>행 2</th><td>.</td><td>.</td><td>E</td></tr></table>
+    <div class="quiz" data-answer="2">
+      <p class="q">S에서 E까지 길은 몇 가지? (2×2 빈 격자면 2가지)</p>
+      <div class="opts"><button type="button">1가지</button><button type="button">2가지</button><button type="button" data-hint="가운데는 지날 수 없어요.">3가지</button><button type="button" data-hint="가운데는 지날 수 없어요.">4가지</button></div>
+      <p class="why">위·오른쪽 가장자리, 왼쪽·아래 가장자리 두 길.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="칸마다 길의 수 적기">
+    <ul class="x-pts"><li>칸 값 = S에서 그 칸까지 오는 길의 수</li><li>S = 1, 막힌 칸 = 0</li></ul>
+    <table class="x-trace"><tr><th></th><th>열 0</th><th>열 1</th><th>열 2</th></tr>
+      <tr><th>행 0</th><td>1</td><td>1</td><td>1</td></tr>
+      <tr><th>행 1</th><td>1</td><td>0</td><td>1</td></tr>
+      <tr><th>행 2</th><td>1</td><td>?</td><td>2</td></tr></table>
+    <div class="quiz" data-answer="1">
+      <p class="q">? 에 들어갈 값은?</p>
+      <div class="opts"><button type="button">1</button><button type="button" data-hint="위 칸 (1,1)은 0이에요.">2</button><button type="button" data-hint="왼쪽 칸 (2,0)은 1이에요.">0</button></div>
+      <p class="why">위 0 + 왼쪽 1 = 1.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="행마다 새 리스트 만들기">
+    <ul class="x-pts"><li>표 = 리스트의 리스트. 행 R개, 각 행은 칸 C개</li><li>행은 모두 <b>서로 다른</b> 리스트여야 해요 (A10 T3).</li></ul>
+    <pre class="x-code">R, C = 2, 3
+print(dp)      #=> [[1, 0, 0], [0, 0, 0]]  (이렇게 나오면 성공)</pre>
+    <div class="quiz" data-answer="2">
+      <p class="q">빈칸을 채워 실행하면 둘째 행 dp[1] 은?</p>
+      <div class="opts"><button type="button" data-hint="행마다 새 리스트예요.">[1, 0, 0]</button><button type="button">[0, 0, 0]</button></div>
+      <p class="why">1을 쓴 곳은 첫 행뿐이에요.</p>
+    </div>
+    <div class="x-ed" data-starter="A11-p1"></div>
+  </div>
+
+  <div class="x-screen" data-title="GRID 와 채우는 규칙">
+    <div class="x-given"><span><b>GRID</b>4행 5열 · 0 = 통행, 1 = 막힘</span></div>
+    <table class="x-trace"><tr><th></th><th>열 0</th><th>열 1</th><th>열 2</th><th>열 3</th><th>열 4</th></tr>
+      <tr><th>행 0</th><td>S</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
+      <tr><th>행 1</th><td>.</td><td>#</td><td>.</td><td>#</td><td>.</td></tr>
+      <tr><th>행 2</th><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
+      <tr><th>행 3</th><td>#</td><td>.</td><td>#</td><td>.</td><td>E</td></tr></table>
+    <ul class="x-pts"><li>코드 전에 활동지 3부 A11에 설계와 칸별 예측을 써요.</li></ul>
+    <ol class="x-rules">
+      <li class="r1"><b>⑪ 한 행</b><div class="fx"><code>칸 C개, 모두 0</code><span>방금 연습한 식</span></div></li>
+      <li class="r2"><b>⑫ 막힌 칸</b><div class="fx"><code>dp[r][c] = ?</code><span>지나갈 수 없음</span></div></li>
+      <li class="r3"><b>⑬⑭ 두 칸 더하기</b><div class="cases"><div class="c-up"><code>r &gt; 0</code><i>→</i><span>위 칸 값을 더함</span></div><div class="c-dn"><code>c &gt; 0</code><i>→</i><span>왼쪽 칸 값을 더함</span></div></div></li>
+    </ol>
+  </div>
+
+  <div class="x-screen" data-title="grid_paths 코드 (채점)">
+    <ul class="x-pts">
+      <li>⑪⑫ 먼저 → 실행하면 0 (⑬⑭ 가 아직 pass)</li>
+      <li>⑬⑭ 의 pass 를 지우고 더하는 줄을 써요.</li>
+      <li>[✔ 점검] → <b>A11 점검 통과</b></li>
+      <li>실패 메시지: 앞 값 = 내 결과, 뒤 값 = 직접 센 값</li>
+    </ul>
+    <pre class="x-code">def grid_paths(grid):            # 돌려줌: 경로 수
+grid_paths([[0, 0], [0, 0]])     #=> 2
+grid_paths([[1, 0], [0, 0]])     #=> 0   (시작 막힘)</pre>
+    <div class="x-f" data-bind="A11.mycode"></div>
+    <ul class="x-pts"><li>GRID 결과는 활동지 3부 A11 ‘경로 수 실제’ 칸에</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="돌아보며 확인하기">
+    <div class="quiz" data-answer="1">
+      <p class="q">시작 칸 S가 막힌 격자에서 grid_paths 는?</p>
+      <div class="opts"><button type="button">0</button><button type="button" data-hint="출발조차 못해요.">1</button><button type="button" data-hint="이 함수는 −1을 쓰지 않아요.">-1</button></div>
+      <p class="why">출발 칸이 막히면 길이 없어요.</p>
+    </div>
+  </div>
+</section>
+
+<section class="x-act" data-id="assign" data-title="실습 과제 작성 칸" data-meta="A8 착수 · A14 마무리">
+  <ul class="x-pts"><li>제출할 코드 3칸, 서술 3칸을 여기에 모아요.</li></ul>
+
+  <div class="x-screen" data-title="무엇을 만드나">
+    <table class="x-trace">
+      <tr><th>함수</th><th>받는 값</th><th>돌려주는 값</th></tr>
+      <tr><td>min_coins(coins, amount)</td><td>정렬 가정 없음, 1이 없을 수 있음</td><td>최소 동전 개수 · 못 만들면 −1 · 0원은 0</td></tr>
+      <tr><td>grid_paths(grid)</td><td>0/1로 된 R×C 리스트</td><td>경로 수 · 시작/도착 막힘이면 0</td></tr>
+      <tr><td>greedy_counterexample(coins)</td><td>오름차순, 1 포함</td><td>가장 작은 반례 금액 · 없으면 None</td></tr>
+    </table>
+    <ul class="x-pts">
+      <li>반례 검사 범위: 1 ~ 2×가장 큰 동전</li>
+      <li>입력 리스트를 바꾸지 않아요. 정렬은 sorted() 복사본</li>
+      <li>amount 20000에도 RecursionError 없이 (반복문으로)</li>
+    </ul>
+  </div>
+
+  <div class="x-screen" data-title="코드 칸 공통 규칙">
+    <ul class="x-pts">
+      <li>칸마다 함수 하나. 맨 첫 줄은 구현 계획 주석</li>
+      <li>주석에: 상태 정의 + 시간·공간 복잡도와 근거</li>
+      <li>다른 편집기 코드는 <b>복사해 붙여 넣기</b>. [앞 쪽 코드 불러오기]는 칸을 안 채워요.</li>
+      <li>세 칸을 위에서부터 [▶ 실행]해 두면 A14 점검이 불러요.</li>
+    </ul>
+    <pre class="x-code"># 구현 계획: dp[x]는 ~이고, ~번 반복하므로 시간 O( ), 공간 O( ). 까닭 ~</pre>
+  </div>
+
+  <div class="x-screen" data-title="① min_coins (채점)">
+    <ul class="x-pts"><li>1차원 표로 금액마다 최소 동전 개수. A8 dp_coins 를 고쳐요.</li></ul>
+    <pre class="x-code">def min_coins(coins, amount):
+min_coins([1, 3, 4], 6)     #=> 2
+min_coins([5, 7], 3)        #=> -1
+min_coins([1, 3, 4], 0)     #=> 0</pre>
+    <div class="x-f" data-bind="assign.min_coins"></div>
+  </div>
+
+  <div class="x-screen" data-title="② grid_paths (채점)">
+    <ul class="x-pts"><li>2차원 표로 경로 수. A11 코드를 가져와 고쳐요.</li></ul>
+    <pre class="x-code">def grid_paths(grid):
+grid_paths([[0, 0, 0], [0, 0, 0]])   #=> 3
+grid_paths([[0, 0], [0, 1]])         #=> 0   (도착 막힘)</pre>
+    <div class="x-f" data-bind="assign.grid_paths"></div>
+  </div>
+
+  <div class="x-screen" data-title="③ greedy_counterexample (채점)">
+    <ul class="x-pts"><li>큰 동전부터 쓴 개수와 표로 구한 최소 개수를 금액마다 견줘요.</li></ul>
+    <pre class="x-code">def greedy_counterexample(coins):
+greedy_counterexample([1, 3, 4])     #=> 6
+greedy_counterexample([1, 5, 25])    #=> None</pre>
+    <div class="x-f" data-bind="assign.greedy_counterexample"></div>
+  </div>
+
+  <div class="x-screen" data-title="서술 세 칸">
+    <ul class="x-pts"><li>칸마다 1~5문장. 복잡도는 여기 말고 코드 첫 줄 주석에</li><li>1의 동전 체계와 2의 반례는 이어져요.</li></ul>
+    <p class="x-q">1. 내가 설계한 동전 체계<small>체계 + 그렇게 정한 까닭</small></p>
+    <div class="x-f" data-bind="assign.essay.system" data-parts="동전 체계=예: [1, 6, 9]|정한 까닭=예: 큰 동전 두 개가 … 라서"></div>
+    <p class="x-q">2. 반례 증명<small>금액, 두 조합, 각 개수</small></p>
+    <div class="x-f" data-bind="assign.essay.proof" data-parts="금액=예: 12원|큰 동전부터=예: 9+1+1+1 → 4개|최적=예: 6+6 → 2개"></div>
+    <p class="x-q">3. min_coins 설계<small>상태 정의 · 전이 · 초기값</small></p>
+    <div class="x-f" data-bind="assign.essay.dp" data-parts="상태 정의=dp[a]는 ~이다|전이=dp[a]는 ~에서 구한다|초기값=dp[0]은 ~, 나머지는 ~"></div>
+  </div>
+
+  <div class="x-screen" data-title="내기 전 확인">
+    <div class="x-cards">
+      <div><b>제출</b>위 [저장(JSON)] 파일 하나</div>
+      <div><b>확인 1</b>A14 점검 출력 = 기대값</div>
+      <div><b>확인 2</b>입력 리스트를 안 바꿈</div>
+      <div><b>확인 3</b>코드 3칸 + 서술 3칸 다 채움</div>
+    </div>
+    <div class="x-given"><span><b>정확성</b>50</span><span><b>복잡도 분석</b>30</span><span><b>코드 품질</b>20</span></div>
+  </div>
+</section>
+
+<section class="x-act" data-id="A14" data-title="과제 마무리 점검과 회의 선택" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>과제 함수 세 개를 점검하고, 회의 고르는 규칙 세 개를 시험해요.</li></ul>
+
+  <div class="x-screen" data-title="과제 점검 실행 (채점)">
+    <ul class="x-pts">
+      <li>먼저 과제 칸 세 편집기와 A11 편집기(GRID)를 실행해요.</li>
+      <li>출력: min_coins 9줄, grid_paths 8줄, greedy_counterexample 11줄</li>
+    </ul>
+    <pre class="x-code"># 출력 꼴
+min_coins 1 -&gt; …
+grid_paths(200x200) % 1000003 1 -&gt; …
+min_coins 7 -&gt; 3   (입력이 바뀌었다)   # 이 꼬리가 붙으면 입력을 바꾼 것</pre>
+    <div class="x-f" data-bind="A14.check"></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">“min_coins 7 -&gt; 3 (입력이 바뀌었다)” 의 뜻은?</p>
+      <div class="opts"><button type="button">min_coins 가 coins 리스트를 바꿨다</button><button type="button" data-hint="값 3은 기대값과 같아요.">결과 3이 틀렸다</button><button type="button" data-hint="그러면 RecursionError 라고 나와요.">재귀가 너무 깊었다</button></div>
+      <p class="why">[7, 3, 1] 이 호출 뒤 달라졌어요. sorted() 로 복사본을 쓰세요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="점검 기대값 · min_coins">
+    <ul class="x-pts"><li>출력을 얻은 뒤 번호별로 견줘요. 통과 번호는 활동지 3부 A14에</li></ul>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>#</th><th>입력<small>(coins, amount)</small></th><th>기대값</th></tr>
+      <tr><td>1</td><td>([1, 3, 4], 6)</td><td>2</td></tr>
+      <tr><td>2</td><td>([1, 3, 4], 0)</td><td>0</td></tr>
+      <tr><td>3</td><td>([5, 7], 3)</td><td>-1</td></tr>
+      <tr><td>4</td><td>([2], 7)</td><td>-1</td></tr>
+      <tr><td>5</td><td>([1, 5, 10, 20, 25], 40)</td><td>2</td></tr>
+      <tr><td>6</td><td>([1, 4, 6], 9)</td><td>3</td></tr>
+      <tr><td>7</td><td>([7, 3, 1], 11) 정렬 안 됨</td><td>3 · coins 그대로</td></tr>
+      <tr><td>8</td><td>([1, 7, 13, 29, 101], 20000)</td><td>200 · RecursionError 없이</td></tr>
+      <tr><td>9</td><td>([1, 5, 12, 24, 60], 30000)</td><td>500</td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="점검 기대값 · 나머지 둘">
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>#</th><th>grid_paths 입력</th><th>기대값</th></tr>
+      <tr><td>1</td><td>[[0,0,0],[0,0,0]]</td><td>3</td></tr>
+      <tr><td>2</td><td>[[1]] 시작 막힘</td><td>0</td></tr>
+      <tr><td>3</td><td>[[0]]</td><td>1</td></tr>
+      <tr><td>4</td><td>[[0,1],[1,0]]</td><td>0</td></tr>
+      <tr><td>5</td><td>[[0,0],[0,1]] 도착 막힘</td><td>0</td></tr>
+      <tr><td>6</td><td>GRID</td><td>5</td></tr>
+      <tr><td>7</td><td>12×12 전부 0</td><td>705432</td></tr>
+      <tr><td>8</td><td>200×200 무늬</td><td>% 1000003 = 343125</td></tr>
+    </table></div>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>#</th><th>greedy_counterexample 입력</th><th>기대값</th></tr>
+      <tr><td>1</td><td>[1, 3, 4]</td><td>6</td></tr>
+      <tr><td>2</td><td>[1, 4, 6]</td><td>8</td></tr>
+      <tr><td>3</td><td>[1, 5, 10, 20, 25]</td><td>40</td></tr>
+      <tr><td>4</td><td>[1, 5, 6, 9]</td><td>11</td></tr>
+      <tr><td>5</td><td>[1, 3, 4, 10]</td><td>6</td></tr>
+      <tr><td>6</td><td>[1, 7, 10]</td><td>14</td></tr>
+      <tr><td>7</td><td>[1, 5, 12]</td><td>15</td></tr>
+      <tr><td>8~11</td><td>[1,5,25] · [1,10,50,100,500] · [1,5,10,25] · [1]</td><td>None</td></tr>
+    </table></div>
+    <ul class="x-pts"><li>None = 범위 안에 반례 없음 (증명은 아님)</li><li>다르면 상태·전이·초기값 중 어디인지 따져 고쳐요.</li></ul>
+  </div>
+
+  <div class="x-screen" data-title="반복 횟수 세어 보기">
+    <div class="quiz predict" data-answer="1">
+      <p class="q">한 겹 반복: n이 10 → 20 → 40이면 count는?</p>
+      <div class="opts"><button type="button">거의 두 배씩</button><button type="button">네 배씩</button><button type="button">변하지 않음</button></div>
+      <p class="why">실행해서 확인해요.</p>
+    </div>
+    <div class="x-ed" data-starter="A14-p1"></div>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">두 겹 반복: R, C를 모두 두 배로 하면 count는?</p>
+      <div class="opts"><button type="button">2배</button><button type="button">4배</button><button type="button">8배</button></div>
+      <p class="why">내 min_coins, grid_paths 안쪽 줄 횟수를 amount·동전 수·R·C로 말해 주석에 옮겨요.</p>
+    </div>
+    <div class="x-ed" data-starter="A14-p2"></div>
+  </div>
+
+  <div class="x-screen" data-title="작은 회의 고르기">
+    <div class="x-given"><span><b>회의</b>(시작, 끝)</span><span><b>규칙</b>끝 = 다음 시작이면 안 겹침</span></div>
+    <ul class="x-tree"><li><span>(1, 3) <em>1 ~ 3</em></span></li><li><span>(2, 4) <em>2 ~ 4</em></span></li><li><span>(3, 5) <em>3 ~ 5</em></span></li></ul>
+    <div class="quiz" data-answer="2">
+      <p class="q">겹치지 않게 최대 몇 개?</p>
+      <div class="opts"><button type="button">1개</button><button type="button">2개</button><button type="button" data-hint="(2, 4)는 둘 다와 겹쳐요.">3개</button></div>
+      <p class="why">(1, 3) 다음 (3, 5).</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="정렬 기준 바꿔 보기">
+    <div class="x-cards"><div><b>sorted(목록, key=…)</b>key 값이 작은 것부터</div><div><b>lambda m: m[0]</b>회의 m의 시작 시각</div></div>
+    <div class="quiz predict" data-answer="2">
+      <p class="q">[(3, 5), (1, 6), (2, 4)] 를 끝 순(m[1])으로 늘어놓으면 맨 앞은?</p>
+      <div class="opts"><button type="button">(1, 6)</button><button type="button">(2, 4)</button><button type="button">(3, 5)</button></div>
+      <p class="why">실행해서 확인해요.</p>
+    </div>
+    <ul class="x-pts"><li>마지막 줄 ____ 에 짧은 회의 순 식을 써요. 채우기 전 NameError 는 정상</li></ul>
+    <div class="x-ed" data-starter="A14-p3"></div>
+  </div>
+
+  <div class="x-screen" data-title="max_meetings 코드 (채점)">
+    <div class="x-given"><span><b>MEET</b>회의 11개 (편집기에 있음)</span><span><b>[시작, 끝)</b>끝 = 시작이면 이어 쓰기 가능</span></div>
+    <ul class="x-pts">
+      <li><b>⑮</b> 정렬 기준. 처음엔 규칙 ① 시작 순 <code>m[0]</code></li>
+      <li><b>⑯</b> 새 회의가 앞 선택과 겹치지 않는 조건 (s, last_end 사용)</li>
+    </ul>
+    <pre class="x-code">def max_meetings(meets):         # 돌려줌: 고른 회의 수
+max_meetings([(1, 3), (2, 4), (3, 5)])   # 규칙 ③ 끝 순이면 #=> 2
+# 출력 꼴
+내 규칙의 선택 수: …  모든 경우를 따진 최댓값: …</pre>
+    <div class="x-f" data-bind="A14.mycode"></div>
+  </div>
+
+  <div class="x-screen" data-title="규칙 세 개 견주기">
+    <ol class="x-rules">
+      <li class="r1"><b>① 시작 순</b><div class="fx"><code>m[0]</code></div></li>
+      <li class="r2"><b>② 짧은 회의 순</b><div class="fx"><code>m[1] - m[0]</code></div></li>
+      <li class="r3"><b>③ 끝 순</b><div class="fx"><code>m[1]</code></div></li>
+    </ol>
+    <ul class="x-pts"><li>⑮를 바꿔 가며 실행 → 두 숫자가 같은지 봐요.</li><li>같아도 증명은 아니에요. 결과는 활동지 3부 A14 (나) 표에</li></ul>
+  </div>
+</section>
+</div>

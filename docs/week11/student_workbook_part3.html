@@ -17,21 +17,259 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
+<div class="x-page" hidden data-title="11주차 활동지 3부 · 섬 세기와 일반화" data-lead="섬의 개수를 세고, 오늘 배운 탐색을 한 문장으로 묶어 새 문제에 써 봐요.">
+
+<!-- ========== A10 ========== -->
+<section class="x-act" data-id="A10" data-title="섬의 개수: 예측과 실제" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>실습 코드 3부 A10과 함께 써요.</li><li>예측 칸은 <b>실행하기 전에</b> 먼저 써요.</li></ul>
+
+  <div class="x-screen" data-title="섬이란?">
+    <div class="x-cards">
+      <div><b>ISLE</b>6행 7열 격자, 1 = 땅 · 0 = 바다</div>
+      <div><b>섬</b>상하좌우(4방향)로 이어진 땅 덩어리</div>
+      <div><b>대각선</b>4방향 규칙에서는 이어진 것이 아님</div>
+    </div>
+    <div class="x-arr mini" data-label="0행" data-v="1,1,0,0,0,1,0" data-noidx data-cls="0-1:done,5:done"></div>
+    <div class="x-arr mini" data-label="1행" data-v="1,1,0,0,0,1,1" data-noidx data-cls="0-1:done,5-6:done"></div>
+    <div class="x-arr mini" data-label="2행" data-v="0,0,1,0,0,0,0" data-noidx data-cls="2:done"></div>
+    <div class="x-arr mini" data-label="3행" data-v="0,0,0,1,1,0,0" data-noidx data-cls="3-4:done"></div>
+    <div class="x-arr mini" data-label="4행" data-v="1,0,0,0,1,0,0" data-noidx data-cls="0:done,4:done"></div>
+    <div class="x-arr mini" data-label="5행" data-v="1,0,0,0,0,0,1" data-noidx data-cls="0:done,6:done"></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">(1,1)과 (2,2)는 대각선으로 맞닿아요. 4방향 규칙에서 같은 섬인가요?</p>
+      <div class="opts"><button type="button" data-hint="상하좌우만 이웃이에요.">같은 섬</button><button type="button">다른 섬</button></div>
+      <p class="why">대각선은 4방향 이웃이 아니에요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="예측-실제 표">
+    <div class="x-arr mini" data-label="0행" data-v="1,1,0,0,0,1,0" data-noidx data-cls="0-1:done,5:done"></div>
+    <div class="x-arr mini" data-label="1행" data-v="1,1,0,0,0,1,1" data-noidx data-cls="0-1:done,5-6:done"></div>
+    <div class="x-arr mini" data-label="2행" data-v="0,0,1,0,0,0,0" data-noidx data-cls="2:done"></div>
+    <div class="x-arr mini" data-label="3행" data-v="0,0,0,1,1,0,0" data-noidx data-cls="3-4:done"></div>
+    <div class="x-arr mini" data-label="4행" data-v="1,0,0,0,1,0,0" data-noidx data-cls="0:done,4:done"></div>
+    <div class="x-arr mini" data-label="5행" data-v="1,0,0,0,0,0,1" data-noidx data-cls="0:done,6:done"></div>
+    <ul class="x-pts"><li><b>예측</b> = 실행 전에 짐작한 개수 · <b>실제</b> = 실행한 뒤 나온 개수</li><li>4번 줄은 선택이에요. 안 하면 비워요.</li></ul>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>줄<small>실습 코드의 걸음</small></th><th>예측<small>섬 개수, 숫자</small></th><th>실제<small>섬 개수, 숫자</small></th></tr>
+      <tr class="x-ex"><td>예: 다른 격자</td><td>3</td><td>3</td></tr>
+      <tr><td>1. 손으로 센 섬 (2걸음)</td><td><span class="x-f" data-bind="A10.pred.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r1.c2" data-ph="숫자"></span></td></tr>
+      <tr><td>2. count_islands(ISLE) (4걸음)</td><td><span class="x-f" data-bind="A10.pred.r2.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r2.c2" data-ph="숫자"></span></td></tr>
+      <tr><td>3. 꺼내는 줄을 pop()으로 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r3.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r3.c2" data-ph="숫자"></span></td></tr>
+      <tr class="opt"><td>4. (선택) 대각선 8방향 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r4.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A10.pred.r4.c2" data-ph="안 쓰면 비움"></span></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="seen에는 무엇이 남을까">
+    <div class="x-cards"><div><b>seen</b>이미 본 칸을 모아 두는 집합</div><div><b>바깥 반복</b>격자를 왼쪽 위부터 훑으며 새 섬 시작점을 찾음</div></div>
+    <div class="quiz" data-answer="1">
+      <p class="q">섬 하나를 다 방문하면 seen에는 무엇이 남아 있을까요?</p>
+      <div class="opts"><button type="button">그 섬의 모든 땅 칸</button><button type="button" data-hint="이웃 칸도 넣을 때 표시해요.">시작 칸만</button><button type="button" data-hint="seen은 비우지 않아요.">아무것도 없다</button></div>
+      <p class="why">그래서 이어진 칸을 다시 시작점으로 삼지 않고 섬마다 한 번만 세요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="꺼내는 줄 바꾸기">
+    <pre class="x-code">node = todo.popleft()   # 큐: 맨 앞에서 꺼냄
+node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
+    <div class="x-given"><span><b>A2 큐 규칙</b>앞에서 꺼냄</span><span><b>A2 스택 규칙</b>위에서 꺼냄</span></div>
+    <p class="x-q">pop()으로 바꾼 뒤 개수가 달라졌나요?<small>2문장: 바뀐 것 / 그대로인 것</small></p>
+    <div class="x-f" data-bind="A10.q2" data-parts="바뀐 것=예: 출력 줄 수가 바뀌었다|그대로인 것=예: 걸린 시간은 그대로였다"></div>
+    <p class="x-q">explore가 A2의 두 규칙과 다른 한 줄은?<small>2문장: 어느 줄 / 그 한 줄로 BFS도 DFS도 되는 까닭</small></p>
+    <div class="x-f" data-bind="A10.q4" data-parts="다른 한 줄=예: 이웃을 넣는 for 줄|까닭=예: 나머지 줄이 … 이므로"></div>
+  </div>
+
+  <div class="x-screen" data-title="4방향과 8방향, 어느 쪽이 정답?">
+    <div class="x-cards"><div><b>4방향</b>상하좌우만 이웃</div><div><b>8방향</b>대각선 4칸도 이웃</div><div><b>DIRS</b>코드의 방향 목록</div></div>
+    <div class="x-arr mini" data-label="ISLE 1행 1~3열" data-v="1,0,0" data-noidx data-cls="0:hit"></div>
+    <div class="x-arr mini" data-label="ISLE 2행 1~3열" data-v="0,1,0" data-noidx data-cls="1:hit"></div>
+    <div class="x-arr mini" data-label="ISLE 3행 1~3열" data-v="0,0,1" data-noidx data-cls="2:hit"></div>
+    <ul class="x-pts"><li>(1,1) · (2,2) · (3,3) 이 대각선으로만 맞닿아요.</li></ul>
+    <p class="x-q">어느 쪽이 정답인가요?<small>3문장 이내: 입장 / 근거 / 코드에서 바뀐 것</small></p>
+    <div class="x-f" data-bind="A10.q5" data-parts="입장=예: 4방향이 정답이다|근거=예: 섬은 원래 … 이므로|바뀐 것=예: 탐색 함수 이름"></div>
+  </div>
+</section>
+
+<!-- ========== A11 ========== -->
+<section class="x-act" data-id="A11" data-title="일반화 초안 카드" data-meta="4분 · 개인">
+  <ul class="x-pts"><li>여러 사례에 두루 맞는 한 문장(일반화)을 써요.</li></ul>
+
+  <div class="x-screen" data-title="일반화란?">
+    <div class="x-cards"><div><b>일반화</b>개념 + 개념 + 관계 한 문장</div><div><b>개념어</b>그래프, 격자, 노드, 큐처럼 두루 쓰는 말</div><div><b>사례 이름</b>G1, MAZE, ISLE 같은 하나의 이름</div></div>
+    <div class="x-given"><span><b>가</b>“우리 교실 선인장은 물을 안 줘서 시들었다.”</span><span><b>나</b>“식물은 물이 모자라면 시든다.”</span></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">일반화는?</p>
+      <div class="opts"><button type="button" data-hint="‘교실 선인장’은 사례 이름이에요.">(가)</button><button type="button">(나)</button></div>
+      <p class="why">(나)는 개념어(식물, 물)와 관계로만 썼어요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="주제 고르고 초안 쓰기">
+    <ul class="x-pts"><li>A1~A10에서 생각이 가장 크게 바뀐 주제 하나</li><li>사례 이름 대신 개념어로</li></ul>
+    <div class="x-f" data-bind="A11.topic"></div>
+    <p class="x-q">내 일반화 초안<small>개념 + 개념 + 관계, 한 문장</small></p>
+    <div class="x-f" data-bind="A11.draft" data-ph="예: 그래프에서 노드를 … 하면 … 이 된다"></div>
+  </div>
+
+  <div class="x-screen" data-title="반례 찾기">
+    <ul class="x-pts"><li>‘미로’나 사례 이름을 지워도 말이 되나요?</li><li>소문 전파·섬·물통 퍼즐에도 통하나요?</li><li><b>반례</b> = 내 문장이 맞지 않는 사례</li></ul>
+    <p class="x-q">점검 결과<small>1~2문장. 반례가 없으면 ‘반례 없음’</small></p>
+    <div class="x-f" data-bind="A11.check" data-ph="예: 소문 전파에서는 … 라서 맞지 않는다 / 반례 없음"></div>
+  </div>
+</section>
+
+<!-- ========== A12 ========== -->
+<section class="x-act" data-id="A12" data-title="정제 시트와 구별 기준표" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>초안을 더 정확하게 다듬고(정제), BFS와 DFS를 고르는 기준을 세워요.</li></ul>
+
+  <div class="x-screen" data-title="두 주제 다시 쓰기">
+    <div class="x-given"><span><b>빼기</b>G1, H, MAZE, ISLE</span><span><b>쓰기</b>그래프, 격자, 노드, 큐</span></div>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>주제</th><th>정제한 문장<small>개념어로 바꾼 한 문장</small></th></tr>
+      <tr class="x-ex"><td>예: 방문 표시</td><td>노드를 넣을 때 표시하면 같은 노드가 두 번 들어가지 않는다.</td></tr>
+      <tr><td>1. 탐색 틀과 꺼내는 규칙</td><td class="wide"><span class="x-f" data-bind="A12.team.r1.c1" data-ph="예: 탐색은 … 이고, 꺼내는 규칙이 … 를 정한다"></span></td></tr>
+      <tr><td>2. 최단 거리</td><td class="wide"><span class="x-f" data-bind="A12.team.r2.c1" data-ph="예: 큐는 … 하므로 …, 스택은 …"></span></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="점검하기">
+    <div class="quiz" data-answer="2">
+      <p class="q">사례 이름이라 개념어로 바꿔야 하는 말은?</p>
+      <div class="opts"><button type="button" data-hint="큐는 여러 곳에 쓰는 말이에요.">큐</button><button type="button">MAZE</button><button type="button" data-hint="노드는 개념어예요.">노드</button></div>
+      <p class="why">MAZE는 미로 하나의 이름이에요.</p>
+    </div>
+    <ul class="x-pts"><li>내 문장에 해당하면 체크해요.</li></ul>
+    <div class="x-f" data-bind="A12.chk1">사례 이름을 개념어로 바꿨다</div>
+    <div class="x-f" data-bind="A12.chk2">“개념 + 개념 + 관계” 형태이다</div>
+    <div class="x-f" data-bind="A12.chk3">문장에서 “미로”를 지울 수 있다</div>
+  </div>
+
+  <div class="x-screen" data-title="목적에 따라 고르기">
+    <div class="x-given"><span><b>선택</b>BFS / DFS / 둘 다 가능 중 하나</span><span><b>근거</b>A4·A9·A10 값으로 한 문장</span></div>
+    <div class="x-scroll"><table class="x-trace">
+      <tr><th>목적</th><th>선택<small>셋 중 하나</small></th><th>근거<small>한 문장</small></th></tr>
+      <tr class="x-ex"><td>예: 이어져 있는지만</td><td>둘 다 가능</td><td>길이는 묻지 않으므로</td></tr>
+      <tr><td>걸음 수가 가장 적은 길</td><td><span class="x-f" data-bind="A12.crit.r1.c1" data-ph="예: DFS"></span></td><td class="wide"><span class="x-f" data-bind="A12.crit.r1.c2" data-ph="예: A9에서 … 였으므로"></span></td></tr>
+      <tr><td>연결된 구역의 개수</td><td><span class="x-f" data-bind="A12.crit.r2.c1" data-ph="예: BFS"></span></td><td class="wide"><span class="x-f" data-bind="A12.crit.r2.c2" data-ph="예: A10에서 … 였으므로"></span></td></tr>
+    </table></div>
+  </div>
+
+  <div class="x-screen" data-title="정리 문장과 대조하기">
+    <ul class="x-pts"><li>선생님이 보여 주는 정리 문장 G1~G4와 내 문장을 견줘요.</li><li>베끼지 말고 내 문장에서 고칠 점만 찾아요.</li></ul>
+    <div class="x-cards">
+      <div><b>G1 탐색 틀</b>이웃 꺼내기 + visited, 꺼내는 규칙이 순서를 정함</div>
+      <div><b>G2 최단 거리</b>큐만 처음 도착한 길이 최단</div>
+      <div><b>G3 연결 요소</b>순서가 개수를 바꾸지 않음</div>
+      <div><b>G4 구현 선택</b>재귀 깊이 한계, deque 비용</div>
+    </div>
+    <p class="x-q">대조 뒤 내 문장에서 고칠 점<small>1문장. 없으면 ‘없음’</small></p>
+    <div class="x-f" data-bind="A12.cmp.fix" data-ph="예: 최단 거리 문장에 … 을 넣는다 / 없음"></div>
+  </div>
+</section>
+
+<!-- ========== A13 ========== -->
+<section class="x-act" data-id="A13" data-title="과제 점검표와 새 문제의 상태 정의" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>실습 코드 3부 A13 점검 결과를 적고, 새 문제를 탐색 틀로 바꿔요.</li></ul>
+
+  <div class="x-screen" data-title="점검표">
+    <ul class="x-pts"><li>실습 코드 A13 점검을 돌린 뒤 해당하면 체크해요.</li></ul>
+    <div class="x-f" data-bind="A13.chk1">내 세 함수가 A13 점검 코드를 실행해 모두 통과했다</div>
+    <div class="x-f" data-bind="A13.chk2">코드를 고치지 않고 새 입력에서도 통과했다</div>
+    <div class="x-f" data-bind="A13.chk3">물통 퍼즐의 상태 정의 카드를 썼다(NUM은 선택)</div>
+    <p class="x-q">통과 못 한 항목 번호와 원인<small>모두 통과면 ‘없음’ + 통과 전에 고친 곳</small></p>
+    <div class="x-f" data-bind="A13.fail" data-ph="예: 8번, 기본 인자 seen=set() 때문 / 없음"></div>
+  </div>
+
+  <div class="x-screen" data-title="상태와 이웃 상태">
+    <div class="x-cards"><div><b>상태</b>문제의 한 순간을 나타내는 값</div><div><b>이웃 상태</b>허용된 동작 한 번 뒤의 상태</div></div>
+    <div class="x-given"><span><b>NUM 상태</b>수 n (1~100)</span><span><b>이웃</b>n+1, n×2 (100 이하)</span><span><b>시작</b>3</span><span><b>목표</b>14</span></div>
+    <ul class="x-tree"><li><span>3</span><ul><li><span>4</span><ul><li><span>5</span></li><li><span>8</span></li></ul></li><li><span>6</span><ul><li><span>?</span></li><li><span>?</span></li></ul></li></ul></li></ul>
+    <div class="quiz" data-answer="2">
+      <p class="q">6의 이웃 상태는?</p>
+      <div class="opts"><button type="button" data-hint="+1 과 ×2 를 해요.">5, 12</button><button type="button">7, 12</button><button type="button" data-hint="6×2 를 다시 계산해 봐요.">7, 8</button></div>
+      <p class="why">6+1 = 7, 6×2 = 12.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="상태를 두 수로 적기">
+    <div class="x-given"><span><b>a</b>3L 통의 물</span><span><b>b</b>5L 통의 물</span><span><b>상태</b>(a, b)</span></div>
+    <div class="x-flow"><span>(0, 0)</span><span>(3, 0) 또는 (0, 5)</span></div>
+    <div class="quiz" data-answer="2">
+      <p class="q">(3, 2)에서 3L 통을 비우면?</p>
+      <div class="opts"><button type="button" data-hint="5L 통은 그대로예요.">(0, 0)</button><button type="button">(0, 2)</button><button type="button" data-hint="비운 건 3L 통이에요.">(3, 0)</button></div>
+      <p class="why">3L 통만 0이 돼요.</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="물통 퍼즐 상태 정의 카드">
+    <div class="x-given"><span><b>통</b>3L 하나, 5L 하나</span><span><b>동작</b>채우기 · 비우기 · 다른 통으로 옮기기</span><span><b>질문</b>한 통에 정확히 4L?</span></div>
+    <ul class="x-pts"><li>코드 없이 말로 네 가지를 써요.</li></ul>
+    <div class="x-f" data-bind="A13.state" data-parts="(1) 상태=예: (a, b) 는 …|(2) 이웃 상태 예=예: (0,0) → …|(3) 시작과 목표=예: 시작 …, 목표 …|(4) BFS/DFS와 까닭=예: DFS, 왜냐하면 …"></div>
+  </div>
+
+  <div class="x-screen" data-title="(선택 · 집에서) NUM 결과">
+    <div class="x-given"><span><b>시작</b>3</span><span><b>목표</b>14</span><span><b>동작</b>+1, ×2</span></div>
+    <ul class="x-pts"><li>안 풀었으면 첫 칸에 ‘안 함’.</li></ul>
+    <div class="x-line">최소 연산 횟수 <span class="x-f" data-bind="A13.num.ops" data-w="s" data-ph="숫자 / 안 함"></span></div>
+    <div class="x-line">그때의 경로 <span class="x-f" data-bind="A13.num.path" data-w="l" data-ph="예: 2 → 4 → 5"></span></div>
+  </div>
+</section>
+
+<!-- ========== A15 ========== -->
+<section class="x-act" data-id="A15" data-title="오개념 점검과 다음 주 잇기" data-meta="4분 · 개인">
+  <ul class="x-pts"><li>틀린 말을 가려내고 다음 주와 이어 봐요.</li></ul>
+
+  <div class="x-screen" data-title="네 문장 판단 (1)">
+    <div class="quiz" data-answer="2">
+      <p class="q">“DFS도 처음 찾은 길이 최단이다.”</p>
+      <div class="opts"><button type="button" data-hint="A9 MAZE에서 DFS와 BFS 길이를 떠올려요.">맞다</button><button type="button">아니다</button></div>
+      <p class="why">MAZE에서 DFS 14, BFS 10이었어요(A9).</p>
+    </div>
+    <div class="quiz" data-answer="1">
+      <p class="q">“섬의 개수는 꺼내는 줄을 pop()으로 바꿔도 6으로 같다.”</p>
+      <div class="opts"><button type="button">맞다</button><button type="button" data-hint="바뀐 것은 방문 순서뿐이었어요.">아니다</button></div>
+      <p class="why">popleft든 pop이든 6(A10).</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="네 문장 판단 (2)">
+    <div class="quiz" data-answer="2">
+      <p class="q">“재귀는 항상 안전하다.”</p>
+      <div class="opts"><button type="button" data-hint="A8 T3의 1×1500 격자를 떠올려요.">맞다</button><button type="button">아니다</button></div>
+      <p class="why">1×1500에서 RecursionError(A8 T3).</p>
+    </div>
+    <div class="quiz" data-answer="1">
+      <p class="q">“MAZE에서 BFS가 처음 도착한 길은 10걸음이고, 더 짧은 길은 없다.”</p>
+      <div class="opts"><button type="button">맞다</button><button type="button" data-hint="BFS는 가까운 칸부터 다 봐요.">아니다</button></div>
+      <p class="why">BFS는 같은 걸음 수를 다 본 뒤 나아가요(A9).</p>
+    </div>
+  </div>
+
+  <div class="x-screen" data-title="12·13주차로 잇기">
+    <div class="x-cards"><div><b>12주차</b>정렬과 이진 탐색</div><div><b>13주차</b>같은 상태 결과 기억하기, 매 순간 최선 고르기</div></div>
+    <div class="x-given"><span><b>오늘의 틀</b>상태 · 이웃 · visited · 꺼내는 규칙</span><span><b>A13</b>같은 수 6을 두 길로 만남</span></div>
+    <p class="x-q">틀이 다음 주에 쓰일 곳, 또는 궁금한 점<small>1~2문장</small></p>
+    <div class="x-f" data-bind="A15.next" data-ph="예: 이진 탐색도 … 로 볼 수 있는지 궁금하다"></div>
+  </div>
+</section>
+</div>
+
+
 <div class="wrap">
 <header>
   <div class="prompt">&gt;&gt;&gt; workbook.week(11)  # 학생용 · 탐구 활동지 3부 A10~A15</div>
   <h1>11주차 탐구 활동지 3부 — 섬의 개수, 일반화, 전이 (A10~A15)</h1>
-  <p class="lead">3차시에 써요. 예측 칸은 실행하기 전에 먼저 써요. 일반화 문장은 내 말로 먼저 쓰고, 그다음 닫힌 상자와 비교해요.</p><p class="meta"><span>제출하지 않고 스스로 공부하는 활동지예요. 쓴 내용은 이 브라우저에 자동으로 저장돼요.</span></p>
+  <p class="lead">3차시에 사용한다. 예측 칸은 실행하기 전에 먼저 쓰고, 일반화 문장은 내 말로 먼저 쓴 뒤 닫힌 상자와 비교한다.</p><p class="meta"><span>제출하지 않고 스스로 학습하는 활동지이다. 쓴 내용은 이 브라우저에 자동으로 보관된다.</span></p>
 </header>
 <nav><a href="#A10">A10</a><a href="#A11">A11</a><a href="#A12">A12</a><a href="#A13">A13</a><a href="#A15">A15</a><a href="index.html">목록</a></nav>
 
 <section id="A10" class="sheet lesson">
 <h2>A10 · 섬의 개수: 예측-실제 표<small>3차시 · 12분 · 개인</small></h2>
-<p class="lead">실습 코드 <a class="xlink" href="student_code_lab_part3.html#A10">3부 A10</a>과 함께 써요. 예측 칸은 실행하기 전에 먼저 써요.</p>
+<p class="lead">실습 코드 <a class="xlink" href="student_code_lab_part3.html#A10">3부 A10</a>과 함께 쓴다. 예측 칸은 실행하기 전에 먼저 쓴다.</p>
 
 <div class="step">
 <h3>예측-실제 표 채우기</h3>
-<p>ISLE(<code class="i">1</code>이 땅, 6행 7열)에 섬이 몇 개인지, 코드를 쓰기 전에 1줄 &lsquo;예측&rsquo;에 써요. 나머지 줄은 실행하기 전에 예측을 쓰고, 실행한 뒤 &lsquo;실제&rsquo;를 써요.</p>
+<p>ISLE(<code class="i">1</code>이 땅, 6행 7열)의 섬이 몇 개인지 코드를 쓰기 전에 1줄 &lsquo;예측&rsquo;에 쓴다. 나머지 줄은 실행하기 전에 예측을 쓰고, 실행한 뒤 &lsquo;실제&rsquo;를 쓴다.</p>
 <pre class="fig">1100010
 1100011
 0010000
@@ -44,22 +282,22 @@
 <div class="step">
 <h3>정리 질문</h3>
 <div class="quiz" data-answer="1">
-<p class="q">섬 하나를 다 방문하고 나면 <code class="i">seen</code>에는 무엇이 남아 있을까요?</p>
+<p class="q">섬 하나를 다 방문하고 나면 <code class="i">seen</code>에는 무엇이 남아 있을까?</p>
 <div class="opts"><button type="button">그 섬의 모든 땅 칸</button><button type="button" data-hint="시작 칸만 남으면 이어진 다른 칸이 다시 새 섬의 시작점이 된다.">시작 칸만</button><button type="button" data-hint="seen은 explore가 칠할 때마다 채워진다. 비워지지 않는다.">아무것도 없다</button></div>
-<p class="why">그래서 바깥 반복이 이어진 칸을 다시 시작점으로 삼지 않아요. 섬마다 한 번만 세요.</p>
+<p class="why">그래서 바깥 반복이 이어진 칸을 다시 시작점으로 삼지 않고, 섬마다 한 번만 센다.</p>
 </div>
-<p class="qtext">1. 꺼내는 줄을 <code class="i">pop()</code>으로 바꾼 뒤 개수가 달라졌나요? 바뀐 것과 그대로인 것을 써요.</p>
+<p class="qtext">1. 꺼내는 줄을 <code class="i">pop()</code>으로 바꾼 뒤 개수가 달라졌는가? 바뀐 것과 그대로인 것을 쓴다.</p>
 <div class="ans-row"><span class="n">1</span><textarea placeholder="2문장. 개수가 달라졌는지, 바뀐 것과 그대로인 것" class="in" rows="3" data-key="A10.q2" data-label="A10 꺼내는 줄을 바꾼 뒤 개수가 달라졌는가 무엇이 바뀌었고 무엇이 그대로인가"></textarea></div>
-<p class="qtext">2. <code class="i">explore</code>는 A2의 큐 규칙·스택 규칙과 딱 한 줄만 달라요. 어느 줄인가요? 그 한 줄로 DFS도 BFS도 되는 까닭은?</p>
+<p class="qtext">2. <code class="i">explore</code>는 A2의 큐 규칙·스택 규칙과 어느 한 줄만 다르다. 어느 줄이며, 그 한 줄로 DFS도 BFS도 되는 까닭은?</p>
 <div class="ans-row"><span class="n">2</span><textarea placeholder="2문장. 다른 한 줄, 그 한 줄로 두 탐색이 되는 까닭" class="in" rows="2" data-key="A10.q4" data-label="A10 이 코드에서 A2의 두 규칙과 비교해 한 줄만 다른 곳"></textarea></div>
-<p class="qtext">3. 대각선으로 맞닿은 땅도 이웃으로 보면 섬의 개수가 달라질 수 있어요. 4방향과 8방향 중 어느 쪽이 &lsquo;정답&rsquo;일까요? 내 입장과 근거, 바뀐 것을 써요.</p>
+<p class="qtext">3. 대각선으로 맞닿은 땅도 이웃으로 보면 섬의 개수가 달라질 수 있다. 4방향과 8방향 중 어느 쪽이 &lsquo;정답&rsquo;인가? 입장과 근거, 바뀐 것을 쓴다.</p>
 <div class="ans-row"><span class="n">3</span><textarea placeholder="3문장 이내. 입장, 근거, 바뀐 것" class="in" rows="3" data-key="A10.q5" data-label="A10 대각선 이웃을 인정할 때 섬 개수 중 어느 쪽이 정답인가 알고리즘인가 문제의 정의인가"></textarea></div>
 </div>
 
 <div class="step">
 <h3>닫힌 상자로 확인하기</h3>
-<p>표와 질문 칸을 내 말로 채운 뒤, 아래 상자를 열어 비교해요.</p>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · A10 결과와 정리 질문 해설</summary>
+<p>표와 질문 칸을 내 말로 채운 뒤 아래 상자를 열어 비교한다.</p>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · A10 결과와 정리 질문 해설</summary>
 <pre class="diagram">스캔 순서로 센 섬 번호(4방향)         count_islands(ISLE) → 6, 섬 크기 [4, 3, 1, 3, 2, 1]
 1 1 0 0 0 2 0                       explore가 popleft()일 때 첫 섬에서 꺼낸 칸 순서
 1 1 0 0 0 2 2                         (0,0) (0,1) (1,0) (1,1)
@@ -68,181 +306,181 @@
 5 0 0 0 4 0 0                       (선택) 8방향: 섬 4개, 크기 [8, 3, 2, 1]
 5 0 0 0 0 0 6</pre>
 <ul>
-<li>손으로 센 값이 6과 다르다면 이런 경우가 많아요. 대각선으로만 맞닿은 칸을 이어진 것으로 센 경우(4개), 가장자리의 한 칸짜리 섬을 놓친 경우예요.</li>
-<li>꺼내는 쪽을 바꿔도 개수와 섬 크기는 그대로예요. 한 섬 안에서 칸을 방문하는 순서만 바뀌어요. 한 섬을 다 방문하면 그 섬의 모든 땅 칸이 seen에 남아요. 그래서 바깥 반복이 이어진 칸을 다시 시작점으로 삼지 않고, 섬마다 한 번만 세요.</li>
-<li>explore가 A2의 두 규칙과 다른 곳은 꺼내는 줄 하나(맨 앞 대 맨 위)뿐이에요. 나머지(시작 칸 표시, 이웃 넣기, 반복)는 같아요. 그래서 그 줄만 바꿔도 BFS도 되고 DFS도 돼요.</li>
-<li>8방향이면 (1,1)-(2,2)-(3,3)이 이어져서 섬이 4개가 돼요. 같은 코드에서 바뀐 곳은 이웃 규칙(방향 목록)이에요. 문제가 이웃을 어떻게 정하느냐가 답을 바꿔요. 그러니 4방향과 8방향 중 어느 쪽이 정답인지는 문제 정의에 달려 있어요.</li>
+<li>손으로 센 값이 6과 다르면 대각선으로만 맞닿은 칸을 이어진 것으로 센 경우(4개), 가장자리의 한 칸짜리 섬을 놓친 경우가 많다.</li>
+<li>꺼내는 쪽을 바꿔도 개수와 섬 크기는 그대로이고 한 섬 안에서 칸을 방문하는 순서만 바뀐다. 한 섬을 다 방문하면 그 섬의 모든 땅 칸이 seen에 남아, 바깥 반복이 이어진 칸을 다시 시작점으로 삼지 않고 섬마다 한 번만 센다.</li>
+<li>explore가 A2의 두 규칙과 다른 곳은 꺼내는 줄 하나(맨 앞 대 맨 위)뿐이다. 나머지(시작 칸 표시, 이웃 넣기, 반복)는 같아서 그 줄만 바꿔도 BFS와 DFS가 된다.</li>
+<li>8방향이면 (1,1)-(2,2)-(3,3)이 이어져 섬이 4개가 된다. 같은 코드에서 바뀐 곳은 이웃 규칙(방향 목록)이다. 문제가 이웃을 어떻게 정의하느냐가 답을 바꾸므로 4방향과 8방향 중 어느 쪽이 정답인지는 문제 정의에 달려 있다.</li>
 </ul></details>
 </div>
 </section>
 <section id="A11" class="sheet lesson">
 <h2>A11 · 일반화 초안 카드<small>3차시 · 4분 · 개인</small></h2>
-<p class="lead">오늘까지 발견한 것을 &lsquo;일반화&rsquo;로 써 봐요. 일반화는 여러 사례에 두루 맞는 한 문장이에요.</p>
+<p class="lead">오늘까지 발견한 것을 &lsquo;일반화&rsquo;, 곧 여러 사례에 두루 맞는 한 문장으로 써 보자.</p>
 
 <div class="step">
 <h3>내 말로 한 문장 쓰기</h3>
-<p>일반화는 &ldquo;개념 + 개념 + 관계&rdquo;로 써요. 개념어는 사례 이름이 아니라 여러 사례에 쓰는 말이에요. 화분 이야기로 보면, 아래 둘 중 하나가 일반화예요.</p>
+<p>일반화는 &ldquo;개념 + 개념 + 관계&rdquo;로 쓴다. 개념어는 사례 이름이 아니라 여러 사례에 쓰는 말이다. 화분 이야기로 보면 아래 둘 중 하나가 일반화이다.</p>
 <div class="quiz" data-answer="2">
 <p class="q">(가) &ldquo;우리 교실 선인장은 물을 안 줘서 시들었다.&rdquo; (나) &ldquo;식물은 물이 모자라면 시든다.&rdquo; 일반화는?</p>
 <div class="opts"><button type="button" data-hint="(가)는 교실 선인장 하나의 이야기이다. 다른 식물에도 통하는 말인가?">(가)</button><button type="button">(나)</button></div>
-<p class="why">(나)는 &lsquo;교실 선인장&rsquo; 같은 사례 이름 없이, 개념어(식물, 물)와 관계로 썼어요.</p>
+<p class="why">(나)는 &lsquo;교실 선인장&rsquo; 같은 사례 이름 없이 개념어(식물, 물)와 관계로 썼다.</p>
 </div>
-<p>A1~A10에서 오늘 내 생각이 가장 크게 바뀐 주제를 하나 골라 한 문장으로 써요. G1, MAZE 같은 사례 이름은 쓰지 않아요. 대신 그래프, 격자, 노드, 큐 같은 개념어를 써요.</p>
+<p>A1~A10에서 오늘 내 생각이 가장 크게 바뀐 주제를 하나 골라 한 문장으로 쓴다. G1, MAZE 같은 사례 이름은 쓰지 않는다. 대신 그래프, 격자, 노드, 큐 같은 개념어를 쓴다.</p>
 <p>주제 <span class="rg" data-key="A11.topic" data-type="radio" data-label="A11 고른 주제" data-model="탐색 틀과 꺼내는 규칙"><label><input type="radio" name="r_A11_topic" value="탐색 틀과 꺼내는 규칙"> 탐색 틀과 꺼내는 규칙</label><label><input type="radio" name="r_A11_topic" value="최단 거리"> 최단 거리</label><label><input type="radio" name="r_A11_topic" value="연결 요소"> 연결 요소</label><label><input type="radio" name="r_A11_topic" value="구현 선택"> 구현 선택</label></span></p>
 <div class="ans-row"><span class="n">초안</span><textarea placeholder="개념 + 개념 + 관계 한 문장" class="in l" rows="3" data-key="A11.draft" data-label="A11 내 일반화 초안 문장"></textarea></div>
 </div>
 
 <div class="step">
 <h3>점검 질문으로 다듬기</h3>
-<p>내 문장에서 &lsquo;미로&rsquo;나 사례 이름을 지워도 말이 되나요? 소문·섬·물통 퍼즐에도 통하나요? 내 문장이 맞지 않는 사례를 &lsquo;반례&rsquo;라고 해요. 반례가 있으면 써요.</p>
+<p>내 문장에서 &lsquo;미로&rsquo;나 사례 이름을 지워도 말이 되는가? 소문·섬·물통 퍼즐에도 통하는가? 내 문장이 맞지 않는 사례를 &lsquo;반례&rsquo;라 한다. 반례가 있으면 쓴다.</p>
 <div class="ans-row"><span class="n">점검</span><textarea placeholder="1~2문장. 반례가 없으면 반례 없음" class="in" rows="2" data-key="A11.check" data-label="A11 이 문장은 미로 하나에만 해당하는가 다른 문제에도 통하는가"></textarea></div>
 </div>
-<p class="wrapup"><b>여기까지</b> 내 초안과 반례가 생겼어요. 다음 A12에서 초안을 다듬어요.</p>
+<p class="wrapup"><b>여기까지</b> 내 초안과 반례가 생겼다. 다음 A12에서 초안을 다듬는다.</p>
 </section>
 <section id="A12" class="sheet lesson">
 <h2>A12 · 정제 시트와 구별 기준표<small>3차시 · 12분 · 개인</small></h2>
-<p class="lead">A11 초안을 &lsquo;정제&rsquo;해 봐요. 정제는 사례 이름을 빼고 더 정확하게 다듬는 거예요. 그다음 목적에 따라 BFS와 DFS를 가려 쓰는 기준을 세워요.</p>
+<p class="lead">A11 초안을 &lsquo;정제&rsquo;, 곧 사례 이름을 빼고 더 정확하게 다듬어 보자. 그다음 목적에 따라 BFS와 DFS를 가려 쓰는 기준을 세운다.</p>
 
 <div class="step">
 <h3>초안 다시 쓰기</h3>
-<p>A11 초안의 사례 이름(G1, H, MAZE, ISLE)을 개념어로 바꿔 써요. 개념어는 그래프, 격자, 노드, 큐처럼 여러 사례에 쓰는 말이에요. 두 주제를 써요.</p>
+<p>A11 초안에서 사례 이름(G1, H, MAZE, ISLE)을 개념어(그래프, 격자, 노드, 큐처럼 여러 사례에 쓰는 말)로 바꿔 쓴다. 두 주제를 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:26%">주제</th><th>정제한 문장</th></tr><tr><td class="lab">1. 탐색 틀과 꺼내는 규칙</td><td class="in-cell"><textarea placeholder="개념어로 바꾼 한 문장" class="in" rows="3" data-key="A12.team.r1.c1" data-label="A12 탐색 틀과 꺼내는 규칙 · 정제한 문장"></textarea></td></tr><tr><td class="lab">2. 최단 거리</td><td class="in-cell"><textarea placeholder="개념어로 바꾼 한 문장" class="in" rows="3" data-key="A12.team.r2.c1" data-label="A12 최단 거리 · 정제한 문장"></textarea></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>점검 질문으로 다듬기</h3>
-<p>내 문장이 아래에 해당하면 체크해요.</p>
+<p>내 문장이 아래에 해당하면 체크한다.</p>
 <p><label class="ck"><input type="checkbox" data-key="A12.chk1" data-label="A12 점검: 사례 이름을 개념어로 바꿨다"> 사례 이름을 개념어로 바꿨다</label><label class="ck"><input type="checkbox" data-key="A12.chk2" data-label="A12 점검: 개념 + 개념 + 관계 형태이다"> &ldquo;개념 + 개념 + 관계&rdquo; 형태이다</label><label class="ck"><input type="checkbox" data-key="A12.chk3" data-label="A12 점검: 미로라는 한정을 지울 수 있다"> 문장에서 &ldquo;미로&rdquo;를 지울 수 있다</label></p>
 <div class="quiz" data-answer="2">
-<p class="q">다음 중 사례 이름이라서 개념어로 바꿔야 하는 말은?</p>
+<p class="q">다음 중 사례 이름이라 개념어로 바꿔야 하는 말은?</p>
 <div class="opts"><button type="button" data-hint="큐는 여러 사례에 쓰는 개념어이다.">큐</button><button type="button">MAZE</button><button type="button" data-hint="노드는 여러 그래프에 쓰는 개념어이다.">노드</button></div>
-<p class="why">MAZE는 오늘 쓴 미로 하나의 이름이에요. 그래프나 격자 같은 개념어로 바꿔요.</p>
+<p class="why">MAZE는 오늘 쓴 미로 하나의 이름이다. 그래프나 격자 같은 개념어로 바꾼다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>목적에 따라 고르기</h3>
-<p>선택 칸에는 BFS, DFS, 둘 다 가능 중 하나를 써요. 근거는 A4·A9·A10의 값으로 한 문장 써요.</p>
+<p>선택 칸에는 BFS, DFS, 둘 다 가능 중 하나를 쓴다. 근거는 A4·A9·A10의 값으로 한 문장 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:38%">목적</th><th>선택</th><th>근거</th></tr><tr><td class="lab">걸음 수가 가장 적은 길을 알아야 한다</td><td class="in-cell"><textarea class="in" rows="2" data-key="A12.crit.r1.c1" placeholder="BFS / DFS / 둘 다 가능 중 하나" data-label="A12 구별 기준 걸음 수가 가장 적은 길을 알아야 한다 · 선택(BFS/DFS/둘 다)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A12.crit.r1.c2" data-label="A12 구별 기준 걸음 수가 가장 적은 길을 알아야 한다 · 근거"></textarea></td></tr><tr><td class="lab">연결된 구역이 모두 몇 개인지 세야 한다</td><td class="in-cell"><textarea class="in" rows="2" data-key="A12.crit.r2.c1" placeholder="BFS / DFS / 둘 다 가능 중 하나" data-label="A12 구별 기준 연결된 구역이 모두 몇 개인지 세야 한다 · 선택(BFS/DFS/둘 다)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A12.crit.r2.c2" data-label="A12 구별 기준 연결된 구역이 모두 몇 개인지 세야 한다 · 근거"></textarea></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>닫힌 상자와 대조하기</h3>
-<p>위 칸을 내 문장으로 채운 뒤 상자를 열어 비교해요. 상자의 문장을 그대로 베끼지는 마요.</p>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 정제된 일반화 문장 G1~G4와 구별 기준표</summary>
-<p>여기서 G1~G4는 일반화 문장의 번호예요. 그래프 G1과 번호만 같아요.</p>
+<p>위 칸을 내 문장으로 채운 뒤 상자를 열어 비교한다. 상자의 문장을 그대로 베끼지 않는다.</p>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 정제된 일반화 문장 G1~G4와 구별 기준표</summary>
+<p>이 G1~G4는 일반화 문장의 번호이며 그래프 G1과 번호만 같다.</p>
 <ul>
-<li><b>G1</b> 상태 공간 탐색은 하나의 틀이에요. 지금 상태에서 한 걸음에 갈 수 있는 이웃 상태를 꺼내 보고, 이미 본 상태는 visited로 걸러요.<br>다음에 꺼낼 상태를 가장 최근 것(스택·Call Stack)으로 고르면, 한 갈래를 끝까지 파고드는 DFS가 돼요.<br>가장 오래된 것(큐)으로 고르면, 가까운 것부터 넓히는 BFS가 돼요. 방문 순서와 처음 도착하는 길이 달라져요. (근거: A1, A2, A3, A6, A13)</li>
-<li><b>G2</b> 큐는 시작에서 걸음 수가 같은 노드를 모두 처리한 뒤에야 한 걸음 더 먼 노드를 처리해요. 그래서 처음 도착한 경로의 간선 수가 최소라는 게 보장돼요.<br>스택·Call Stack은 한 갈래를 먼저 끝까지 가요. 그래서 처음 도착한 경로가 최단이라는 보장이 없고, 이웃을 보는 순서에 따라 길이가 달라져요.<br>따라서 최단 거리가 목적이면 BFS를 골라 써요. (근거: A4, A7, A9)</li>
-<li><b>G3</b> 연결된 구역을 모두 묶어 세는 목적(연결 요소 추적, 섬의 개수)에서는 방문 순서가 결과를 바꾸지 않아요. 그래서 DFS와 BFS가 같은 답을 내요.<br>이때는 입력 크기에 따른 구현 비용(재귀 깊이, 큐 연산 비용)과 안전성을 보고 골라요.<br>visited가 없거나 표시 시점이 어긋나면 중복이나 무한 반복이 생겨요. (근거: A8 T1, A10, A13)</li>
-<li><b>G4</b> 재귀(Call Stack)로 쓴 DFS는 간결해요. 하지만 깊이가 호출 한계에 묶여서 입력이 커지면 실패해요.<br>명시적 스택으로 바꾸면 한계는 없어져요. 대신 이웃 처리 순서·visited 표시를 직접 챙겨야 해요.<br>큐도 맨 앞을 꺼내는 비용이 작은 자료구조(deque)를 골라야 탐색이 입력 크기에 비례해 끝나요. (근거: A3, A8 T2·T3, A10)</li>
-<li><b>구별 기준표</b>: 걸음 수가 가장 적은 길 &rarr; BFS(큐가 가까운 것부터 처리해서 처음 도착한 길의 간선 수가 최소). 연결된 구역의 개수 &rarr; 둘 다 가능(방문 순서가 개수를 바꾸지 않으니 구현 비용·안전성으로 골라요). 어떤 길로든 이어져 있는지만 &rarr; 둘 다 가능(길이는 묻지 않아요).</li>
-<li><b>visited를 끄면</b>: G1의 A-B-D-C-A처럼 한 바퀴 돌아 되돌아오는 길(사이클)이 있는 그래프에서, 같은 노드를 계속 다시 처리해서 끝나지 않아요.</li>
-<li>(선택) 더 생각해 볼 질문: D1 &ldquo;어떤 순서로 탐색하는 것이 정답일까?&rdquo; 정답은 하나일까요, 목적에 따라 다를까요? &ldquo;DFS로 길을 찾았으니 충분하다&rdquo;는 언제 틀릴까요? D2 섬의 개수에서 대각선으로 맞닿은 땅도 같은 섬일까요? 문제의 정의는 알고리즘 선택이 아니라 이웃 규칙을 바꾸는 걸까요? D3 재귀 DFS는 코드가 가장 짧지만 입력이 커지면 실패해요. 짧고 읽기 쉬운 코드와 안전한 코드 중 무엇을 고를까요? <code class="i">sys.setrecursionlimit</code>을 올리면 해결될까요?</li>
+<li><b>G1</b> 상태 공간 탐색은 하나의 틀이다. 지금 상태에서 한 걸음에 갈 수 있는 이웃 상태를 꺼내 보고, 이미 본 상태는 visited로 걸러낸다.<br>다음에 꺼낼 상태를 가장 최근 것(스택·Call Stack)으로 고르면 한 갈래를 끝까지 파고드는 DFS가 된다.<br>가장 오래된 것(큐)으로 고르면 가까운 것부터 넓히는 BFS가 된다. 방문 순서와 처음 도착하는 길이 달라진다. (근거: A1, A2, A3, A6, A13)</li>
+<li><b>G2</b> 큐는 시작에서 걸음 수가 같은 노드를 모두 처리한 뒤에야 한 걸음 더 먼 노드를 처리한다. 그래서 처음 도착한 경로의 간선 수가 최소임이 보장된다.<br>스택·Call Stack은 한 갈래를 먼저 끝까지 간다. 그래서 처음 도착한 경로가 최단이라는 보장이 없고, 이웃을 보는 순서에 따라 길이가 달라진다.<br>따라서 최단 거리가 목적이면 BFS를 구별해 쓴다. (근거: A4, A7, A9)</li>
+<li><b>G3</b> 연결된 구역을 모두 묶어 세는 목적(연결 요소 추적, 섬의 개수)은 방문 순서가 결과를 바꾸지 않는다. 그래서 DFS와 BFS가 같은 답을 낸다.<br>이때의 선택은 입력 크기에 따른 구현 비용(재귀 깊이, 큐 연산 비용)과 안전성에 달려 있다.<br>visited가 없거나 표시 시점이 어긋나면 중복·무한 반복이 생긴다. (근거: A8 T1, A10, A13)</li>
+<li><b>G4</b> 재귀(Call Stack)로 쓴 DFS는 간결하지만 깊이가 호출 한계에 묶여 입력이 커지면 실패한다.<br>명시적 스택으로 바꾸면 한계가 없어지는 대신 이웃 처리 순서·visited 표시를 직접 챙겨야 한다.<br>큐도 맨 앞을 꺼내는 비용이 작은 자료구조(deque)를 골라야 탐색이 입력 크기에 비례해 끝난다. (근거: A3, A8 T2·T3, A10)</li>
+<li><b>구별 기준표</b>: 걸음 수가 가장 적은 길 &rarr; BFS(큐가 가까운 것부터 처리해 처음 도착한 길의 간선 수가 최소). 연결된 구역의 개수 &rarr; 둘 다 가능(방문 순서가 개수를 바꾸지 않으므로 구현 비용·안전성으로 고른다). 어떤 길로든 이어져 있는지만 &rarr; 둘 다 가능(길이는 묻지 않는다).</li>
+<li><b>visited를 끄면</b>: G1의 A-B-D-C-A처럼 한 바퀴 돌아 되돌아오는 길(사이클)이 있는 그래프에서 같은 노드를 계속 다시 처리해 끝나지 않는다.</li>
+<li>(선택) 더 생각해 볼 질문: D1 &ldquo;어떤 순서로 탐색하는 것이 정답일까?&rdquo; 정답은 하나인가, 목적에 따라 다른가? &ldquo;DFS로 길을 찾았으니 충분하다&rdquo;는 언제 틀리는가? D2 섬의 개수에서 대각선으로 맞닿은 땅도 같은 섬인가? 문제의 정의가 알고리즘 선택이 아니라 이웃 규칙을 바꾸는가? D3 재귀 DFS는 코드가 가장 짧은데 입력이 커지면 실패한다. 짧고 읽기 쉬운 코드와 안전한 코드 중 무엇을 택할 것인가? <code class="i">sys.setrecursionlimit</code>을 올리면 해결되는가?</li>
 <li>13주차 한 줄 예고: 같은 상태를 여러 번 만나는 문제에서 visited 대신 결과를 기억하면?</li>
 </ul></details>
-<p>비교해 보고, 내 문장에서 고칠 점을 써요.</p>
+<p>비교해서 내 문장에서 고칠 점을 쓴다.</p>
 <div class="ans-row"><span class="n">고칠 점</span><textarea placeholder="1문장. 고칠 점이 없으면 없음" class="in" rows="2" data-key="A12.cmp.fix" data-label="A12 대조 뒤 내 문장에서 고칠 점"></textarea></div>
 </div>
 </section>
 <section id="A13" class="sheet lesson">
 <h2>A13 · 과제 점검표와 전이(새 문제의 상태 정의)<small>3차시 · 12분 · 개인</small></h2>
-<p class="lead">실습 코드 <a class="xlink" href="student_code_lab_part3.html#A13">3부 A13</a>의 점검 결과를 적어요. 그리고 새 문제를 탐색 틀로 풀 수 있는지 따져 봐요.</p>
+<p class="lead">실습 코드 <a class="xlink" href="student_code_lab_part3.html#A13">3부 A13</a>의 점검 결과를 적고, 새 문제를 탐색 틀로 풀 수 있는지 따져 보자.</p>
 
 <div class="step">
 <h3>점검표 쓰기</h3>
-<p>실습 코드 A13의 점검을 돌린 뒤, 해당하는 칸에 체크해요.</p>
+<p>실습 코드 A13의 점검을 돌린 뒤 해당하는 칸에 체크한다.</p>
 <p><label class="ck"><input type="checkbox" data-key="A13.chk1" data-label="A13 점검: 내 세 함수가 A13 점검 코드를 실행해 모두 통과했다"> 내 세 함수가 A13 점검 코드를 실행해 모두 통과했다</label><br><label class="ck"><input type="checkbox" data-key="A13.chk2" data-label="A13 점검: 코드를 고치지 않고 새 입력에서도 통과했다"> 코드를 고치지 않고 새 입력에서도 통과했다</label><br><label class="ck"><input type="checkbox" data-key="A13.chk3" data-label="A13 점검: 물통 퍼즐의 상태 정의 카드를 썼다(NUM은 선택)"> 물통 퍼즐의 상태 정의 카드를 썼다(NUM은 선택)</label></p>
-<p>통과하지 못한 항목 번호와 원인을 써요. 모두 통과했으면 &ldquo;없음&rdquo;이라고 쓰고, 통과하기 전에 고친 곳을 써요.</p>
+<p>통과하지 못한 항목 번호와 원인을 쓴다. 모두 통과했으면 &ldquo;없음&rdquo;과 통과하기 전에 고친 곳을 쓴다.</p>
 <div class="ans-row"><span class="n">?</span><textarea placeholder="예: 8번, 기본 인자 seen=set() 때문 / 없음" class="in" rows="2" data-key="A13.fail" data-label="A13 통과하지 못한 항목과 원인"></textarea></div>
 </div>
 
 <div class="step">
 <h3>상태와 이웃으로 바꾸기</h3>
-<p><b>상태</b>는 문제의 한 순간을 나타내는 값이에요. <b>이웃 상태</b>는 허용된 동작을 한 번 한 뒤의 상태예요. 이 둘을 정하면 미로·섬과 같은 탐색 틀을 쓸 수 있어요.</p>
-<p>작은 예(NUM)예요. 상태는 수 <code class="i">n</code>(1~100), 이웃은 <code class="i">n+1</code>과 <code class="i">n&times;2</code>(100 이하)예요. 시작은 3, 목표는 14예요. 3의 이웃은 4와 6, 4의 이웃은 5와 8이에요.</p>
+<p><b>상태</b>는 문제의 한 순간을 나타내는 값이고, <b>이웃 상태</b>는 허용된 동작을 한 번 한 뒤의 상태이다. 이 둘을 정하면 미로·섬과 같은 탐색 틀을 쓸 수 있다.</p>
+<p>작은 예(NUM)이다. 상태는 수 <code class="i">n</code>(1~100), 이웃은 <code class="i">n+1</code>과 <code class="i">n&times;2</code>(100 이하), 시작은 3, 목표는 14이다. 3의 이웃은 4와 6, 4의 이웃은 5와 8이다.</p>
 <div class="quiz" data-accept="7,12|12,7" data-hint="6에 +1을 한 수와 &times;2를 한 수를 쓴다.">
 <p class="q">6의 이웃 상태는?</p>
 <div class="ans"><input type="text" aria-label="6의 이웃 상태" placeholder="예: 7, …"><button type="button">확인</button></div>
-<p class="why">6+1=7, 6&times;2=12예요. 이웃 상태는 동작 한 번으로 만들어요.</p>
+<p class="why">6+1=7, 6&times;2=12이다. 이웃 상태는 동작 한 번으로 만든다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>상태를 두 수로 적기</h3>
-<p>NUM은 수 하나가 상태였어요. 물통 퍼즐은 통이 둘이라서 두 수가 상태예요. 3L짜리 통의 물을 <code class="i">a</code>, 5L짜리 통의 물을 <code class="i">b</code>라 하고 <code class="i">(a, b)</code>로 적어요. 처음은 <code class="i">(0, 0)</code>이에요. 한 번 움직이면 <code class="i">(3, 0)</code>이나 <code class="i">(0, 5)</code>로 갈 수 있어요.</p>
+<p>NUM은 수 하나가 상태였다. 물통 퍼즐은 통이 둘이라 두 수가 상태이다. 3L짜리 통의 물을 <code class="i">a</code>, 5L짜리 통의 물을 <code class="i">b</code>라 하고 <code class="i">(a, b)</code>로 적는다. 처음은 <code class="i">(0, 0)</code>이고, 한 번 움직여 <code class="i">(3, 0)</code>이나 <code class="i">(0, 5)</code>로 갈 수 있다.</p>
 <div class="quiz" data-answer="2">
 <p class="q"><code class="i">(3, 2)</code>에서 3L 통을 비우면 상태는?</p>
 <div class="opts"><button type="button" data-hint="3L 통만 비운다. 5L 통의 물은 그대로이다.">(0, 0)</button><button type="button">(0, 2)</button><button type="button" data-hint="비우면 3L 통의 물은 0이 된다.">(3, 0)</button></div>
-<p class="why">3L 통의 물만 0이 되어 <code class="i">(0, 2)</code>예요. 한 번 움직여 갈 수 있는 상태가 이웃 상태예요.</p>
+<p class="why">3L 통의 물만 0이 되어 <code class="i">(0, 2)</code>이다. 한 번 움직여 갈 수 있는 상태가 이웃 상태이다.</p>
 </div>
 </div>
 
 <div class="step">
 <h3>물통 퍼즐 상태 정의 카드</h3>
-<p>3L짜리 통 하나와 5L짜리 통 하나가 있어요. 채우기, 비우기, 다른 통으로 옮기기만 할 수 있어요. 한 통에 정확히 4L를 만들 수 있을까요? 코드 없이 네 가지를 써요. (1) 상태 (2) 이웃 상태의 예 (3) 시작과 목표 (4) 최소 단계를 구하려면 BFS와 DFS 중 무엇이고, 까닭은? 채점하지 않아요.</p>
+<p>3L짜리 통 하나와 5L짜리 통 하나가 있다. 채우기, 비우기, 다른 통으로 옮기기만 할 수 있다. 한 통에 정확히 4L를 만들 수 있을까? 코드 없이 네 가지를 쓴다. (1) 상태 (2) 이웃 상태의 예 (3) 시작과 목표 (4) BFS와 DFS 중 최소 단계를 구하려면 무엇이며 까닭은? 채점하지 않는다.</p>
 <div class="ans-row"><span class="n">카드</span><textarea placeholder="(1)~(4) 번호를 붙여 말로 쓴다" class="in l" rows="7" data-key="A13.state" data-label="A13 물통 퍼즐 상태 정의 카드 상태 표현 이웃 상태 시작과 목표 BFS와 DFS 선택과 까닭"></textarea></div>
 </div>
 
 <div class="step">
 <h3>(선택 · 집에서) NUM 결과</h3>
-<p>실습 코드 A13의 숫자 변환 퍼즐을 풀었다면 결과를 써요. 풀지 않았으면 첫 칸에 &ldquo;안 함&rdquo;이라고 써요.</p>
+<p>실습 코드 A13의 숫자 변환 퍼즐을 풀었다면 결과를 쓴다. 풀지 않았으면 첫 칸에 &ldquo;안 함&rdquo;이라고 쓴다.</p>
 <div class="scroll"><table class="fill"><tr><th style="width:40%">질문</th><th>답</th></tr><tr><td class="lab">내 코드가 구한 최소 연산 횟수</td><td class="in-cell"><input type="text" class="in" data-key="A13.num.ops" placeholder="숫자만" data-label="A13 NUM 최소 연산 횟수" autocomplete="off" data-model="3"></td></tr><tr><td class="lab">그때의 경로(예: a &rarr; b &rarr; c)</td><td class="in-cell"><input type="text" class="in" data-key="A13.num.path" placeholder="수 → 수 → 수 모양" data-label="A13 NUM 경로" autocomplete="off" data-model="3 → 6 → 7 → 14"></td></tr></table></div>
 </div>
 
 <div class="step">
 <h3>닫힌 상자로 확인하기</h3>
-<p>카드를 쓴 뒤 상자를 열어 비교해요.</p>
-<details class="more"><summary>다 쓰고 나서 열어 봐요 · 물통 퍼즐 상태 정의와 NUM 확인(채점 외)</summary>
+<p>카드를 쓴 뒤 상자를 열어 비교한다.</p>
+<details class="more"><summary>활동을 마친 뒤 열어 확인한다 · 물통 퍼즐 상태 정의와 NUM 확인(채점 외)</summary>
 <ul>
-<li><b>물통 퍼즐</b>: 상태 = (3L 통의 물, 5L 통의 물) = (a, b). 이웃 상태는 세 가지 동작으로 만들어요. 가득 채우기 (3, b)·(a, 5), 비우기 (0, b)·(a, 0), 한 통이 비거나 다른 통이 찰 때까지 붓기(예: (3, 0)에서 (0, 3))예요. 시작은 (0, 0), 목표는 어느 한 통이 4L인 상태예요. 최소 단계를 구하려면 BFS(큐)여야 해요. 걸음 수가 같은 상태를 모두 본 뒤 한 걸음 더 먼 상태를 보기 때문이에요. 4L는 만들 수 있고, 최소 6단계예요: (0,0) &rarr; (0,5) &rarr; (3,2) &rarr; (0,2) &rarr; (2,0) &rarr; (2,5) &rarr; (3,4).</li>
-<li><b>NUM</b>(채점 외): 3에서 14까지 최소 3회, 경로 3 &rarr; 6 &rarr; 7 &rarr; 14예요. 14를 꺼낼 때까지 꺼낸 상태는 11개, 발견한 상태는 18개예요. 거리별 상태: 거리 0 {3}, 1 {4, 6}, 2 {5, 8, 7, 12}, 3 {10, 9, 16, 14, 13, 24}. 노드는 수, 간선은 &ldquo;+1&rdquo;과 &ldquo;&times;2&rdquo;이고, 메모리에 그래프는 없어요. 같은 수를 여러 경로로 만나요(6은 3&times;2로도, 3&rarr;4&rarr;5&rarr;6으로도). 같은 이웃 순서(+1 먼저)의 재귀 DFS가 처음 찾은 연산 횟수는 11이에요.</li>
-<li>코드를 고치지 않고 새 입력에서도 통과해야 과제 점검을 통과한 거예요. 이 점은 12주차·13주차에서도 이어져요(같은 상태를 다시 계산하지 않기).</li>
+<li><b>물통 퍼즐</b>: 상태 = (3L 통의 물, 5L 통의 물) = (a, b). 이웃 상태는 가득 채우기 (3, b)·(a, 5), 비우기 (0, b)·(a, 0), 한 통이 비거나 다른 통이 찰 때까지 붓기(예: (3, 0)에서 (0, 3))로 만든다. 시작은 (0, 0), 목표는 어느 한 통이 4L인 상태이다. 최소 단계를 구하려면 걸음 수가 같은 상태를 모두 본 뒤 한 걸음 더 먼 상태를 보는 BFS(큐)여야 한다. 4L를 만들 수 있고, 최소 6단계이다: (0,0) &rarr; (0,5) &rarr; (3,2) &rarr; (0,2) &rarr; (2,0) &rarr; (2,5) &rarr; (3,4).</li>
+<li><b>NUM</b>(채점 외): 3에서 14까지 최소 3회, 경로 3 &rarr; 6 &rarr; 7 &rarr; 14. 14를 꺼낼 때까지 꺼낸 상태 11개, 발견한 상태 18개이다. 거리별 상태: 거리 0 {3}, 1 {4, 6}, 2 {5, 8, 7, 12}, 3 {10, 9, 16, 14, 13, 24}. 노드는 수, 간선은 &ldquo;+1&rdquo;과 &ldquo;&times;2&rdquo;이고 메모리에 그래프는 없다. 같은 수(6은 3&times;2로도, 3&rarr;4&rarr;5&rarr;6으로도)를 여러 경로로 만난다. 같은 이웃 순서(+1 먼저)의 재귀 DFS가 처음 찾은 연산 횟수는 11이다.</li>
+<li>코드를 고치지 않고 새 입력에서도 통과해야 과제 점검을 통과한 것이다. 이 점은 12주차·13주차에서도 이어진다(같은 상태를 다시 계산하지 않기).</li>
 </ul></details>
 </div>
 </section>
 <section id="A15" class="sheet lesson">
 <h2>A15 · 오개념 점검과 12·13주차 연결<small>3차시 · 4분 · 개인</small></h2>
-<p class="lead">오늘 만난 말 가운데 틀린 것을 가려내 봐요. 그다음 오늘의 틀이 다음 주에 어디서 다시 쓰일지 생각해 봐요.</p>
+<p class="lead">오늘 만난 말 가운데 틀린 것을 가려내 보자. 그다음 오늘의 틀이 다음 주에 어디서 다시 쓰일지 생각한다.</p>
 
 <div class="step">
 <h3>오개념 네 문장 판단하기</h3>
-<p>각 문장이 맞는지 눌러 봐요.</p>
+<p>각 문장이 맞는지 눌러 보자.</p>
 <div class="quiz" data-answer="2">
 <p class="q">&ldquo;DFS도 처음 찾은 길이 최단이다.&rdquo; 이 말은?</p>
 <div class="opts"><button type="button" data-hint="MAZE에서 DFS가 찾은 길과 BFS가 찾은 길의 걸음 수를 떠올려 보자.">맞다</button><button type="button">아니다</button></div>
-<p class="why">DFS는 한 갈래를 먼저 끝까지 가요. MAZE에서 DFS는 14, BFS는 10이었어요(A9).</p>
+<p class="why">DFS는 한 갈래를 먼저 끝까지 간다. MAZE에서 DFS는 14, BFS는 10이었다(A9).</p>
 </div>
 <div class="quiz" data-answer="1">
 <p class="q">&ldquo;섬의 개수는 꺼내는 줄을 <code class="i">pop()</code>으로 바꿔도 6으로 같다.&rdquo; 이 말은?</p>
 <div class="opts"><button type="button">맞다</button><button type="button" data-hint="A10 표의 3줄 결과를 다시 보자.">아니다</button></div>
-<p class="why"><code class="i">popleft</code>든 <code class="i">pop</code>이든 6이었어요(A10). 꺼내는 순서만 바뀌었어요.</p>
+<p class="why"><code class="i">popleft</code>든 <code class="i">pop</code>이든 6이었다(A10). 꺼내는 순서만 바뀌었다.</p>
 </div>
 <div class="quiz" data-answer="2">
 <p class="q">&ldquo;재귀는 항상 안전하다.&rdquo; 이 말은?</p>
 <div class="opts"><button type="button" data-hint="A8 T3의 1&times;1500 입력에서 무슨 일이 있었는가?">맞다</button><button type="button">아니다</button></div>
-<p class="why">1&times;1500에서 <code class="i">RecursionError</code>가 났어요(A8 T3).</p>
+<p class="why">1&times;1500에서 <code class="i">RecursionError</code>가 났다(A8 T3).</p>
 </div>
 <div class="quiz" data-answer="1">
 <p class="q">&ldquo;MAZE에서 BFS가 처음 도착한 길의 걸음 수는 10이고, 그보다 짧은 길은 없다.&rdquo; 이 말은?</p>
 <div class="opts"><button type="button">맞다</button><button type="button" data-hint="A9 표에서 BFS의 걸음 수를 다시 보자.">아니다</button></div>
-<p class="why">BFS는 걸음 수가 같은 칸을 모두 본 뒤 한 걸음 더 나가요. 그래서 처음 도착한 길이 가장 짧아요(A9).</p>
+<p class="why">BFS는 걸음 수가 같은 칸을 모두 본 뒤 한 걸음 더 나가므로 처음 도착한 길이 가장 짧다(A9).</p>
 </div>
 </div>
 
 <div class="step">
 <h3>12·13주차로 잇기</h3>
-<p>12주차는 정렬과 이진 탐색이에요. 13주차는 같은 상태의 결과를 기억하거나, 매 순간 최선을 고르는 방법이에요. A13에서 같은 상태를 두 길로 만난 일을 떠올려 봐요.</p>
-<p>오늘의 틀(상태·이웃·visited·꺼내는 규칙)이 두 주차에서 쓰일 것 같은 곳을 써요. 더 궁금한 점을 써도 돼요.</p>
+<p>12주차는 정렬과 이진 탐색, 13주차는 같은 상태의 결과를 기억하거나 매 순간 최선을 고르는 방법이다. A13에서 같은 상태를 두 길로 만난 일을 떠올려 보자.</p>
+<p>오늘의 틀(상태·이웃·visited·꺼내는 규칙)이 두 주차에서 쓰일 것 같은 곳, 또는 더 궁금한 점을 쓴다.</p>
 <div class="ans-row"><span class="n">1</span><textarea placeholder="1~2문장" class="in" rows="3" data-key="A15.next" data-label="A15 12주차 정렬과 이진 탐색 13주차 DP에 대해 궁금한 점"></textarea></div>
 </div>
 </section>
-<details class="learn-box after" id="theory-after"><summary>마지막 활동(A15)을 다 하고 나서 열어 봐요 · 이론 정리 확인</summary>
+<details class="learn-box after" id="theory-after"><summary>마지막 활동(A15)을 마친 뒤 연다 · 이론 정리 확인</summary>
 <ul>
-<li><b>오늘의 일반화</b>: 탐색은 &ldquo;꺼낸 노드의 이웃을 보고, 이미 본 노드는 방문 기록으로 거르는&rdquo; 하나의 틀이에요. 다음에 꺼낼 노드를 가장 최근에 넣은 것(스택, Call Stack)으로 고르면, 한 갈래를 끝까지 파고드는 DFS가 돼요. 가장 오래된 것(큐)으로 고르면, 가까운 곳부터 넓히는 BFS가 돼요.</li>
-<li><b>목적에 따른 선택</b>: 시작점에서 간선 수가 최소인 경로가 필요하면 BFS예요. 큐가 걸음 수가 같은 노드를 먼저 모두 처리하기 때문이에요. DFS가 처음 찾은 경로는 최단이라는 보장이 없고, 이웃을 보는 순서에 따라 길이가 달라져요. 이어진 구역을 묶어 세는 일(연결 요소, 섬의 개수)은 순서가 결과를 바꾸지 않아요. 그래서 BFS와 DFS가 같은 답을 내요.</li>
-<li><b>복잡도</b>: 방문 기록이 있으면 노드를 한 번씩만 처리해요. 그래서 그래프는 O(V+E), 격자는 O(R&times;C)예요. 큐를 <code class="i">list</code>의 <code class="i">pop(0)</code>(O(N))으로 만들면 느려져요. 그래서 <code class="i">deque.popleft()</code>(O(1))를 써요. 재귀 DFS는 깊이가 한도를 넘으면 <code class="i">RecursionError</code>가 나요. 입력이 크면 명시적 스택으로 바꿔요.</li>
-<li><b>흔한 오개념</b>: ① DFS도 최단 길이를 찾는다(아니에요). ② 섬은 BFS로만(또는 DFS로만) 센다(둘 다 돼요). ③ 재귀는 항상 안전하다(깊이 한도가 있어요). ④ 방문 표시는 꺼낼 때 하면 된다(큐에 같은 노드가 여러 번 들어갈 수 있으니 넣을 때 표시해요). ⑤ 스택 규칙과 재귀 DFS는 항상 방문 순서가 같다(이웃을 넣는 순서에 따라 다를 수 있어요).</li>
+<li><b>오늘의 일반화</b>: 탐색은 &ldquo;꺼낸 노드의 이웃을 보고, 이미 본 노드는 방문 기록으로 거르는&rdquo; 하나의 틀이다. 다음에 꺼낼 노드를 가장 최근에 넣은 것(스택, Call Stack)으로 고르면 한 갈래를 끝까지 파고드는 DFS가 되고, 가장 오래된 것(큐)으로 고르면 가까운 곳부터 넓히는 BFS가 된다.</li>
+<li><b>목적에 따른 선택</b>: 시작점에서 간선 수가 최소인 경로가 필요하면 BFS이다. 큐가 걸음 수가 같은 노드를 먼저 모두 처리하기 때문이다. DFS가 처음 찾은 경로는 최단이라는 보장이 없고 이웃을 보는 순서에 따라 길이가 달라진다. 이어진 구역을 묶어 세는 일(연결 요소, 섬의 개수)은 순서가 결과를 바꾸지 않아 BFS와 DFS가 같은 답을 낸다.</li>
+<li><b>복잡도</b>: 방문 기록이 있으면 노드를 한 번씩만 처리하므로 그래프는 O(V+E), 격자는 O(R&times;C)이다. 큐를 <code class="i">list</code>의 <code class="i">pop(0)</code>(O(N))으로 만들면 느려지므로 <code class="i">deque.popleft()</code>(O(1))를 쓴다. 재귀 DFS는 깊이가 한도를 넘으면 <code class="i">RecursionError</code>가 나므로, 입력이 크면 명시적 스택으로 바꾼다.</li>
+<li><b>흔한 오개념</b>: ① DFS도 최단 길이를 찾는다(아니다). ② 섬은 BFS로만(또는 DFS로만) 센다(둘 다 된다). ③ 재귀는 항상 안전하다(깊이 한도가 있다). ④ 방문 표시는 꺼낼 때 하면 된다(큐에 같은 노드가 여러 번 들어갈 수 있으니 넣을 때 표시한다). ⑤ 스택 규칙과 재귀 DFS는 항상 같은 방문 순서이다(이웃을 넣는 순서에 따라 다를 수 있다).</li>
 </ul></details>
 </div>
 <script id="week11-submit">

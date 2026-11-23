@@ -217,7 +217,18 @@ def week_files(w):
     return out
 
 
+def build_one(key):
+    """쪽 하나만 다시 만든다(여럿이 동시에 작업해도 서로 지우지 않게). 예: week12/student_code_lab"""
+    key = key.replace(".html", "")
+    src = (UP / (key + ".html")).read_text(encoding="utf-8")
+    out, st = transform(src, page_key=key)
+    (OUT / (key + ".html")).write_text(out, encoding="utf-8")
+    print(key, "만듦", "(새로 쓴 쪽)" if st.get("authored") else "(새로 쓴 쪽 없음)")
+
+
 def main():
+    if len(sys.argv) > 2 and sys.argv[1] == "--only":
+        return build_one(sys.argv[2])
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "assets").mkdir(parents=True)
