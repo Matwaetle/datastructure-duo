@@ -17,8 +17,37 @@
 
 /* 주어진 값 칩 */
 .x-given { display: flex; flex-wrap: wrap; gap: 8px; }
-.x-given > span { font: 600 15px var(--f-mono); background: var(--duo-blue-soft); color: #0b5a85; border-radius: 10px; padding: 5px 10px; }
-.x-given > span > b { font-family: var(--f-round); font-weight: 900; color: var(--duo-ink); margin-right: 6px; }
+.x-given > span { font: 600 15px var(--f-body); background: var(--duo-blue-soft); color: #0b5a85; border-radius: 10px; padding: 5px 10px; }
+.x-given > span > b { font: 900 15px var(--f-mono); color: var(--duo-ink); margin-right: 8px; }
+.x-given code { font: 700 15px var(--f-mono); }
+
+/* 빈 칸 경고 때 반짝임 */
+@keyframes duo-blink { 0%, 100% { box-shadow: none; } 30%, 70% { box-shadow: 0 0 0 4px rgba(255,150,0,.45); } }
+.duo-blink .x-in, .duo-blink .x-opt, .duo-blink .x-check, .duo-blink input, .duo-blink.x-in { animation: duo-blink 1.2s ease-in-out 2; border-color: var(--duo-orange) !important; }
+
+/* 규칙 카드: 단계마다 번호·이름·식·작은 그림 */
+.x-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: r; }
+.x-rules > li { counter-increment: r; display: grid; grid-template-columns: 44px 1fr; gap: 4px 14px; align-items: start; max-width: none;
+  border: 2px solid var(--duo-line); border-bottom-width: 4px; border-radius: 18px; padding: 14px 16px; background: var(--duo-bg); }
+.x-rules > li::before { content: counter(r); grid-row: span 3; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+  font: 900 20px var(--f-round); color: #fff; background: var(--rc, var(--duo-blue)); box-shadow: 0 3px 0 rgba(0,0,0,.15); }
+.x-rules > li > b { font: 900 18px var(--f-round); color: var(--duo-ink); }
+.x-rules > li > .x-arr { margin-top: 4px; }
+.x-rules .fx { display: flex; flex-wrap: wrap; gap: 8px; }
+.x-rules .fx > code { font: 800 16px var(--f-mono); padding: 4px 10px; border-radius: 10px; background: var(--duo-panel); border: 2px solid var(--duo-line); color: var(--duo-ink); }
+.x-rules .fx > span { font: 600 14px var(--f-body); color: var(--duo-mute); align-self: center; }
+.x-rules .cases { display: grid; gap: 6px; }
+.x-rules .cases > div { display: grid; grid-template-columns: minmax(7.5em, auto) 18px 1fr; align-items: center; gap: 8px; font: 700 15px var(--f-body);
+  padding: 6px 10px; border-radius: 12px; background: var(--cb); color: var(--cc); }
+.x-rules .cases > div > code { font: 800 15px var(--f-mono); }
+.x-rules .cases > div > i { font-style: normal; text-align: center; font-weight: 900; }
+.x-rules .c-eq { --cb: var(--duo-green-soft); --cc: var(--duo-green-ink); }
+.x-rules .c-up { --cb: #eef6ff; --cc: #1d6fc2; }
+.x-rules .c-dn { --cb: #fff1f1; --cc: #c2361d; }
+.x-rules .c-end { --cb: #fff1f1; --cc: #c2361d; }
+.x-rules > li.r1 { --rc: #1cb0f6; } .x-rules > li.r2 { --rc: #ce82ff; } .x-rules > li.r3 { --rc: #ff9600; } .x-rules > li.r4 { --rc: #ff4b4b; }
+.x-arr.mini .x-cell { grid-template-rows: auto 34px 18px; min-width: 34px; }
+.x-arr.mini .x-val { min-width: 34px; height: 34px; font-size: 14px; border-radius: 9px; border-bottom-width: 3px; }
 
 /* 배열 그림 */
 .x-arr { display: grid; gap: 6px; overflow-x: auto; padding-bottom: 2px; }

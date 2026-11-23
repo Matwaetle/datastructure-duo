@@ -388,7 +388,9 @@
       warnedEmpty = true;
       showSheet("info", "아직 안 쓴 칸이 " + empty.length + "개 있어요", "나중에 돌아와서 써도 돼요. 한 번 더 누르면 넘어가요.");
       primary.textContent = "그래도 넘어가기";
-      focusFirstEmpty();
+      // 포커스를 옮기면 경고가 바로 꺼지므로, 빈 칸은 보이게 스크롤하고 반짝이기만 한다.
+      empty.forEach(function (f) { f.classList.remove("duo-blink"); void f.offsetWidth; f.classList.add("duo-blink"); });
+      empty[0].scrollIntoView({ block: "center", behavior: "smooth" });
       return;
     }
     go(cur + 1);
@@ -462,7 +464,15 @@
         e.preventDefault(); onPrimary();
       }
     });
+    // 빈 칸 경고가 떠 있을 때 칸을 건드리면 바로 경고를 거둔다.
+    function clearEmptyWarn() {
+      if (!warnedEmpty) return;
+      warnedEmpty = false; hideSheet(); setPrimary();
+    }
+    document.addEventListener("pointerdown", function (e) { if (e.target.closest(".duo-stage input, .duo-stage textarea, .duo-stage button, .duo-stage .ck-ed")) clearEmptyWarn(); });
+    document.addEventListener("focusin", function (e) { if (e.target.closest(".duo-stage")) clearEmptyWarn(); });
     document.addEventListener("input", function (e) {
+      clearEmptyWarn();
       var s = screens[cur];
       if (s && e.target.closest("[data-model], .rg")) {
         if (s.checked) { s.checked = false; hideSheet(); }

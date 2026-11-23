@@ -53,13 +53,22 @@
   <ul class="x-pts"><li>찾는 규칙을 정확히 약속하고 손으로 따라가요.</li></ul>
 
   <div class="x-screen" data-title="규칙 4줄">
-    <ol class="x-pts">
-      <li><b>lo</b> = 0, <b>hi</b> = 마지막 인덱스 (답이 있을 수 있는 구간)</li>
-      <li><b>mid</b> = (lo + hi) // 2 → a[mid]와 목표 비교 (비교 1회)</li>
-      <li>같으면 끝 · 목표가 크면 <b>lo = mid + 1</b> · 작으면 <b>hi = mid − 1</b></li>
-      <li><b>lo &gt; hi</b> 가 되면 ‘없음’으로 끝</li>
+    <ol class="x-rules">
+      <li class="r1"><b>후보 구간 정하기</b>
+        <div class="fx"><code>lo = 0</code><code>hi = 마지막 인덱스</code></div>
+        <div class="x-arr mini" data-v="3,7,9,14,20" data-lo="0" data-hi="4"></div></li>
+      <li class="r2"><b>가운데 보기</b>
+        <div class="fx"><code>mid = (lo + hi) // 2</code><span>// 는 몫만: 7 // 2 = 3</span></div>
+        <div class="x-arr mini" data-v="3,7,9,14,20" data-lo="0" data-hi="4" data-mid="2"></div></li>
+      <li class="r3"><b>목표와 a[mid] 비교 (1회)</b>
+        <div class="cases">
+          <div class="c-eq"><code>목표 = a[mid]</code><i>→</i><span>찾음, 끝</span></div>
+          <div class="c-up"><code>목표 &gt; a[mid]</code><i>→</i><span><code>lo = mid + 1</code> 오른쪽만 남김</span></div>
+          <div class="c-dn"><code>목표 &lt; a[mid]</code><i>→</i><span><code>hi = mid − 1</code> 왼쪽만 남김</span></div>
+        </div></li>
+      <li class="r4"><b>후보가 없으면 끝</b>
+        <div class="cases"><div class="c-end"><code>lo &gt; hi</code><i>→</i><span>‘없음’</span></div></div></li>
     </ol>
-    <div class="x-given"><span><b>//</b>나눗셈의 몫만 (7 // 2 = 3)</span><span><b>a[mid]</b>mid 칸에 놓인 값</span></div>
   </div>
 
   <div class="x-screen" data-title="작은 배열로 연습">
