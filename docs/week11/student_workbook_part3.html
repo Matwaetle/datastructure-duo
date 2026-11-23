@@ -17,45 +17,45 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="11주차 활동지 3부 · 섬 세기와 일반화" data-lead="섬의 개수를 세고, 오늘 배운 탐색을 한 문장으로 묶어 새 문제에 써 봐요.">
+<div class="x-page" hidden data-title="11주차 활동지 3부 · 섬 세기와 일반화" data-lead="섬의 개수를 세고, 오늘 배운 탐색을 한 문장으로 정리하여 새 문제에 적용합니다.">
 
 <!-- ========== A10 ========== -->
 <section class="x-act" data-id="A10" data-title="섬의 개수: 예측과 실제" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>실습 코드 3부 A10과 함께 써요.</li><li>예측 칸은 <b>실행하기 전에</b> 먼저 써요.</li></ul>
+  <ul class="x-pts"><li>실습 코드 3부 A10과 함께 사용합니다.</li><li>예측 입력란은 <b>실행하기 전에</b> 먼저 채우십시오.</li></ul>
 
   <div class="x-screen" data-title="섬이란?">
     <div class="x-cards">
       <div><b>ISLE</b>6행 7열 격자, 1 = 땅 · 0 = 바다</div>
-      <div><b>섬</b>상하좌우(4방향)로 이어진 땅 덩어리</div>
+      <div><b>섬</b>상하좌우(4방향)로 이어진 땅의 연결 요소(한 덩어리)</div>
       <div><b>대각선</b>4방향 규칙에서는 이어진 것이 아님</div>
     </div>
     <div class="x-grid" data-name="ISLE" data-rc data-rows="1100010|1100011|0010000|0001100|1000100|1000001" data-mark="0,0:a;0,1:a;0,5:a;1,0:a;1,1:a;1,5:a;1,6:a;2,2:a;3,3:a;3,4:a;4,0:a;4,4:a;5,0:a;5,6:a" data-label="1 = 땅 · 0 = 바다"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">(1,1)과 (2,2)는 대각선으로 맞닿아요. 4방향 규칙에서 같은 섬인가요?</p>
-      <div class="opts"><button type="button" data-hint="상하좌우만 이웃이에요.">같은 섬</button><button type="button">다른 섬</button></div>
-      <p class="why">대각선은 4방향 이웃이 아니에요.</p>
+      <p class="q">(1,1)과 (2,2)는 대각선으로 맞닿아 있습니다. 4방향 규칙에서 같은 섬입니까?</p>
+      <div class="opts"><button type="button" data-hint="상하좌우만 이웃입니다.">같은 섬</button><button type="button">다른 섬</button></div>
+      <p class="why">대각선은 4방향 이웃이 아닙니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="예측-실제 표">
     <div class="x-grid" data-name="ISLE" data-rc data-rows="1100010|1100011|0010000|0001100|1000100|1000001" data-mark="0,0:a;0,1:a;0,5:a;1,0:a;1,1:a;1,5:a;1,6:a;2,2:a;3,3:a;3,4:a;4,0:a;4,4:a;5,0:a;5,6:a" data-label="1 = 땅 · 0 = 바다"></div>
-    <ul class="x-pts"><li><b>예측</b> = 실행 전에 짐작한 개수 · <b>실제</b> = 실행한 뒤 나온 개수</li><li>4번 줄은 선택이에요. 안 하면 비워요.</li></ul>
+    <ul class="x-pts"><li><b>예측</b> = 실행 전에 짐작한 개수 · <b>실제</b> = 실행한 뒤 나온 개수</li><li>4번 줄은 선택입니다. 하지 않으면 비워 두십시오.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>줄<small>실습 코드의 걸음</small></th><th>예측<small>섬 개수, 숫자</small></th><th>실제<small>섬 개수, 숫자</small></th></tr>
       <tr class="x-ex"><td>예: 다른 격자</td><td>3</td><td>3</td></tr>
-      <tr><td>1. 손으로 센 섬 (2걸음)</td><td><span class="x-f" data-bind="A10.pred.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r1.c2" data-ph="숫자"></span></td></tr>
+      <tr><td>1. 직접 추적하여 센 섬 (2걸음)</td><td><span class="x-f" data-bind="A10.pred.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r1.c2" data-ph="숫자"></span></td></tr>
       <tr><td>2. count_islands(ISLE) (4걸음)</td><td><span class="x-f" data-bind="A10.pred.r2.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r2.c2" data-ph="숫자"></span></td></tr>
       <tr><td>3. 꺼내는 줄을 pop()으로 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r3.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r3.c2" data-ph="숫자"></span></td></tr>
-      <tr class="opt"><td>4. (선택) 대각선 8방향 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r4.c1" data-ph="안 쓰면 비움"></span></td><td><span class="x-f" data-bind="A10.pred.r4.c2" data-ph="안 쓰면 비움"></span></td></tr>
+      <tr class="opt"><td>4. (선택) 대각선 8방향 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r4.c1" data-ph="하지 않으면 비워 두십시오"></span></td><td><span class="x-f" data-bind="A10.pred.r4.c2" data-ph="하지 않으면 비워 두십시오"></span></td></tr>
     </table></div>
   </div>
 
   <div class="x-screen" data-title="seen에는 무엇이 남을까">
     <div class="x-cards"><div><b>seen</b>이미 본 칸을 모아 두는 집합</div><div><b>바깥 반복</b>격자를 왼쪽 위부터 훑으며 새 섬 시작점을 찾음</div></div>
     <div class="quiz" data-answer="1">
-      <p class="q">섬 하나를 다 방문하면 seen에는 무엇이 남아 있을까요?</p>
-      <div class="opts"><button type="button">그 섬의 모든 땅 칸</button><button type="button" data-hint="이웃 칸도 넣을 때 표시해요.">시작 칸만</button><button type="button" data-hint="seen은 비우지 않아요.">아무것도 없다</button></div>
-      <p class="why">그래서 이어진 칸을 다시 시작점으로 삼지 않고 섬마다 한 번만 세요.</p>
+      <p class="q">섬 하나를 다 방문하면 seen에는 무엇이 남아 있습니까?</p>
+      <div class="opts"><button type="button">그 섬의 모든 땅 칸</button><button type="button" data-hint="이웃 칸도 넣을 때 표시합니다.">시작 칸만</button><button type="button" data-hint="seen은 비우지 않습니다.">아무것도 없다</button></div>
+      <p class="why">따라서 이어진 칸을 다시 시작점으로 삼지 않고 섬마다 한 번만 셉니다.</p>
     </div>
   </div>
 
@@ -64,52 +64,52 @@
 node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
     <div class="x-given"><span><b>A2 큐 규칙</b>앞에서 꺼냄</span><span><b>A2 스택 규칙</b>위에서 꺼냄</span></div>
     <div class="x-line">내 표의 실제 개수: popleft <span class="x-echo" data-echo="A10.pred.r2.c2"></span> · pop() <span class="x-echo" data-echo="A10.pred.r3.c2"></span></div>
-    <p class="x-q">pop()으로 바꾼 뒤 개수가 달라졌나요?<small>2문장: 바뀐 것 / 그대로인 것</small></p>
+    <p class="x-q">pop()으로 바꾼 뒤 개수가 달라졌습니까?<small>2문장: 바뀐 것 / 그대로인 것</small></p>
     <div class="x-f" data-bind="A10.q2" data-parts="바뀐 것=예: 출력 줄 수가 바뀌었다|그대로인 것=예: 걸린 시간은 그대로였다"></div>
-    <p class="x-q">explore가 A2의 두 규칙과 다른 한 줄은?<small>2문장: 어느 줄 / 그 한 줄로 BFS도 DFS도 되는 까닭</small></p>
+    <p class="x-q">explore가 A2의 두 규칙과 다른 한 줄은 무엇입니까?<small>2문장: 어느 줄 / 그 한 줄로 BFS도 DFS도 되는 까닭</small></p>
     <div class="x-f" data-bind="A10.q4" data-parts="다른 한 줄=예: 이웃을 넣는 for 줄|까닭=예: 나머지 줄이 … 이므로"></div>
   </div>
 
   <div class="x-screen" data-title="4방향과 8방향, 어느 쪽이 정답?">
     <div class="x-cards"><div><b>4방향</b>상하좌우만 이웃</div><div><b>8방향</b>대각선 4칸도 이웃</div><div><b>DIRS</b>코드의 방향 목록</div></div>
     <div class="x-grid" data-name="ISLE 0~3행 0~3열" data-rc data-rows="1100|1100|0010|0001" data-mark="1,1:hit;2,2:hit;3,3:hit"></div>
-    <ul class="x-pts"><li>(1,1) · (2,2) · (3,3) 이 대각선으로만 맞닿아요.</li></ul>
-    <p class="x-q">어느 쪽이 정답인가요?<small>3문장 이내: 입장 / 근거 / 코드에서 바뀐 것</small></p>
+    <ul class="x-pts"><li>(1,1) · (2,2) · (3,3) 이 대각선으로만 맞닿아 있습니다.</li></ul>
+    <p class="x-q">어느 쪽이 정답입니까?<small>3문장 이내: 입장 / 근거 / 코드에서 바뀐 것</small></p>
     <div class="x-f" data-bind="A10.q5" data-parts="입장=예: 4방향이 정답이다|근거=예: 섬은 원래 … 이므로|바뀐 것=예: 탐색 함수 이름"></div>
   </div>
 </section>
 
 <!-- ========== A11 ========== -->
 <section class="x-act" data-id="A11" data-title="일반화 초안 카드" data-meta="4분 · 개인">
-  <ul class="x-pts"><li>여러 사례에 두루 맞는 한 문장(일반화)을 써요.</li></ul>
+  <ul class="x-pts"><li>여러 사례에 두루 맞는 한 문장(일반화)을 씁니다.</li></ul>
 
   <div class="x-screen" data-title="일반화란?">
     <div class="x-cards"><div><b>일반화</b>개념 + 개념 + 관계 한 문장</div><div><b>개념어</b>그래프, 격자, 노드, 큐처럼 두루 쓰는 말</div><div><b>사례 이름</b>G1, MAZE, ISLE 같은 하나의 이름</div></div>
     <div class="x-given"><span><b>가</b>“우리 교실 선인장은 물을 안 줘서 시들었다.”</span><span><b>나</b>“식물은 물이 모자라면 시든다.”</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">일반화는?</p>
-      <div class="opts"><button type="button" data-hint="‘교실 선인장’은 사례 이름이에요.">(가)</button><button type="button">(나)</button></div>
-      <p class="why">(나)는 개념어(식물, 물)와 관계로만 썼어요.</p>
+      <p class="q">일반화에 해당하는 문장을 고르십시오.</p>
+      <div class="opts"><button type="button" data-hint="‘교실 선인장’은 사례 이름입니다.">(가)</button><button type="button">(나)</button></div>
+      <p class="why">(나)는 개념어(식물, 물)와 관계로만 썼습니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="주제 고르고 초안 쓰기">
-    <ul class="x-pts"><li>A1~A10에서 생각이 가장 크게 바뀐 주제 하나</li><li>사례 이름 대신 개념어로</li></ul>
+    <ul class="x-pts"><li>A1~A10에서 생각이 가장 크게 바뀐 주제 하나를 고르십시오.</li><li>사례 이름 대신 개념어로 쓰십시오.</li></ul>
     <div class="x-f" data-bind="A11.topic"></div>
-    <p class="x-q">내 일반화 초안<small>개념 + 개념 + 관계, 한 문장</small></p>
+    <p class="x-q">자신의 일반화 초안을 쓰십시오.<small>개념 + 개념 + 관계, 한 문장</small></p>
     <div class="x-f" data-bind="A11.draft" data-ph="예: 그래프에서 노드를 … 하면 … 이 된다"></div>
   </div>
 
   <div class="x-screen" data-title="반례 찾기">
-    <ul class="x-pts"><li>‘미로’나 사례 이름을 지워도 말이 되나요?</li><li>소문 전파·섬·물통 퍼즐에도 통하나요?</li><li><b>반례</b> = 내 문장이 맞지 않는 사례</li></ul>
-    <p class="x-q">점검 결과<small>1~2문장. 반례가 없으면 ‘반례 없음’</small></p>
+    <ul class="x-pts"><li>‘미로’나 사례 이름을 지워도 말이 됩니까?</li><li>소문 전파·섬·물통 퍼즐에도 통합니까?</li><li><b>반례</b> = 내 문장이 맞지 않는 사례</li></ul>
+    <p class="x-q">점검 결과를 쓰십시오.<small>1~2문장. 반례가 없으면 ‘반례 없음’</small></p>
     <div class="x-f" data-bind="A11.check" data-ph="예: 소문 전파에서는 … 라서 맞지 않는다 / 반례 없음"></div>
   </div>
 </section>
 
 <!-- ========== A12 ========== -->
 <section class="x-act" data-id="A12" data-title="정제 시트와 구별 기준표" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>초안을 더 정확하게 다듬고(정제), BFS와 DFS를 고르는 기준을 세워요.</li></ul>
+  <ul class="x-pts"><li>초안을 더 정확하게 다듬고(정제), BFS와 DFS를 고르는 기준을 세웁니다.</li></ul>
 
   <div class="x-screen" data-title="두 주제 다시 쓰기">
     <div class="x-given"><span><b>빼기</b>G1, H, MAZE, ISLE</span><span><b>쓰기</b>그래프, 격자, 노드, 큐</span></div>
@@ -123,11 +123,11 @@ node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
 
   <div class="x-screen" data-title="점검하기">
     <div class="quiz" data-answer="2">
-      <p class="q">사례 이름이라 개념어로 바꿔야 하는 말은?</p>
-      <div class="opts"><button type="button" data-hint="큐는 여러 곳에 쓰는 말이에요.">큐</button><button type="button">MAZE</button><button type="button" data-hint="노드는 개념어예요.">노드</button></div>
-      <p class="why">MAZE는 미로 하나의 이름이에요.</p>
+      <p class="q">사례 이름이라 개념어로 바꾸어야 하는 말을 고르십시오.</p>
+      <div class="opts"><button type="button" data-hint="큐는 여러 곳에 쓰는 말입니다.">큐</button><button type="button">MAZE</button><button type="button" data-hint="노드는 개념어입니다.">노드</button></div>
+      <p class="why">MAZE는 미로 하나의 이름입니다.</p>
     </div>
-    <ul class="x-pts"><li>내 문장에 해당하면 체크해요.</li></ul>
+    <ul class="x-pts"><li>자신의 문장에 해당하면 체크하십시오.</li></ul>
     <div class="x-f" data-bind="A12.chk1">사례 이름을 개념어로 바꿨다</div>
     <div class="x-f" data-bind="A12.chk2">“개념 + 개념 + 관계” 형태이다</div>
     <div class="x-f" data-bind="A12.chk3">문장에서 “미로”를 지울 수 있다</div>
@@ -144,28 +144,28 @@ node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
   </div>
 
   <div class="x-screen" data-title="정리 문장과 대조하기">
-    <ul class="x-pts"><li>선생님이 보여 주는 정리 문장 G1~G4와 내 문장을 견줘요.</li><li>베끼지 말고 내 문장에서 고칠 점만 찾아요.</li></ul>
+    <ul class="x-pts"><li>선생님이 보여 주는 정리 문장 G1~G4와 자신의 문장을 비교하십시오.</li><li>베끼지 말고 자신의 문장에서 고칠 점만 찾으십시오.</li></ul>
     <div class="x-cards">
       <div><b>G1 탐색 틀</b>이웃 꺼내기 + visited, 꺼내는 규칙이 순서를 정함</div>
       <div><b>G2 최단 거리</b>큐만 처음 도착한 길이 최단</div>
       <div><b>G3 연결 요소</b>순서가 개수를 바꾸지 않음</div>
       <div><b>G4 구현 선택</b>재귀 깊이 한계, deque 비용</div>
     </div>
-    <p class="x-q">대조 뒤 내 문장에서 고칠 점<small>1문장. 없으면 ‘없음’</small></p>
+    <p class="x-q">대조한 뒤 자신의 문장에서 고칠 점을 쓰십시오.<small>1문장. 없으면 ‘없음’</small></p>
     <div class="x-f" data-bind="A12.cmp.fix" data-ph="예: 최단 거리 문장에 … 을 넣는다 / 없음"></div>
   </div>
 </section>
 
 <!-- ========== A13 ========== -->
 <section class="x-act" data-id="A13" data-title="과제 점검표와 새 문제의 상태 정의" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>실습 코드 3부 A13 점검 결과를 적고, 새 문제를 탐색 틀로 바꿔요.</li></ul>
+  <ul class="x-pts"><li>실습 코드 3부 A13 점검 결과를 적고, 새 문제를 탐색 틀로 바꿉니다.</li></ul>
 
   <div class="x-screen" data-title="점검표">
-    <ul class="x-pts"><li>실습 코드 A13 점검을 돌린 뒤 해당하면 체크해요.</li></ul>
+    <ul class="x-pts"><li>실습 코드 A13 점검을 실행한 뒤 해당하면 체크하십시오.</li></ul>
     <div class="x-f" data-bind="A13.chk1">내 세 함수가 A13 점검 코드를 실행해 모두 통과했다</div>
     <div class="x-f" data-bind="A13.chk2">코드를 고치지 않고 새 입력에서도 통과했다</div>
     <div class="x-f" data-bind="A13.chk3">물통 퍼즐의 상태 정의 카드를 썼다(NUM은 선택)</div>
-    <p class="x-q">통과 못 한 항목 번호와 원인<small>모두 통과면 ‘없음’ + 통과 전에 고친 곳</small></p>
+    <p class="x-q">통과하지 못한 항목 번호와 원인을 쓰십시오.<small>모두 통과면 ‘없음’ + 통과 전에 고친 곳</small></p>
     <div class="x-f" data-bind="A13.fail" data-ph="예: 8번, 기본 인자 seen=set() 때문 / 없음"></div>
   </div>
 
@@ -174,9 +174,9 @@ node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
     <div class="x-given"><span><b>NUM 상태</b>수 n (1~100)</span><span><b>이웃</b>n+1, n×2 (100 이하)</span><span><b>시작</b>3</span><span><b>목표</b>14</span></div>
     <div class="x-graph" data-name="NUM 상태 일부" data-nodes="3:0,1.5 4:1,0.5 6:1,2.5 5:2,0 8:2,1 ?₁:2,2 ?₂:2,3" data-edges="3-4,3-6,4-5,4-8,6-?₁,6-?₂" data-start="3" data-directed></div>
     <div class="quiz" data-answer="2">
-      <p class="q">6의 이웃 상태는?</p>
-      <div class="opts"><button type="button" data-hint="+1 과 ×2 를 해요.">5, 12</button><button type="button">7, 12</button><button type="button" data-hint="6×2 를 다시 계산해 봐요.">7, 8</button></div>
-      <p class="why">6+1 = 7, 6×2 = 12.</p>
+      <p class="q">6의 이웃 상태를 고르십시오.</p>
+      <div class="opts"><button type="button" data-hint="+1 과 ×2 를 합니다.">5, 12</button><button type="button">7, 12</button><button type="button" data-hint="6×2 를 다시 계산하십시오.">7, 8</button></div>
+      <p class="why">6+1 = 7, 6×2 = 12이므로 7, 12입니다.</p>
     </div>
   </div>
 
@@ -184,21 +184,21 @@ node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
     <div class="x-given"><span><b>a</b>3L 통의 물</span><span><b>b</b>5L 통의 물</span><span><b>상태</b>(a, b)</span></div>
     <div class="x-flow"><span>(0, 0)</span><span>(3, 0) 또는 (0, 5)</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">(3, 2)에서 3L 통을 비우면?</p>
-      <div class="opts"><button type="button" data-hint="5L 통은 그대로예요.">(0, 0)</button><button type="button">(0, 2)</button><button type="button" data-hint="비운 건 3L 통이에요.">(3, 0)</button></div>
-      <p class="why">3L 통만 0이 돼요.</p>
+      <p class="q">(3, 2)에서 3L 통을 비우면 어떤 상태가 됩니까?</p>
+      <div class="opts"><button type="button" data-hint="5L 통은 그대로입니다.">(0, 0)</button><button type="button">(0, 2)</button><button type="button" data-hint="비운 것은 3L 통입니다.">(3, 0)</button></div>
+      <p class="why">3L 통만 0이 됩니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="물통 퍼즐 상태 정의 카드">
     <div class="x-given"><span><b>통</b>3L 하나, 5L 하나</span><span><b>동작</b>채우기 · 비우기 · 다른 통으로 옮기기</span><span><b>질문</b>한 통에 정확히 4L?</span></div>
-    <ul class="x-pts"><li>코드 없이 말로 네 가지를 써요.</li></ul>
+    <ul class="x-pts"><li>코드 없이 문장으로 네 가지를 쓰십시오.</li></ul>
     <div class="x-f" data-bind="A13.state" data-parts="(1) 상태=예: (a, b) 는 …|(2) 이웃 상태 예=예: (0,0) → …|(3) 시작과 목표=예: 시작 …, 목표 …|(4) BFS/DFS와 까닭=예: DFS, 왜냐하면 …"></div>
   </div>
 
   <div class="x-screen" data-title="(선택 · 집에서) NUM 결과">
     <div class="x-given"><span><b>시작</b>3</span><span><b>목표</b>14</span><span><b>동작</b>+1, ×2</span></div>
-    <ul class="x-pts"><li>안 풀었으면 첫 칸에 ‘안 함’.</li></ul>
+    <ul class="x-pts"><li>풀지 않았으면 첫 입력란에 ‘안 함’이라고 쓰십시오.</li></ul>
     <div class="x-line">최소 연산 횟수 <span class="x-f" data-bind="A13.num.ops" data-w="s" data-ph="숫자 / 안 함"></span></div>
     <div class="x-line">그때의 경로 <span class="x-f" data-bind="A13.num.path" data-w="l" data-ph="예: 2 → 4 → 5"></span></div>
   </div>
@@ -206,38 +206,38 @@ node = todo.pop()       # 스택: 맨 위(뒤)에서 꺼냄</pre>
 
 <!-- ========== A15 ========== -->
 <section class="x-act" data-id="A15" data-title="오개념 점검과 다음 주 잇기" data-meta="4분 · 개인">
-  <ul class="x-pts"><li>틀린 말을 가려내고 다음 주와 이어 봐요.</li></ul>
+  <ul class="x-pts"><li>틀린 말을 가려내고 다음 주 내용과 연결합니다.</li></ul>
 
   <div class="x-screen" data-title="네 문장 판단 (1)">
     <div class="quiz" data-answer="2">
       <p class="q">“DFS도 처음 찾은 길이 최단이다.”</p>
-      <div class="opts"><button type="button" data-hint="A9 MAZE에서 DFS와 BFS 길이를 떠올려요.">맞다</button><button type="button">아니다</button></div>
-      <p class="why">MAZE에서 DFS 14, BFS 10이었어요(A9).</p>
+      <div class="opts"><button type="button" data-hint="A9 MAZE에서 DFS와 BFS 길이를 떠올리십시오.">맞다</button><button type="button">아니다</button></div>
+      <p class="why">MAZE에서 DFS 14, BFS 10이었습니다(A9).</p>
     </div>
     <div class="quiz" data-answer="1">
       <p class="q">“섬의 개수는 꺼내는 줄을 pop()으로 바꿔도 6으로 같다.”</p>
-      <div class="opts"><button type="button">맞다</button><button type="button" data-hint="바뀐 것은 방문 순서뿐이었어요.">아니다</button></div>
-      <p class="why">popleft든 pop이든 6(A10).</p>
+      <div class="opts"><button type="button">맞다</button><button type="button" data-hint="바뀐 것은 방문 순서뿐이었습니다.">아니다</button></div>
+      <p class="why">popleft이든 pop이든 6입니다(A10).</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="네 문장 판단 (2)">
     <div class="quiz" data-answer="2">
       <p class="q">“재귀는 항상 안전하다.”</p>
-      <div class="opts"><button type="button" data-hint="A8 T3의 1×1500 격자를 떠올려요.">맞다</button><button type="button">아니다</button></div>
-      <p class="why">1×1500에서 RecursionError(A8 T3).</p>
+      <div class="opts"><button type="button" data-hint="A8 T3의 1×1500 격자를 떠올리십시오.">맞다</button><button type="button">아니다</button></div>
+      <p class="why">1×1500에서 RecursionError가 발생합니다(A8 T3).</p>
     </div>
     <div class="quiz" data-answer="1">
       <p class="q">“MAZE에서 BFS가 처음 도착한 길은 10걸음이고, 더 짧은 길은 없다.”</p>
-      <div class="opts"><button type="button">맞다</button><button type="button" data-hint="BFS는 가까운 칸부터 다 봐요.">아니다</button></div>
-      <p class="why">BFS는 같은 걸음 수를 다 본 뒤 나아가요(A9).</p>
+      <div class="opts"><button type="button">맞다</button><button type="button" data-hint="BFS는 가까운 칸부터 모두 살펴봅니다.">아니다</button></div>
+      <p class="why">BFS는 같은 걸음 수를 모두 살펴본 뒤 나아갑니다(A9).</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="12·13주차로 잇기">
     <div class="x-cards"><div><b>12주차</b>정렬과 이진 탐색</div><div><b>13주차</b>같은 상태 결과 기억하기, 매 순간 최선 고르기</div></div>
     <div class="x-given"><span><b>오늘의 틀</b>상태 · 이웃 · visited · 꺼내는 규칙</span><span><b>A13</b>같은 수 6을 두 길로 만남</span></div>
-    <p class="x-q">틀이 다음 주에 쓰일 곳, 또는 궁금한 점<small>1~2문장</small></p>
+    <p class="x-q">틀이 다음 주에 쓰일 곳, 또는 궁금한 점을 쓰십시오.<small>1~2문장</small></p>
     <div class="x-f" data-bind="A15.next" data-ph="예: 이진 탐색도 … 로 볼 수 있는지 궁금하다"></div>
   </div>
 </section>

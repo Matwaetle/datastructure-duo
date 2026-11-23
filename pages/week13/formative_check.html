@@ -1,28 +1,28 @@
-<div class="x-page" hidden data-title="13주차 형성평가 · 패러다임 판단과 DP 설계" data-lead="코드 없이 표와 문장으로 풀어요. AI는 쓰지 않아요.">
+<div class="x-page" hidden data-title="13주차 형성평가 · 패러다임 판단과 DP 설계" data-lead="코드 없이 표와 문장으로 답하십시오. AI는 사용하지 않습니다.">
 
 <!-- ========== Q1 ========== -->
-<section class="x-act" data-id="Q1" data-title="어떤 방식이 어울릴까" data-meta="필수 · 개인">
-  <ul class="x-pts"><li>필수 Q1~Q3, 8분</li><li>시간이 모자라면 (a), (d)는 비워도 돼요.</li></ul>
+<section class="x-act" data-id="Q1" data-title="알맞은 방식 고르기" data-meta="필수 · 개인">
+  <ul class="x-pts"><li>필수 Q1~Q3, 8분</li><li>시간이 부족하면 (a), (d)는 비워 두어도 됩니다.</li></ul>
 
   <div class="x-screen" data-title="고를 네 가지">
     <div class="x-cards">
-      <div><b>메모이제이션·DP</b>부분 문제가 겹침 → 저장해 재사용</div>
-      <div><b>Greedy 가능</b>지금 최선을 골라도 되돌릴 일 없음</div>
-      <div><b>Greedy 불가(DP 필요)</b>지금 최선이 나중에 손해</div>
-      <div><b>기억해도 이득 없음</b>부분 문제가 겹치지 않음</div>
+      <div><b>메모이제이션·DP</b>부분 문제가 겹치므로 결과를 저장해 재사용합니다.</div>
+      <div><b>Greedy 가능</b>현재 최선을 골라도 되돌릴 필요가 없습니다.</div>
+      <div><b>Greedy 불가(DP 필요)</b>현재 최선이 나중에 손해가 됩니다.</div>
+      <div><b>기억해도 이득 없음</b>부분 문제가 겹치지 않습니다.</div>
     </div>
-    <ul class="x-pts"><li>근거는 한 문장: ‘~이므로 …이다’</li><li>상황의 어느 특징 때문인지 넣어요.</li></ul>
+    <ul class="x-pts"><li>근거는 ‘~이므로 …이다’ 꼴의 한 문장으로 쓰십시오.</li><li>상황의 어떤 특징 때문인지 포함하십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="(a) 같은 호출이 되풀이되는 점화식">
-    <ul class="x-tree"><li><span>f(5)</span><ul><li><span>f(4)</span><ul><li><span>f(3) <em>1번째</em></span></li><li><span>f(2)</span></li></ul></li><li><span>f(3) <em>또!</em></span></li></ul></li></ul>
-    <div class="x-given"><span><b>상황</b>같은 인자 호출이 수천 번</span></div>
+    <ul class="x-tree"><li><span>f(5)</span><ul><li><span>f(4)</span><ul><li><span>f(3) <em>1번째</em></span></li><li><span>f(2)</span></li></ul></li><li><span>f(3) <em>다시 호출</em></span></li></ul></li></ul>
+    <div class="x-given"><span><b>상황</b>같은 인자의 호출이 수천 번 반복됨</span></div>
     <div class="x-f" data-bind="Q1.a.pick"></div>
     <div class="x-f" data-bind="Q1.a.why" data-ph="예: ~이므로 ○○이 어울린다"></div>
   </div>
 
   <div class="x-screen" data-title="(b) 강의 고르기">
-    <div class="x-given"><span><b>상황</b>시작·끝 시각이 정해진 강의 여러 개</span><span><b>목표</b>겹치지 않게 최대한 많이</span></div>
+    <div class="x-given"><span><b>상황</b>시작·끝 시각이 정해진 강의 여러 개</span><span><b>목표</b>겹치지 않게 최대한 많이 선택</span></div>
     <div class="x-f" data-bind="Q1.b.pick"></div>
     <div class="x-f" data-bind="Q1.b.why" data-ph="예: ~이므로 ○○이 어울린다"></div>
   </div>
@@ -35,7 +35,7 @@
 
   <div class="x-screen" data-title="(d) 병합 정렬">
     <ul class="x-tree"><li><span>[8, 3, 5, 1]</span><ul><li><span>[8, 3] <em>따로 정렬</em></span></li><li><span>[5, 1] <em>따로 정렬</em></span></li></ul></li></ul>
-    <div class="x-given"><span><b>상황</b>반으로 쪼개 각각 독립적으로 정렬 → 합치기</span></div>
+    <div class="x-given"><span><b>상황</b>반으로 나누어 각각 독립적으로 정렬한 뒤 합침</span></div>
     <div class="x-f" data-bind="Q1.d.pick"></div>
     <div class="x-f" data-bind="Q1.d.why" data-ph="예: ~이므로 ○○이 어울린다"></div>
   </div>
@@ -43,11 +43,11 @@
 
 <!-- ========== Q2 ========== -->
 <section class="x-act" data-id="Q2" data-title="반례로 증명하기" data-meta="필수 · 개인">
-  <ul class="x-pts"><li>반례 = 금액 + 두 조합 + 개수 비교, 셋 다 써요.</li></ul>
+  <ul class="x-pts"><li>반례에는 금액, 두 조합, 개수 비교를 모두 쓰십시오.</li></ul>
 
   <div class="x-screen" data-title="(i)(ii) 12원 만들기">
     <div class="x-given"><span><b>F</b>[1, 6, 10]</span><span><b>금액</b>12원</span></div>
-    <ul class="x-pts"><li>조합은 5+1+1 처럼 +로, 개수는 숫자만</li></ul>
+    <ul class="x-pts"><li>조합은 5+1+1처럼 +로 잇고, 개수는 숫자만 쓰십시오.</li></ul>
     <div class="x-line">(i) 큰 동전부터 <span class="x-f" data-bind="Q2.i.combo" data-w="m" data-ph="예: 5+1+1"></span> = <span class="x-f" data-bind="Q2.i.n" data-w="xs" data-ph="숫자"></span> 개</div>
     <div class="x-line">(ii) 최적 조합 <span class="x-f" data-bind="Q2.ii.combo" data-w="m" data-ph="예: 5+1+1"></span> = <span class="x-f" data-bind="Q2.ii.n" data-w="xs" data-ph="숫자"></span> 개</div>
   </div>
@@ -58,18 +58,18 @@
       <tr><th>a</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
       <tr><td>dp[a]<small>숫자</small></td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td><span class="x-f" data-bind="Q2.iii.dp6" data-ph="숫자"></span></td><td>2</td><td>3</td><td>4</td><td>1</td><td><span class="x-f" data-bind="Q2.iii.dp11" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q2.iii.dp12" data-ph="숫자"></span></td></tr>
     </table></div>
-    <p class="x-q">dp[12]는 어느 칸에서 왔나요?<small>칸 번호와 동전 값을 함께, 1~2문장</small></p>
+    <p class="x-q">dp[12]는 어느 칸에서 왔습니까?<small>칸 번호와 동전 값을 함께 1~2문장으로 쓰십시오.</small></p>
     <div class="x-f" data-bind="Q2.iii.src" data-ph="예: dp[○]의 값에 동전 ○을 더한 경우에서 왔다"></div>
   </div>
 
-  <div class="x-screen" data-title="(iv) F에서 Greedy는 최적일까">
+  <div class="x-screen" data-title="(iv) F에서 Greedy의 최적 여부">
     <div class="x-given"><span><b>F</b>[1, 6, 10]</span></div>
     <div class="x-f" data-bind="Q2.iv.proof" data-parts="판단=최적이다 / 최적이 아니다|금액=예: ○원|큰 동전부터=예: 10+1+1 (○개)|더 나은 조합=예: ○+○ (○개) / 최적이면 확인 방법"></div>
   </div>
 
   <div class="x-screen" data-title="후속: G = [1, 2, 5, 10]">
     <div class="x-given"><span><b>G</b>[1, 2, 5, 10]</span><span><b>시험</b>1~20원 모두 Greedy가 최적</span></div>
-    <p class="x-q">이것으로 G에서 Greedy가 항상 최적임이 증명됐나요?</p>
+    <p class="x-q">이것으로 G에서 Greedy가 항상 최적임이 증명되었습니까?</p>
     <div class="x-f" data-bind="Q2.g.pick"></div>
     <div class="x-f" data-bind="Q2.g.why" data-ph="예: ~이므로 ~ (한 문장)"></div>
   </div>
@@ -77,7 +77,7 @@
 
 <!-- ========== Q3 ========== -->
 <section class="x-act" data-id="Q3" data-title="점화식 설계" data-meta="필수 · 개인">
-  <ul class="x-pts"><li>계단 6칸, 한 번에 1·2·3칸 중 골라 올라요.</li></ul>
+  <ul class="x-pts"><li>계단은 6칸이며, 한 번에 1·2·3칸 중 하나를 골라 오릅니다.</li></ul>
 
   <div class="x-screen" data-title="설계 네 가지">
     <div class="x-flow"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span class="hit">6</span></div>
@@ -89,7 +89,7 @@
   </div>
 
   <div class="x-screen" data-title="표 채우기">
-    <ul class="x-pts"><li>방법의 수 = 서로 다른 오르는 순서의 가짓수</li><li>예: 2칸이면 1+1, 2 → 2가지</li></ul>
+    <ul class="x-pts"><li>방법의 수는 서로 다른 오르는 순서의 가짓수입니다.</li><li>예: 2칸이면 1+1, 2의 2가지입니다.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
       <tr><td>dp[n]<small>숫자</small></td><td><span class="x-f" data-bind="Q3.dp.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q3.dp.r1.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q3.dp.r1.c3" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q3.dp.r1.c4" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q3.dp.r1.c5" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q3.dp.r1.c6" data-ph="숫자"></span></td><td><span class="x-f" data-bind="Q3.dp.r1.c7" data-ph="숫자"></span></td></tr>
@@ -100,10 +100,10 @@
 
 <!-- ========== Q4 ========== -->
 <section class="x-act" data-id="Q4" data-title="적용 (선택)" data-meta="선택 · 수업 밖">
-  <ul class="x-pts"><li>선택 문제예요. 풀지 않으면 비워 둬요.</li><li>막히면 ‘모르겠다. 막힌 곳: …’</li></ul>
+  <ul class="x-pts"><li>선택 문제입니다. 풀지 않으면 비워 두십시오.</li><li>막히면 ‘모르겠다. 막힌 곳: …’으로 쓰십시오.</li></ul>
 
   <div class="x-screen" data-title="두 규칙으로 회의 고르기">
-    <div class="x-given"><span><b>FM</b>(0, 10), (1, 3), (4, 6), (7, 9)</span><span><b>[시작, 끝)</b>끝 시각엔 다음 회의 시작 가능</span><span><b>목표</b>한 회의실, 겹치지 않게 최대</span></div>
+    <div class="x-given"><span><b>FM</b>(0, 10), (1, 3), (4, 6), (7, 9)</span><span><b>[시작, 끝)</b>끝 시각에 다음 회의를 시작할 수 있음</span><span><b>목표</b>한 회의실에서 겹치지 않게 최대한 많이 선택</span></div>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>규칙</th><th>선택된 회의<small>(시작, 끝)을 쉼표로</small></th><th>개수<small>숫자</small></th></tr>
       <tr class="x-ex"><td>예</td><td>(0, 2), (3, 5)</td><td>2</td></tr>

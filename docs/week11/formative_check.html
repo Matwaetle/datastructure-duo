@@ -13,19 +13,19 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="11주차 형성 평가 · BFS와 DFS 구별" data-lead="상황에 맞는 탐색을 고르고, 방문 순서와 visited 함정을 손으로 따라가요.">
+<div class="x-page" hidden data-title="11주차 형성 평가 · BFS와 DFS 구별" data-lead="상황에 맞는 탐색을 고르고, 방문 순서와 visited 함정을 직접 추적합니다.">
 
 <!-- ========== Q1 ========== -->
 <section class="x-act" data-id="Q1" data-title="상황별 구별" data-meta="수업 A14 · 6분 · 개인">
-  <ul class="x-pts"><li>시험이에요. AI 없이 손으로 풀어요.</li><li>값은 수업 때와 달라요.</li><li>시간이 모자라면 (c)(d)(e) 근거는 비워도 돼요. (e)는 선택.</li></ul>
+  <ul class="x-pts"><li>평가 문항입니다. AI를 사용하지 않고 직접 추적하여 푸십시오.</li><li>값은 수업 때와 다릅니다.</li><li>시간이 부족하면 (c)(d)(e)의 근거는 비워 두어도 됩니다. (e)는 선택 문항입니다.</li></ul>
 
-  <div class="x-screen" data-title="쓰는 법">
+  <div class="x-screen" data-title="작성 방법">
     <div class="x-given"><span><b>선택</b>BFS / DFS / 둘 다 가능</span><span><b>근거</b>조건을 넣은 한 문장</span></div>
     <div class="x-cards">
       <div><b>최단 거리 보장</b>걸음 수가 가장 적은 길이 필요한가</div>
       <div><b>연결 요소 추적</b>이어진 묶음을 모두 찾거나 세는가</div>
     </div>
-    <ul class="x-pts"><li>“빠르다” 같은 말만 쓰지 않아요.</li><li>(e)만 <b>메모리</b>를 근거로 써요.</li></ul>
+    <ul class="x-pts"><li>“빠르다”와 같은 표현만으로 근거를 쓰지 마십시오.</li><li>(e)에서만 <b>메모리</b>를 근거로 쓰십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="(a) 출구까지 최소 걸음">
@@ -54,7 +54,7 @@
 
   <div class="x-screen" data-title="(e) (선택) 메모리를 덜 쓰는 쪽">
     <div class="x-given"><span><b>구조</b>갈래가 수천 개로 넓음</span><span><b>깊이</b>20 이하</span><span><b>목적</b>닿는 곳이 있는지만</span></div>
-    <ul class="x-pts"><li>메모리를 덜 쓰는 쪽을 골라요. 근거도 메모리로.</li></ul>
+    <ul class="x-pts"><li>메모리를 덜 쓰는 쪽을 고르십시오. 근거도 메모리를 기준으로 쓰십시오.</li></ul>
     <div class="x-f" data-bind="Q1.e.choice"></div>
     <div class="x-f" data-bind="Q1.e.why" data-ph="예: ○○는 한 번에 ○○만 기억하므로 메모리를 덜 쓴다"></div>
   </div>
@@ -62,19 +62,19 @@
 
 <!-- ========== Q2 ========== -->
 <section class="x-act" data-id="Q2" data-title="방문 순서와 경로 추적" data-meta="개인">
-  <ul class="x-pts"><li>그래프 F에서 BFS와 재귀 DFS를 손으로 따라가요.</li></ul>
+  <ul class="x-pts"><li>그래프 F에서 BFS와 재귀 DFS의 실행 과정을 직접 추적하십시오.</li></ul>
 
   <div class="x-screen" data-title="그래프 F">
     <div class="x-graph" data-name="F" data-nodes="P:0,1 Q:1,0 R:1,2 S:2,1 T:2,3 U:3,2" data-edges="P-Q,P-R,Q-S,R-S,R-T,S-U,T-U"></div>
     <div class="x-given"><span><b>무방향</b>양쪽으로 갈 수 있음</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>노드</th><th>이웃 목록<small>이 순서대로 봄</small></th></tr>
+      <tr><th>노드</th><th>이웃 목록<small>이 순서대로 확인함</small></th></tr>
       <tr><td>P</td><td>Q, R</td></tr><tr><td>Q</td><td>P, S</td></tr><tr><td>R</td><td>P, S, T</td></tr>
       <tr><td>S</td><td>Q, R, U</td></tr><tr><td>T</td><td>R, U</td></tr><tr><td>U</td><td>S, T</td></tr>
     </table></div>
     <ol class="x-rules">
-      <li class="r1"><b>큐 규칙(BFS)</b><div class="fx"><span>앞에서 꺼내 방문 기록 → 안 본 이웃을 목록 순서로 뒤에 넣기</span></div></li>
-      <li class="r2"><b>재귀 DFS</b><div class="fx"><span>목록 앞부터, 안 본 이웃으로 바로 들어감</span></div></li>
+      <li class="r1"><b>큐 규칙(BFS)</b><div class="fx"><span>앞에서 꺼내 방문 기록 → 방문하지 않은 이웃을 목록 순서대로 뒤에 추가</span></div></li>
+      <li class="r2"><b>재귀 DFS</b><div class="fx"><span>목록 앞부터, 방문하지 않은 이웃으로 즉시 진입</span></div></li>
       <li class="r3"><b>간선 수</b><div class="fx"><span>시작에서 지나는 간선 개수</span></div></li>
     </ol>
   </div>
@@ -89,7 +89,7 @@
   <div class="x-screen" data-title="재귀 DFS: 시작 P">
     <div class="x-graph" data-name="F" data-nodes="P:0,1 Q:1,0 R:1,2 S:2,1 T:2,3 U:3,2" data-edges="P-Q,P-R,Q-S,R-S,R-T,S-U,T-U" data-start="P"></div>
     <div class="x-given"><span><b>시작</b>P</span><span><b>목표</b>U</span><span><b>이웃</b>P:[Q,R] Q:[P,S] R:[P,S,T] S:[Q,R,U] T:[R,U] U:[S,T]</span></div>
-    <ul class="x-pts"><li>U에 처음 닿는 순간의 호출 경로를 써요.</li></ul>
+    <ul class="x-pts"><li>U에 처음 도달하는 순간의 호출 경로를 쓰십시오.</li></ul>
     <div class="x-line">처음 찾은 P→U 경로 <span class="x-f" data-bind="Q2.dfs.path" data-w="l" data-ph="예: A-B-C"></span></div>
     <div class="x-line">그 경로의 간선 수 <span class="x-f" data-bind="Q2.dfs.len" data-w="xs" data-ph="숫자"></span></div>
   </div>
@@ -103,7 +103,7 @@
 
 <!-- ========== Q3 ========== -->
 <section class="x-act" data-id="Q3" data-title="visited 함정" data-meta="개인">
-  <ul class="x-pts"><li>코드를 줄 단위로 따라가며 큐 내용을 적어 봐요.</li></ul>
+  <ul class="x-pts"><li>코드를 줄 단위로 추적하며 큐의 내용을 확인하십시오.</li></ul>
 
   <div class="x-screen" data-title="시작 노드를 표시하지 않는 BFS">
     <pre class="x-code">F = {"P": ["Q", "R"], "Q": ["P", "S"], "R": ["P", "S", "T"],
@@ -127,19 +127,19 @@ print(bfs_nostart(F, "P"))</pre>
     <div class="x-line">출력 <span class="x-f" data-bind="Q3.out" data-w="full" data-ph="예: ['X', 'Y', 'Z']"></span></div>
   </div>
 
-  <div class="x-screen" data-title="왜, 그리고 어떻게 고칠까">
+  <div class="x-screen" data-title="원인과 수정 방법">
     <div class="x-given"><span><b>문제 줄</b>visited = set()</span><span><b>시작 상태</b>큐 [P], visited 비어 있음</span></div>
     <p class="x-q">중복이 생기는 이유<small>한 문장</small></p>
     <div class="x-f" data-bind="Q3.why" data-ph="예: ○○가 visited에 없어서 … 때 다시 들어간다"></div>
-    <p class="x-q">고치는 방법<small>한 문장. 시간이 없으면 비워도 돼요.</small></p>
+    <p class="x-q">고치는 방법<small>한 문장. 시간이 부족하면 비워 두어도 됩니다.</small></p>
     <div class="x-f" data-bind="Q3.fix" data-ph="예: ○○ 줄을 … 로 바꾼다"></div>
-    <div class="x-f" data-bind="Q.noai">AI를 사용하지 않고 풀었다</div>
+    <div class="x-f" data-bind="Q.noai">AI를 사용하지 않고 풀었습니다.</div>
   </div>
 </section>
 
 <!-- ========== Q4 ========== -->
 <section class="x-act" data-id="Q4" data-title="보조 문항: 격자 적용" data-meta="수업 밖 · 선택·과제">
-  <ul class="x-pts"><li>수업 밖에서 선택으로 풀어요. 코드나 손 계산 모두 돼요.</li></ul>
+  <ul class="x-pts"><li>수업 외 선택 문항입니다. 코드 실행과 직접 추적 모두 허용됩니다.</li></ul>
 
   <div class="x-screen" data-title="격자 FM">
     <div class="x-given"><span><b>S</b>(0,0)</span><span><b>E</b>(4,5)</span><span><b>#</b>벽</span><span><b>방향 순서</b>우 → 하 → 좌 → 상</span></div>

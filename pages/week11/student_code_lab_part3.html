@@ -1,34 +1,34 @@
-<div class="x-page" hidden data-title="11주차 실습 코드 3부 · 섬의 개수와 과제 마무리" data-lead="이어진 땅을 칠해 섬을 세고, 과제 코드를 점검해요.">
+<div class="x-page" hidden data-title="11주차 실습 코드 3부 · 섬의 개수와 과제 마무리" data-lead="연결된 땅에 방문 표시를 하여 섬의 개수를 세고, 과제 코드를 점검합니다.">
 
 <!-- ========== A10 ========== -->
 <section class="x-act" data-id="A10" data-title="섬의 개수" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>큐로 이어진 땅을 한꺼번에 칠하고, 칠한 덩어리를 세요.</li></ul>
+  <ul class="x-pts"><li>큐를 이용해 연결된 땅 전체에 방문 표시를 하고, 표시한 연결 요소(서로 이어진 칸의 묶음)의 개수를 세십시오.</li></ul>
 
-  <div class="x-screen" data-title="섬 하나 칠해 보기">
-    <div class="x-cards"><div><b>섬</b>땅(1)이 상하좌우로 이어진 덩어리</div></div>
+  <div class="x-screen" data-title="섬 하나 방문 표시하기">
+    <div class="x-cards"><div><b>섬</b>땅(1)이 상하좌우로 이어진 연결 요소</div></div>
     <div class="x-grid" data-name="처음" data-rc data-rows="110|001" data-mark="0,0:hit;0,1:hit;1,2:hit"></div>
-    <div class="x-grid" data-name="(0, 0)에서 칠한 뒤" data-rc data-rows="●●0|001" data-mark="0,0:seen;0,1:seen;1,2:hit"></div>
+    <div class="x-grid" data-name="(0, 0)에서 방문 표시한 뒤" data-rc data-rows="●●0|001" data-mark="0,0:seen;0,1:seen;1,2:hit"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">칠하지 않은 땅이 하나 남았어요. 섬은 모두 몇 개?</p>
-      <div class="opts"><button type="button" data-hint="남은 땅 (1, 2)도 섬이에요.">1개</button><button type="button">2개</button><button type="button" data-hint="(0, 0)과 (0, 1)은 붙어 있어요.">3개</button></div>
-      <p class="why">(0, 0)·(0, 1)이 한 섬, (1, 2)가 다른 섬.</p>
+      <p class="q">방문 표시하지 않은 땅이 하나 남았습니다. 섬은 모두 몇 개입니까?</p>
+      <div class="opts"><button type="button" data-hint="남은 땅 (1, 2)도 섬입니다.">1개</button><button type="button">2개</button><button type="button" data-hint="(0, 0)과 (0, 1)은 붙어 있습니다.">3개</button></div>
+      <p class="why">(0, 0)·(0, 1)이 한 섬이고, (1, 2)가 다른 섬입니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="ISLE를 손으로 세기">
+  <div class="x-screen" data-title="ISLE의 섬 개수 예측">
     <div class="x-given"><span><b>ISLE</b>6행 × 7열</span><span><b>1</b>땅</span><span><b>0</b>바다</span></div>
     <div class="x-grid" data-name="ISLE" data-rc data-rows="1100010|1100011|0010000|0001100|1000100|1000001"></div>
-    <ul class="x-pts"><li>대각선으로만 닿으면 이어진 게 아니에요.</li><li>센 수는 <b>활동지 3부 A10 표 1줄 ‘예측’</b>에.</li></ul>
+    <ul class="x-pts"><li>대각선으로만 맞닿은 칸은 연결된 것이 아닙니다.</li><li>예측값은 <b>활동지 3부 A10 표 1줄 ‘예측’</b>에 쓰십시오.</li></ul>
   </div>
 
-  <div class="x-screen" data-title="칠하는 코드 돌려 보기">
-    <div class="x-given"><span><b>'1'</b>땅</span><span><b>'0'</b>바다</span><span><b>'*'</b>칠한 칸</span></div>
+  <div class="x-screen" data-title="방문 표시 코드 실행하기">
+    <div class="x-given"><span><b>'1'</b>땅</span><span><b>'0'</b>바다</span><span><b>'*'</b>방문 표시한 칸</span></div>
     <div class="x-ed" data-starter="A10-p1"></div>
-    <ul class="x-pts"><li>[▶ 실행] → 시작 칸 <code>(0, 0)</code>을 <code>(1, 2)</code>로 바꿔 다시.</li><li>시작 칸은 3행 한 줄에 두 번 나와요.</li></ul>
+    <ul class="x-pts"><li>[▶ 실행] 후 시작 칸 <code>(0, 0)</code>을 <code>(1, 2)</code>로 바꾸어 다시 실행하십시오.</li><li>시작 칸은 3행 한 줄에 두 번 나옵니다.</li></ul>
     <div class="quiz" data-answer="1">
-      <p class="q">시작을 (1, 2)로 바꾸면 *로 칠해지는 칸은?</p>
-      <div class="opts"><button type="button">(1, 2) 하나</button><button type="button" data-hint="시작 칸이 속한 섬만 칠해요.">(0, 0)과 (0, 1)</button><button type="button" data-hint="(1, 2)와 이어진 땅이 있나요?">세 땅 칸 모두</button></div>
-      <p class="why">(1, 2)는 이어진 땅이 없는 섬이에요.</p>
+      <p class="q">시작을 (1, 2)로 바꾸면 *로 표시되는 칸을 고르십시오.</p>
+      <div class="opts"><button type="button">(1, 2) 하나</button><button type="button" data-hint="시작 칸이 속한 섬에만 방문 표시를 합니다.">(0, 0)과 (0, 1)</button><button type="button" data-hint="(1, 2)와 연결된 땅이 있는지 확인하십시오.">세 땅 칸 모두</button></div>
+      <p class="why">(1, 2)는 연결된 땅이 없는 섬입니다.</p>
     </div>
   </div>
 
@@ -36,21 +36,21 @@
     <div class="x-cards">
       <div><b>explore</b>(r, c)에서 이어진 땅을 모두 seen에 표시</div>
       <div><b>count_islands</b>격자를 훑으며 섬을 셈</div>
-      <div><b>seen</b>칠한 칸의 (행, 열) 집합</div>
+      <div><b>seen</b>방문 표시한 칸의 (행, 열) 집합</div>
     </div>
     <ol class="x-rules">
-      <li class="r1"><b>⑰ 먼저</b><div class="fx"><span>explore: todo에서 맨 앞 하나 꺼내기</span></div></li>
+      <li class="r1"><b>⑰ 먼저</b><div class="fx"><span>explore: todo의 맨 앞에서 하나를 꺼냄</span></div></li>
       <li class="r2"><b>⑯ 다음</b><div class="fx"><span>count_islands: 이 섬 전체를 seen에 표시</span></div></li>
-      <li class="r3"><b>⑮ 마지막</b><div class="fx"><span>count_islands: 땅이면서 아직 안 센 칸인가</span></div></li>
+      <li class="r3"><b>⑮ 마지막</b><div class="fx"><span>count_islands: 땅이면서 아직 세지 않은 칸인지 확인</span></div></li>
     </ol>
-    <ul class="x-pts"><li><code>NameError: name '____15____'</code> = 그 번호를 아직 안 채움</li><li>나온 개수는 <b>활동지 표 2줄 ‘실제’</b>에.</li></ul>
+    <ul class="x-pts"><li><code>NameError: name '____15____'</code>는 그 번호를 아직 채우지 않았다는 뜻입니다.</li><li>출력된 개수는 <b>활동지 표 2줄 ‘실제’</b>에 쓰십시오.</li></ul>
     <div class="x-f" data-bind="A10.mycode"></div>
   </div>
 
   <div class="x-screen" data-title="점검하기">
-    <ul class="x-pts"><li>[✔ 점검] → 격자 10개로 확인해요.</li></ul>
+    <ul class="x-pts"><li>[✔ 점검]을 누르면 격자 10개로 확인합니다.</li></ul>
     <div class="x-flow"><span>[✔ 점검]</span><span class="hit">A10 점검 통과</span></div>
-    <div class="x-cards"><div><b>FAIL 격자 3: …</b>3번 격자(0부터 셈)에서 개수가 다름</div></div>
+    <div class="x-cards"><div><b>FAIL 격자 3: …</b>3번 격자(0부터 셈)에서 개수가 다름을 뜻함</div></div>
     <div class="x-given"><span><b>0</b>ISLE</span><span><b>1</b>[] (빈 격자)</span></div>
     <div class="x-grid" data-name="2" data-rows="000"></div>
     <div class="x-grid" data-name="3" data-rows="111"></div>
@@ -61,90 +61,90 @@
     <div class="x-grid" data-name="8" data-rows="1010101|0101010|1010101"></div>
     <div class="x-grid" data-name="9" data-rows="111|101|111"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">FAIL이 나면 먼저 할 일은?</p>
-      <div class="opts"><button type="button" data-hint="점검 코드는 고치지 않아요.">점검 코드를 고친다</button><button type="button">그 격자로 print(count_islands(…)) 해서 손으로 센 값과 비교</button></div>
-      <p class="why">어긋난 격자 하나만 따로 찍어 보면 원인이 보여요.</p>
+      <p class="q">FAIL이 나면 먼저 해야 할 일을 고르십시오.</p>
+      <div class="opts"><button type="button" data-hint="점검 코드는 수정하지 않습니다.">점검 코드를 고친다</button><button type="button">그 격자로 print(count_islands(…))를 실행하여 직접 추적한 값과 비교</button></div>
+      <p class="why">결과가 다른 격자 하나만 따로 출력하면 원인을 찾을 수 있습니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="바꿔 보고 돌아보기">
-    <div class="x-flow"><span>todo.popleft()</span><span>todo.pop()</span><span class="hit">개수가 달라질까?</span></div>
+  <div class="x-screen" data-title="변경 실험과 정리">
+    <div class="x-flow"><span>todo.popleft()</span><span>todo.pop()</span><span class="hit">개수가 달라지는가</span></div>
     <ul class="x-pts">
-      <li>바꾸기 전 예측 → <b>활동지 표 3줄 ‘예측’</b>, 실행 결과 → ‘실제’</li>
-      <li>끝나면 <code>popleft()</code>로 되돌려요.</li>
+      <li>변경 전 예측값은 <b>활동지 표 3줄 ‘예측’</b>에, 실행 결과는 ‘실제’에 쓰십시오.</li>
+      <li>실험이 끝나면 <code>popleft()</code>로 되돌리십시오.</li>
     </ul>
-    <p class="x-q">(선택) 대각선까지 이웃으로 보기<small>결과는 활동지 표 4줄</small></p>
+    <p class="x-q">(선택) 대각선까지 이웃으로 보기<small>결과는 활동지 표 4줄에 쓰십시오</small></p>
     <div class="x-ed" data-starter="A10-4"></div>
-    <ul class="x-pts"><li>도중에 멈추면 [실행 환경 초기화] 후 처음부터.</li></ul>
+    <ul class="x-pts"><li>도중에 멈추면 [실행 환경 초기화] 후 처음부터 다시 실행하십시오.</li></ul>
   </div>
 </section>
 
 <!-- ========== A13 ========== -->
 <section class="x-act" data-id="A13" data-title="과제 마무리 점검과 전이" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>만든 함수를 모아 새 입력에서도 통과하는지 확인해요.</li></ul>
+  <ul class="x-pts"><li>작성한 함수를 모아 새 입력에서도 통과하는지 확인하십시오.</li></ul>
 
   <div class="x-screen" data-title="과제 코드 모으기">
     <div class="x-cards">
       <div><b>무엇을</b>grid_neighbors, shortest_path_len, count_islands + explore</div>
-      <div><b>어디에</b>맨 아래 과제 서술의 [최종 코드] 칸</div>
-      <div><b>어떻게</b>1부 A7·3부 A10 내 코드를 복사해 붙이고 [▶ 실행]</div>
+      <div><b>어디에</b>맨 아래 과제 서술의 [최종 코드] 입력란</div>
+      <div><b>어떻게</b>1부 A7·3부 A10에서 작성한 코드를 복사해 붙여 넣고 [▶ 실행]</div>
     </div>
-    <ul class="x-pts"><li>[앞 쪽 코드 불러오기]는 실행 환경에만 넣어요. 칸은 안 채워요.</li></ul>
+    <ul class="x-pts"><li>[앞 쪽 코드 불러오기]는 실행 환경에만 코드를 넣습니다. 입력란은 채우지 않습니다.</li></ul>
   </div>
 
   <div class="x-screen" data-title="점검 실행하기">
     <div class="x-given"><span><b>들어 있는 입력</b>MAZE, START, GOAL, ISLE, DIRS</span></div>
-    <ul class="x-pts"><li>고치지 말고 [✔ 점검].</li><li>함수가 없다는 NameError → [최종 코드] 칸을 먼저 [▶ 실행].</li></ul>
+    <ul class="x-pts"><li>코드를 수정하지 말고 [✔ 점검]을 누르십시오.</li><li>함수가 없다는 NameError가 나면 [최종 코드] 입력란을 먼저 [▶ 실행]하십시오.</li></ul>
     <div class="x-ed" data-starter="A13-0"></div>
   </div>
 
   <div class="x-screen" data-title="점검 결과 읽기">
     <table class="x-trace">
-      <tr><th>항목<small>FAIL 뒤 번호</small></th><th>보는 함수</th></tr>
+      <tr><th>항목<small>FAIL 뒤 번호</small></th><th>확인하는 함수</th></tr>
       <tr><td>1~2</td><td>grid_neighbors</td></tr>
       <tr><td>3~5</td><td>shortest_path_len</td></tr>
       <tr><td>6~9</td><td>count_islands</td></tr>
     </table>
     <div class="quiz" data-answer="2">
-      <p class="q">FAIL 4: … 가 나왔어요. 먼저 살필 함수는?</p>
-      <div class="opts"><button type="button" data-hint="1~2번이 이 함수예요.">grid_neighbors</button><button type="button">shortest_path_len</button><button type="button" data-hint="6~9번이 이 함수예요.">count_islands</button></div>
-      <p class="why">4번은 닿을 수 없는 경우를 봐요.</p>
+      <p class="q">FAIL 4: … 가 출력되었습니다. 먼저 확인할 함수를 고르십시오.</p>
+      <div class="opts"><button type="button" data-hint="1~2번이 이 함수입니다.">grid_neighbors</button><button type="button">shortest_path_len</button><button type="button" data-hint="6~9번이 이 함수입니다.">count_islands</button></div>
+      <p class="why">4번은 도달할 수 없는 경우를 확인합니다.</p>
     </div>
-    <ul class="x-pts"><li>통과 못 한 번호와 원인 → <b>활동지 3부 A13 (가)</b></li></ul>
+    <ul class="x-pts"><li>통과하지 못한 번호와 원인은 <b>활동지 3부 A13 (가)</b>에 쓰십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="과제 요건 네 가지">
     <ol class="x-rules">
-      <li class="r1"><b>grid_neighbors</b><div class="fx"><code>yield</code><span>제네레이터 (리스트 반환 안 됨)</span></div></li>
+      <li class="r1"><b>grid_neighbors</b><div class="fx"><code>yield</code><span>제네레이터 (리스트 반환 불가)</span></div></li>
       <li class="r2"><b>shortest_path_len</b><div class="fx"><span>큐를 쓰는 BFS</span></div></li>
-      <li class="r3"><b>입력·반복 호출</b><div class="fx"><span>격자를 안 바꿈 · 두 번 불러도 같은 값</span><code>seen=set()</code><span>기본 인자 금지</span></div></li>
-      <li class="r4"><b>큰 입력</b><div class="fx"><code>["1"*1500]</code><span>RecursionError 없이 끝남</span></div></li>
+      <li class="r3"><b>입력·반복 호출</b><div class="fx"><span>격자를 변경하지 않음 · 두 번 호출해도 같은 값</span><code>seen=set()</code><span>기본 인자 금지</span></div></li>
+      <li class="r4"><b>큰 입력</b><div class="fx"><code>["1"*1500]</code><span>RecursionError 없이 종료</span></div></li>
     </ol>
     <div class="quiz" data-answer="1">
-      <p class="q">9번(1×1500)에서 RecursionError가 나면?</p>
-      <div class="opts"><button type="button">재귀 대신 직접 만든 스택이나 큐로 바꾼다</button><button type="button" data-hint="입력은 바꾸지 않아요.">격자를 작게 줄인다</button></div>
-      <p class="why">2부 A8 T3와 같은 함정이에요.</p>
+      <p class="q">9번(1×1500)에서 RecursionError가 나면 어떻게 해야 합니까?</p>
+      <div class="opts"><button type="button">재귀 대신 직접 만든 스택이나 큐로 바꿉니다</button><button type="button" data-hint="입력은 바꾸지 않습니다.">격자를 작게 줄입니다</button></div>
+      <p class="why">2부 A8 T3와 같은 함정입니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="상태를 두 수로 적기">
+  <div class="x-screen" data-title="상태를 두 수로 표현하기">
     <div class="x-given"><span><b>a</b>3L 통의 물</span><span><b>b</b>5L 통의 물</span><span><b>상태</b>(a, b)</span><span><b>처음</b>(0, 0)</span></div>
     <div class="x-flow"><span>(0, 0)</span><span>(3, 0) 또는 (0, 5)</span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">(0, 5)에서 3L 통이 가득 찰 때까지 부으면?</p>
-      <div class="opts"><button type="button">(3, 2)</button><button type="button" data-hint="3L 통에 물이 들어갔어요.">(0, 2)</button><button type="button" data-hint="물은 옮겨질 뿐 늘지 않아요.">(3, 5)</button></div>
-      <p class="why">3L를 옮기면 5L 통에 2L가 남아요. 이게 <b>이웃 상태</b>.</p>
+      <p class="q">(0, 5)에서 3L 통이 가득 찰 때까지 부으면 어떤 상태가 됩니까?</p>
+      <div class="opts"><button type="button">(3, 2)</button><button type="button" data-hint="3L 통에 물이 들어갔습니다.">(0, 2)</button><button type="button" data-hint="물은 옮겨질 뿐 늘지 않습니다.">(3, 5)</button></div>
+      <p class="why">3L를 옮기면 5L 통에 2L가 남습니다. 이것이 <b>이웃 상태</b>입니다.</p>
     </div>
-    <ul class="x-pts"><li><b>활동지 3부 A13 (나)</b>: 상태, 이웃 상태 예, 시작·목표, BFS/DFS 선택 (코드 없이)</li></ul>
+    <ul class="x-pts"><li><b>활동지 3부 A13 (나)</b>에 상태, 이웃 상태의 예, 시작·목표, BFS/DFS 선택을 코드 없이 쓰십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="(선택) 숫자 변환 퍼즐">
     <div class="x-given"><span><b>시작</b>3</span><span><b>목표</b>14</span><span><b>연산</b>+1 또는 ×2</span><span><b>범위</b>100 이하</span></div>
     <div class="x-flow"><span>3</span><span>4 / 6</span><span>…</span><span class="hit">14</span></div>
     <ul class="x-pts">
-      <li><code>num_bfs(start, goal)</code> → 가장 적은 연산 횟수 (A7 틀과 같게)</li>
-      <li>이웃은 <code>next_states(n)</code>이 내줘요.</li>
-      <li>다 쓰기 전엔 <code>None</code> 출력. 결과는 활동지 3부 A13 (선택) 표에.</li>
+      <li><code>num_bfs(start, goal)</code>는 가장 적은 연산 횟수를 반환합니다. (A7 틀과 같은 구조)</li>
+      <li>이웃은 <code>next_states(n)</code>이 반환합니다.</li>
+      <li>완성 전에는 <code>None</code>이 출력됩니다. 결과는 활동지 3부 A13 (선택) 표에 쓰십시오.</li>
     </ul>
     <div class="x-f" data-bind="A13.num.mycode"></div>
   </div>
@@ -152,12 +152,12 @@
 
 <!-- ========== 과제 ========== -->
 <section class="x-act" data-id="과제" data-title="과제 서술 입력" data-meta="주간 과제와 함께 제출">
-  <ul class="x-pts"><li>칸 세 개, 모두 [저장(JSON)]에 들어가요.</li><li>AI에게 코드·설계·복잡도를 대신 시키면 안 돼요.</li></ul>
+  <ul class="x-pts"><li>입력란 세 개는 모두 [저장(JSON)]에 포함됩니다.</li><li>코드·설계·복잡도 분석을 AI에게 맡겨서는 안 됩니다.</li></ul>
 
   <div class="x-screen" data-title="최종 코드 모으기">
     <ul class="x-pts">
-      <li>grid_neighbors, shortest_path_len, count_islands, explore를 붙여요.</li>
-      <li>맨 첫 줄에 구현 계획을 <code>#</code> 주석으로.</li>
+      <li>grid_neighbors, shortest_path_len, count_islands, explore를 붙여 넣으십시오.</li>
+      <li>맨 첫 줄에 구현 계획을 <code>#</code> 주석으로 쓰십시오.</li>
     </ul>
     <pre class="x-code"># 예: ○○ 탐색으로, ○○에 기록하며 푼다
 def grid_neighbors(grid, r, c, passable):
@@ -167,23 +167,23 @@ def grid_neighbors(grid, r, c, passable):
 
   <div class="x-screen" data-title="구현 계획 한 줄">
     <p class="x-q">최종 코드 첫 줄 주석과 같은 문장<small>어떤 탐색으로, 무엇에 기록하며 푸는지 한 줄</small></p>
-    <div class="x-f" data-bind="assign.plan" data-ph="예: ○○ 탐색으로 큐를 쓰고, 지난 칸은 ○○에 적는다"></div>
+    <div class="x-f" data-bind="assign.plan" data-ph="예: ○○ 탐색으로 큐를 사용하고, 방문한 칸은 ○○에 기록한다"></div>
   </div>
 
-  <div class="x-screen" data-title="큐에 몇 번 넣나 세어 보기">
+  <div class="x-screen" data-title="큐에 넣는 횟수">
     <div class="x-grid" data-rc data-rows="111|111" data-mark="0,0:cur;1,1:hit" data-label="(0, 0)에서 시작, (1, 1)을 볼 칸"></div>
-    <ul class="x-pts"><li>(0, 0)부터 탐색 · 방문한 칸은 seen에 적고, 적힌 칸은 다시 안 넣어요.</li></ul>
+    <ul class="x-pts"><li>(0, 0)부터 탐색합니다. 방문한 칸은 seen에 기록하고, 기록된 칸은 다시 넣지 않습니다.</li></ul>
     <div class="quiz" data-answer="1">
-      <p class="q">칸 (1, 1)은 큐에 모두 몇 번 들어갈까?</p>
-      <div class="opts"><button type="button">한 번</button><button type="button" data-hint="seen에 적힌 칸은 다시 안 넣어요.">이웃 칸 수만큼 여러 번</button><button type="button" data-hint="(1, 1)도 땅이라 닿아요.">한 번도 안 들어간다</button></div>
-      <p class="why">처음 만났을 때 적고 넣으니 칸마다 한 번.</p>
+      <p class="q">칸 (1, 1)은 큐에 모두 몇 번 들어갑니까?</p>
+      <div class="opts"><button type="button">한 번</button><button type="button" data-hint="seen에 기록된 칸은 다시 넣지 않습니다.">이웃 칸 수만큼 여러 번</button><button type="button" data-hint="(1, 1)도 땅이므로 도달합니다.">한 번도 들어가지 않는다</button></div>
+      <p class="why">처음 만났을 때 기록하고 넣으므로 칸마다 한 번입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="복잡도와 근거">
     <div class="x-cards">
-      <div><b>시간 복잡도</b>칸이 늘 때 일이 얼마나 느는가</div>
-      <div><b>공간 복잡도</b>따로 기억하는 것(큐, 방문 표시)의 크기</div>
+      <div><b>시간 복잡도</b>칸 수가 늘 때 작업량이 증가하는 정도</div>
+      <div><b>공간 복잡도</b>별도로 저장하는 자료(큐, 방문 표시)의 크기</div>
     </div>
     <div class="x-f" data-bind="assign.complexity" data-parts="시간=예: O(○), 칸 수를 ○이라 할 때|시간 근거=예: 각 칸을 ○번 꺼내고 이웃을 ○개 보므로|공간=예: O(○)|공간 근거=예: 큐와 seen에 최대 ○개가 들어가므로"></div>
   </div>

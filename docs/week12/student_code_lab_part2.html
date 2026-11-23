@@ -17,20 +17,20 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="12주차 실습 코드 2부 · bisect와 개수 세기" data-lead="파이썬 bisect를 내 함수와 견주고, 두 경계로 개수를 세요.">
+<div class="x-page" hidden data-title="12주차 실습 코드 2부 · bisect와 개수 세기" data-lead="파이썬 bisect를 직접 작성한 함수와 비교하고, 두 경계로 개수를 셉니다.">
 
 <section class="x-act" data-id="A8" data-title="bisect_left와 bisect_right 예측하고 실행하기" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>A7의 두 함수가 파이썬 bisect와 같은 값을 내는지 봐요.</li></ul>
+  <ul class="x-pts"><li>A7의 두 함수가 파이썬 bisect와 같은 값을 내는지 확인합니다.</li></ul>
 
-  <div class="x-screen" data-title="bisect 한 번 불러 보기">
+  <div class="x-screen" data-title="bisect 호출하기">
     <div class="x-cards"><div><b>bisect</b>정렬된 리스트용 이진 탐색 기본 모듈</div></div>
     <div class="x-arr" data-name="B" data-v="2,4,4,6,9" data-label="x = 4 → lower bound 1, upper bound 3 (A7)"></div>
     <pre class="x-code">from bisect import bisect_left, bisect_right
 print(bisect_left(B, 4), bisect_right(B, 4))   #=> 1 3</pre>
     <div class="x-ed" data-starter="A8-p1"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">bisect_left는 어느 쪽과 같은 값일까요?</p>
-      <div class="opts"><button type="button">lower bound</button><button type="button" data-hint="bisect_left가 1이에요.">upper bound</button></div>
+      <p class="q">bisect_left는 어느 쪽과 같은 값입니까?</p>
+      <div class="opts"><button type="button">lower bound</button><button type="button" data-hint="bisect_left의 값은 1입니다.">upper bound</button></div>
       <p class="why">left = lower bound, right = upper bound.</p>
     </div>
   </div>
@@ -38,56 +38,56 @@ print(bisect_left(B, 4), bisect_right(B, 4))   #=> 1 3</pre>
   <div class="x-screen" data-title="DUP로 예측하고 실행하기">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
     <div class="x-given"><span><b>x</b>3, 7, 12, 4, 0, 20</span></div>
-    <ul class="x-pts"><li>활동지 2부 A8 예측 칸을 먼저 채우고 실행해요.</li></ul>
+    <ul class="x-pts"><li>활동지 2부 A8의 예측 입력란을 먼저 채운 뒤 실행하십시오.</li></ul>
     <div class="x-ed" data-starter="A8-1"></div>
     <div class="quiz predict" data-answer="1">
-      <p class="q">DUP에 없는 x = 4에서 두 값은?</p>
+      <p class="q">DUP에 없는 x = 4에서 두 값은 어떠합니까?</p>
       <div class="opts"><button type="button">같다</button><button type="button">다르다</button></div>
-      <p class="why">없는 값이면 들어갈 자리 하나뿐이라 둘이 같아요.</p>
+      <p class="why">없는 값은 들어갈 위치가 하나뿐이므로 두 값이 같습니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="A7 함수 가져오기">
     <ul class="x-pts">
-      <li>1부(A7)에서 두 함수를 실행해 성공시켜 두기</li>
-      <li>아래에서 [앞 쪽 코드 불러오기] → [▶ 실행]</li>
-      <li><b>NameError</b>면 A7 실행 확인 · 안 되면 함수 코드를 복사해 맨 위에 붙이기</li>
+      <li>먼저 1부(A7)에서 두 함수를 실행하여 통과시켜 두십시오.</li>
+      <li>아래에서 [앞 쪽 코드 불러오기]를 누른 뒤 [▶ 실행]을 누르십시오.</li>
+      <li><b>NameError</b>가 나면 A7을 실행했는지 확인하십시오. 그래도 안 되면 함수 코드를 복사하여 맨 위에 붙이십시오.</li>
     </ul>
     <pre class="x-code">print(lower_bound([2, 4, 4, 6, 9], 4), upper_bound([2, 4, 4, 6, 9], 4))   #=> 1 3</pre>
     <div class="x-ed" data-starter="A8-p0"></div>
   </div>
 
-  <div class="x-screen" data-title="내 함수와 bisect 견주기">
+  <div class="x-screen" data-title="내 함수와 bisect 비교하기">
     <ul class="x-pts">
-      <li>편집기의 실험 줄에서 5를 다른 값으로 바꿔 [▶ 실행]</li>
-      <li>[✔ 점검] = x = −2~19에서 내 두 함수와 bisect 대조</li>
-      <li><b>A8 대조 통과</b>면 같은 값 · 실패하면 메시지의 x를 봐요</li>
+      <li>편집기의 실험 줄에서 5를 다른 값으로 바꾸고 [▶ 실행]을 누르십시오.</li>
+      <li>[✔ 점검]은 x = −2~19에서 내 두 함수와 bisect를 대조합니다.</li>
+      <li><b>A8 대조 통과</b>가 나오면 값이 같습니다. 실패하면 메시지의 x를 확인하십시오.</li>
     </ul>
     <pre class="x-code">print(bisect_left(DUP, 5), bisect_right(DUP, 5))   #=> 4 5</pre>
     <div class="x-f" data-bind="A8.mycode"></div>
     <div class="quiz" data-answer="3">
-      <p class="q">B = [2, 4, 4, 6, 9] 에서 bisect_left(B, 5)는?</p>
-      <div class="opts"><button type="button" data-hint="5 이상인 첫 값은 6이에요.">2</button><button type="button" data-hint="그건 9의 자리예요.">4</button><button type="button">3</button></div>
-      <p class="why">5 이상인 첫 값 6이 3번 칸에 있어요.</p>
+      <p class="q">B = [2, 4, 4, 6, 9] 에서 bisect_left(B, 5)는 무엇입니까?</p>
+      <div class="opts"><button type="button" data-hint="5 이상인 첫 값은 6입니다.">2</button><button type="button" data-hint="그것은 9의 위치입니다.">4</button><button type="button">3</button></div>
+      <p class="why">5 이상인 첫 값 6이 3번 칸에 있습니다.</p>
     </div>
   </div>
 </section>
 
 <section class="x-act" data-id="A9" data-title="개수 세는 함수 만들기" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>두 경계로 같은 값의 개수와 구간 개수를 세요.</li></ul>
+  <ul class="x-pts"><li>두 경계를 이용하여 같은 값의 개수와 구간 안의 개수를 셉니다.</li></ul>
 
   <div class="x-screen" data-title="두 경계로 개수 세기">
     <div class="x-arr" data-name="B" data-v="2,4,4,6,9" data-cls="1-2:hit" data-label="x = 4 · bisect_left 1, bisect_right 3"></div>
     <div class="x-ed" data-starter="A9-p1"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">1과 3에서 4의 개수 2를 만드는 계산은?</p>
-      <div class="opts"><button type="button">3 − 1</button><button type="button" data-hint="개수는 4보다 작아야 해요.">3 + 1</button><button type="button" data-hint="그러면 3이에요.">3 × 1</button></div>
-      <p class="why">1은 처음 4 이상 자리, 3은 처음 4 초과 자리. 그 사이가 4예요.</p>
+      <p class="q">1과 3으로 4의 개수 2를 구하는 계산은 무엇입니까?</p>
+      <div class="opts"><button type="button">3 − 1</button><button type="button" data-hint="개수는 4보다 작아야 합니다.">3 + 1</button><button type="button" data-hint="그렇게 계산하면 3입니다.">3 × 1</button></div>
+      <p class="why">1은 처음 4 이상이 나오는 위치, 3은 처음 4 초과가 나오는 위치입니다. 그 사이가 4입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="닫힌 구간 [lo, hi] 세기">
-    <ul class="x-pts"><li><b>[lo, hi]</b> = 값이 lo 이상 hi 이하 (양끝 포함)</li><li>lo, hi는 칸 번호가 아니라 <b>값</b></li></ul>
+    <ul class="x-pts"><li><b>[lo, hi]</b> = 값이 lo 이상 hi 이하 (양끝 포함)</li><li>lo, hi는 칸 번호가 아니라 <b>값</b>입니다.</li></ul>
     <div class="x-arr" data-name="B" data-v="2,4,4,6,9" data-cls="1-3:hit" data-label="[4, 6] → 1번부터 4번 앞까지"></div>
     <table class="x-trace">
       <tr><th>x</th><th>bisect_left</th><th>bisect_right</th></tr>
@@ -95,9 +95,9 @@ print(bisect_left(B, 4), bisect_right(B, 4))   #=> 1 3</pre>
       <tr><td>6</td><td>3</td><td>4</td></tr>
     </table>
     <div class="quiz" data-answer="2">
-      <p class="q">B에서 [4, 6]에 든 원소는 몇 개?</p>
-      <div class="opts"><button type="button" data-hint="6도 포함해요.">2개</button><button type="button">3개</button><button type="button" data-hint="9는 6보다 커요.">4개</button></div>
-      <p class="why">4, 4, 6 → 3개. 시작 칸 1과 끝 다음 칸 4가 위 표의 어느 값인지 봐요.</p>
+      <p class="q">B에서 [4, 6]에 속한 원소는 몇 개입니까?</p>
+      <div class="opts"><button type="button" data-hint="6도 포함합니다.">2개</button><button type="button">3개</button><button type="button" data-hint="9는 6보다 큽니다.">4개</button></div>
+      <p class="why">4, 4, 6으로 3개입니다. 시작 칸 1과 끝 다음 칸 4가 위 표의 어느 값인지 확인하십시오.</p>
     </div>
   </div>
 
@@ -105,13 +105,13 @@ print(bisect_left(B, 4), bisect_right(B, 4))   #=> 1 3</pre>
     <ol class="x-rules">
       <li class="r1"><b>⑧ count_equal(a, x)</b><div class="fx"><span>x와 같은 원소의 개수</span></div></li>
       <li class="r2"><b>⑩ count_in_range(a, lo, hi)</b><div class="fx"><span>닫힌 구간 [lo, hi]의 원소 개수를 구하는 식 전체</span></div></li>
-      <li class="r4"><b>⑨ lo &gt; hi 처리</b><div class="cases"><div class="c-end"><code>lo &gt; hi</code><i>→</i><span>0 (처음엔 pass 그대로, 아래 화면에서 고침)</span></div></div></li>
+      <li class="r4"><b>⑨ lo &gt; hi 처리</b><div class="cases"><div class="c-end"><code>lo &gt; hi</code><i>→</i><span>0 (처음에는 pass를 그대로 두고, 아래 화면에서 고침)</span></div></div></li>
     </ol>
     <pre class="x-code">B = [2, 4, 4, 6, 9]
 print(count_equal(B, 4), count_equal(B, 6), count_equal(B, 5))   #=> 2 1 0
 print(count_in_range(B, 4, 6))                                  #=> 3
 print(count_in_range(B, 7, 3))                                  #=> 0</pre>
-    <ul class="x-pts"><li>다 채우면 [✔ 점검] → <b>A9 점검 통과</b></li><li>실패하면 메시지의 리스트·값으로 내 결과를 print</li></ul>
+    <ul class="x-pts"><li>모두 채운 뒤 [✔ 점검]을 누르십시오. <b>A9 점검 통과</b>가 나오면 완성입니다.</li><li>실패하면 메시지의 리스트와 값으로 내 결과를 print 하십시오.</li></ul>
     <div class="x-f" data-bind="A9.mycode"></div>
     <div class="x-ed" data-starter="A9-p2"></div>
   </div>
@@ -119,7 +119,7 @@ print(count_in_range(B, 7, 3))                                  #=> 0</pre>
   <div class="x-screen" data-title="예측하고 실행하기">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
     <div class="x-given"><span><b>구간</b>[4, 12] · [3, 7] · [8, 11] · [0, 100] · [13, 14]</span></div>
-    <ul class="x-pts"><li>눈으로 센 개수를 활동지 2부 A9 예측 칸에 먼저</li><li>위 편집기를 실행한 뒤 아래를 실행</li></ul>
+    <ul class="x-pts"><li>직접 추적하여 센 개수를 활동지 2부 A9의 예측 입력란에 먼저 쓰십시오.</li><li>위 편집기를 실행한 뒤 아래 편집기를 실행하십시오.</li></ul>
     <div class="x-ed" data-starter="A9-2"></div>
   </div>
 
@@ -127,26 +127,26 @@ print(count_in_range(B, 7, 3))                                  #=> 0</pre>
     <div class="x-given"><span><b>구간</b>[7, 3]</span><span><b>DUP</b>[1, 3, 3, 3, 5, 7, 7, 9, 12, 12, 12, 12, 15]</span></div>
     <div class="x-ed" data-starter="A9-3"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">[7, 3]에 든 원소는 몇 개여야 할까요?</p>
-      <div class="opts"><button type="button">0개</button><button type="button" data-hint="7 이상이면서 3 이하인 수가 있나요?">음수</button><button type="button" data-hint="3과 7 사이를 세는 게 아니에요.">5개</button></div>
-      <p class="why">7 이상이면서 3 이하인 수는 없어요. ⑨의 pass를 고친 뒤 [✔ 점검].</p>
+      <p class="q">[7, 3]에 속한 원소는 몇 개여야 합니까?</p>
+      <div class="opts"><button type="button">0개</button><button type="button" data-hint="7 이상이면서 3 이하인 수가 있습니까?">음수</button><button type="button" data-hint="3과 7 사이를 세는 것이 아닙니다.">5개</button></div>
+      <p class="why">7 이상이면서 3 이하인 수는 없습니다. ⑨의 pass를 고친 뒤 [✔ 점검]을 누르십시오.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="틀린 식 시험하기">
+  <div class="x-screen" data-title="틀린 식 검증하기">
     <div class="x-given"><span><b>틀린 식</b>bisect_left(a, hi) − bisect_left(a, lo)</span><span><b>[4, 12]의 올바른 개수</b>8</span></div>
-    <ul class="x-pts"><li>⑪ = hi 쪽 경계, ⑫ = lo 쪽 경계</li><li>채우기 전 실행하면 NameError — 정상이에요</li><li>구간을 바꿔 가며 값이 틀리는 구간을 하나 찾아요</li></ul>
+    <ul class="x-pts"><li>⑪ = hi 쪽 경계, ⑫ = lo 쪽 경계</li><li>채우기 전에 실행하면 NameError가 나며, 이는 정상입니다.</li><li>구간을 바꾸어 가며 값이 틀리는 구간을 하나 찾으십시오.</li></ul>
     <pre class="x-code">print(bad(DUP, 4, 12))   #=> 같을까, 다를까?</pre>
     <div class="x-f" data-bind="A9.badcode"></div>
     <div class="quiz predict" data-answer="2">
-      <p class="q">[4, 12]에서 이 식의 값은 8과 같을까요?</p>
+      <p class="q">[4, 12]에서 이 식의 값은 8과 같습니까?</p>
       <div class="opts"><button type="button">같다</button><button type="button">다르다</button></div>
-      <p class="why">hi 쪽에 left를 쓰면 hi와 같은 값(12)들을 빼먹어요.</p>
+      <p class="why">hi 쪽에 left를 쓰면 hi와 같은 값(12)들이 빠집니다.</p>
     </div>
     <div class="quiz" data-answer="2">
-      <p class="q">count_in_range(DUP, 12, 12)는?</p>
-      <div class="opts"><button type="button" data-hint="양끝을 포함해요.">0</button><button type="button">4</button><button type="button" data-hint="12가 몇 번 나오나 세 봐요.">1</button></div>
-      <p class="why">12가 네 개. count_equal(DUP, 12)와 같아요.</p>
+      <p class="q">count_in_range(DUP, 12, 12)는 무엇입니까?</p>
+      <div class="opts"><button type="button" data-hint="양끝을 포함합니다.">0</button><button type="button">4</button><button type="button" data-hint="12가 몇 번 나오는지 세어 보십시오.">1</button></div>
+      <p class="why">12가 네 개 있습니다. count_equal(DUP, 12)와 같습니다.</p>
     </div>
   </div>
 </section>

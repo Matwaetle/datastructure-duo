@@ -17,33 +17,33 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="13주차 활동지 1부 · 기억하기와 욕심내기" data-lead="같은 계산을 줄이는 법과, 가장 좋아 보이는 선택이 늘 옳은지 손으로 따져 봐요.">
+<div class="x-page" hidden data-title="13주차 활동지 1부 · 기억하기와 욕심내기" data-lead="같은 계산을 줄이는 방법과, 가장 좋아 보이는 선택이 항상 옳은지 직접 추적하며 따져 봅니다.">
 
 <!-- ========== A1 ========== -->
-<section class="x-act" data-id="A1" data-title="몇 번 계산할까, 어떻게 고를까" data-meta="5분 · 개인">
-  <ul class="x-pts"><li>작은 사례 셋을 보고 지금 내 생각을 남겨요.</li></ul>
+<section class="x-act" data-id="A1" data-title="계산 횟수와 선택 방법" data-meta="5분 · 개인">
+  <ul class="x-pts"><li>작은 사례 세 가지를 보고 현재 자신의 생각을 기록하십시오.</li></ul>
 
   <div class="x-screen" data-title="거스름돈 7원">
     <div class="x-given"><span><b>동전</b>1원 · 5원 · 10원</span><span><b>거스름돈</b>7원</span></div>
     <div class="x-flow"><span>7원</span><span>5원 냄 → 2원</span><span>1원 냄 → 1원</span><span class="hit">1원 냄 → 0원</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">직원이 처음 내준 동전은?</p>
-      <div class="opts"><button type="button" data-hint="그림 첫 화살표를 봐요.">1원</button><button type="button">5원</button><button type="button" data-hint="10원은 7원보다 커요.">10원</button></div>
-      <p class="why">7원 이하인 동전 중 가장 큰 5원.</p>
+      <p class="q">직원이 처음 내준 동전은 무엇입니까?</p>
+      <div class="opts"><button type="button" data-hint="그림의 첫 화살표를 살펴보십시오.">1원</button><button type="button">5원</button><button type="button" data-hint="10원은 7원보다 큽니다.">10원</button></div>
+      <p class="why">7원 이하인 동전 중 가장 큰 것은 5원입니다.</p>
     </div>
-    <p class="x-q">직원이 동전을 고르는 규칙<small>한두 문장, “직원은 ~한다” 꼴</small></p>
+    <p class="x-q">직원이 동전을 고르는 규칙<small>한두 문장, “직원은 ~한다” 형식</small></p>
     <div class="x-f" data-bind="A1.change.rule" data-ph="예: 직원은 남은 금액을 보고 ○○ 동전부터 …"></div>
   </div>
 
   <div class="x-screen" data-title="계단 오르기">
-    <ul class="x-pts"><li>한 번에 <b>1칸</b> 또는 <b>2칸</b>씩 올라요.</li><li>3칸을 오르는 방법은 3가지예요.</li></ul>
+    <ul class="x-pts"><li>한 번에 <b>1칸</b> 또는 <b>2칸</b>씩 오릅니다.</li><li>3칸을 오르는 방법은 3가지입니다.</li></ul>
     <div class="x-flow"><span>1+1+1</span><span>1+2</span><span>2+1</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">4칸을 오르는데 마지막 걸음이 2칸이면, 그 앞에서 오른 칸은?</p>
-      <div class="opts"><button type="button" data-hint="4에서 2를 빼 봐요.">1칸</button><button type="button">2칸</button><button type="button" data-hint="마지막 2칸을 빼야 해요.">3칸</button></div>
-      <p class="why">4 − 2 = 2칸.</p>
+      <p class="q">4칸을 오를 때 마지막 걸음이 2칸이면, 그 앞까지 오른 칸은 몇 칸입니까?</p>
+      <div class="opts"><button type="button" data-hint="4에서 2를 빼 보십시오.">1칸</button><button type="button">2칸</button><button type="button" data-hint="마지막 2칸을 빼야 합니다.">3칸</button></div>
+      <p class="why">4 − 2 = 2칸입니다.</p>
     </div>
-    <p class="x-q">8칸을 오르는 방법 수를 어떻게 셀까요?<small>답 숫자는 몰라도 돼요. 세는 방식을 두 단계로</small></p>
+    <p class="x-q">8칸을 오르는 방법의 수는 어떻게 셀 수 있습니까?<small>답의 숫자는 몰라도 됩니다. 세는 방식을 두 단계로 쓰십시오.</small></p>
     <div class="x-f" data-bind="A1.stairs.way" data-parts="먼저=예: 마지막 걸음이 몇 칸인지로 …|그다음=예: 작은 칸 수부터 …"></div>
   </div>
 
@@ -52,60 +52,60 @@
     <ul class="x-tree"><li><span>fib(3)</span><ul><li><span>fib(2)</span><ul><li><span>fib(1)</span></li><li><span>fib(0)</span></li></ul></li><li><span>fib(1)</span></li></ul></li></ul>
     <div class="x-given"><span><b>호출</b>5번</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">이 트리에서 fib(1)은 몇 번 불렸나요?</p>
-      <div class="opts"><button type="button" data-hint="오른쪽 가지도 봐요.">1번</button><button type="button">2번</button><button type="button" data-hint="fib(0)은 빼고 세요.">3번</button></div>
-      <p class="why">fib(2) 아래 한 번, fib(3) 오른쪽 한 번.</p>
+      <p class="q">이 트리에서 fib(1)은 몇 번 호출되었습니까?</p>
+      <div class="opts"><button type="button" data-hint="오른쪽 가지도 살펴보십시오.">1번</button><button type="button">2번</button><button type="button" data-hint="fib(0)은 빼고 세십시오.">3번</button></div>
+      <p class="why">fib(2) 아래에서 한 번, fib(3) 오른쪽에서 한 번입니다.</p>
     </div>
     <div class="quiz" data-answer="2">
-      <p class="q">fib(5) → fib(4), fib(3) 을 부르고 fib(4) → fib(3), fib(2) 를 불러요. fib(3)은 몇 번?</p>
+      <p class="q">fib(5) → fib(4), fib(3) 을 호출하고 fib(4) → fib(3), fib(2) 를 호출합니다. fib(3)은 몇 번 호출됩니까?</p>
       <div class="opts"><button type="button">1번</button><button type="button">2번</button><button type="button">3번</button></div>
-      <p class="why">fib(5)에서 한 번, fib(4)에서 한 번. 같은 계산을 두 번 해요.</p>
+      <p class="why">fib(5)에서 한 번, fib(4)에서 한 번입니다. 같은 계산을 두 번 합니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="fib(30)은 몇 번쯤?">
-    <ul class="x-pts"><li>fib(3)처럼 식 그대로 fib(30)을 구하면 호출은 어느 크기쯤?</li><li>맞히는 게 아니에요. 지금 생각 그대로.</li></ul>
+  <div class="x-screen" data-title="fib(30)의 호출 횟수 예측">
+    <ul class="x-pts"><li>fib(3)처럼 식 그대로 fib(30)을 구하면 호출 횟수는 어느 정도입니까?</li><li>정답을 맞추는 문항이 아닙니다. 현재 생각대로 고르십시오.</li></ul>
     <div class="x-f" data-bind="A1.fib.guess"></div>
-    <p class="x-q">그렇게 고른 까닭<small>한두 문장, “~라서 ~쯤일 것 같다” 꼴</small></p>
-    <div class="x-f" data-bind="A1.fib.why" data-ph="예: 한 번 부를 때마다 … 라서 … 쯤일 것 같다"></div>
+    <p class="x-q">그렇게 고른 이유<small>한두 문장, “~이므로 ~정도일 것이다” 형식</small></p>
+    <div class="x-f" data-bind="A1.fib.why" data-ph="예: 한 번 호출할 때마다 … 이므로 … 정도일 것이다"></div>
   </div>
 
   <div class="x-screen" data-title="돌아보기: visited">
     <div class="quiz" data-answer="1">
-      <p class="q">11주차 BFS에서 visited가 하던 일은?</p>
-      <div class="opts"><button type="button">이미 본 칸을 표시해 다시 처리하지 않게 한다</button><button type="button" data-hint="거리는 dist가 셌어요.">칸까지의 거리를 센다</button><button type="button" data-hint="순서는 큐가 정해요.">다음에 볼 칸의 순서를 정한다</button></div>
-      <p class="why">같은 칸을 되풀이하지 않게. 이번 주엔 이 생각이 계산에도 통하는지 봐요.</p>
+      <p class="q">11주차 BFS에서 visited가 하던 일은 무엇입니까?</p>
+      <div class="opts"><button type="button">이미 본 칸을 표시해 다시 처리하지 않게 한다</button><button type="button" data-hint="거리는 dist가 기록하였습니다.">칸까지의 거리를 센다</button><button type="button" data-hint="순서는 큐가 정합니다.">다음에 볼 칸의 순서를 정한다</button></div>
+      <p class="why">같은 칸을 되풀이하여 처리하지 않게 합니다. 이번 주에는 이 생각이 계산에도 적용되는지 살펴봅니다.</p>
     </div>
   </div>
 </section>
 
 <!-- ========== A2 ========== -->
 <section class="x-act" data-id="A2" data-title="fib(6) 호출 트리 그리기" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>fib(6)의 호출을 빠짐없이 그리고 세어요.</li></ul>
+  <ul class="x-pts"><li>fib(6)의 호출을 빠짐없이 그리고 세십시오.</li></ul>
 
   <div class="x-screen" data-title="fib(4) 트리 보기">
-    <ul class="x-pts"><li>fib(n)은 왼쪽 fib(n−1)을 먼저, 그다음 fib(n−2)를 불러요.</li><li>n이 0이나 1이면 더 부르지 않아요.</li><li>호출 하나 = 노드 하나</li></ul>
+    <ul class="x-pts"><li>fib(n)은 왼쪽 fib(n−1)을 먼저, 그다음 fib(n−2)를 호출합니다.</li><li>n이 0이나 1이면 더 호출하지 않습니다.</li><li>호출 하나 = 노드 하나</li></ul>
     <ul class="x-tree"><li><span>fib(4)</span><ul>
       <li><span>fib(3)</span><ul><li><span>fib(2)</span><ul><li><span>fib(1)</span></li><li><span>fib(0)</span></li></ul></li><li><span>fib(1)</span></li></ul></li>
       <li><span>fib(2)</span><ul><li><span>fib(1)</span></li><li><span>fib(0)</span></li></ul></li></ul></li></ul>
     <div class="quiz" data-answer="2">
-      <p class="q">이 트리에서 fib(2)는 몇 번 불렸나요?</p>
-      <div class="opts"><button type="button" data-hint="오른쪽 가지도 봐요.">1번</button><button type="button">2번</button><button type="button">3번</button></div>
-      <p class="why">fib(3) 아래와 fib(4) 오른쪽. 모두 노드 9개 = 호출 9번.</p>
+      <p class="q">이 트리에서 fib(2)는 몇 번 호출되었습니까?</p>
+      <div class="opts"><button type="button" data-hint="오른쪽 가지도 살펴보십시오.">1번</button><button type="button">2번</button><button type="button">3번</button></div>
+      <p class="why">fib(3) 아래와 fib(4) 오른쪽입니다. 모두 노드 9개 = 호출 9번입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="fib(6) 트리 그리기">
-    <ul class="x-pts"><li>fib(6) → fib(5), fib(4). 오른쪽 가지에 fib(4) 트리가 그대로 들어가요.</li><li>한 줄에 호출 하나, 부른 쪽보다 <b>두 칸</b> 들여쓰기</li><li>‘…’, ‘생략’ 없이 끝까지</li></ul>
+    <ul class="x-pts"><li>fib(6) → fib(5), fib(4)입니다. 오른쪽 가지에 fib(4) 트리가 그대로 들어갑니다.</li><li>한 줄에 호출 하나씩, 호출한 쪽보다 <b>두 칸</b> 들여쓰기</li><li>‘…’, ‘생략’ 없이 끝까지 작성</li></ul>
     <pre class="x-code">fib(4)
   fib(3)
     fib(2)
     ...</pre>
-    <div class="x-f" data-bind="A2.tree" data-ph="fib(6)&#10;  fib(5)&#10;    … (한 줄에 하나씩 끝까지)"></div>
+    <div class="x-f" data-bind="A2.tree" data-ph="fib(6)&#10;  fib(5)&#10;    … (한 줄에 하나씩 끝까지 작성)"></div>
   </div>
 
   <div class="x-screen" data-title="n별 호출 횟수">
-    <ul class="x-pts"><li>fib(6) 트리에서 fib(n)이 <b>몇 번 불렸는지</b> n마다 세요.</li><li>예시 줄은 fib(4) 트리로 센 값이에요.</li></ul>
+    <ul class="x-pts"><li>fib(6) 트리에서 fib(n)이 <b>몇 번 호출되었는지</b> n마다 세십시오.</li><li>예시 줄은 fib(4) 트리로 센 값입니다.</li></ul>
     <div class="x-scroll"><table class="x-trace">
 <tr><th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>합계<small>7칸을 더한 값</small></th></tr>
 <tr class="x-ex"><td>예 fib(4)</td><td>2</td><td>3</td><td>2</td><td>1</td><td>1</td><td>-</td><td>-</td><td>9</td></tr>
@@ -115,9 +115,9 @@
 
   <div class="x-screen" data-title="fib(n)의 값">
     <div class="x-given"><span><b>fib(0)</b>0</span><span><b>fib(1)</b>1</span><span><b>fib(n)</b>fib(n−1)+fib(n−2)</span></div>
-    <ul class="x-pts"><li>이번엔 호출 횟수가 아니라 <b>값</b>이에요.</li><li>맨 오른쪽 칸엔 fib(6) 값을 한 번 더.</li></ul>
+    <ul class="x-pts"><li>이번엔 호출 횟수가 아니라 <b>값</b>입니다.</li><li>맨 오른쪽 칸에는 fib(6) 값을 한 번 더 쓰십시오.</li></ul>
     <div class="x-scroll"><table class="x-trace">
-<tr><th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>fib(6)<small>합 아님, fib(6) 값 다시</small></th></tr>
+<tr><th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>fib(6)<small>합이 아닌 fib(6) 값</small></th></tr>
 <tr class="x-ex"><td>예 fib(4)까지</td><td>0</td><td>1</td><td>1</td><td>2</td><td>3</td><td>-</td><td>-</td><td>-</td></tr>
 <tr><td>fib(n) 값</td><td><span class="x-f" data-bind="A2.cnt.r2.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c3" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c4" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c5" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c6" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c7" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A2.cnt.r2.c8" data-ph="숫자"></span></td></tr>
 </table></div>
@@ -127,31 +127,31 @@
     <div class="x-cards"><div><b>서로 다른 입력</b>트리에 나온 n의 종류 수</div><div><b>호출</b>트리의 노드 수</div></div>
     <div class="x-line">fib(6)에서 서로 다른 입력 <span class="x-f" data-bind="A2.distinct" data-w="xs" data-ph="숫자"></span> 개, 호출 <span class="x-f" data-bind="A2.total" data-w="xs" data-ph="숫자"></span> 번</div>
     <div class="quiz" data-answer="3">
-      <p class="q">fib(6) 트리에서 fib(2)는 몇 군데에서 불렸나요?</p>
+      <p class="q">fib(6) 트리에서 fib(2)는 몇 군데에서 호출되었습니까?</p>
       <div class="opts"><button type="button">2</button><button type="button">3</button><button type="button">5</button></div>
-      <p class="why">5군데. 값은 매번 1로 같아요.</p>
+      <p class="why">5군데입니다. 값은 매번 1로 같습니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="견주어 보기">
-    <p class="x-q">서로 다른 입력과 호출, 그리고 n이 늘 때<small>두 칸에 나눠서</small></p>
+  <div class="x-screen" data-title="비교하기">
+    <p class="x-q">서로 다른 입력과 호출, 그리고 n이 늘 때<small>두 입력란에 나누어 쓰십시오.</small></p>
     <div class="x-f" data-bind="A2.q2" data-parts="입력과 호출=예: 서로 다른 입력 ○개, 호출 ○번|n이 1 늘면=예: 호출이 약 ○배로 …"></div>
-    <p class="x-q">(선택) fib(30)이면 서로 다른 입력과 호출의 비율은?<small>어림 비율과 까닭</small></p>
+    <p class="x-q">(선택) fib(30)이면 서로 다른 입력과 호출의 비율은 얼마입니까?<small>어림 비율과 이유</small></p>
     <div class="x-f" data-bind="A2.q3" data-parts="어림=예: 입력 ○개, 호출 약 ○번 → ○배|까닭=예: 같은 계산을 …"></div>
   </div>
 
   <div class="x-screen" data-title="내 규칙 만들기">
-    <ul class="x-pts"><li>fib(6) 트리에서 같은 계산을 줄이는 규칙을 만들어요.</li></ul>
+    <ul class="x-pts"><li>fib(6) 트리에서 같은 계산을 줄이는 규칙을 만드십시오.</li></ul>
     <div class="x-f" data-bind="A2.q4" data-parts="적어 두는 것=예: 무엇을 어디에|쓰는 때=예: 언제 그것을 보고 …"></div>
     <div class="quiz predict" data-answer="2">
-      <p class="q">내 규칙을 쓰면 fib(6)의 호출은 몇 번쯤으로 줄까요?</p>
+      <p class="q">자신의 규칙을 적용하면 fib(6)의 호출은 몇 번 정도로 줄어듭니까?</p>
       <div class="opts"><button type="button">7번</button><button type="button">11번</button><button type="button">15번</button><button type="button">25번 그대로</button></div>
-      <p class="why">A3에서 정해진 규칙으로 직접 세어 봐요.</p>
+      <p class="why">A3에서 정해진 규칙으로 직접 추적해 봅니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="선택 · fib(7)">
-    <ul class="x-pts"><li>fib(7) 트리에서 n별 호출 횟수. 안 풀면 비워요.</li><li>fib(7) → fib(6), fib(5)</li></ul>
+    <ul class="x-pts"><li>fib(7) 트리에서 n별 호출 횟수를 쓰십시오. 풀지 않으면 비워 두십시오.</li><li>fib(7) → fib(6), fib(5)</li></ul>
     <div class="x-scroll"><table class="x-trace">
 <tr><th>n</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>합계</th></tr>
 <tr class="opt"><td>불린 횟수</td><td><span class="x-f" data-bind="A2.opt7.r1.c1" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c2" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c3" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c4" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c5" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c6" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c7" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c8" data-ph="선택 · 숫자"></span></td><td><span class="x-f" data-bind="A2.opt7.r1.c9" data-ph="선택 · 숫자"></span></td></tr>
@@ -160,26 +160,26 @@
 </section>
 
 <!-- ========== A3 ========== -->
-<section class="x-act" data-id="A3" data-title="계산한 값을 적어 두면" data-meta="6분 · 개인">
-  <ul class="x-pts"><li>메모 규칙으로 fib(6)이 몇 번 호출로 끝나는지 세요.</li></ul>
+<section class="x-act" data-id="A3" data-title="계산한 값을 기록해 두는 방법" data-meta="6분 · 개인">
+  <ul class="x-pts"><li>메모 규칙으로 fib(6)이 몇 번의 호출로 끝나는지 세십시오.</li></ul>
 
   <div class="x-screen" data-title="메모 규칙과 fib(3)">
     <ol class="x-rules">
       <li class="r1"><b>메모에 없으면</b><div class="fx"><code>C</code><span>실제로 계산하고 값을 메모에 적기</span></div></li>
-      <li class="r2"><b>메모에 있으면</b><div class="fx"><code>H</code><span>계산 없이 바로 답, 아래 가지도 안 부름</span></div></li>
+      <li class="r2"><b>메모에 있으면</b><div class="fx"><code>H</code><span>계산 없이 바로 답하고, 아래 가지도 호출하지 않음</span></div></li>
     </ol>
     <div class="x-flow"><span>1 fib(3) C</span><span>2 fib(2) C</span><span>3 fib(1) C</span><span>4 fib(0) C</span><span class="hit">5 fib(1) H</span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">5번째 fib(1)이 H인 까닭은?</p>
-      <div class="opts"><button type="button">3번째에서 fib(1) 값을 이미 적어 두었다</button><button type="button" data-hint="처음 불릴 땐 fib(1)도 C였어요.">fib(1)은 계산할 것이 없다</button><button type="button" data-hint="순서와는 상관없어요.">fib(0) 다음에 불렸다</button></div>
-      <p class="why">3번째에서 적어 두었으니 5번째엔 바로 써요.</p>
+      <p class="q">5번째 fib(1)이 H인 이유는 무엇입니까?</p>
+      <div class="opts"><button type="button">3번째에서 fib(1) 값을 이미 적어 두었다</button><button type="button" data-hint="처음 호출될 때는 fib(1)도 C였습니다.">fib(1)은 계산할 것이 없다</button><button type="button" data-hint="순서와는 관계가 없습니다.">fib(0) 다음에 불렸다</button></div>
+      <p class="why">3번째에서 기록해 두었으므로 5번째에는 바로 사용합니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="fib(6) 내려가기 (1~7번)">
-    <ul class="x-pts"><li>왼쪽 가지를 따라 내려가며 한 줄에 호출 하나</li><li>처음 불리는 호출은 메모에 없으니 C (fib(0), fib(1)도)</li></ul>
+    <ul class="x-pts"><li>왼쪽 가지를 따라 내려가며 한 줄에 호출 하나</li><li>처음 호출되는 경우는 메모에 없으므로 C입니다 (fib(0), fib(1)도 마찬가지).</li></ul>
     <div class="x-scroll"><table class="x-trace">
-<tr><th>순서</th><th>불린 호출<small>fib(숫자) 꼴</small></th><th>C / H<small>C=계산함 · H=메모에서 바로</small></th></tr>
+<tr><th>순서</th><th>불린 호출<small>fib(숫자) 형식</small></th><th>C / H<small>C=계산함 · H=메모에서 바로</small></th></tr>
 <tr class="x-ex"><td>예</td><td>fib(3)</td><td>C</td></tr>
 <tr><td>1</td><td><span class="x-f" data-bind="A3.seq.r1.c1" data-ph="예: fib(9)"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r1.c2"></div></td></tr>
 <tr><td>2</td><td><span class="x-f" data-bind="A3.seq.r2.c1" data-ph="예: fib(9)"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r2.c2"></div></td></tr>
@@ -191,19 +191,19 @@
 </table></div>
   </div>
 
-  <div class="x-screen" data-title="올라오며 이어 쓰기 (8~14번)">
-    <ul class="x-pts"><li>fib(0)을 마치면 fib(2)의 둘째 호출로 돌아와 이어 불러요.</li><li>메모에 있으면 H. 호출이 끝나면 남는 줄은 비워요.</li></ul>
+  <div class="x-screen" data-title="올라오며 이어서 작성하기 (8~14번)">
+    <ul class="x-pts"><li>fib(0)을 마치면 fib(2)의 둘째 호출로 돌아와 이어서 호출합니다.</li><li>메모에 있으면 H입니다. 호출이 끝나면 남는 줄은 비워 두십시오.</li></ul>
     <div class="x-given"><span><b>7번까지</b>fib(6)부터 fib(0)까지 내려옴</span></div>
     <div class="x-scroll"><table class="x-trace">
-<tr><th>순서</th><th>불린 호출<small>fib(숫자) 꼴</small></th><th>C / H<small>C=계산함 · H=메모에서 바로</small></th></tr>
+<tr><th>순서</th><th>불린 호출<small>fib(숫자) 형식</small></th><th>C / H<small>C=계산함 · H=메모에서 바로</small></th></tr>
 <tr class="x-ex"><td>예</td><td>fib(3)</td><td>C</td></tr>
 <tr><td>8</td><td><span class="x-f" data-bind="A3.seq.r8.c1" data-ph="예: fib(9)"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r8.c2"></div></td></tr>
 <tr><td>9</td><td><span class="x-f" data-bind="A3.seq.r9.c1" data-ph="예: fib(9)"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r9.c2"></div></td></tr>
 <tr><td>10</td><td><span class="x-f" data-bind="A3.seq.r10.c1" data-ph="예: fib(9)"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r10.c2"></div></td></tr>
 <tr><td>11</td><td><span class="x-f" data-bind="A3.seq.r11.c1" data-ph="예: fib(9)"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r11.c2"></div></td></tr>
-<tr class="opt"><td>12</td><td><span class="x-f" data-bind="A3.seq.r12.c1" data-ph="안 쓰면 비움"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r12.c2"></div></td></tr>
-<tr class="opt"><td>13</td><td><span class="x-f" data-bind="A3.seq.r13.c1" data-ph="안 쓰면 비움"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r13.c2"></div></td></tr>
-<tr class="opt"><td>14</td><td><span class="x-f" data-bind="A3.seq.r14.c1" data-ph="안 쓰면 비움"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r14.c2"></div></td></tr>
+<tr class="opt"><td>12</td><td><span class="x-f" data-bind="A3.seq.r12.c1" data-ph="사용하지 않으면 비워 둠"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r12.c2"></div></td></tr>
+<tr class="opt"><td>13</td><td><span class="x-f" data-bind="A3.seq.r13.c1" data-ph="사용하지 않으면 비워 둠"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r13.c2"></div></td></tr>
+<tr class="opt"><td>14</td><td><span class="x-f" data-bind="A3.seq.r14.c1" data-ph="사용하지 않으면 비워 둠"></span></td><td class="wide"><div class="x-f" data-bind="A3.seq.r14.c2"></div></td></tr>
 </table></div>
   </div>
 
@@ -212,35 +212,35 @@
     <div class="x-line">호출 <span class="x-f" data-bind="A3.calls" data-w="xs" data-ph="숫자"></span> 번 · 계산(C) <span class="x-f" data-bind="A3.comp" data-w="xs" data-ph="숫자"></span> 번 · H <span class="x-f" data-bind="A3.hit" data-w="xs" data-ph="숫자"></span> 번</div>
   </div>
 
-  <div class="x-screen" data-title="A2와 견주기">
+  <div class="x-screen" data-title="A2와 비교하기">
     <div class="x-given"><span><b>A2 순수 재귀</b>fib(6) 호출 25번</span></div>
-    <p class="x-q">호출 수가 어떻게 달라졌나요?<small>두 수를 넣어 한 문장</small></p>
-    <div class="x-f" data-bind="A3.q2" data-ph="예: A2는 ○번, 지금은 ○번이므로 …"></div>
+    <p class="x-q">호출 수가 어떻게 달라졌습니까?<small>두 수를 넣어 한 문장으로 쓰십시오.</small></p>
+    <div class="x-f" data-bind="A3.q2" data-ph="예: A2는 ○번, 이번에는 ○번이므로 …"></div>
     <p class="x-q">(선택) A2의 내 규칙과 이 메모 규칙</p>
     <div class="x-f" data-bind="A3.q4" data-parts="같은 점=예: 둘 다 …|다른 점=예: 내 규칙은 …"></div>
   </div>
 
-  <div class="x-screen" data-title="병합 정렬에도 쓸까">
+  <div class="x-screen" data-title="병합 정렬에도 적용할 수 있는가">
     <ul class="x-tree"><li><span>[0, 8)</span><ul>
       <li><span>[0, 4)</span><ul><li><span>[0, 2)</span></li><li><span>[2, 4)</span></li></ul></li>
       <li><span>[4, 8)</span><ul><li><span>[4, 6)</span></li><li><span>[6, 8)</span></li></ul></li></ul></li></ul>
-    <ul class="x-pts"><li>12주차 병합 정렬: 구간을 반으로 쪼개요.</li><li>결론은 나중에. 지금 생각을 써요.</li></ul>
+    <ul class="x-pts"><li>12주차 병합 정렬은 구간을 반으로 나눕니다.</li><li>결론은 나중에 확인합니다. 현재 생각을 쓰십시오.</li></ul>
     <div class="x-f" data-bind="A3.merge" data-parts="같은 구간이 두 번=나타났다 / 나타나지 않았다|메모가=도움이 될 것 같다 / 되지 않을 것 같다|까닭=예: 적어 둔 값을 …"></div>
   </div>
 </section>
 
 <!-- ========== A4 ========== -->
-<section class="x-act" data-id="A4" data-title="가장 큰 동전부터 내면 늘 가장 적을까" data-meta="8분 · 개인">
-  <ul class="x-pts"><li>큰 동전부터 내는 규칙이 늘 가장 적은 개수인지 따져요.</li></ul>
+<section class="x-act" data-id="A4" data-title="가장 큰 동전부터 내면 항상 개수가 가장 적은가" data-meta="8분 · 개인">
+  <ul class="x-pts"><li>큰 동전부터 내는 규칙이 항상 가장 적은 개수인지 따져 봅니다.</li></ul>
 
   <div class="x-screen" data-title="Greedy 규칙">
     <div class="x-cards"><div><b>Greedy (탐욕)</b>남은 금액 이하인 가장 큰 동전을 계속 낸다</div><div><b>동전 수</b>종류마다 얼마든지</div></div>
     <div class="x-given"><span><b>동전</b>[1, 5, 10]</span><span><b>금액</b>17원</span></div>
     <div class="x-flow"><span>17</span><span>10 → 7</span><span>5 → 2</span><span>1 → 1</span><span class="hit">1 → 0</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">같은 동전으로 12원이면 Greedy는 몇 개?</p>
+      <p class="q">같은 동전으로 12원이면 Greedy는 몇 개입니까?</p>
       <div class="opts"><button type="button">2개</button><button type="button">3개</button><button type="button">4개</button></div>
-      <p class="why">10 + 1 + 1 → 3개.</p>
+      <p class="why">10 + 1 + 1 → 3개입니다.</p>
     </div>
   </div>
 
@@ -260,9 +260,9 @@
 </table></div>
   </div>
 
-  <div class="x-screen" data-title="더 적게 만들 수 있을까">
-    <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>견줄 것</b>앞 화면의 Greedy 개수</span></div>
-    <ul class="x-pts"><li>같은 금액을 다른 동전으로 만들어 개수를 견줘요.</li><li>찾으면 ‘있다’ + 조합, 못 찾으면 ‘없다’ + 빈칸</li></ul>
+  <div class="x-screen" data-title="더 적은 개수로 만들 수 있는가">
+    <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>비교 대상</b>앞 화면의 Greedy 개수</span></div>
+    <ul class="x-pts"><li>같은 금액을 다른 동전 조합으로 만들어 개수를 비교하십시오.</li><li>찾으면 ‘있다’와 조합, 찾지 못하면 ‘없다’와 빈칸</li></ul>
     <div class="x-scroll"><table class="x-trace">
 <tr><th>금액</th><th>더 적은 조합<small>Greedy보다 개수가 적은 것</small></th><th>그 조합과 개수<small>없다면 비움</small></th></tr>
 <tr class="x-ex"><td>예</td><td>있다</td><td>2+2 (2개)</td></tr>
@@ -280,14 +280,14 @@
   <div class="x-screen" data-title="6원 들여다보기">
     <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>금액</b>6원</span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">6원에서 Greedy가 처음 낸 동전은?</p>
-      <div class="opts"><button type="button">4원</button><button type="button" data-hint="6원 이하 중 가장 큰 것.">3원</button><button type="button">1원</button></div>
-      <p class="why">가장 큰 4원.</p>
+      <p class="q">6원에서 Greedy가 처음 낸 동전은 무엇입니까?</p>
+      <div class="opts"><button type="button">4원</button><button type="button" data-hint="6원 이하인 동전 중 가장 큰 것입니다.">3원</button><button type="button">1원</button></div>
+      <p class="why">가장 큰 4원입니다.</p>
     </div>
     <div class="quiz" data-answer="2">
-      <p class="q">4원을 내고 남은 2원은?</p>
-      <div class="opts"><button type="button" data-hint="3은 2보다 커요.">3원 하나</button><button type="button">1원 두 개</button><button type="button">4원 하나</button></div>
-      <p class="why">4+1+1로 3개. 처음 3원을 내면 3+3으로 2개. 첫 선택을 되돌아보지 않아 놓쳤어요.</p>
+      <p class="q">4원을 내고 남은 2원은 어떻게 냅니까?</p>
+      <div class="opts"><button type="button" data-hint="3은 2보다 큽니다.">3원 하나</button><button type="button">1원 두 개</button><button type="button">4원 하나</button></div>
+      <p class="why">4+1+1로 3개입니다. 처음 3원을 내면 3+3으로 2개입니다. 첫 선택을 되돌아보지 않아 놓친 것입니다.</p>
     </div>
   </div>
 
@@ -297,22 +297,22 @@
     <div class="x-line">개수 <span class="x-f" data-bind="A4.kr.count" data-w="xs" data-ph="숫자"></span> 개</div>
     <p class="x-q">더 적은 개수의 방법을</p>
     <div class="x-f" data-bind="A4.kr.found"></div>
-    <p class="x-q">못 찾았다면, 그건 “없다”는 뜻일까요?</p>
+    <p class="x-q">찾지 못했다면, 그것은 “없다”는 뜻입니까?</p>
     <div class="x-f" data-bind="A4.kr.q" data-parts="답=그렇다 / 아니다|까닭=예: 한 금액에서 못 찾은 것은 …"></div>
   </div>
 
   <div class="x-screen" data-title="원인 후보">
     <div class="x-given"><span><b>[1, 3, 4]</b>6원에서 더 좋은 방법 있음</span><span><b>[1, 10, 50, 100, 500]</b>1260원에서 못 찾음</span></div>
-    <p class="x-q">차이의 원인 후보 1가지<small>확실하지 않아도 돼요. 한 문장</small></p>
-    <div class="x-f" data-bind="A4.cause1" data-ph="예: 동전 사이의 … 때문일 것 같다"></div>
-    <p class="x-q">그 후보가 맞다면?<small>A9에서 확인해요</small></p>
+    <p class="x-q">차이의 원인 후보 1가지<small>확실하지 않아도 됩니다. 한 문장으로 쓰십시오.</small></p>
+    <div class="x-f" data-bind="A4.cause1" data-ph="예: 동전 사이의 … 때문일 것이다"></div>
+    <p class="x-q">그 후보가 맞다면 어떻게 됩니까?<small>A9에서 확인합니다.</small></p>
     <div class="x-f" data-bind="A4.q.sys" data-parts="맞을 것 같은 체계=예: [1, 2, 8], 까닭|틀릴 것 같은 체계=예: [1, 6, 9], 까닭"></div>
   </div>
 </section>
 
 <!-- ========== A5 ========== -->
 <section class="x-act" data-id="A5" data-title="작은 금액부터 표 채우기" data-meta="10분 · 개인">
-  <ul class="x-pts"><li>작은 금액부터 표를 채워 6원의 최소 개수를 정해요.</li></ul>
+  <ul class="x-pts"><li>작은 금액부터 표를 채워 6원의 최소 개수를 구하십시오.</li></ul>
 
   <div class="x-screen" data-title="dp 규칙">
     <ol class="x-rules">
@@ -323,8 +323,8 @@
     <div class="x-given"><span><b>동전</b>[1, 2]</span><span><b>dp[0..2]</b>0, 1, 1</span></div>
     <div class="x-flow"><span>c=1: dp[2]+1 = 2</span><span>c=2: dp[1]+1 = 2</span><span class="hit">dp[3] = 2</span></div>
     <div class="quiz" data-answer="3">
-      <p class="q">같은 동전 [1, 2]에서 dp[4]의 c = 2 후보는? (dp[2] = 1)</p>
-      <div class="opts"><button type="button">3</button><button type="button" data-hint="dp[4−2] + 1 이에요.">1</button><button type="button">2</button></div>
+      <p class="q">같은 동전 [1, 2]에서 dp[4]의 c = 2 후보는 무엇입니까? (dp[2] = 1)</p>
+      <div class="opts"><button type="button">3</button><button type="button" data-hint="dp[4−2] + 1 입니다.">1</button><button type="button">2</button></div>
       <p class="why">dp[2] + 1 = 2.</p>
     </div>
   </div>
@@ -332,15 +332,15 @@
   <div class="x-screen" data-title="dp[6]의 앞 금액">
     <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>금액</b>6원</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">마지막 동전이 4이면 앞에 만들어 둔 금액은?</p>
+      <p class="q">마지막 동전이 4이면 앞에서 만들어 둔 금액은 얼마입니까?</p>
       <div class="opts"><button type="button">4원</button><button type="button">2원</button><button type="button">10원</button></div>
-      <p class="why">6 − 4 = 2원.</p>
+      <p class="why">6 − 4 = 2원입니다.</p>
     </div>
     <div class="x-f" data-bind="A5.rule" data-parts="세 앞 금액=마지막 4 → ○원, 3 → ○원, 1 → ○원|dp[6] 정하는 법=예: 각 앞 금액의 … 에 1을 더해 …"></div>
   </div>
 
   <div class="x-screen" data-title="dp 표 1~4원">
-    <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>dp[0]</b>0</span><span><b>c &gt; a</b>칸에 - </span></div>
+    <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>dp[0]</b>0</span><span><b>c &gt; a</b>입력란에 - </span></div>
     <div class="x-scroll"><table class="x-trace">
 <tr><th>a<small>금액</small></th><th>c=1<small>dp[a−1]+1</small></th><th>c=3<small>dp[a−3]+1</small></th><th>c=4<small>dp[a−4]+1</small></th><th>dp[a]<small>후보 중 최소</small></th><th>선택 동전<small>최소를 준 c</small></th></tr>
 <tr class="x-ex"><td>예 [1,2]의 3</td><td>2</td><td>c=2: 2</td><td>-</td><td>2</td><td>1 또는 2</td></tr>
@@ -353,7 +353,7 @@
 
   <div class="x-screen" data-title="dp 표 5~8원">
     <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>dp[0]</b>0</span><span><b>dp[1..4]</b>앞 화면에서 구한 값</span></div>
-    <ul class="x-pts"><li>최소를 준 c가 둘이면 둘 다: “1 또는 4”</li></ul>
+    <ul class="x-pts"><li>최소를 준 c가 둘이면 둘 다 쓰십시오: “1 또는 4”</li></ul>
     <div class="x-scroll"><table class="x-trace">
 <tr><th>a<small>금액</small></th><th>c=1<small>dp[a−1]+1</small></th><th>c=3<small>dp[a−3]+1</small></th><th>c=4<small>dp[a−4]+1</small></th><th>dp[a]<small>후보 중 최소</small></th><th>선택 동전<small>최소를 준 c</small></th></tr>
 <tr class="x-ex"><td>예 [1,2]의 3</td><td>2</td><td>c=2: 2</td><td>-</td><td>2</td><td>1 또는 2</td></tr>
@@ -364,8 +364,8 @@
 </table></div>
   </div>
 
-  <div class="x-screen" data-title="Greedy와 견주기">
-    <ul class="x-pts"><li>A4의 Greedy 개수와 dp[a]를 옮겨 쓰고, 다르면 체크</li><li>숫자 두 칸은 선택이에요.</li></ul>
+  <div class="x-screen" data-title="Greedy와 비교하기">
+    <ul class="x-pts"><li>A4의 Greedy 개수와 dp[a]를 옮겨 쓰고, 다르면 체크하십시오.</li><li>숫자 두 입력란은 선택 사항입니다.</li></ul>
     <div class="x-scroll"><table class="x-trace">
 <tr><th>a</th><th>Greedy<small>개수 (선택)</small></th><th>dp[a]<small>(선택)</small></th><th>다르다<small>다르면 체크</small></th></tr>
 <tr><td>1</td><td><span class="x-f" data-bind="A5.cmp.r1.c1" data-ph="숫자 · 선택"></span></td><td><span class="x-f" data-bind="A5.cmp.r1.c2" data-ph="숫자 · 선택"></span></td><td><div class="x-f" data-bind="A5.cmp.r1.c3">다르다</div></td></tr>
@@ -379,13 +379,13 @@
 </table></div>
   </div>
 
-  <div class="x-screen" data-title="dp[6]은 어디서 왔나">
+  <div class="x-screen" data-title="dp[6]의 출처">
     <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>Greedy 6원</b>4+1+1</span></div>
     <div class="x-f" data-bind="A5.q1" data-parts="온 칸=dp[6]은 c = ○ 칸, dp[○] + 1|Greedy와 다른 까닭=예: Greedy는 … 하지만 표는 …"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">dp[5]를 정하려면 먼저 채워져 있어야 하는 칸은?</p>
-      <div class="opts"><button type="button">dp[1], dp[2], dp[4]</button><button type="button" data-hint="뒤 칸은 아직 비어 있어요.">dp[6], dp[7], dp[8]</button><button type="button">dp[5] 하나뿐</button></div>
-      <p class="why">5−4, 5−3, 5−1 칸. 작은 금액이 먼저.</p>
+      <p class="q">dp[5]를 정하려면 먼저 채워져 있어야 하는 칸은 무엇입니까?</p>
+      <div class="opts"><button type="button">dp[1], dp[2], dp[4]</button><button type="button" data-hint="뒤쪽 칸은 아직 비어 있습니다.">dp[6], dp[7], dp[8]</button><button type="button">dp[5] 하나뿐</button></div>
+      <p class="why">5−4, 5−3, 5−1 칸입니다. 작은 금액을 먼저 채웁니다.</p>
     </div>
   </div>
 
@@ -395,17 +395,17 @@
 <tr><th>a</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th></tr>
 <tr class="opt"><td>dp[a]</td><td><span class="x-f" data-bind="A5.opt.r1.c1" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c2" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c3" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c4" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c5" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c6" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c7" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c8" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c9" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c10" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c11" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c12" data-ph="숫자 / INF"></span></td><td><span class="x-f" data-bind="A5.opt.r1.c13" data-ph="숫자 / INF"></span></td></tr>
 </table></div>
-    <p class="x-q">(선택) dp[12]는 어떻게 구하나요?<small>1~2문장</small></p>
+    <p class="x-q">(선택) dp[12]는 어떻게 구합니까?<small>1~2문장으로 쓰십시오.</small></p>
     <div class="x-f" data-bind="A5.opt.q" data-ph="예: c = 5이면 dp[○] + 1, c = 7이면 …"></div>
   </div>
 </section>
 
 <!-- ========== A6 ========== -->
 <section class="x-act" data-id="A6" data-title="사실 정리와 이름 붙이기" data-meta="9분 · 전체→개인">
-  <ul class="x-pts"><li>센 숫자를 모으고 오늘 한 일에 이름을 붙여요.</li></ul>
+  <ul class="x-pts"><li>센 숫자를 모으고 오늘 한 활동에 이름을 붙이십시오.</li></ul>
 
   <div class="x-screen" data-title="fib 값 모으기">
-    <ul class="x-pts"><li>A2·A3의 내 표에서 옮겨요. 숫자만.</li></ul>
+    <ul class="x-pts"><li>A2·A3의 표에서 숫자만 옮겨 쓰십시오.</li></ul>
     <table class="x-trace">
       <tr><th>항목</th><th>값</th></tr>
       <tr><td>fib(6) 순수 재귀 호출 수 (A2)</td><td><span class="x-f" data-bind="A6.facts.r1.c1" data-ph="숫자"></span></td></tr>
@@ -416,7 +416,7 @@
   </div>
 
   <div class="x-screen" data-title="동전 값 모으기">
-    <ul class="x-pts"><li>A4·A5의 내 표에서 [1, 3, 4] 6원 값을 옮겨요. 동전 개수.</li></ul>
+    <ul class="x-pts"><li>A4·A5의 표에서 [1, 3, 4] 6원의 동전 개수를 옮겨 쓰십시오.</li></ul>
     <table class="x-trace">
       <tr><th>항목</th><th>값</th></tr>
       <tr><td>Greedy 개수 (A4)</td><td><span class="x-f" data-bind="A6.facts.r5.c1" data-ph="숫자"></span></td></tr>
@@ -426,23 +426,23 @@
 
   <div class="x-screen" data-title="이름 붙이기">
     <div class="x-cards">
-      <div><b>메모이제이션</b>계산한 값을 적어 두고 같은 입력이면 다시 씀</div>
+      <div><b>메모이제이션</b>계산한 값을 기록해 두고 같은 입력이면 다시 사용함</div>
       <div><b>타뷸레이션</b>작은 값부터 표를 채워 올라감</div>
       <div><b>동적 계획법</b>위 둘을 함께 부르는 이름</div>
       <div><b>탐욕 알고리즘</b>매 단계 지금 가장 좋아 보이는 선택</div>
-      <div><b>반례</b>주장이 늘 맞지는 않음을 보이는 사례 하나</div>
+      <div><b>반례</b>주장이 항상 맞지는 않음을 보이는 사례 하나</div>
     </div>
     <div class="quiz" data-answer="3">
-      <p class="q">“큰 동전부터 내고 되돌아보지 않는다”에 가장 가까운 이름은?</p>
+      <p class="q">“큰 동전부터 내고 되돌아보지 않는다”에 가장 가까운 이름은 무엇입니까?</p>
       <div class="opts"><button type="button">메모이제이션</button><button type="button">타뷸레이션</button><button type="button">탐욕 알고리즘</button></div>
-      <p class="why">A4의 일이에요.</p>
+      <p class="why">A4에서 한 활동입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="이름과 활동 잇기">
-    <ul class="x-pts"><li>이름마다 오늘 활동 하나를 번호(A○)와 함께 한 문장으로</li><li>예(다른 이름): 이진 탐색 → 12주차에 구간을 반씩 줄여 찾은 것</li></ul>
+    <ul class="x-pts"><li>이름마다 오늘 활동 하나를 번호(A○)와 함께 한 문장으로 연결하십시오.</li><li>예(다른 이름): 이진 탐색 → 12주차에 구간을 반씩 줄여 찾은 것</li></ul>
     <table class="x-trace">
-      <tr><th>이름</th><th>오늘 활동 중 연결되는 것<small>A○ + 한 문장</small></th></tr>
+      <tr><th>이름</th><th>오늘 활동 중 연결되는 것<small>A○와 한 문장</small></th></tr>
       <tr><td>메모이제이션</td><td class="wide"><div class="x-f" data-bind="A6.terms.r1.c1" data-ph="예: A○에서 …"></div></td></tr>
       <tr><td>타뷸레이션</td><td class="wide"><div class="x-f" data-bind="A6.terms.r2.c1" data-ph="예: A○에서 …"></div></td></tr>
       <tr><td>동적 계획법</td><td class="wide"><div class="x-f" data-bind="A6.terms.r3.c1" data-ph="예: A○와 A○를 …"></div></td></tr>
@@ -452,25 +452,25 @@
   </div>
 
   <div class="x-screen" data-title="핵심 질문에 답하기">
-    <div class="x-given"><span><b>핵심 질문</b>과거 계산 결과를 기억해 두면 성능이 얼마나 오를까?</span></div>
-    <p class="x-q">A2·A3에서 센 호출 수 두 개를 넣어 한 문장</p>
+    <div class="x-given"><span><b>핵심 질문</b>과거 계산 결과를 기억해 두면 성능이 얼마나 향상되는가?</span></div>
+    <p class="x-q">A2·A3에서 센 호출 수 두 개를 넣어 한 문장으로 쓰십시오.</p>
     <div class="x-f" data-bind="A6.core" data-ph="예: 기억하면 fib(6) 호출이 ○번에서 ○번으로 …"></div>
     <div class="quiz predict" data-answer="3">
-      <p class="q">기억하는 규칙은 호출을 얼마나 줄였나요?</p>
+      <p class="q">기억하는 규칙은 호출을 얼마나 줄였습니까?</p>
       <div class="opts"><button type="button">거의 줄이지 못했다</button><button type="button">조금 줄었다</button><button type="button">절반 넘게 줄었다</button></div>
-      <p class="why">내가 센 두 수를 견줘 봐요.</p>
+      <p class="why">직접 센 두 수를 비교하십시오.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="exit ticket · fib(7)">
-    <ul class="x-pts"><li>A3의 fib(6) 순서 앞에 fib(7)이 붙어요.</li><li>fib(6)이 끝나면 둘째 호출 fib(5)를 부르는데, 이미 메모에 있어요.</li></ul>
+    <ul class="x-pts"><li>A3의 fib(6) 순서 앞에 fib(7)이 붙습니다.</li><li>fib(6)이 끝나면 둘째 호출 fib(5)를 호출하는데, 이미 메모에 있습니다.</li></ul>
     <div class="x-line">fib(7)을 메모 규칙으로: 호출 <span class="x-f" data-bind="A6.x1.calls" data-w="xs" data-ph="숫자"></span> 번, 실제 계산 <span class="x-f" data-bind="A6.x1.comp" data-w="xs" data-ph="숫자"></span> 번</div>
   </div>
 
   <div class="x-screen" data-title="exit ticket · 9원">
     <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>금액</b>9원</span></div>
     <div class="x-line">Greedy 개수 <span class="x-f" data-bind="A6.x2.greedy" data-w="xs" data-ph="숫자"></span> · dp[9] <span class="x-f" data-bind="A6.x2.dp" data-w="xs" data-ph="숫자"></span></div>
-    <p class="x-q">(선택) 오늘 헷갈린 말<small>없으면 ‘없음’</small></p>
+    <p class="x-q">(선택) 오늘 헷갈린 말<small>없으면 ‘없음’으로 쓰십시오.</small></p>
     <div class="x-f" data-bind="A6.x3" data-parts="헷갈린 말=예: 상태|까닭=한 문장"></div>
   </div>
 </section>

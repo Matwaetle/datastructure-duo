@@ -130,7 +130,7 @@
     $$(".x-echo[data-echo]").forEach(function (sp) {
       var o = document.querySelector('[data-key="' + sp.getAttribute("data-echo") + '"]');
       var v = o ? String(getOrig(o) || "").trim() : "";
-      sp.textContent = v || (sp.getAttribute("data-empty") || "아직 안 씀");
+      sp.textContent = v || (sp.getAttribute("data-empty") || "미작성");
       sp.classList.toggle("empty", !v);
     });
   }

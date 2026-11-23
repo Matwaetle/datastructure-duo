@@ -17,66 +17,66 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="11주차 활동지 2부 · 코드 출력과 손 추적 맞춰 보기" data-lead="실습 코드의 출력을 옮기고, 손으로 따라간 결과와 견줘요.">
+<div class="x-page" hidden data-title="11주차 활동지 2부 · 코드 출력과 직접 추적한 결과 대조하기" data-lead="실습 코드의 출력을 옮겨 적고, 직접 추적한 결과와 비교합니다.">
 
 <!-- ========== A6 ========== -->
-<section class="x-act" data-id="A6" data-title="손 추적과 코드 출력 대조" data-meta="15분 · 개인">
-  <ul class="x-pts"><li>1부 실습 코드 A6의 두 함수 출력을 옮겨 손 추적과 맞춰 봐요.</li></ul>
+<section class="x-act" data-id="A6" data-title="직접 추적한 결과와 코드 출력 대조" data-meta="15분 · 개인">
+  <ul class="x-pts"><li>1부 실습 코드 A6의 두 함수 출력을 옮겨 직접 추적한 결과와 대조합니다.</li></ul>
 
-  <div class="x-screen" data-title="G1과 손 추적 결과">
+  <div class="x-screen" data-title="G1과 직접 추적한 결과">
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="A"></div>
     <div class="x-given"><span><b>A</b>[B, C]</span><span><b>B</b>[A, D]</span><span><b>C</b>[A, D]</span><span><b>D</b>[B, C, E]</span><span><b>E</b>[D]</span><span><b>F</b>이웃 없음</span></div>
     <div class="x-cards">
-      <div><b>A2 큐 규칙</b>bfs_order와 견줄 손 추적</div>
-      <div><b>A3 재귀</b>dfs_order와 견줄 손 추적</div>
-      <div><b>A2 스택 규칙</b>또 하나의 DFS 손 추적</div>
+      <div><b>A2 큐 규칙</b>bfs_order와 비교할 추적 결과</div>
+      <div><b>A3 재귀</b>dfs_order와 비교할 추적 결과</div>
+      <div><b>A2 스택 규칙</b>또 하나의 DFS 추적 결과</div>
     </div>
-    <ul class="x-pts"><li>내 활동지 1부의 방문 순서를 옆에 펴 두세요.</li></ul>
+    <ul class="x-pts"><li>활동지 1부에 기록한 방문 순서를 함께 열어 두십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="bfs_order 출력 (3걸음)">
-    <div class="x-given"><span><b>호출</b>bfs_order(g, "A")</span><span><b>견줄 것</b>A2 큐 규칙 방문 순서</span></div>
+    <div class="x-given"><span><b>호출</b>bfs_order(g, "A")</span><span><b>비교 대상</b>A2 큐 규칙 방문 순서</span></div>
     <div class="x-line">출력 <span class="x-f" data-bind="A6.bfs.out" data-w="l" data-ph="출력 그대로, 예: ['X', 'Y']"></span></div>
-    <p class="x-q">손 추적과 같은가요?</p>
+    <p class="x-q">직접 추적한 결과와 같습니까?</p>
     <div class="x-f" data-bind="A6.bfs.same"></div>
   </div>
 
   <div class="x-screen" data-title="dfs_order 출력 (4걸음)">
-    <div class="x-given"><span><b>호출</b>dfs_order(g, "A", set(), [])</span><span><b>견줄 것</b>A3 재귀 방문 순서</span></div>
+    <div class="x-given"><span><b>호출</b>dfs_order(g, "A", set(), [])</span><span><b>비교 대상</b>A3 재귀 방문 순서</span></div>
     <div class="x-line">출력 <span class="x-f" data-bind="A6.dfs.out" data-w="l" data-ph="출력 그대로, 예: ['X', 'Y']"></span></div>
-    <p class="x-q">손 추적과 같은가요?</p>
+    <p class="x-q">직접 추적한 결과와 같습니까?</p>
     <div class="x-f" data-bind="A6.dfs.same"></div>
-    <p class="x-q">다르다면 어디서부터 다른가요?<small>같으면 ‘같음’. A2 스택 규칙과도 견줘 한두 문장</small></p>
+    <p class="x-q">다르다면 어디서부터 다릅니까?<small>같으면 ‘같음’. A2 스택 규칙과도 비교하여 한두 문장</small></p>
     <div class="x-f" data-bind="A6.diff" data-ph="예: 같음. 다만 스택 규칙과는 ○번째 노드부터 다르다"></div>
   </div>
 
   <div class="x-screen" data-title="시작 노드 F (6걸음)">
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-hl="F"></div>
     <div class="x-given"><span><b>F</b>간선 없음, g에 키도 없음</span></div>
-    <ul class="x-pts"><li>실행 <b>전</b>에 예측, 실행 <b>뒤</b>에 실제를 써요.</li></ul>
+    <ul class="x-pts"><li>실행 <b>전</b>에 예측값을, 실행 <b>후</b>에 실제 값을 쓰십시오.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>함수</th><th>예측<small>실행 전, 리스트 모양</small></th><th>실제<small>출력 그대로</small></th></tr>
       <tr class="x-ex"><td>예</td><td>['X', 'Y']</td><td>['X', 'Y']</td></tr>
       <tr><td>bfs_order(g, "F")</td><td class="wide"><span class="x-f" data-bind="A6.f.bfs.pred" data-ph="예: ['X']"></span></td><td class="wide"><span class="x-f" data-bind="A6.f.bfs.real" data-ph="예: ['X']"></span></td></tr>
       <tr><td>dfs_order(g, "F", set(), [])</td><td class="wide"><span class="x-f" data-bind="A6.f.dfs.pred" data-ph="예: ['X']"></span></td><td class="wide"><span class="x-f" data-bind="A6.f.dfs.real" data-ph="예: ['X']"></span></td></tr>
     </table></div>
-    <p class="x-q">시작이 F이면 어떤 노드가 방문되고, 왜 그런가요?</p>
+    <p class="x-q">시작이 F이면 어떤 노드가 방문되며, 그 까닭은 무엇입니까?</p>
     <div class="x-f" data-bind="A6.f.why" data-parts="방문되는 노드=예: ○만 / 모두|까닭=예: 시작 노드에서 …"></div>
   </div>
 
   <div class="x-screen" data-title="내 코드의 기록 시점">
     <div class="x-cards">
       <div><b>넣을 때 기록</b>큐에 넣는 순간 visited에 추가</div>
-      <div><b>꺼낼 때 기록</b>A2 손 규칙: 꺼낸 뒤 기록, 이미 방문이면 버림</div>
+      <div><b>꺼낼 때 기록</b>A2에서 정한 규칙: 꺼낸 뒤 기록, 이미 방문이면 버림</div>
     </div>
-    <p class="x-q">내 bfs_order는 visited에 언제 적나요?<small>세 가지를 각각 한 문장</small></p>
-    <div class="x-f" data-bind="A6.mark" data-parts="언제=넣을 때 / 꺼낼 때|시작 노드는=예: 처음에 visited = … 로 적은 까닭|A2 손 규칙과=예: 기록 시점은 …, 방문 순서는 …"></div>
+    <p class="x-q">내 bfs_order는 visited에 언제 기록합니까?<small>세 가지를 각각 한 문장으로</small></p>
+    <div class="x-f" data-bind="A6.mark" data-parts="언제=넣을 때 / 꺼낼 때|시작 노드는=예: 처음에 visited = … 로 적은 까닭|A2 규칙과의 비교=예: 기록 시점은 …, 방문 순서는 …"></div>
   </div>
 </section>
 
 <!-- ========== A7 ========== -->
 <section class="x-act" data-id="A7" data-title="미로 MAZE 결과 기록" data-meta="13분 · 개인">
-  <ul class="x-pts"><li>1부 실습 코드 A7 실행 틀의 값을 옮겨요. 예측이 먼저.</li></ul>
+  <ul class="x-pts"><li>1부 실습 코드 A7 실행 틀의 값을 옮겨 적습니다. 예측을 먼저 하십시오.</li></ul>
 
   <div class="x-screen" data-title="MAZE 보기">
     <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
@@ -97,23 +97,23 @@
   </div>
 
   <div class="x-screen" data-title="dist의 역할">
-    <ul class="x-pts"><li><b>dist</b> = 칸 → 시작에서의 거리 딕셔너리</li><li>dist에 이미 있는 칸은 큐에 다시 넣지 않아요.</li></ul>
+    <ul class="x-pts"><li><b>dist</b> = 칸 → 시작에서의 거리 딕셔너리</li><li>dist에 이미 있는 칸은 큐에 다시 넣지 않습니다.</li></ul>
     <div class="quiz" data-answer="2">
-      <p class="q">dist가 하는 두 가지 일은?</p>
-      <div class="opts"><button type="button" data-hint="벽은 grid에 있어요.">벽 표시 · 거리 적기</button><button type="button">거리 적기 · 방문했는지 알려 주기</button><button type="button" data-hint="큐는 popleft로 비워요.">큐 비우기 · 거리 적기</button></div>
-      <p class="why">dist에 있다 = 더 이른 거리로 이미 큐에 넣었다.</p>
+      <p class="q">dist가 하는 두 가지 일을 고르십시오.</p>
+      <div class="opts"><button type="button" data-hint="벽은 grid에 있습니다.">벽 표시 · 거리 적기</button><button type="button">거리 적기 · 방문했는지 알려 주기</button><button type="button" data-hint="큐는 popleft로 비웁니다.">큐 비우기 · 거리 적기</button></div>
+      <p class="why">dist에 있다는 것은 더 이른 거리로 이미 큐에 넣었다는 뜻입니다.</p>
     </div>
     <div class="quiz" data-answer="1">
-      <p class="q">시작=도착이면 큐에서 처음 꺼낸 칸에서 무슨 일이?</p>
-      <div class="opts"><button type="button">바로 도착 칸이라 dist[cell]인 0을 돌려준다</button><button type="button" data-hint="꺼내자마자 도착인지 확인해요.">이웃을 모두 본 뒤 0을 돌려준다</button><button type="button" data-hint="-1은 끝까지 못 만났을 때예요.">-1을 돌려준다</button></div>
-      <p class="why">그래서 표의 시작=도착 줄이 0이에요.</p>
+      <p class="q">시작=도착이면 큐에서 처음 꺼낸 칸에서 어떤 일이 일어납니까?</p>
+      <div class="opts"><button type="button">바로 도착 칸이라 dist[cell]인 0을 돌려준다</button><button type="button" data-hint="꺼내자마자 도착인지 확인합니다.">이웃을 모두 본 뒤 0을 돌려준다</button><button type="button" data-hint="-1은 끝까지 못 만났을 때의 값입니다.">-1을 돌려준다</button></div>
+      <p class="why">따라서 표의 시작=도착 줄은 0입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="경계 검사">
     <div class="x-grid" data-name="MAZE 위 3행" data-rc data-rows="S..#...|.#.#.#.|.#...#." data-mark="0,0:a;2,2:b" data-label="(0,0)과 (2,2)"></div>
     <div class="x-given"><span><b>DIRS</b>위·아래·왼쪽·오른쪽</span><span><b>⑨</b>grid_neighbors의 경계 검사 줄</span></div>
-    <p class="x-q">(0,0)과 (2,2)의 이웃, 그리고 ⑨를 빼면?</p>
+    <p class="x-q">(0,0)과 (2,2)의 이웃을 쓰고, ⑨를 빼면 어떻게 되는지 쓰십시오.</p>
     <div class="x-f" data-bind="A7.q2" data-parts="이웃 개수와 까닭=예: (0,0)은 ○개, … 때문 / (2,2)는 ○개, … 때문|⑨를 빼면=예: (0,0)에서 음수 인덱스가 …, 가장자리에서는 …"></div>
   </div>
 
@@ -124,16 +124,16 @@
       <div><b>neighbors</b>10주차, 인접 리스트의 이웃</div>
       <div><b>grid_neighbors</b>격자 칸의 이웃</div>
     </div>
-    <p class="x-q">A2 큐 규칙과 shortest_path_len</p>
+    <p class="x-q">A2 큐 규칙과 shortest_path_len을 비교하십시오.</p>
     <div class="x-f" data-bind="A7.q4" data-parts="같은 곳=예: 둘 다 … 하는 틀|다른 곳=예: 방문 기록을 … 로 하고 …"></div>
-    <p class="x-q">neighbors와 grid_neighbors가 같은 모양이라 생기는 일</p>
+    <p class="x-q">neighbors와 grid_neighbors가 같은 모양이라 생기는 일을 쓰십시오.</p>
     <div class="x-f" data-bind="A7.q5" data-parts="같은 모양=예: 둘 다 … 로 이웃을 하나씩 내준다|그래서=예: 탐색 틀을 …"></div>
   </div>
 </section>
 
 <!-- ========== A8 ========== -->
 <section class="x-act" data-id="A8" data-title="함정 코드 예측과 실제" data-meta="13분 · 개인">
-  <ul class="x-pts"><li>실습 코드 2부 A8의 2~6걸음 함정 코드를 돌리고 옮겨요.</li></ul>
+  <ul class="x-pts"><li>실습 코드 2부 A8의 2~6걸음 함정 코드를 실행하고 결과를 옮겨 적습니다.</li></ul>
 
   <div class="x-screen" data-title="다섯 함정">
     <ol class="x-rules">
@@ -143,7 +143,7 @@
       <li class="r4"><b>T3 · 5걸음</b><div class="fx"><span>1줄 땅(너비 500, 1500)을 재귀로 → 정상 / 오류 이름</span></div></li>
       <li class="r1"><b>T4 (선택) · 6걸음</b><div class="fx"><span>visited를 기본 인자로 둔 DFS를 세 번 → 세 줄, / 로 구분</span></div></li>
     </ol>
-    <ul class="x-pts"><li>원인은 예측과 달랐을 때만. 같았으면 ‘같음’.</li></ul>
+    <ul class="x-pts"><li>원인은 예측과 달랐을 때만 쓰십시오. 같았으면 ‘같음’이라고 쓰십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="T1-a · T1-b">
@@ -162,35 +162,35 @@
       <tr class="x-ex"><td>예</td><td>list 3배, deque 3배</td><td>list 3배, deque 3배</td><td>같음</td></tr>
       <tr><td>T2</td><td class="wide"><span class="x-f" data-bind="A8.pred.r3.c1" data-ph="예: list 3배, deque 3배"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r3.c2" data-ph="예: list 3배, deque 3배"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r3.c3" data-ph="예: pop(0)은 …, popleft는 …"></span></td></tr>
       <tr><td>T3</td><td class="wide"><span class="x-f" data-bind="A8.pred.r4.c1" data-ph="예: 500 정상 / 1500 정상"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r4.c2" data-ph="예: 500 정상 / 1500 ○○Error"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r4.c3" data-ph="예: 재귀 깊이가 …"></span></td></tr>
-      <tr class="opt"><td>T4 (선택)</td><td class="wide"><span class="x-f" data-bind="A8.pred.r5.c1" data-ph="예: ['X'] / ['X'] / ['X'] (안 하면 비움)"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r5.c2" data-ph="예: ['X'] / ['X'] / ['X']"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r5.c3" data-ph="예: 기본 인자가 …"></span></td></tr>
+      <tr class="opt"><td>T4 (선택)</td><td class="wide"><span class="x-f" data-bind="A8.pred.r5.c1" data-ph="예: ['X'] / ['X'] / ['X'] (하지 않으면 비워 두십시오)"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r5.c2" data-ph="예: ['X'] / ['X'] / ['X']"></span></td><td class="wide"><span class="x-f" data-bind="A8.pred.r5.c3" data-ph="예: 기본 인자가 …"></span></td></tr>
     </table></div>
   </div>
 
   <div class="x-screen" data-title="표 읽기 1 · 표시 시점">
     <div class="quiz" data-answer="1">
-      <p class="q">A2 큐 규칙에서 D가 두 번 들어간 일과 T1-a에서 D가 두 번 방문된 일은 같은 원인일까요?</p>
-      <div class="opts"><button type="button">같은 원인이다</button><button type="button" data-hint="둘 다 방문 표시가 늦었어요.">다른 원인이다</button></div>
-      <p class="why">둘 다 D가 이미 큐에 있는데도 표시가 늦어 또 넣었어요.</p>
+      <p class="q">A2 큐 규칙에서 D가 두 번 들어간 일과 T1-a에서 D가 두 번 방문된 일은 같은 원인입니까?</p>
+      <div class="opts"><button type="button">같은 원인이다</button><button type="button" data-hint="둘 다 방문 표시가 늦었습니다.">다른 원인이다</button></div>
+      <p class="why">둘 다 D가 이미 큐에 있는데도 표시가 늦어 다시 넣었습니다.</p>
     </div>
     <div class="x-line">내 T1-b 실제: <span class="x-echo" data-echo="A8.pred.r2.c2"></span></div>
-    <p class="x-q">‘큐에 넣을 때 표시’하면 한 칸이 한 번만 들어가는 까닭<small>T1-b의 넣은 횟수를 근거로</small></p>
+    <p class="x-q">‘큐에 넣을 때 표시’하면 한 칸이 한 번만 들어가는 까닭을 쓰십시오.<small>T1-b의 넣은 횟수를 근거로</small></p>
     <div class="x-f" data-bind="A8.q2" data-parts="까닭=예: 넣는 순간 표시하면 …|근거=예: T1-b 넣은 횟수 enqueue ○ / dequeue ○, 칸 수 ○"></div>
   </div>
 
   <div class="x-screen" data-title="표 읽기 2 · 큐와 재귀 한계">
     <div class="x-line">내 T2 실제: <span class="x-echo" data-echo="A8.pred.r3.c2"></span></div>
-    <p class="x-q">n이 10배일 때 시간은 각각 몇 배였고, 그 뜻은?</p>
+    <p class="x-q">n이 10배일 때 시간은 각각 몇 배였으며, 그것은 무엇을 뜻합니까?</p>
     <div class="x-f" data-bind="A8.q3" data-parts="list pop(0)=예: 약 ○배|deque popleft=예: 약 ○배|큰 격자 BFS에서 뜻=예: 큐를 … 로 만들면 …"></div>
     <div class="x-given"><span><b>T3 입력</b>1×1500, 정상 입력</span><span><b>재귀 기본 한계</b>약 1000</span></div>
     <div class="x-line">내 T3 실제: <span class="x-echo" data-echo="A8.pred.r4.c2"></span></div>
-    <p class="x-q">T3의 1×1500은 왜 실패했나요?</p>
+    <p class="x-q">T3의 1×1500은 왜 실패했습니까?</p>
     <div class="x-f" data-bind="A8.q4" data-parts="까닭=예: 한 갈래의 길이가 …|피하는 방법=예: 재귀 대신 …|그 대가=예: … 를 직접 챙겨야 한다"></div>
   </div>
 </section>
 
 <!-- ========== A9 ========== -->
 <section class="x-act" data-id="A9" data-title="DIRS 순서를 바꿔 DFS와 BFS 비교" data-meta="9분 · 개인">
-  <ul class="x-pts"><li>실습 코드 2부 A9에서 방향 순서 24가지를 돌려요.</li></ul>
+  <ul class="x-pts"><li>실습 코드 2부 A9에서 방향 순서 24가지를 실행합니다.</li></ul>
 
   <div class="x-screen" data-title="실행 전 예측">
     <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
@@ -199,7 +199,7 @@
   </div>
 
   <div class="x-screen" data-title="표에 옮기기">
-    <ul class="x-pts"><li>1·2번: DFS 길이 = BFS인 줄 · 3·4번: 다른 줄 (없으면 ‘없음’)</li><li>BFS 길이는 출력 첫 줄의 값</li></ul>
+    <ul class="x-pts"><li>1·2번: DFS 길이 = BFS인 줄 · 3·4번: 다른 줄 (없으면 ‘없음’)</li><li>BFS 길이는 출력 첫 줄의 값입니다.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>#</th><th>DIRS 순서<small>출력에서 옮긴 방향 4개</small></th><th>DFS 길이<small>처음 찾은 길의 간선 수</small></th><th>BFS 길이<small>최단 거리</small></th></tr>
       <tr class="x-ex"><td>예</td><td>상 좌 하 우</td><td>16</td><td>12</td></tr>
@@ -213,20 +213,20 @@
   <div class="x-screen" data-title="표를 읽고 답하기">
     <div class="x-scroll"><table class="x-trace"><tr><th>#</th><th>내 DIRS 순서</th><th>DFS</th><th>BFS</th></tr><tr><td>1</td><td><span class="x-echo" data-echo="A9.dirs.r1.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r1.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r1.c3"></span></td></tr><tr><td>2</td><td><span class="x-echo" data-echo="A9.dirs.r2.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r2.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r2.c3"></span></td></tr><tr><td>3</td><td><span class="x-echo" data-echo="A9.dirs.r3.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r3.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r3.c3"></span></td></tr><tr><td>4</td><td><span class="x-echo" data-echo="A9.dirs.r4.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r4.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r4.c3"></span></td></tr></table></div>
     <div class="quiz predict" data-answer="2">
-      <p class="q">표 4줄 가운데 DFS 길이가 BFS보다 긴 줄이 있었나요?</p>
+      <p class="q">표 4줄 가운데 DFS 길이가 BFS보다 긴 줄이 있었습니까?</p>
       <div class="opts"><button type="button">없었다</button><button type="button">있었다</button></div>
-      <p class="why">DFS가 처음 찾은 길이 최단이라는 보장은 없어요.</p>
+      <p class="why">DFS가 처음 찾은 길이 최단이라는 보장은 없습니다.</p>
     </div>
-    <p class="x-q">DIRS를 바꿔도 BFS 값은 변했나요?</p>
+    <p class="x-q">DIRS를 바꿔도 BFS 값은 변했습니까?</p>
     <div class="x-f" data-bind="A9.q2" data-parts="변했나=변했다 / 변하지 않았다 (값 ○)|까닭=예: BFS는 …"></div>
-    <div class="x-given"><span><b>A4 가설</b>이웃 순서를 바꾸면 무엇이 흔들리고 무엇이 안 흔들리나</span></div>
-    <p class="x-q">A4 가설은 이 표로 어떻게 되었나요?</p>
+    <div class="x-given"><span><b>A4 가설</b>이웃 순서를 바꾸면 무엇이 흔들리고 무엇이 그대로인가</span></div>
+    <p class="x-q">A4 가설은 이 표로 어떻게 되었습니까?</p>
     <div class="x-f" data-bind="A9.q3" data-parts="판정=확인 / 수정 / 반박 중 하나|근거 줄=예: ○○○○ DFS ○ / ○○○○ DFS ○ 줄"></div>
   </div>
 
   <div class="x-screen" data-title="(선택) 순서의 공통점">
     <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
-    <p class="x-q">BFS와 같은 DFS 길이가 나온 순서들의 공통점<small>없으면 ‘없음’</small></p>
+    <p class="x-q">BFS와 같은 DFS 길이가 나온 순서들의 공통점을 쓰십시오.<small>없으면 ‘없음’</small></p>
     <div class="x-f" data-bind="A9.pattern" data-parts="공통점=예: ○가 ○보다 앞에 오는 순서|MAZE에서 까닭=예: 시작 칸에서 … 길과 … 길이 갈리고 DFS는 …"></div>
   </div>
 </section>

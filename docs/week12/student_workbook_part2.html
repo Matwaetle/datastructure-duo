@@ -17,28 +17,28 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="12주차 활동지 2부 · 경계 찾기와 함정" data-lead="같은 값이 여러 개일 때 경계를 찾고, 개수를 세고, 틀리는 코드를 미리 짐작해 봐요.">
+<div class="x-page" hidden data-title="12주차 활동지 2부 · 경계 찾기와 함정" data-lead="같은 값이 여러 개일 때 경계를 찾고 개수를 세며, 틀리는 코드의 결과를 미리 예측합니다.">
 
 <!-- ========== A7 ========== -->
 <section class="x-act" data-id="A7" data-title="lower_bound와 upper_bound" data-meta="14분 · 개인">
-  <ul class="x-pts"><li>실습 코드 1부 A7과 짝이에요. 예측 → 실행 → 실제 값 순서.</li></ul>
+  <ul class="x-pts"><li>실습 코드 1부 A7과 짝을 이룹니다. 예측 → 실행 → 실제 값 순서로 진행합니다.</li></ul>
 
-  <div class="x-screen" data-title="두 경계란?">
+  <div class="x-screen" data-title="두 경계란 무엇입니까?">
     <div class="x-cards">
       <div><b>lower</b>처음으로 x <b>이상</b>이 나오는 칸 번호</div>
       <div><b>upper</b>처음으로 x <b>초과</b>가 나오는 칸 번호</div>
     </div>
     <div class="x-arr" data-label="예: [2, 5, 5, 8] 에서 x = 5 → lower 1, upper 3" data-v="2,5,5,8" data-lo="1" data-hi="3"></div>
     <div class="quiz" data-answer="3">
-      <p class="q">[2, 5, 5, 8] 에서 x = 9 (모든 값보다 큼)의 lower는?</p>
-      <div class="opts"><button type="button" data-hint="3번 칸 값 8은 9보다 작아요.">3</button><button type="button" data-hint="칸 번호를 써요.">없음</button><button type="button">4 (끝 다음 칸)</button></div>
-      <p class="why">9 이상인 칸이 없으면 끝 다음 칸 = 길이 4.</p>
+      <p class="q">[2, 5, 5, 8] 에서 x = 9 (모든 값보다 큼)의 lower는 무엇입니까?</p>
+      <div class="opts"><button type="button" data-hint="3번 칸의 값 8은 9보다 작습니다.">3</button><button type="button" data-hint="칸 번호를 쓰십시오.">없음</button><button type="button">4 (끝 다음 칸)</button></div>
+      <p class="why">9 이상인 칸이 없으면 끝 다음 칸, 즉 길이 4입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="DUP에서 자리 예측">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
-    <ul class="x-pts"><li>코드 없이 눈으로. 칸 번호(0부터)를 숫자로.</li><li>해당 칸이 없으면 끝 다음 칸 = 13.</li></ul>
+    <ul class="x-pts"><li>코드 없이 직접 추적하십시오. 칸 번호(0부터)를 숫자로 쓰십시오.</li><li>해당 칸이 없으면 끝 다음 칸인 13을 씁니다.</li></ul>
     <table class="x-trace">
       <tr><th>x</th><th>예측 lower<small>처음 x 이상인 칸</small></th><th>예측 upper<small>처음 x 초과인 칸</small></th></tr>
       <tr class="x-ex"><td>예 5</td><td>4</td><td>5</td></tr>
@@ -50,17 +50,17 @@
 
   <div class="x-screen" data-title="코드를 쓰기 전에">
     <ol class="x-rules">
-      <li class="r1"><b>후보 범위 [lo, hi)</b><div class="fx"><code>lo = 0</code><code>hi = len(a)</code><span>lo 칸은 포함, hi 칸은 빼요</span></div></li>
+      <li class="r1"><b>후보 범위 [lo, hi)</b><div class="fx"><code>lo = 0</code><code>hi = len(a)</code><span>lo 칸은 포함하고, hi 칸은 제외합니다</span></div></li>
       <li class="r2"><b>가운데</b><div class="fx"><code>mid = (lo + hi) // 2</code></div></li>
-      <li class="r3"><b>멈춤</b><div class="fx"><code>while lo &lt; hi</code><span>끝나면 lo 를 돌려줘요</span></div></li>
+      <li class="r3"><b>멈춤</b><div class="fx"><code>while lo &lt; hi</code><span>끝나면 lo 를 돌려줍니다</span></div></li>
     </ol>
-    <p class="x-q">a[mid]와 x를 비교한 뒤 무엇을 할까요?<small>(가)(나)는 ‘mid 왼쪽 / mid 자신 / mid 오른쪽’ 중에서</small></p>
+    <p class="x-q">a[mid]와 x를 비교한 뒤 무엇을 합니까?<small>(가)(나)는 ‘mid 왼쪽 / mid 자신 / mid 오른쪽’ 중에서</small></p>
     <div class="x-f" data-bind="A7.pre" data-parts="(가) a[mid] &lt; x 이면 lower는=예: mid 왼쪽에 있다|(나) a[mid] &gt;= x 이면 lower는=예: mid 오른쪽에 있다|(다) lo, hi 를 어떻게 바꾸나=예: (가)면 lo = …, (나)면 hi = …"></div>
   </div>
 
   <div class="x-screen" data-title="실행한 실제 값">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
-    <ul class="x-pts"><li>1부 A7 7걸음 실행 결과를 옮겨요. 예측이 틀려도 고치지 않아요.</li></ul>
+    <ul class="x-pts"><li>1부 A7 7걸음 실행 결과를 옮기십시오. 예측이 틀려도 고치지 않습니다.</li></ul>
     <table class="x-trace">
       <tr><th>x</th><th>실제 lower<small>lower_bound 출력</small></th><th>실제 upper<small>upper_bound 출력</small></th></tr>
       <tr class="x-ex"><td>예 5</td><td>4</td><td>5</td></tr>
@@ -69,13 +69,13 @@
       <tr><td>20</td><td><span class="x-f" data-bind="A7.pred.x20.c3" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A7.pred.x20.c4" data-ph="숫자"></span></td></tr>
     </table>
     <div class="quiz" data-answer="2">
-      <p class="q">반복이 끝났을 때 lo와 hi는?</p>
-      <div class="opts"><button type="button" data-hint="그러면 while lo &lt; hi 가 아직 참이에요.">lo &lt; hi</button><button type="button">lo = hi</button><button type="button" data-hint="lo 는 hi 를 넘지 않아요.">lo &gt; hi</button></div>
-      <p class="why">조건이 거짓이 되는 순간 둘이 같아져요.</p>
+      <p class="q">반복이 끝났을 때 lo와 hi는 어떻습니까?</p>
+      <div class="opts"><button type="button" data-hint="그러면 while lo &lt; hi 가 아직 참입니다.">lo &lt; hi</button><button type="button">lo = hi</button><button type="button" data-hint="lo 는 hi 를 넘지 않습니다.">lo &gt; hi</button></div>
+      <p class="why">조건이 거짓이 되는 순간 둘이 같아집니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="왜 이렇게 바꿀까">
+  <div class="x-screen" data-title="왜 이렇게 바꾸는가">
     <pre class="x-code">def lower_bound(a, x):
     lo, hi = 0, len(a)
     while lo &lt; hi:
@@ -85,16 +85,16 @@
         else:
             hi = mid
     return lo</pre>
-    <p class="x-q">두 갱신의 이유<small>각 한 문장</small></p>
+    <p class="x-q">두 갱신의 이유<small>각각 한 문장으로 쓰십시오</small></p>
     <div class="x-f" data-bind="A7.q2" data-parts="① lo = mid + 1 인 이유=예: mid까지는 모두 …|② hi = mid 가 안전한 이유=예: mid가 … 일 수 있고 범위는 …"></div>
-    <p class="x-q">upper_bound로 바꾸려면?<small>바꿀 곳과 이유</small></p>
+    <p class="x-q">upper_bound로 바꾸려면 어떻게 합니까?<small>바꿀 곳과 이유</small></p>
     <div class="x-f" data-bind="A7.q4" data-parts="① 바꾸는 부분=예: ○○ 를 ○○ 로|② 왜 되는가=예: x 이하를 … 하면"></div>
   </div>
 </section>
 
 <!-- ========== A8 ========== -->
-<section class="x-act" data-id="A8" data-title="bisect 모듈과 내 함수" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>실습 코드 2부 A8과 짝이에요.</li></ul>
+<section class="x-act" data-id="A8" data-title="bisect 모듈과 나의 함수" data-meta="12분 · 개인">
+  <ul class="x-pts"><li>실습 코드 2부 A8과 짝을 이룹니다.</li></ul>
 
   <div class="x-screen" data-title="bisect 두 함수">
     <div class="x-cards">
@@ -108,7 +108,7 @@ print(bisect_right([2, 5, 5, 8], 5))   #=> 3</pre>
 
   <div class="x-screen" data-title="실행 전 예측">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
-    <ul class="x-pts"><li>칸 번호(0부터) 숫자로. 끝 다음 칸은 13.</li></ul>
+    <ul class="x-pts"><li>칸 번호(0부터)를 숫자로 쓰십시오. 끝 다음 칸은 13입니다.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>x</th><th>예측 left<small>처음 x 이상</small></th><th>예측 right<small>처음 x 초과</small></th></tr>
       <tr class="x-ex"><td>예 5</td><td>4</td><td>5</td></tr>
@@ -123,7 +123,7 @@ print(bisect_right([2, 5, 5, 8], 5))   #=> 3</pre>
 
   <div class="x-screen" data-title="실행한 실제 값">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
-    <ul class="x-pts"><li>출력을 옮기고, 차는 직접 빼서 써요.</li></ul>
+    <ul class="x-pts"><li>출력을 옮기고, 차는 직접 계산하여 쓰십시오.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>x</th><th>실제 left<small>bisect_left 출력</small></th><th>실제 right<small>bisect_right 출력</small></th><th>right − left<small>두 값의 차</small></th></tr>
       <tr class="x-ex"><td>예 5</td><td>4</td><td>5</td><td>1</td></tr>
@@ -136,31 +136,31 @@ print(bisect_right([2, 5, 5, 8], 5))   #=> 3</pre>
     </table></div>
   </div>
 
-  <div class="x-screen" data-title="내 함수와 대조">
+  <div class="x-screen" data-title="나의 함수와 대조">
     <ul class="x-pts"><li>2부 A8 4걸음 [점검]: 내 lower_bound·upper_bound 값 vs bisect 값</li></ul>
     <div class="x-f" data-bind="A8.same"></div>
-    <p class="x-q">예측과 실제가 다른 칸은?<small>칸 이름과 이유 · 다 맞았으면 ‘모두 같았다’</small></p>
+    <p class="x-q">예측과 실제가 다른 칸은 무엇입니까?<small>칸 이름과 이유 · 모두 맞았으면 ‘모두 같았다’</small></p>
     <div class="x-f" data-bind="A8.q1" data-parts="다른 칸=예: x=7의 left|이유=예: … 라고 생각했는데 …"></div>
   </div>
 
   <div class="x-screen" data-title="없는 값과 개수">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
-    <p class="x-q">x가 DUP에 없을 때(4, 0, 20) left와 right는?</p>
+    <p class="x-q">x가 DUP에 없을 때(4, 0, 20) left와 right는 어떻습니까?</p>
     <div class="x-f" data-bind="A8.q2" data-parts="① 같다/다르다=같다 또는 다르다|② 그 값의 뜻=예: x를 … 할 자리"></div>
-    <p class="x-q">right − left 와 DUP에서 직접 센 개수<small>x마다 센 개수와 차, 그리고 관계 한 문장</small></p>
+    <p class="x-q">right − left 와 DUP에서 직접 센 개수<small>x마다 센 개수와 차, 그리고 관계를 한 문장으로</small></p>
     <div class="x-f" data-bind="A8.q3" data-parts="x=3=센 개수 ○, 차 ○|x=4=센 개수 ○, 차 ○|x=12=센 개수 ○, 차 ○|관계=예: 차는 항상 …"></div>
   </div>
 </section>
 
 <!-- ========== A9 ========== -->
 <section class="x-act" data-id="A9" data-title="구간 개수 세기" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>실습 코드 2부 A9와 짝이에요.</li></ul>
+  <ul class="x-pts"><li>실습 코드 2부 A9와 짝을 이룹니다.</li></ul>
 
   <div class="x-screen" data-title="구간 개수 예측">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
     <ul class="x-pts"><li><b>[lo, hi]</b> = 값이 lo 이상 hi 이하 (양끝 포함)</li><li>여기서 lo, hi 는 칸 번호가 아니라 <b>값</b></li></ul>
     <table class="x-trace">
-      <tr><th>구간<small>[lo, hi]</small></th><th>예측 개수<small>눈으로 센 원소 수</small></th><th>실제 개수<small>코드 출력</small></th></tr>
+      <tr><th>구간<small>[lo, hi]</small></th><th>예측 개수<small>직접 센 원소 수</small></th><th>실제 개수<small>코드 출력</small></th></tr>
       <tr class="x-ex"><td>예 [2, 5]</td><td>4</td><td>4</td></tr>
       <tr><td>[4, 12]</td><td><span class="x-f" data-bind="A9.r1.pred" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A9.r1.actual" data-ph="숫자"></span></td></tr>
       <tr><td>[3, 7]</td><td><span class="x-f" data-bind="A9.r2.pred" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A9.r2.actual" data-ph="숫자"></span></td></tr>
@@ -168,7 +168,7 @@ print(bisect_right([2, 5, 5, 8], 5))   #=> 3</pre>
       <tr><td>[0, 100]</td><td><span class="x-f" data-bind="A9.r4.pred" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A9.r4.actual" data-ph="숫자"></span></td></tr>
       <tr><td>[13, 14]</td><td><span class="x-f" data-bind="A9.r5.pred" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A9.r5.actual" data-ph="숫자"></span></td></tr>
     </table>
-    <ul class="x-pts"><li>예측 칸은 실행 전에, 실제 칸은 2부 A9 4걸음 실행 뒤에. 예측은 고치지 않아요.</li></ul>
+    <ul class="x-pts"><li>예측 칸은 실행 전에, 실제 칸은 2부 A9 4걸음 실행 뒤에 쓰십시오. 예측은 고치지 않습니다.</li></ul>
   </div>
 
   <div class="x-screen" data-title="거꾸로 된 구간 [7, 3]">
@@ -177,19 +177,19 @@ print(bisect_right([2, 5, 5, 8], 5))   #=> 3</pre>
     <div class="x-line">⑨ 채우기 전 <span class="x-f" data-bind="A9.neg.before" data-w="s" data-ph="예: -2 (부호 포함)"></span></div>
     <div class="x-line">⑨ 채운 뒤 <span class="x-f" data-bind="A9.neg.after" data-w="s" data-ph="숫자"></span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">처음 값이 그렇게 나온 까닭은?</p>
-      <div class="opts"><button type="button">bisect_right(hi)가 bisect_left(lo)보다 작아 뺄셈이 음수</button><button type="button" data-hint="bisect는 오류를 내지 않았어요.">bisect가 lo &gt; hi 면 오류를 냄</button><button type="button" data-hint="DUP에는 7이 있어요.">DUP에 7이 없어서</button></div>
-      <p class="why">오른쪽 경계가 왼쪽 경계보다 앞서요. 그래서 0으로 막아요.</p>
+      <p class="q">처음 값이 그렇게 나온 까닭은 무엇입니까?</p>
+      <div class="opts"><button type="button">bisect_right(hi)가 bisect_left(lo)보다 작아 뺄셈이 음수</button><button type="button" data-hint="bisect는 오류를 내지 않았습니다.">bisect가 lo &gt; hi 면 오류를 냄</button><button type="button" data-hint="DUP에는 7이 있습니다.">DUP에 7이 없어서</button></div>
+      <p class="why">오른쪽 경계가 왼쪽 경계보다 앞섭니다. 그래서 0으로 막습니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="틀린 식의 반례">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
     <div class="x-given"><span><b>틀린 식</b>bisect_left(a, hi) − bisect_left(a, lo)</span><span><b>올바른 식</b>bisect_right(a, hi) − bisect_left(a, lo)</span></div>
-    <ul class="x-pts"><li>앞 화면 표의 구간 중 틀린 식이 틀리는 것 하나를 골라요.</li></ul>
+    <ul class="x-pts"><li>앞 화면 표의 구간 중 틀린 식이 틀리는 것 하나를 고르십시오.</li></ul>
     <div class="x-line">구간 <span class="x-f" data-bind="A9.bad.range" data-w="s" data-ph="예: [2, 6]"></span></div>
     <div class="x-line">틀린 식 값 <span class="x-f" data-bind="A9.bad.wrong" data-w="xs" data-ph="숫자"></span> · 올바른 값 <span class="x-f" data-bind="A9.bad.right" data-w="xs" data-ph="숫자"></span></div>
-    <p class="x-q">틀린 식에서 빠진 원소는?<small>빠진 값, 개수, 까닭</small></p>
+    <p class="x-q">틀린 식에서 빠진 원소는 무엇입니까?<small>빠진 값, 개수, 까닭</small></p>
     <div class="x-f" data-bind="A9.bad.why" data-parts="빠진 원소=예: 값 3이 2개|까닭=예: bisect_left(hi)는 …"></div>
   </div>
 
@@ -198,25 +198,25 @@ print(bisect_right([2, 5, 5, 8], 5))   #=> 3</pre>
       <div><b>left</b>처음 x 이상인 칸</div>
       <div><b>right</b>처음 x 초과인 칸</div>
     </div>
-    <p class="x-q">구간 오른쪽 끝 hi를 포함하려면 어느 경계?</p>
+    <p class="x-q">구간 오른쪽 끝 hi를 포함하려면 어느 경계를 씁니까?</p>
     <div class="x-f" data-bind="A9.q1" data-parts="경계=left 또는 right|이유=예: hi와 같은 값까지 세려면 …"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">N = 100만, 경계 하나에 비교 약 20번. 구간 개수 함수는?</p>
-      <div class="opts"><button type="button" data-hint="경계를 몇 개 찾나요?">약 20번</button><button type="button">약 40번</button><button type="button" data-hint="하나씩 보는 게 아니에요.">약 100만 번</button></div>
-      <p class="why">경계 둘 × 약 20번.</p>
+      <p class="q">N = 100만이면 경계 하나에 비교가 약 20번입니다. 구간 개수 함수는 몇 번입니까?</p>
+      <div class="opts"><button type="button" data-hint="경계를 몇 개 찾습니까?">약 20번</button><button type="button">약 40번</button><button type="button" data-hint="하나씩 보는 것이 아닙니다.">약 100만 번</button></div>
+      <p class="why">경계 둘 × 약 20번입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="가장 가까운 값 (과제 준비)">
     <div class="x-arr" data-name="DUP" data-v="1,3,3,3,5,7,7,9,12,12,12,12,15"></div>
-    <ul class="x-pts"><li>코드 없이 눈으로. 거리가 같으면 <b>작은 값</b>.</li><li>예: x = 6 → 5와 7 거리 1로 같음 → 5</li></ul>
+    <ul class="x-pts"><li>코드 없이 직접 추적하십시오. 거리가 같으면 <b>작은 값</b>.</li><li>예: x = 6 → 5와 7 거리 1로 같음 → 5</li></ul>
     <div class="x-f" data-bind="A9.closest" data-parts="가장 가까운 값=10 → ○, 4 → ○, 0 → ○, 20 → ○|bisect_left 자리에서 볼 원소=예: 그 자리의 … 와 …|맨 앞·맨 뒤에서는=예: 후보가 …"></div>
   </div>
 </section>
 
 <!-- ========== A10 ========== -->
 <section class="x-act" data-id="A10" data-title="함정: 예측하고 실행하기" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>실습 코드 3부 T1~T4와 짝이에요. T4는 선택.</li></ul>
+  <ul class="x-pts"><li>실습 코드 3부 T1~T4와 짝을 이룹니다. T4는 선택입니다.</li></ul>
 
   <div class="x-screen" data-title="네 함정 미리 보기">
     <div class="x-given"><span><b>UNS</b>[38, 5, 72, 16, 91, 2, 23, 56, 12, 8] (뒤섞임)</span></div>
@@ -236,7 +236,7 @@ while lo &lt;= hi:
   </div>
 
   <div class="x-screen" data-title="실행 전 예측">
-    <ul class="x-pts"><li>꼴: “오류가 난다(오류 이름)” 또는 “오류 없이 ○○가 나온다”</li><li>틀려도 고치지 않아요.</li></ul>
+    <ul class="x-pts"><li>꼴: “오류가 난다(오류 이름)” 또는 “오류 없이 ○○가 나온다”</li><li>틀려도 고치지 않습니다.</li></ul>
     <div class="x-line">T1 <span class="x-f" data-bind="A10.T1.pred" data-ph="예: 오류 없이 3이 나온다" style="flex:1"></span></div>
     <div class="x-line">T2 <span class="x-f" data-bind="A10.T2.pred" data-ph="예: index가 10배쯤 빠르다" style="flex:1"></span></div>
     <div class="x-line">T3 <span class="x-f" data-bind="A10.T3.pred" data-ph="예: 12는 ○, 0은 ○이 나온다" style="flex:1"></span></div>
@@ -254,32 +254,32 @@ while lo &lt;= hi:
   </div>
 
   <div class="x-screen" data-title="T2 시간 비교">
-    <ul class="x-pts"><li>시간은 출력 그대로, <b>단위</b>까지. 파이썬은 0.00002를 2e-05 로 써요.</li><li><b>비율(자릿수)</b> = 큰 시간 ÷ 작은 시간이 10의 몇 제곱인지. 0.002초와 0.00002초 → 100배 → 2</li></ul>
+    <ul class="x-pts"><li>시간은 출력 그대로, <b>단위</b>까지 쓰십시오. 파이썬은 0.00002를 2e-05 로 씁니다.</li><li><b>비율(자릿수)</b> = 큰 시간 ÷ 작은 시간이 10의 몇 제곱인지. 0.002초와 0.00002초 → 100배 → 2</li></ul>
     <div class="x-line">index 한 번 <span class="x-f" data-bind="A10.t2.index" data-w="m" data-ph="예: 3 ms"></span></div>
     <div class="x-line">bisect 한 번 <span class="x-f" data-bind="A10.t2.bis" data-w="m" data-ph="예: 2e-05 초"></span></div>
     <div class="x-line">비율 자릿수 <span class="x-f" data-bind="A10.t2.ratio" data-w="s" data-ph="숫자"></span></div>
     <div class="x-f" data-bind="A10.T2.actual" data-ph="출력 그대로 · 예: index 3 ms, bisect 2e-05 초"></div>
     <div class="x-f" data-bind="A10.T2.cause" data-ph="○○가 ○○해서 ○○가 되었다 (비교 횟수로)"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">데이터를 10배로 늘리면 index 시간은?</p>
-      <div class="opts"><button type="button" data-hint="index는 하나씩 봐요.">거의 그대로</button><button type="button">늘어난다</button></div>
-      <p class="why">index는 약 10배, bisect는 비교 3~4번 늘 뿐.</p>
+      <p class="q">데이터를 10배로 늘리면 index 시간은 어떻게 됩니까?</p>
+      <div class="opts"><button type="button" data-hint="index는 하나씩 봅니다.">거의 그대로</button><button type="button">늘어난다</button></div>
+      <p class="why">index는 약 10배가 되고, bisect는 비교가 3~4번 늘 뿐입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="T4 (선택)">
-    <ul class="x-pts"><li>안 했으면 세 칸 모두 비워요.</li></ul>
-    <div class="x-f" data-bind="A10.T4.actual" data-ph="안 쓰면 비움 · 예: (가) 2 5, (나) 1000번에 0.5초"></div>
-    <div class="x-f" data-bind="A10.T4.cause" data-ph="안 쓰면 비움 · 예: 자리 찾기는 …, 끼워 넣기는 …"></div>
-    <div class="x-f" data-bind="A10.T4.where" data-ph="안 쓰면 비움 · 어디서 흔히 만날까, 한 문장"></div>
+    <ul class="x-pts"><li>수행하지 않았으면 세 칸 모두 비워 두십시오.</li></ul>
+    <div class="x-f" data-bind="A10.T4.actual" data-ph="사용하지 않으면 비워 두십시오 · 예: (가) 2 5, (나) 1000번에 0.5초"></div>
+    <div class="x-f" data-bind="A10.T4.cause" data-ph="사용하지 않으면 비워 두십시오 · 예: 자리 찾기는 …, 끼워 넣기는 …"></div>
+    <div class="x-f" data-bind="A10.T4.where" data-ph="사용하지 않으면 비워 두십시오 · 어디서 흔히 만나는지 한 문장으로"></div>
   </div>
 
   <div class="x-screen" data-title="되돌아보기">
     <div class="x-arr" data-label="A3: UNS에서 규칙대로 23 찾기 → 놓침" data-v="38,5,72,16,91,2,23,56,12,8" data-miss="6"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">A3의 ‘있는데 없다’와 T1은 같은 일일까요?</p>
-      <div class="opts"><button type="button">같은 일 · 전제가 깨진 입력</button><button type="button" data-hint="T1에서 오류 메시지가 나왔나요?">다른 일 · T1은 오류가 났다</button></div>
-      <p class="why">둘 다 정렬 전제가 깨졌고, 오류 메시지는 없었어요.</p>
+      <p class="q">A3의 ‘있는데 없다’와 T1은 같은 현상입니까?</p>
+      <div class="opts"><button type="button">같은 일 · 전제가 깨진 입력</button><button type="button" data-hint="T1에서 오류 메시지가 나왔습니까?">다른 일 · T1은 오류가 났다</button></div>
+      <p class="why">둘 다 정렬 전제가 깨졌고, 오류 메시지는 없었습니다.</p>
     </div>
     <pre class="x-code">lo, hi = 0, len(a) - 1
 while lo &lt;= hi:
@@ -288,7 +288,7 @@ while lo &lt;= hi:
         lo = mid + 1
     else:
         hi = mid          # T3</pre>
-    <p class="x-q">T3은 왜 끝나지 않을까요?<small>까닭 한 문장, 바꿀 한 줄</small></p>
+    <p class="x-q">T3은 왜 끝나지 않습니까?<small>까닭 한 문장과 바꿀 한 줄</small></p>
     <div class="x-f" data-bind="A10.q3" data-parts="① 끝나지 않는 까닭=예: ○가 줄지 않아서|② 바꿀 부분=예: ○○ 를 ○○ 로"></div>
   </div>
 </section>

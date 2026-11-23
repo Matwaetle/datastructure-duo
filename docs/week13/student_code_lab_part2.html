@@ -17,57 +17,57 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="13주차 실습 코드 2부 · 거스름돈과 반례 탐색" data-lead="큰 동전부터 내는 법과 표로 최소를 구하는 법을 코드로 옮기고, 둘이 갈라지는 금액을 찾아요.">
+<div class="x-page" hidden data-title="13주차 실습 코드 2부 · 거스름돈과 반례 탐색" data-lead="큰 동전부터 내는 방법과 표로 최소를 구하는 방법을 코드로 작성하고, 두 결과가 달라지는 금액을 찾습니다.">
 
-<section class="x-act" data-id="A8" data-title="거스름돈 두 방법을 코드로" data-meta="14분 · 개인">
-  <ul class="x-pts"><li>A4의 규칙과 A5의 표를 함수 두 개로 옮겨요.</li></ul>
+<section class="x-act" data-id="A8" data-title="거스름돈 두 방법의 코드 작성" data-meta="14분 · 개인">
+  <ul class="x-pts"><li>A4의 규칙과 A5의 표를 함수 두 개로 작성합니다.</li></ul>
 
-  <div class="x-screen" data-title="편집기 쓰는 법">
+  <div class="x-screen" data-title="편집기 사용법">
     <div class="x-cards">
       <div><b>▶ 실행</b>Ctrl(⌘)+Enter</div>
-      <div><b>✔ 점검</b>내 코드가 맞는지 확인</div>
-      <div><b>____4____</b>채울 자리. 비면 NameError</div>
-      <div><b>A9</b>A8 편집기의 함수를 써요. 먼저 실행</div>
+      <div><b>✔ 점검</b>작성한 코드가 맞는지 확인합니다.</div>
+      <div><b>____4____</b>채울 자리입니다. 비어 있으면 NameError가 납니다.</div>
+      <div><b>A9</b>A8 편집기의 함수를 사용하므로 A8을 먼저 실행하십시오.</div>
     </div>
   </div>
 
-  <div class="x-screen" data-title="큰 동전부터 내 보기">
+  <div class="x-screen" data-title="큰 동전부터 내기">
     <div class="x-given"><span><b>동전</b>[1, 5, 10]</span><span><b>금액</b>17원</span></div>
     <div class="x-flow"><span>17원</span><span>10원 1개 → 7원</span><span>5원 1개 → 2원</span><span class="hit">1원 2개 → 0원 · 모두 4개</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">28원이면 10원을 몇 개 쓰고 얼마가 남나요?</p>
-      <div class="opts"><button type="button" data-hint="쓸 수 있는 만큼 다 써요.">1개, 18원</button><button type="button">2개, 8원</button><button type="button" data-hint="30원은 28원보다 커요.">3개, 모자람</button></div>
-      <p class="why">28에서 10을 2번 빼면 8.</p>
+      <p class="q">28원이면 10원을 몇 개 쓰고 얼마가 남습니까?</p>
+      <div class="opts"><button type="button" data-hint="쓸 수 있는 만큼 모두 사용합니다.">1개, 18원</button><button type="button">2개, 8원</button><button type="button" data-hint="30원은 28원보다 큽니다.">3개, 모자람</button></div>
+      <p class="why">28에서 10을 2번 빼면 8입니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="몫, 나머지, 거꾸로 훑기">
-    <div class="x-cards"><div><b>a // b</b>몫</div><div><b>a % b</b>나머지</div><div><b>reversed(목록)</b>뒤에서부터 하나씩</div></div>
+  <div class="x-screen" data-title="몫, 나머지, 역순 순회">
+    <div class="x-cards"><div><b>a // b</b>몫</div><div><b>a % b</b>나머지</div><div><b>reversed(목록)</b>뒤에서부터 하나씩 꺼냅니다. 꺼냅니다.</div></div>
     <div class="quiz predict" data-answer="1">
-      <p class="q">아래 코드 첫 줄 <code>print(17 // 10, 17 % 10)</code> 의 출력은?</p>
+      <p class="q">아래 코드 첫 줄 <code>print(17 // 10, 17 % 10)</code>의 출력은 무엇입니까?</p>
       <div class="opts"><button type="button">1 7</button><button type="button">7 1</button><button type="button">1.7 0</button></div>
-      <p class="why">실행해서 확인해요.</p>
+      <p class="why">실행하여 확인하십시오.</p>
     </div>
     <div class="x-ed" data-starter="A8-p1"></div>
   </div>
 
   <div class="x-screen" data-title="만들 수 없는 금액과 INF">
-    <ul class="x-pts"><li><b>dp[a]</b> = a원을 만드는 최소 동전 개수</li><li><b>INF</b> = 무한대. 만들 수 없는 칸에 적어요.</li></ul>
+    <ul class="x-pts"><li><b>dp[a]</b>는 a원을 만드는 최소 동전 개수입니다.</li><li><b>INF</b>는 무한대이며, 만들 수 없는 칸에 넣습니다.</li></ul>
     <div class="x-arr" data-name="동전 [2, 5]의 dp" data-v="0,INF,1,INF,2,1"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">dp[3] 이 INF 인 까닭은?</p>
-      <div class="opts"><button type="button">2, 5로 3원을 만들 수 없다</button><button type="button" data-hint="개수와는 상관없어요.">개수가 너무 많다</button><button type="button" data-hint="동전은 2와 5뿐이에요.">3원짜리 동전이 있다</button></div>
-      <p class="why">2와 5를 몇 개 합쳐도 3이 안 돼요.</p>
+      <p class="q">dp[3]이 INF인 이유는 무엇입니까?</p>
+      <div class="opts"><button type="button">2, 5로 3원을 만들 수 없다</button><button type="button" data-hint="개수와는 관계가 없습니다.">개수가 너무 많다</button><button type="button" data-hint="동전은 2와 5뿐입니다.">3원짜리 동전이 있다</button></div>
+      <p class="why">2와 5를 몇 개 합쳐도 3이 되지 않습니다.</p>
     </div>
     <div class="quiz predict" data-answer="2">
-      <p class="q">아래 코드 둘째 줄 <code>print(X + 1 &lt; X)</code> 은?</p>
+      <p class="q">아래 코드 둘째 줄 <code>print(X + 1 &lt; X)</code>의 결과는 무엇입니까?</p>
       <div class="opts"><button type="button">True</button><button type="button">False</button></div>
-      <p class="why">무한대에 1을 더해도 무한대예요.</p>
+      <p class="why">무한대에 1을 더해도 무한대입니다.</p>
     </div>
     <div class="x-ed" data-starter="A8-p3"></div>
   </div>
 
-  <div class="x-screen" data-title="칸 채우는 규칙">
+  <div class="x-screen" data-title="칸을 채우는 규칙">
     <ol class="x-rules">
       <li class="r1"><b>시작</b><div class="fx"><code>모든 칸 = INF</code><code>dp[0] = 0</code></div></li>
       <li class="r2"><b>후보</b><div class="fx"><code>dp[a − c] + 1</code><span>동전 c를 마지막으로 쓸 때</span></div></li>
@@ -75,26 +75,26 @@
     </ol>
     <div class="x-arr mini" data-name="동전 [2, 5]의 dp" data-v="0,INF,1,INF,2,1"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">a = 5, c = 5 이면 후보는?</p>
-      <div class="opts"><button type="button">1</button><button type="button" data-hint="dp[5 − 5] + 1 이에요.">2</button><button type="button" data-hint="dp[0] 은 0이에요.">INF</button></div>
-      <p class="why">dp[0] + 1 = 1.</p>
+      <p class="q">a = 5, c = 5이면 후보는 무엇입니까?</p>
+      <div class="opts"><button type="button">1</button><button type="button" data-hint="dp[5 − 5] + 1입니다.">2</button><button type="button" data-hint="dp[0]은 0입니다.">INF</button></div>
+      <p class="why">dp[0] + 1 = 1입니다.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="두 함수 코드 (채점)">
     <ul class="x-pts">
-      <li><b>④</b> 큰 동전부터 훑는 목록 · <b>⑤</b> 남은 금액</li>
+      <li><b>④</b> 큰 동전부터 순회하는 목록 · <b>⑤</b> 남은 금액</li>
       <li><b>⑥</b> 처음 칸 값(이름 INF) · <b>⑦</b> 0원의 개수</li>
-      <li><b>⑧</b> 후보가 dp[a]보다 작은가 · <b>⑨</b> dp[a]에 넣을 값</li>
-      <li>coins 는 오름차순, 1 포함. 만들 수 없으면 −1</li>
-      <li>실행 전 활동지 2부 A8의 6원 예측을 먼저 써요.</li>
+      <li><b>⑧</b> 후보가 dp[a]보다 작은지 여부 · <b>⑨</b> dp[a]에 넣을 값</li>
+      <li>coins는 오름차순이며 1을 포함합니다. 만들 수 없으면 −1을 돌려줍니다.</li>
+      <li>실행 전에 활동지 2부 A8의 6원 예측값을 먼저 쓰십시오.</li>
     </ul>
     <pre class="x-code">greedy_coins([1, 5, 10], 17)   #=> 4
 dp_coins([1, 5, 10], 17)       #=> 4
 dp_coins([2, 5], 3)            #=> -1
 # ⑥ 전에 실행하면: greedy_coins: 3 뒤 NameError: ____6____ (정상)</pre>
     <div class="x-f" data-bind="A8.mycode"></div>
-    <ul class="x-pts"><li>[✔ 점검] → <b>A8 점검 통과</b>. 6원 결과 두 줄은 활동지 ‘실제’ 칸에.</li></ul>
+    <ul class="x-pts"><li>[✔ 점검]에서 <b>A8 점검 통과</b>를 확인하십시오. 6원 결과 두 줄은 활동지 ‘실제’ 칸에 쓰십시오.</li></ul>
   </div>
 
   <div class="x-screen" data-title="17원 확인">
@@ -104,45 +104,45 @@ dp_coins([2, 5], 3)            #=> -1
 </section>
 
 <section class="x-act" data-id="A9" data-title="반례 탐색기 만들기" data-meta="13분 · 개인">
-  <ul class="x-pts"><li>두 방법이 갈라지는 금액을 모두 찾는 함수를 만들어요.</li></ul>
+  <ul class="x-pts"><li>두 방법의 결과가 달라지는 금액을 모두 찾는 함수를 작성합니다.</li></ul>
 
   <div class="x-screen" data-title="반례란">
-    <div class="x-cards"><div><b>반례</b>큰 동전부터 쓴 개수 ≠ 최소 개수인 금액</div></div>
+    <div class="x-cards"><div><b>반례</b>큰 동전부터 쓴 개수 ≠ 최소 개수가 되는 금액입니다.</div></div>
     <div class="x-given"><span><b>동전</b>[1, 3, 4]</span><span><b>6원 큰 동전부터</b>4+1+1 = 3개</span><span><b>6원 최소</b>3+3 = 2개</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">[1, 3, 4]에서 8원은 반례인가요?</p>
-      <div class="opts"><button type="button" data-hint="큰 동전부터 하면 4+4예요.">반례이다</button><button type="button">반례가 아니다</button></div>
-      <p class="why">4+4 = 2개, 동전 하나로는 못 만드니 최소도 2개.</p>
+      <p class="q">[1, 3, 4]에서 8원은 반례입니까?</p>
+      <div class="opts"><button type="button" data-hint="큰 동전부터 쓰면 4+4입니다.">반례이다</button><button type="button">반례가 아니다</button></div>
+      <p class="why">4+4 = 2개입니다. 동전 하나로는 만들 수 없으므로 최소도 2개입니다.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="두 함수 나란히 불러 보기">
-    <ul class="x-pts"><li>NameError: greedy_coins 면 A8 편집기를 먼저 실행해요.</li></ul>
+  <div class="x-screen" data-title="두 함수 함께 호출하기">
+    <ul class="x-pts"><li>NameError: greedy_coins가 나면 A8 편집기를 먼저 실행하십시오.</li></ul>
     <div class="quiz predict" data-answer="2">
-      <p class="q">[1, 3, 4]로 5, 6, 7원 중 두 숫자가 다른 줄은?</p>
+      <p class="q">[1, 3, 4]로 5, 6, 7원 중 두 숫자가 다른 줄은 어느 것입니까?</p>
       <div class="opts"><button type="button">5원</button><button type="button">6원</button><button type="button">7원</button></div>
-      <p class="why">실행해서 확인해요.</p>
+      <p class="why">실행하여 확인하십시오.</p>
     </div>
     <div class="x-ed" data-starter="A9-p1"></div>
   </div>
 
   <div class="x-screen" data-title="find_failures 코드 (채점)">
     <ul class="x-pts">
-      <li><b>할 일</b>: 1 ~ limit 원 중 두 개수가 다른 금액만 모아 돌려주기</li>
-      <li><b>⑩</b> greedy_coins 와 dp_coins 의 개수가 다른가</li>
-      <li>점검은 A8의 두 함수를 써요.</li>
+      <li><b>할 일</b>: 1 ~ limit 원 중 두 개수가 다른 금액만 모아 돌려줍니다.</li>
+      <li><b>⑩</b> greedy_coins와 dp_coins의 개수가 다른지 여부</li>
+      <li>점검에는 A8의 두 함수를 사용합니다.</li>
     </ul>
     <pre class="x-code">def find_failures(coins, limit):   # 돌려줌: 금액 리스트
 find_failures([1, 5, 10], 30)      #=> []</pre>
     <div class="x-f" data-bind="A9.mycode"></div>
-    <ul class="x-pts"><li>[✔ 점검] → <b>A9 점검 통과</b>. 실패 메시지의 앞쪽 목록이 내 결과.</li></ul>
+    <ul class="x-pts"><li>[✔ 점검]에서 <b>A9 점검 통과</b>를 확인하십시오. 실패 메시지의 앞쪽 목록이 작성한 코드의 결과입니다.</li></ul>
   </div>
 
-  <div class="x-screen" data-title="[1, 3, 4] 로 돌려 보기">
+  <div class="x-screen" data-title="[1, 3, 4]로 실행하기">
     <div class="quiz predict" data-answer="2">
-      <p class="q">find_failures([1, 3, 4], 10) 의 목록에는 금액이 몇 개?</p>
+      <p class="q">find_failures([1, 3, 4], 10)의 목록에는 금액이 몇 개 있습니까?</p>
       <div class="opts"><button type="button">1개</button><button type="button">2개</button><button type="button">3개</button></div>
-      <p class="why">실행해서 확인해요.</p>
+      <p class="why">실행하여 확인하십시오.</p>
     </div>
     <div class="x-ed" data-starter="A9-p2"></div>
   </div>
@@ -150,10 +150,10 @@ find_failures([1, 5, 10], 30)      #=> []</pre>
   <div class="x-screen" data-title="동전 체계 4개 + 내 체계 (채점)">
     <div class="x-given"><span><b>체계</b>[1,3,4] · [1,4,6] · 한국 동전 · [1,5,10,20,25]</span><span><b>limit</b>30, 50 → 8줄</span></div>
     <ul class="x-pts">
-      <li>활동지 2부 A9 표에 예측을 먼저 쓰고 실행해요.</li>
-      <li>맨 아래에 <b>내 체계 2개</b> 줄을 더해요 (이 칸이 제출돼요).</li>
-      <li>하나는 맞을 것 같은 체계, 하나는 틀릴 것 같은 체계</li>
-      <li>1 포함 · 오름차순. 결과는 활동지 ‘내 동전 체계’ 표에</li>
+      <li>활동지 2부 A9 표에 예측값을 먼저 쓰고 실행하십시오.</li>
+      <li>맨 아래에 <b>내 체계 2개</b> 줄을 추가하십시오(이 입력란이 제출됩니다).</li>
+      <li>하나는 맞을 것으로, 하나는 틀릴 것으로 예상되는 체계를 고르십시오.</li>
+      <li>1을 포함하고 오름차순으로 씁니다. 결과는 활동지 ‘내 동전 체계’ 표에 쓰십시오.</li>
     </ul>
     <pre class="x-code">print([1, 2, 7], find_failures([1, 2, 7], 30))   # 이런 꼴로 두 줄 더하기
 #=> [1, 2, 7] […]</pre>
@@ -163,9 +163,9 @@ find_failures([1, 5, 10], 30)      #=> []</pre>
   <div class="x-screen" data-title="검사 범위">
     <div class="x-given"><span><b>[1, 5, 10, 20, 25]</b>limit 30 → [] · limit 50 → [40, …]</span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">limit 30에서 못 찾은 까닭은?</p>
-      <div class="opts"><button type="button">반례 40원이 범위 30 밖</button><button type="button" data-hint="limit 50에서는 잘 찾았어요.">find_failures 가 틀려서</button><button type="button" data-hint="limit 50 결과에 40이 있어요.">40원은 반례가 아니라서</button></div>
-      <p class="why">30까지만 시험하면 40원은 안 보여요.</p>
+      <p class="q">limit 30에서 찾지 못한 이유는 무엇입니까?</p>
+      <div class="opts"><button type="button">반례 40원이 범위 30 밖에 있다</button><button type="button" data-hint="limit 50에서는 올바르게 찾았습니다.">find_failures가 틀려서</button><button type="button" data-hint="limit 50 결과에 40이 있습니다.">40원은 반례가 아니라서</button></div>
+      <p class="why">30까지만 시험하면 40원은 발견되지 않습니다.</p>
     </div>
   </div>
 </section>

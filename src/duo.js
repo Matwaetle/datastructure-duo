@@ -184,7 +184,7 @@
     box.appendChild(h);
     if (lead) { var p = el("p", "duo-lead"); p.innerHTML = lead.innerHTML; box.appendChild(p); }
     var who = el("div", "duo-who");
-    who.innerHTML = '<p class="duo-who-t">제출 파일에 들어갈 이름이에요</p>';
+    who.innerHTML = '<p class="duo-who-t">제출 파일에 기록될 학번과 이름을 입력하십시오.</p>';
     var idL = $("#sb-id") && $("#sb-id").closest("label"), nmL = $("#sb-name") && $("#sb-name").closest("label");
     if (idL) { $("#sb-id").placeholder = "예: 2213"; who.appendChild(idL); }
     if (nmL) who.appendChild(nmL);
@@ -196,7 +196,7 @@
   function buildFinish() {
     var box = el("div", "duo-finish");
     box.innerHTML = '<div class="duo-mascot big" aria-hidden="true">' + mascot(true) + "</div>" +
-      "<h1>다 했어요!</h1><p class=\"duo-lead\">아래에서 제출 파일(JSON)을 저장해 제출하세요.</p>" +
+      "<h1>모든 단계를 마쳤습니다</h1><p class=\"duo-lead\">아래에서 제출 파일(JSON)을 저장한 뒤 제출하십시오.</p>" +
       '<div class="duo-stats"></div><div class="duo-left"></div>';
     var savebar = $("#savebar");
     var actions = el("div", "duo-save");
@@ -205,7 +205,7 @@
       ["#sb-file", "#sb-auto", "#sb-confirm", "#sb-msg"].forEach(function (s) { var b = $(s, savebar); if (b) actions.appendChild(b); });
       var sv = $("#sb-save", actions); if (sv) sv.textContent = "제출 파일 저장 (JSON)";
       var ld = $("#sb-load", actions); if (ld) ld.textContent = "저장한 파일 불러오기";
-      var cl = $("#sb-clear", actions); if (cl) cl.textContent = "처음부터 다시";
+      var cl = $("#sb-clear", actions); if (cl) cl.textContent = "처음부터 다시 시작";
       var sb = $("#sb-submit", actions); if (sb) sb.textContent = "제출 사이트 열기";
       savebar.hidden = true;
     }
@@ -218,25 +218,25 @@
     var all = $$(FIELD);
     var empty = all.filter(isEmpty);
     $(".duo-stats", rec.node).innerHTML =
-      '<div class="duo-stat"><b>' + (all.length - empty.length) + "</b><span>쓴 칸</span></div>" +
-      '<div class="duo-stat"><b>' + empty.length + "</b><span>빈 칸</span></div>" +
-      '<div class="duo-stat"><b>' + screens.filter(function (s) { return s.seen; }).length + "/" + screens.length + "</b><span>본 화면</span></div>";
-    $("h1", rec.node).textContent = empty.length ? "거의 다 왔어요!" : "다 했어요!";
+      '<div class="duo-stat"><b>' + (all.length - empty.length) + "</b><span>작성한 입력란</span></div>" +
+      '<div class="duo-stat"><b>' + empty.length + "</b><span>빈 입력란</span></div>" +
+      '<div class="duo-stat"><b>' + screens.filter(function (s) { return s.seen; }).length + "/" + screens.length + "</b><span>확인한 화면</span></div>";
+    $("h1", rec.node).textContent = empty.length ? "작성하지 않은 입력란이 있습니다" : "모든 단계를 마쳤습니다";
     $(".duo-lead", rec.node).textContent = empty.length
-      ? "빈 칸을 채우고 제출 파일(JSON)을 저장하세요. 다 못 썼으면 지금 저장해 두고 나중에 이어 써도 돼요."
-      : "아래에서 제출 파일(JSON)을 저장해 제출하세요.";
+      ? "빈 입력란을 작성한 뒤 제출 파일(JSON)을 저장하십시오. 작성을 마치지 못한 경우 지금 저장해 두고 이후에 이어서 작성할 수 있습니다."
+      : "아래에서 제출 파일(JSON)을 저장한 뒤 제출하십시오.";
     var left = $(".duo-left", rec.node);
     left.innerHTML = "";
     if (!empty.length) return;
     var bySc = {};
     empty.forEach(function (f) { var i = indexOfNode(f); if (i >= 0) (bySc[i] = bySc[i] || []).push(f); });
-    var h = el("p", "duo-left-t", "아직 비어 있는 곳");
+    var h = el("p", "duo-left-t", "작성하지 않은 입력란");
     left.appendChild(h);
     Object.keys(bySc).forEach(function (i) {
       var s = screens[i];
       var b = el("button", "duo-left-item");
       b.type = "button";
-      b.innerHTML = "<span>" + escapeHtml(chipText(s)) + "</span><em>" + bySc[i].length + "칸</em>";
+      b.innerHTML = "<span>" + escapeHtml(chipText(s)) + "</span><em>" + bySc[i].length + "개</em>";
       b.addEventListener("click", function () { go(+i); focusFirstEmpty(); });
       left.appendChild(b);
     });
@@ -320,7 +320,7 @@
     var s = screens[cur];
     primary.classList.remove("ok", "warn");
     if (s.kind === "finish") { primary.textContent = "주차 목록으로"; mode = "home"; return; }
-    if (s.kind === "start") { primary.textContent = load(STORE, {}).cur > 0 ? "이어서 하기" : "시작하기"; mode = "start"; return; }
+    if (s.kind === "start") { primary.textContent = load(STORE, {}).cur > 0 ? "이어서 진행" : "시작"; mode = "start"; return; }
     if (checkables(s).length && !s.checked) { primary.textContent = "확인"; mode = "check"; return; }
     primary.textContent = "계속"; mode = "next";
   }
@@ -346,13 +346,13 @@
         // 서술형이거나 비어 있는 칸: 맞다/틀리다 대신 모범답을 보여 준다.
         shown++;
         host.classList.remove("duo-ok", "duo-diff");
-        say("info", (judged(f) ? "정답: " : "모범답: ") + model);
+        say("info", (judged(f) ? "정답: " : "모범 답안: ") + model);
       }
     });
     s.checked = true;
-    if (!wrong && shown) showSheet(right ? "ok" : "show", right ? "맞은 칸 " + right + "개!" : "모범답이 나왔어요", "칸 아래 모범답과 내 답을 비교해 보세요. 고쳐 써도 돼요.");
-    else if (!wrong) showSheet("ok", pick(["정답이에요!", "좋아요!", "완벽해요!", "맞았어요!"]), list.length > 1 ? list.length + "칸 모두 맞았어요." : "");
-    else showSheet("warn", "정답과 다른 칸이 " + wrong + "개 있어요", "칸 아래 정답과 비교해 보세요. 표현만 다르면 맞은 걸로 봐도 돼요.");
+    if (!wrong && shown) showSheet(right ? "ok" : "show", right ? "정답 " + right + "개" : "모범 답안을 표시했습니다", "각 입력란 아래의 모범 답안과 작성한 답을 비교하십시오. 답은 수정할 수 있습니다.");
+    else if (!wrong) showSheet("ok", "정답입니다", list.length > 1 ? "입력란 " + list.length + "개가 모두 정답입니다." : "");
+    else showSheet("warn", "정답과 다른 입력란이 " + wrong + "개 있습니다", "각 입력란 아래의 정답과 비교하십시오. 표현만 다르고 뜻이 같으면 정답으로 인정합니다.");
     primary.textContent = "계속"; mode = "next";
   }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
@@ -386,7 +386,7 @@
     if (mode === "start") {
       var id = $("#sb-id"), nm = $("#sb-name");
       if (id && nm && (!id.value.trim() || !nm.value.trim())) {
-        showSheet("warn", "학번과 이름을 먼저 써 주세요", "제출 파일 이름과 채점에 쓰여요.");
+        showSheet("warn", "학번과 이름을 먼저 입력하십시오", "제출 파일 이름과 채점에 사용됩니다.");
         (id.value.trim() ? nm : id).focus();
         return;
       }
@@ -399,8 +399,8 @@
     var empty = emptyIn(screens[cur]);
     if (empty.length && !warnedEmpty && screens[cur].kind === "step") {
       warnedEmpty = true;
-      showSheet("info", "아직 안 쓴 칸이 " + empty.length + "개 있어요", "나중에 돌아와서 써도 돼요. 한 번 더 누르면 넘어가요.");
-      primary.textContent = "그래도 넘어가기";
+      showSheet("info", "작성하지 않은 입력란이 " + empty.length + "개 있습니다", "이후에 돌아와 작성할 수 있습니다. 한 번 더 누르면 다음 화면으로 이동합니다.");
+      primary.textContent = "다음으로 이동";
       // 포커스를 옮기면 경고가 바로 꺼지므로, 빈 칸은 보이게 스크롤하고 반짝이기만 한다.
       empty.forEach(function (f) {
         f.classList.remove("duo-blink"); void f.offsetWidth; f.classList.add("duo-blink");
