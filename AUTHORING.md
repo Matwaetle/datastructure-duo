@@ -5,7 +5,7 @@
 
 ## 절대 원칙
 1. **줄글 금지.** 설명은 한 줄 요점(`ul.x-pts`), 낱말 카드(`.x-cards`), 값 칩(`.x-given`), 규칙 카드(`ol.x-rules`), 그림으로만. 한 항목은 한 줄(대략 40자 안쪽). 설명용 문단 `<p>` 를 쓰지 않는다.
-2. **그림으로 보여 준다.** 배열은 `.x-arr`, 재귀·분할·호출·탐색 순서는 `ul.x-tree`, 순서는 `.x-flow`, 코드는 `pre.x-code`. 원본의 ASCII 그림(pre)은 전부 이 부품으로 바꾼다. 원본에 없는 그림도 이해에 도움이 되면 넣는다.
+2. **그림으로 보여 준다.** 격자는 `.x-grid`, 그래프는 `.x-graph`(목록·칩으로 대신하지 않는다), 배열은 `.x-arr`, 재귀·분할·호출·탐색 순서는 `ul.x-tree`, 순서는 `.x-flow`, 코드는 `pre.x-code`. 원본의 ASCII 그림(pre)은 전부 이 부품으로 바꾼다. 원본에 없는 그림도 이해에 도움이 되면 넣는다.
 3. **맥락을 질문 바로 위에.** 질문에 쓰는 배열·변수·값(예: `a`, `SORTED`, 목표)은 그 화면 안에 다시 보여 준다. 앞 화면을 기억해야만 풀 수 있게 하지 않는다. 기호(a, lo, G1 …)는 처음 나올 때 무엇인지 칩으로 밝힌다.
 4. **칸마다 무엇을 어떤 꼴로 쓰는지 분명히.** 이게 가장 중요하다. 학생이 칸을 보고 "뭘 쓰라는 거지?"가 되면 실패다.
    - 모든 칸에 `data-ph` 로 **꼴이 보이는 예**를 준다: "숫자", "예: 인덱스 3 / 없음", "예: [2, 1]", "예: 14>9 → lo=3". 정답 자체는 쓰지 않는다(다른 값으로 든 예).
@@ -45,6 +45,14 @@
 <div class="x-flow"><span>1000</span><span>500</span><span class="hit">1</span></div>
 <ul class="x-tree"><li><span>f(4) <em>1단계</em></span><ul><li><span>f(3)</span></li><li><span>f(2)</span></li></ul></li></ul>
    (span 안에 <i class="pv">피벗</i>, <b class="sm">작은 쪽</b>, <b class="bg">큰 쪽</b>)
+<!-- 격자(미로·섬·지도). # 벽, S 시작, E 도착, . 빈칸, 다른 글자는 그대로 표시 -->
+<div class="x-grid" data-name="MAZE" data-rc data-rows="S.#..|.##.#|...#E" data-mark="1,0:seen;2,1:cur" data-path="0,0>1,0>2,0>2,1"></div>
+   (data-rc 행·열 번호 / data-mark "행,열:종류" 종류 = hit cur seen miss a b / data-path "행,열>행,열" 경로선, 대각선 가능 / data-label 한 줄 설명)
+<!-- 그래프. 좌표는 "열,행" 칸 단위(1칸 ≈ 92px). 가중치는 A-B:3 -->
+<div class="x-graph" data-name="G1" data-nodes="A:0,1 B:1,0 C:1,2 D:2,1" data-edges="A-B,A-C,B-D,C-D:2" data-start="A" data-done="B" data-hl="C" data-path="A>B>D" data-directed></div>
+   (data-start 시작 노드 / data-done 방문함(초록) / data-hl 강조(파랑) / data-path 경로 간선 강조 / data-directed 화살표. 정답이 되는 방문 순서·경로는 칠하지 않는다)
+<!-- 학생이 앞 화면에서 쓴 값을 다시 보여 주기(그 값을 근거로 묻는 질문 바로 위에) -->
+표에 쓴 값: <span class="x-echo" data-echo="A11.t.r1.c2"></span>
 <pre class="x-code">a = [3, 8, 8]
 print(a.index(8))   #=> 1</pre>                       (#=> 뒤는 실행 결과 꼬리표. 코드는 보기만 하는 용도)
 <div class="quiz" data-answer="2"><p class="q">질문?</p>

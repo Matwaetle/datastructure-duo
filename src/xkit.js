@@ -47,6 +47,94 @@
     el.innerHTML = html;
   }
 
+  /* ---------- 그림: 격자 ---------- */
+  // data-rows="S.#.|.#..|...E"  (# 벽, S 시작, E 도착, . 빈칸, 그 밖의 글자는 그대로)
+  // data-mark="1,1:hit;2,3:cur"  data-path="0,0>0,1>1,1" (대각선 가능)  data-rc (행·열 번호)  data-label
+  function renderGrid(el) {
+    var rows = el.getAttribute("data-rows").split("|");
+    var marks = {};
+    (el.getAttribute("data-mark") || "").split(";").forEach(function (p) {
+      var kv = p.split(":"); if (kv.length < 2) return; marks[kv[0].trim()] = kv[1].trim();
+    });
+    var rc = el.hasAttribute("data-rc"), C = 42, G = 4;
+    var nr = rows.length, nc = Math.max.apply(null, rows.map(function (r) { return r.length; }));
+    var off = rc ? 22 : 0;
+    var W = off + nc * (C + G), H = off + nr * (C + G);
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img">';
+    if (rc) {
+      for (var c = 0; c < nc; c++) svg += '<text class="g-rc" x="' + (off + c * (C + G) + C / 2) + '" y="14">' + c + "</text>";
+      for (var r = 0; r < nr; r++) svg += '<text class="g-rc" x="9" y="' + (off + r * (C + G) + C / 2 + 5) + '">' + r + "</text>";
+    }
+    rows.forEach(function (row, r) {
+      for (var c = 0; c < nc; c++) {
+        var ch = row[c] || " ", cls = "g-c";
+        if (ch === "#") cls += " wall"; else if (ch === "S") cls += " start"; else if (ch === "E" || ch === "G") cls += " end";
+        if (marks[r + "," + c]) cls += " " + marks[r + "," + c];
+        var x = off + c * (C + G), y = off + r * (C + G);
+        svg += '<rect class="' + cls + '" x="' + x + '" y="' + y + '" width="' + C + '" height="' + C + '" rx="9"/>';
+        if (ch !== "." && ch !== "#" && ch !== " ") svg += '<text class="g-t" x="' + (x + C / 2) + '" y="' + (y + C / 2 + 6) + '">' + esc(ch) + "</text>";
+      }
+    });
+    var path = el.getAttribute("data-path");
+    if (path) {
+      var pts = path.split(">").map(function (p) { var a = p.split(","); return [off + (+a[1]) * (C + G) + C / 2, off + (+a[0]) * (C + G) + C / 2]; });
+      svg += '<polyline class="g-path" points="' + pts.map(function (p) { return p.join(","); }).join(" ") + '"/>';
+      pts.forEach(function (p, i) { svg += '<circle class="g-dot" cx="' + p[0] + '" cy="' + p[1] + '" r="' + (i ? 4 : 6) + '"/>'; });
+    }
+    svg += "</svg>";
+    el.innerHTML = (el.getAttribute("data-label") ? '<div class="x-arr-label">' + esc(el.getAttribute("data-label")) + "</div>" : "") +
+      (el.getAttribute("data-name") ? '<div class="x-arr-name">' + esc(el.getAttribute("data-name")) + "</div>" : "") + '<div class="x-scroll">' + svg + "</div>";
+  }
+
+  /* ---------- 그림: 그래프 ---------- */
+  // data-nodes="A:0,0 B:1,0 C:0,1"  (열,행 좌표 · 칸 단위)  data-edges="A-B,B-C:3"  (:값 은 간선 가중치)
+  // data-directed  data-hl="A,B" (색칠)  data-start="A"  data-done="B" (방문함)  data-path="A>B>C" (경로 강조)
+  function renderGraph(el) {
+    var U = 92, R = 22, P = 30, nodes = {}, maxx = 0, maxy = 0;
+    el.getAttribute("data-nodes").trim().split(/\s+/).forEach(function (t) {
+      var kv = t.split(":"), xy = kv[1].split(",");
+      nodes[kv[0]] = { x: P + R + (+xy[0]) * U, y: P + R + (+xy[1]) * U };
+      maxx = Math.max(maxx, +xy[0]); maxy = Math.max(maxy, +xy[1]);
+    });
+    var W = 2 * (P + R) + maxx * U, H = 2 * (P + R) + maxy * U;
+    var dir = el.hasAttribute("data-directed");
+    function set(a) { var m = {}; (el.getAttribute(a) || "").split(/[,>]/).forEach(function (k) { if (k.trim()) m[k.trim()] = 1; }); return m; }
+    var hl = set("data-hl"), done = set("data-done"), start = (el.getAttribute("data-start") || "").trim();
+    var pathSeq = (el.getAttribute("data-path") || "").split(">").map(function (s) { return s.trim(); }).filter(Boolean);
+    var onPath = {};
+    for (var i = 1; i < pathSeq.length; i++) { onPath[pathSeq[i - 1] + "-" + pathSeq[i]] = 1; if (!dir) onPath[pathSeq[i] + "-" + pathSeq[i - 1]] = 1; }
+    var svg = '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img">' +
+      '<defs><marker id="xa' + (renderGraph.n = (renderGraph.n || 0) + 1) + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" class="g-arrow"/></marker></defs>';
+    (el.getAttribute("data-edges") || "").split(",").forEach(function (e) {
+      e = e.trim(); if (!e) return;
+      var w = e.split(":"), ab = w[0].split("-"), a = nodes[ab[0]], b = nodes[ab[1]];
+      if (!a || !b) return;
+      var dx = b.x - a.x, dy = b.y - a.y, d = Math.sqrt(dx * dx + dy * dy) || 1;
+      var x1 = a.x + dx / d * R, y1 = a.y + dy / d * R, x2 = b.x - dx / d * (R + (dir ? 3 : 0)), y2 = b.y - dy / d * (R + (dir ? 3 : 0));
+      var cls = "g-e" + (onPath[ab[0] + "-" + ab[1]] ? " on" : "");
+      svg += '<line class="' + cls + '" x1="' + x1 + '" y1="' + y1 + '" x2="' + x2 + '" y2="' + y2 + '"' + (dir ? ' marker-end="url(#xa' + renderGraph.n + ')"' : "") + "/>";
+      if (w[1]) svg += '<text class="g-w" x="' + ((a.x + b.x) / 2 + dy / d * 12) + '" y="' + ((a.y + b.y) / 2 - dx / d * 12 + 5) + '">' + esc(w[1]) + "</text>";
+    });
+    Object.keys(nodes).forEach(function (k) {
+      var n = nodes[k], cls = "g-n" + (hl[k] ? " hl" : "") + (done[k] ? " done" : "") + (k === start ? " start" : "");
+      svg += '<circle class="' + cls + '" cx="' + n.x + '" cy="' + n.y + '" r="' + R + '"/><text class="g-nt' + (k === start ? " start" : "") + '" x="' + n.x + '" y="' + (n.y + 6) + '">' + esc(k) + "</text>";
+    });
+    svg += "</svg>";
+    el.innerHTML = (el.getAttribute("data-name") ? '<div class="x-arr-name">' + esc(el.getAttribute("data-name")) + "</div>" : "") +
+      (el.getAttribute("data-label") ? '<div class="x-arr-label">' + esc(el.getAttribute("data-label")) + "</div>" : "") + '<div class="x-scroll">' + svg + "</div>";
+  }
+
+  /* ---------- 내 답 다시 보기 ---------- */
+  // <span class="x-echo" data-echo="A11.t.r1.c2"></span> : 학생이 앞에서 쓴 값을 그대로 보여 준다(비어 있으면 '아직 안 씀').
+  function renderEchos() {
+    $$(".x-echo[data-echo]").forEach(function (sp) {
+      var o = document.querySelector('[data-key="' + sp.getAttribute("data-echo") + '"]');
+      var v = o ? String(getOrig(o) || "").trim() : "";
+      sp.textContent = v || (sp.getAttribute("data-empty") || "아직 안 씀");
+      sp.classList.toggle("empty", !v);
+    });
+  }
+
   /* ---------- 그림: 코드 ---------- */
   // <pre class="x-code">print(a)  #=> 1</pre> : #=> 뒤는 출력으로 오른쪽에 붙인다
   var KW = /\b(def|return|if|elif|else|for|while|in|not|and|or|import|from|as|None|True|False|break|continue|pass|lambda|class|with|is)\b/g;
@@ -183,10 +271,15 @@
     if (!page) return;
     document.documentElement.classList.add("x-mode");
     $$(".x-arr", page).forEach(renderArr);
+    $$(".x-grid[data-rows]", page).forEach(renderGrid);
+    $$(".x-graph[data-nodes]", page).forEach(renderGraph);
     $$("pre.x-code", page).forEach(renderCode);
     $$(".x-f[data-bind]", page).forEach(renderField);
     $$(".x-ed[data-starter]", page).forEach(renderEd);
     pullAll();
+    renderEchos();
+    document.addEventListener("input", function () { clearTimeout(renderEchos._t); renderEchos._t = setTimeout(renderEchos, 150); });
+    document.addEventListener("change", function () { setTimeout(renderEchos, 50); });
     // 원본 저장 스크립트가 자동 보관·불러오기로 원본 칸을 바꾸면 새 칸에도 다시 옮긴다.
     var msg = document.getElementById("sb-msg");
     if (msg) new MutationObserver(function () { setTimeout(pullAll, 50); }).observe(msg, { childList: true, characterData: true, subtree: true });

@@ -34,10 +34,7 @@
 
   <div class="x-screen" data-title="작은 격자에서 길 세기">
     <div class="x-given"><span><b>S</b>출발 (왼쪽 위)</span><span><b>E</b>도착 (오른쪽 아래)</span><span><b>#</b>막힌 칸</span><span><b>이동</b>오른쪽 · 아래만</span></div>
-    <table class="x-trace"><tr><th></th><th>열 0</th><th>열 1</th><th>열 2</th></tr>
-      <tr><th>행 0</th><td>S</td><td>.</td><td>.</td></tr>
-      <tr><th>행 1</th><td>.</td><td>#</td><td>.</td></tr>
-      <tr><th>행 2</th><td>.</td><td>.</td><td>E</td></tr></table>
+    <div class="x-grid" data-name="3×3 격자" data-rc data-rows="S..|.#.|..E"></div>
     <div class="quiz" data-answer="2">
       <p class="q">S에서 E까지 길은 몇 가지? (2×2 빈 격자면 2가지)</p>
       <div class="opts"><button type="button">1가지</button><button type="button">2가지</button><button type="button" data-hint="가운데는 지날 수 없어요.">3가지</button><button type="button" data-hint="가운데는 지날 수 없어요.">4가지</button></div>
@@ -72,11 +69,7 @@ print(dp)      #=> [[1, 0, 0], [0, 0, 0]]  (이렇게 나오면 성공)</pre>
 
   <div class="x-screen" data-title="GRID 와 채우는 규칙">
     <div class="x-given"><span><b>GRID</b>4행 5열 · 0 = 통행, 1 = 막힘</span></div>
-    <table class="x-trace"><tr><th></th><th>열 0</th><th>열 1</th><th>열 2</th><th>열 3</th><th>열 4</th></tr>
-      <tr><th>행 0</th><td>S</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
-      <tr><th>행 1</th><td>.</td><td>#</td><td>.</td><td>#</td><td>.</td></tr>
-      <tr><th>행 2</th><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
-      <tr><th>행 3</th><td>#</td><td>.</td><td>#</td><td>.</td><td>E</td></tr></table>
+    <div class="x-grid" data-name="GRID" data-rc data-rows="S....|.#.#.|.....|#.#.E"></div>
     <ul class="x-pts"><li>코드 전에 활동지 3부 A11에 설계와 칸별 예측을 써요.</li></ul>
     <ol class="x-rules">
       <li class="r1"><b>⑪ 한 행</b><div class="fx"><code>칸 C개, 모두 0</code><span>방금 연습한 식</span></div></li>

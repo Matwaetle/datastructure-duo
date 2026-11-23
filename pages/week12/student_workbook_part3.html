@@ -68,6 +68,7 @@
   <div class="x-screen" data-title="정렬된 입력의 퀵">
     <ul class="x-pts"><li>방금 그림처럼 한쪽이 늘 비어요.</li><li>측정값 표의 정렬된 200개 · 500개 값을 써서 배수를 구해요.</li></ul>
     <div class="x-given"><span><b>N</b>200 → 500 (2.5배)</span></div>
+    <div class="x-scroll"><table class="x-trace"><tr><th>입력</th><th>병합 실제<small>내가 쓴 값</small></th><th>퀵 실제<small>내가 쓴 값</small></th></tr><tr><td>정렬된 200개</td><td><span class="x-echo" data-echo="A11.o200.c2"></span></td><td><span class="x-echo" data-echo="A11.o200.c4"></span></td></tr><tr><td>정렬된 500개</td><td><span class="x-echo" data-echo="A11.o500.c2"></span></td><td><span class="x-echo" data-echo="A11.o500.c4"></span></td></tr><tr><td>정렬된 2000개</td><td><span class="x-echo" data-echo="A11.o2000.c2"></span></td><td><span class="x-echo" data-echo="A11.o2000.c4"></span></td></tr></table></div>
     <p class="x-q">퀵 횟수가 병합보다 훨씬 큰 까닭과 배수<small>배수는 측정값 ÷ 측정값, 소수 첫째 자리까지</small></p>
     <div class="x-f" data-bind="A11.q1" data-parts="퀵이 훨씬 큰 까닭=예: 피벗이 늘 … 이라 … 쪽이 비어서|배수=예: 퀵 약 ○.○배, 병합 약 ○.○배"></div>
     <p class="x-q">정렬된 2000개에서 무슨 일이 있었나요?</p>
@@ -296,7 +297,8 @@ mid = (lo + hi) // 2       # lower_bound
   </div>
 
   <div class="x-screen" data-title="오개념 점검 4~6">
-    <ul class="x-pts"><li>같은 방식으로. A11 측정값 표를 떠올려요.</li></ul>
+    <ul class="x-pts"><li>같은 방식으로. 아래는 A11에 내가 쓴 측정값이에요.</li></ul>
+    <div class="x-scroll"><table class="x-trace"><tr><th>입력</th><th>병합 실제<small>내가 쓴 값</small></th><th>퀵 실제<small>내가 쓴 값</small></th></tr><tr><td>섞은 200개</td><td><span class="x-echo" data-echo="A11.s200.c2"></span></td><td><span class="x-echo" data-echo="A11.s200.c4"></span></td></tr><tr><td>섞은 500개</td><td><span class="x-echo" data-echo="A11.s500.c2"></span></td><td><span class="x-echo" data-echo="A11.s500.c4"></span></td></tr><tr><td>섞은 1000개</td><td><span class="x-echo" data-echo="A11.s1000.c2"></span></td><td><span class="x-echo" data-echo="A11.s1000.c4"></span></td></tr><tr><td>정렬된 200개</td><td><span class="x-echo" data-echo="A11.o200.c2"></span></td><td><span class="x-echo" data-echo="A11.o200.c4"></span></td></tr><tr><td>정렬된 500개</td><td><span class="x-echo" data-echo="A11.o500.c2"></span></td><td><span class="x-echo" data-echo="A11.o500.c4"></span></td></tr><tr><td>정렬된 2000개</td><td><span class="x-echo" data-echo="A11.o2000.c2"></span></td><td><span class="x-echo" data-echo="A11.o2000.c4"></span></td></tr></table></div>
     <p class="x-q">4 · 퀵 정렬은 항상 병합 정렬보다 빠르다.</p>
     <div class="x-f" data-bind="A16.mis3.v"></div>
     <div class="x-f" data-bind="A16.mis3.why" data-ph="예: ○○ 입력에서 퀵 ○번, 병합 ○번이었다"></div>

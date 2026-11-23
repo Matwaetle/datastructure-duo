@@ -6,10 +6,8 @@
 
   <div class="x-screen" data-title="섬 하나 칠해 보기">
     <div class="x-cards"><div><b>섬</b>땅(1)이 상하좌우로 이어진 덩어리</div></div>
-    <div class="x-arr mini" data-label="처음 · 0행" data-v="1,1,0" data-cls="0-1:hit"></div>
-    <div class="x-arr mini" data-label="처음 · 1행" data-v="0,0,1" data-cls="2:hit"></div>
-    <div class="x-arr mini" data-label="(0, 0)에서 칠한 뒤 · 0행" data-v="●,●,0" data-cls="0-1:done"></div>
-    <div class="x-arr mini" data-label="(0, 0)에서 칠한 뒤 · 1행" data-v="0,0,1" data-cls="2:hit"></div>
+    <div class="x-grid" data-name="처음" data-rc data-rows="110|001" data-mark="0,0:hit;0,1:hit;1,2:hit"></div>
+    <div class="x-grid" data-name="(0, 0)에서 칠한 뒤" data-rc data-rows="●●0|001" data-mark="0,0:seen;0,1:seen;1,2:hit"></div>
     <div class="quiz" data-answer="2">
       <p class="q">칠하지 않은 땅이 하나 남았어요. 섬은 모두 몇 개?</p>
       <div class="opts"><button type="button" data-hint="남은 땅 (1, 2)도 섬이에요.">1개</button><button type="button">2개</button><button type="button" data-hint="(0, 0)과 (0, 1)은 붙어 있어요.">3개</button></div>
@@ -19,12 +17,7 @@
 
   <div class="x-screen" data-title="ISLE를 손으로 세기">
     <div class="x-given"><span><b>ISLE</b>6행 × 7열</span><span><b>1</b>땅</span><span><b>0</b>바다</span></div>
-    <div class="x-arr mini" data-label="0행" data-v="1,1,0,0,0,1,0"></div>
-    <div class="x-arr mini" data-label="1행" data-v="1,1,0,0,0,1,1"></div>
-    <div class="x-arr mini" data-label="2행" data-v="0,0,1,0,0,0,0"></div>
-    <div class="x-arr mini" data-label="3행" data-v="0,0,0,1,1,0,0"></div>
-    <div class="x-arr mini" data-label="4행" data-v="1,0,0,0,1,0,0"></div>
-    <div class="x-arr mini" data-label="5행" data-v="1,0,0,0,0,0,1"></div>
+    <div class="x-grid" data-name="ISLE" data-rc data-rows="1100010|1100011|0010000|0001100|1000100|1000001"></div>
     <ul class="x-pts"><li>대각선으로만 닿으면 이어진 게 아니에요.</li><li>센 수는 <b>활동지 3부 A10 표 1줄 ‘예측’</b>에.</li></ul>
   </div>
 
@@ -58,7 +51,15 @@
     <ul class="x-pts"><li>[✔ 점검] → 격자 10개로 확인해요.</li></ul>
     <div class="x-flow"><span>[✔ 점검]</span><span class="hit">A10 점검 통과</span></div>
     <div class="x-cards"><div><b>FAIL 격자 3: …</b>3번 격자(0부터 셈)에서 개수가 다름</div></div>
-    <div class="x-given"><span><b>0</b>ISLE</span><span><b>1</b>[]</span><span><b>2</b>["000"]</span><span><b>3</b>["111"]</span><span><b>4</b>["101", "010", "101"]</span><span><b>5</b>["1"]</span><span><b>6</b>["0"]</span><span><b>7</b>["11011", "10001", "00100", "11011"]</span><span><b>8</b>["1010101", "0101010", "1010101"]</span><span><b>9</b>["111", "101", "111"]</span></div>
+    <div class="x-given"><span><b>0</b>ISLE</span><span><b>1</b>[] (빈 격자)</span></div>
+    <div class="x-grid" data-name="2" data-rows="000"></div>
+    <div class="x-grid" data-name="3" data-rows="111"></div>
+    <div class="x-grid" data-name="4" data-rows="101|010|101"></div>
+    <div class="x-grid" data-name="5" data-rows="1"></div>
+    <div class="x-grid" data-name="6" data-rows="0"></div>
+    <div class="x-grid" data-name="7" data-rows="11011|10001|00100|11011"></div>
+    <div class="x-grid" data-name="8" data-rows="1010101|0101010|1010101"></div>
+    <div class="x-grid" data-name="9" data-rows="111|101|111"></div>
     <div class="quiz" data-answer="2">
       <p class="q">FAIL이 나면 먼저 할 일은?</p>
       <div class="opts"><button type="button" data-hint="점검 코드는 고치지 않아요.">점검 코드를 고친다</button><button type="button">그 격자로 print(count_islands(…)) 해서 손으로 센 값과 비교</button></div>
@@ -170,8 +171,7 @@ def grid_neighbors(grid, r, c, passable):
   </div>
 
   <div class="x-screen" data-title="큐에 몇 번 넣나 세어 보기">
-    <div class="x-arr mini" data-label="0행" data-v="1,1,1" data-cls="0:pivot"></div>
-    <div class="x-arr mini" data-label="1행" data-v="1,1,1" data-cls="1:hit"></div>
+    <div class="x-grid" data-rc data-rows="111|111" data-mark="0,0:cur;1,1:hit" data-label="(0, 0)에서 시작, (1, 1)을 볼 칸"></div>
     <ul class="x-pts"><li>(0, 0)부터 탐색 · 방문한 칸은 seen에 적고, 적힌 칸은 다시 안 넣어요.</li></ul>
     <div class="quiz" data-answer="1">
       <p class="q">칸 (1, 1)은 큐에 모두 몇 번 들어갈까?</p>

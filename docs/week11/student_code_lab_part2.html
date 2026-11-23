@@ -58,6 +58,7 @@ for v in neighbors(g, u):
 
   <div class="x-screen" data-title="T1-a 예측하고 실행">
     <div class="x-given"><span><b>G1</b>친구 관계 그래프</span><span><b>시작</b>A</span></div>
+    <div class="x-graph" data-name="G1" data-nodes="A:0,1 B:1,0 C:1,2 D:2,1 E:3,1" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="A"></div>
     <div class="x-given"><span><b>A</b>B, C</span><span><b>B</b>A, D</span><span><b>C</b>A, D</span><span><b>D</b>B, C, E</span><span><b>E</b>D</span></div>
     <ul class="x-pts"><li>D에 닿는 길(B 쪽, C 쪽)을 세어 봐요.</li></ul>
     <div class="quiz predict" data-answer="2">
@@ -72,6 +73,7 @@ for v in neighbors(g, u):
 
   <div class="x-screen" data-title="T1-b 큐에 넣은 횟수">
     <div class="x-given"><span><b>OPEN4</b>벽 없는 4×4 격자 · 16칸</span><span><b>시작</b>(0, 0)</span></div>
+    <div class="x-grid" data-name="OPEN4" data-rc data-rows="S...|....|....|...."></div>
     <div class="x-cards">
       <div><b>"enqueue"</b>큐에 넣을 때 ‘봤다’ 표시</div>
       <div><b>"dequeue"</b>꺼낼 때 ‘봤다’ 표시</div>
@@ -105,7 +107,7 @@ for v in neighbors(g, u):
   </div>
 
   <div class="x-screen" data-title="T3 한 줄로 이어진 땅">
-    <div class="x-arr mini" data-v="1,1,1,1,…,1" data-noidx></div>
+    <div class="x-grid" data-name="땅" data-rows="11111…1" data-label="1행, 모두 '1'"></div>
     <div class="x-given"><span><b>땅</b>1 × width, 모두 '1'</span><span><b>width</b>500, 1500</span><span><b>탐색</b>재귀 explore_rec</span></div>
     <ul class="x-pts"><li>첫 줄에 파이썬 <b>재귀 한도</b>가 나와요.</li><li>한 칸 옆으로 갈 때마다 호출이 한 겹 깊어져요.</li></ul>
     <div class="quiz predict" data-answer="1">
@@ -168,6 +170,7 @@ print(dfs_bad(g, "B"))</pre>
 
   <div class="x-screen" data-title="실행하기 전에 예측하기">
     <div class="x-given"><span><b>방향 순서</b>4×3×2×1 = 24가지</span><span><b>예</b>우하좌상, 하우좌상</span></div>
+    <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
     <ul class="x-pts"><li>DFS 첫 길의 간선 수 = BFS 최단 거리가 되는 순서는 몇 가지?</li><li>숫자로 <b>활동지 2부 A9 ‘예측’</b> 칸에 써요.</li></ul>
   </div>
 

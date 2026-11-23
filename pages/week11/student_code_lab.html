@@ -20,6 +20,7 @@
 
   <div class="x-screen" data-title="손 규칙이 코드가 되는 모습">
     <div class="x-given"><span><b>G1</b>A2의 친구 관계(무방향)</span><span><b>간선</b>A-B, A-C, B-D, C-D, D-E</span><span><b>F</b>아무와도 안 이어짐</span></div>
+    <div class="x-graph" data-name="G1" data-nodes="A:0,1 B:1,0 C:1,2 D:2,1 E:3,1 F:4,0" data-edges="A-B,A-C,B-D,C-D,D-E"></div>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>노드</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
       <tr><td>이웃<small>목록 순서</small></td><td>B, C</td><td>A, D</td><td>A, D</td><td>B, C, E</td><td>D</td></tr>
@@ -102,9 +103,7 @@
 
   <div class="x-screen" data-title="칸의 이웃 세기">
     <div class="x-cards"><div><b>노드</b>격자의 칸 하나, (행, 열)로 부름</div><div><b>이웃</b>상하좌우로 맞닿은 길 칸</div><div><b>#</b>벽, 지나갈 수 없음</div></div>
-    <div class="x-arr mini" data-label="TINY 0행" data-v="S,.,#" data-cls="0:pivot,2:miss"></div>
-    <div class="x-arr mini" data-label="TINY 1행" data-v=".,.,." ></div>
-    <div class="x-arr mini" data-label="TINY 2행" data-v="#,.,E" data-cls="0:miss,2:hit"></div>
+    <div class="x-grid" data-name="TINY" data-rc data-rows="S.#|...|#.E" data-mark="0,1:cur"></div>
     <div class="quiz" data-answer="2">
       <p class="q">칸 (0, 1)의 이웃은 몇 칸? (격자 밖·벽은 못 감)</p>
       <div class="opts"><button type="button" data-hint="왼쪽과 아래를 봐요.">1칸</button><button type="button">2칸</button><button type="button" data-hint="오른쪽 (0, 2)는 벽이에요.">3칸</button><button type="button" data-hint="위쪽은 격자 밖이에요.">4칸</button></div>
@@ -114,9 +113,7 @@
 
   <div class="x-screen" data-title="방향 목록으로 이웃 읽기">
     <div class="x-given"><span><b>DIRS</b>[(0,1), (1,0), (0,−1), (−1,0)]</span><span><b>순서</b>우 → 하 → 좌 → 상</span></div>
-    <div class="x-arr mini" data-label="TINY 0행" data-v="S,.,#"></div>
-    <div class="x-arr mini" data-label="TINY 1행" data-v=".,.,."></div>
-    <div class="x-arr mini" data-label="TINY 2행" data-v="#,.,E"></div>
+    <div class="x-grid" data-name="TINY" data-rc data-rows="S.#|...|#.E"></div>
     <ul class="x-pts"><li>실행한 뒤 <code>r, c = 1, 1</code>을 <code>0, 1</code>로 바꿔 다시 실행해요.</li><li>파이썬에서 −1번은 맨 끝: <code>"abc"[-1]</code> 은 <code>"c"</code></li></ul>
     <div class="x-ed" data-starter="A7-p1"></div>
     <div class="quiz" data-answer="2">
@@ -152,11 +149,7 @@
 
   <div class="x-screen" data-title="shortest_path_len 빈칸 ⑫~⑭">
     <div class="x-given"><span><b>MAZE</b>5행 7열</span><span><b>S</b>(0, 0)</span><span><b>E</b>(4, 6)</span></div>
-    <div class="x-arr mini" data-label="0행" data-v="S,.,.,#,.,.,." data-noidx data-cls="0:pivot,3:miss"></div>
-    <div class="x-arr mini" data-label="1행" data-v=".,#,.,#,.,#,." data-noidx data-cls="1:miss,3:miss,5:miss"></div>
-    <div class="x-arr mini" data-label="2행" data-v=".,#,.,.,.,#,." data-noidx data-cls="1:miss,5:miss"></div>
-    <div class="x-arr mini" data-label="3행" data-v=".,#,#,#,#,#,." data-noidx data-cls="1-5:miss"></div>
-    <div class="x-arr mini" data-label="4행" data-v=".,.,.,.,.,.,E" data-noidx data-cls="6:hit"></div>
+    <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
     <pre class="x-code">def shortest_path_len(grid, start, goal):
     dist = {start: 0}         # visited 역할 + 걸음 수
     q = deque([start])

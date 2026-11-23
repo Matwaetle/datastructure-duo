@@ -5,6 +5,7 @@
   <ul class="x-pts"><li>1부 실습 코드 A6의 두 함수 출력을 옮겨 손 추적과 맞춰 봐요.</li></ul>
 
   <div class="x-screen" data-title="G1과 손 추적 결과">
+    <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="A"></div>
     <div class="x-given"><span><b>A</b>[B, C]</span><span><b>B</b>[A, D]</span><span><b>C</b>[A, D]</span><span><b>D</b>[B, C, E]</span><span><b>E</b>[D]</span><span><b>F</b>이웃 없음</span></div>
     <div class="x-cards">
       <div><b>A2 큐 규칙</b>bfs_order와 견줄 손 추적</div>
@@ -31,6 +32,7 @@
   </div>
 
   <div class="x-screen" data-title="시작 노드 F (6걸음)">
+    <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-hl="F"></div>
     <div class="x-given"><span><b>F</b>간선 없음, g에 키도 없음</span></div>
     <ul class="x-pts"><li>실행 <b>전</b>에 예측, 실행 <b>뒤</b>에 실제를 써요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
@@ -58,20 +60,12 @@
   <ul class="x-pts"><li>1부 실습 코드 A7 실행 틀의 값을 옮겨요. 예측이 먼저.</li></ul>
 
   <div class="x-screen" data-title="MAZE 보기">
-    <div class="x-arr mini" data-name="0행" data-v="S,.,.,#,.,.,." data-cls="0:hit"></div>
-    <div class="x-arr mini" data-name="1행" data-v=".,#,.,#,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="2행" data-v=".,#,.,.,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="3행" data-v=".,#,#,#,#,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="4행" data-v=".,.,.,.,.,.,E" data-noidx data-cls="6:hit"></div>
+    <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
     <ul class="x-pts"><li><b>#</b> 벽 · <b>.</b> 길 · 칸은 (행, 열)</li><li><b>거리</b>: 시작 칸 0, 한 칸 움직일 때마다 +1</li></ul>
   </div>
 
   <div class="x-screen" data-title="실행 틀 값 옮기기">
-    <div class="x-arr mini" data-name="0행" data-v="S,.,.,#,.,.,." data-cls="0:hit"></div>
-    <div class="x-arr mini" data-name="1행" data-v=".,#,.,#,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="2행" data-v=".,#,.,.,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="3행" data-v=".,#,#,#,#,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="4행" data-v=".,.,.,.,.,.,E" data-noidx data-cls="6:hit"></div>
+    <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>실행</th><th>예측<small>실행 전</small></th><th>내 코드의 값<small>출력 그대로</small></th></tr>
       <tr class="x-ex"><td>예: ["S.E"]에서 S→E</td><td>2</td><td>2</td></tr>
@@ -98,9 +92,7 @@
   </div>
 
   <div class="x-screen" data-title="경계 검사">
-    <div class="x-arr mini" data-name="0행" data-v="S,.,.,#,.,.,." data-cls="0:hit"></div>
-    <div class="x-arr mini" data-name="1행" data-v=".,#,.,#,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="2행" data-v=".,#,.,.,.,#,." data-noidx data-cls="2:hit"></div>
+    <div class="x-grid" data-name="MAZE 위 3행" data-rc data-rows="S..#...|.#.#.#.|.#...#." data-mark="0,0:a;2,2:b" data-label="(0,0)과 (2,2)"></div>
     <div class="x-given"><span><b>DIRS</b>위·아래·왼쪽·오른쪽</span><span><b>⑨</b>grid_neighbors의 경계 검사 줄</span></div>
     <p class="x-q">(0,0)과 (2,2)의 이웃, 그리고 ⑨를 빼면?</p>
     <div class="x-f" data-bind="A7.q2" data-parts="이웃 개수와 까닭=예: (0,0)은 ○개, … 때문 / (2,2)는 ○개, … 때문|⑨를 빼면=예: (0,0)에서 음수 인덱스가 …, 가장자리에서는 …"></div>
@@ -161,14 +153,17 @@
       <div class="opts"><button type="button">같은 원인이다</button><button type="button" data-hint="둘 다 방문 표시가 늦었어요.">다른 원인이다</button></div>
       <p class="why">둘 다 D가 이미 큐에 있는데도 표시가 늦어 또 넣었어요.</p>
     </div>
+    <div class="x-line">내 T1-b 실제: <span class="x-echo" data-echo="A8.pred.r2.c2"></span></div>
     <p class="x-q">‘큐에 넣을 때 표시’하면 한 칸이 한 번만 들어가는 까닭<small>T1-b의 넣은 횟수를 근거로</small></p>
     <div class="x-f" data-bind="A8.q2" data-parts="까닭=예: 넣는 순간 표시하면 …|근거=예: T1-b 넣은 횟수 enqueue ○ / dequeue ○, 칸 수 ○"></div>
   </div>
 
   <div class="x-screen" data-title="표 읽기 2 · 큐와 재귀 한계">
+    <div class="x-line">내 T2 실제: <span class="x-echo" data-echo="A8.pred.r3.c2"></span></div>
     <p class="x-q">n이 10배일 때 시간은 각각 몇 배였고, 그 뜻은?</p>
     <div class="x-f" data-bind="A8.q3" data-parts="list pop(0)=예: 약 ○배|deque popleft=예: 약 ○배|큰 격자 BFS에서 뜻=예: 큐를 … 로 만들면 …"></div>
     <div class="x-given"><span><b>T3 입력</b>1×1500, 정상 입력</span><span><b>재귀 기본 한계</b>약 1000</span></div>
+    <div class="x-line">내 T3 실제: <span class="x-echo" data-echo="A8.pred.r4.c2"></span></div>
     <p class="x-q">T3의 1×1500은 왜 실패했나요?</p>
     <div class="x-f" data-bind="A8.q4" data-parts="까닭=예: 한 갈래의 길이가 …|피하는 방법=예: 재귀 대신 …|그 대가=예: … 를 직접 챙겨야 한다"></div>
   </div>
@@ -179,11 +174,7 @@
   <ul class="x-pts"><li>실습 코드 2부 A9에서 방향 순서 24가지를 돌려요.</li></ul>
 
   <div class="x-screen" data-title="실행 전 예측">
-    <div class="x-arr mini" data-name="0행" data-v="S,.,.,#,.,.,." data-cls="0:hit"></div>
-    <div class="x-arr mini" data-name="1행" data-v=".,#,.,#,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="2행" data-v=".,#,.,.,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="3행" data-v=".,#,#,#,#,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="4행" data-v=".,.,.,.,.,.,E" data-noidx data-cls="6:hit"></div>
+    <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
     <div class="x-given"><span><b>24가지</b>우·하·좌·상을 늘어놓는 순서 (4×3×2×1)</span></div>
     <div class="x-line">DFS 길이 = BFS 거리인 순서는 <span class="x-f" data-bind="A9.pred.count" data-w="xs" data-ph="0~24"></span> 가지</div>
   </div>
@@ -201,6 +192,7 @@
   </div>
 
   <div class="x-screen" data-title="표를 읽고 답하기">
+    <div class="x-scroll"><table class="x-trace"><tr><th>#</th><th>내 DIRS 순서</th><th>DFS</th><th>BFS</th></tr><tr><td>1</td><td><span class="x-echo" data-echo="A9.dirs.r1.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r1.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r1.c3"></span></td></tr><tr><td>2</td><td><span class="x-echo" data-echo="A9.dirs.r2.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r2.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r2.c3"></span></td></tr><tr><td>3</td><td><span class="x-echo" data-echo="A9.dirs.r3.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r3.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r3.c3"></span></td></tr><tr><td>4</td><td><span class="x-echo" data-echo="A9.dirs.r4.c1"></span></td><td><span class="x-echo" data-echo="A9.dirs.r4.c2"></span></td><td><span class="x-echo" data-echo="A9.dirs.r4.c3"></span></td></tr></table></div>
     <div class="quiz predict" data-answer="2">
       <p class="q">표 4줄 가운데 DFS 길이가 BFS보다 긴 줄이 있었나요?</p>
       <div class="opts"><button type="button">없었다</button><button type="button">있었다</button></div>
@@ -214,11 +206,7 @@
   </div>
 
   <div class="x-screen" data-title="(선택) 순서의 공통점">
-    <div class="x-arr mini" data-name="0행" data-v="S,.,.,#,.,.,." data-cls="0:hit"></div>
-    <div class="x-arr mini" data-name="1행" data-v=".,#,.,#,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="2행" data-v=".,#,.,.,.,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="3행" data-v=".,#,#,#,#,#,." data-noidx></div>
-    <div class="x-arr mini" data-name="4행" data-v=".,.,.,.,.,.,E" data-noidx data-cls="6:hit"></div>
+    <div class="x-grid" data-name="MAZE" data-rc data-rows="S..#...|.#.#.#.|.#...#.|.#####.|......E"></div>
     <p class="x-q">BFS와 같은 DFS 길이가 나온 순서들의 공통점<small>없으면 ‘없음’</small></p>
     <div class="x-f" data-bind="A9.pattern" data-parts="공통점=예: ○가 ○보다 앞에 오는 순서|MAZE에서 까닭=예: 시작 칸에서 … 길과 … 길이 갈리고 DFS는 …"></div>
   </div>

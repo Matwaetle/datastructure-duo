@@ -42,7 +42,8 @@ for i in range(2, n + 1):
   </div>
 
   <div class="x-screen" data-title="예측이 빗나간 곳">
-    <ul class="x-pts"><li>위 예측표에서 실제와 크게 다른 칸을 골라요.</li></ul>
+    <ul class="x-pts"><li>내가 쓴 예측표에서 실제와 크게 다른 칸을 골라요.</li></ul>
+    <div class="x-scroll"><table class="x-trace"><tr><th>n</th><th>naive 예측</th><th>naive 실제</th><th>memo 예측</th><th>memo 실제</th><th>tab 예측</th><th>tab 실제</th></tr><tr><td>20</td><td><span class="x-echo" data-echo="A7.pred.r1.c1"></span></td><td><span class="x-echo" data-echo="A7.pred.r1.c2"></span></td><td><span class="x-echo" data-echo="A7.pred.r1.c3"></span></td><td><span class="x-echo" data-echo="A7.pred.r1.c4"></span></td><td><span class="x-echo" data-echo="A7.pred.r1.c5"></span></td><td><span class="x-echo" data-echo="A7.pred.r1.c6"></span></td></tr><tr><td>30</td><td><span class="x-echo" data-echo="A7.pred.r2.c1"></span></td><td><span class="x-echo" data-echo="A7.pred.r2.c2"></span></td><td><span class="x-echo" data-echo="A7.pred.r2.c3"></span></td><td><span class="x-echo" data-echo="A7.pred.r2.c4"></span></td><td><span class="x-echo" data-echo="A7.pred.r2.c5"></span></td><td><span class="x-echo" data-echo="A7.pred.r2.c6"></span></td></tr></table></div>
     <div class="x-f" data-bind="A7.q3" data-parts="다른 칸=예: fib_memo(30) 예측 ○, 실제 ○ / 모두 맞았다|까닭=예: 한 번 불릴 때 …"></div>
   </div>
 </section>
@@ -146,6 +147,7 @@ def dp_coins(coins, amount):
   </div>
 
   <div class="x-screen" data-title="반례 증명 문장">
+    <div class="x-given"><span><b>맞을 것 같은 체계</b><span class="x-echo" data-echo="A9.mine.r1.c1"></span> → <span class="x-echo" data-echo="A9.mine.r1.c3"></span></span><span><b>틀릴 것 같은 체계</b><span class="x-echo" data-echo="A9.mine.r2.c1"></span> → <span class="x-echo" data-echo="A9.mine.r2.c3"></span></span></div>
     <ul class="x-pts"><li>반례가 나온 내 체계 하나로 써요.</li><li>금액·개수는 숫자만, 조합은 10+5+1 처럼 +로</li></ul>
     <div class="x-line">금액 <span class="x-f" data-bind="A9.proof.amount" data-w="xs" data-ph="숫자"></span> 원</div>
     <div class="x-line">큰 동전부터 <span class="x-f" data-bind="A9.proof.greedy" data-w="m" data-ph="예: 9+1+1"></span> = <span class="x-f" data-bind="A9.proof.gn" data-w="xs" data-ph="숫자"></span> 개</div>

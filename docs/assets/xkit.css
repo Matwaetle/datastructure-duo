@@ -93,6 +93,38 @@
 .x-legend { display: flex; flex-wrap: wrap; gap: 12px; font: 700 13px var(--f-round); color: var(--duo-mute); }
 .x-legend i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; border: 2px solid; vertical-align: -2px; margin-right: 4px; }
 
+/* 격자 */
+.x-grid, .x-graph { display: grid; gap: 6px; }
+.x-grid svg, .x-graph svg { display: block; max-width: none; overflow: visible; }
+.g-c { fill: var(--duo-bg); stroke: var(--duo-line); stroke-width: 2; }
+.g-c.wall { fill: #4b4b4b; stroke: #3c3c3c; }
+.g-c.start { fill: var(--duo-green-soft); stroke: var(--duo-green); }
+.g-c.end { fill: var(--duo-gold-soft); stroke: var(--duo-gold); }
+.g-c.hit { fill: var(--duo-green-soft); stroke: var(--duo-green); }
+.g-c.cur { fill: var(--duo-blue-soft); stroke: var(--duo-blue); stroke-width: 3; }
+.g-c.seen { fill: #eef6ff; stroke: #8ec5ff; }
+.g-c.miss { fill: #fff1f1; stroke: var(--duo-red); }
+.g-c.a { fill: #f3e8ff; stroke: #ce82ff; } .g-c.b { fill: #fff4e0; stroke: var(--duo-orange); }
+.g-t { font: 800 16px var(--f-mono); fill: var(--duo-ink); text-anchor: middle; }
+.g-rc { font: 700 11px var(--f-mono); fill: var(--duo-faint); text-anchor: middle; }
+.g-path { fill: none; stroke: var(--duo-blue); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; opacity: .85; }
+.g-dot { fill: var(--duo-blue); }
+/* 그래프 */
+.g-e { stroke: var(--duo-line-d); stroke-width: 3; stroke-linecap: round; }
+.g-e.on { stroke: var(--duo-blue); stroke-width: 5; }
+.g-arrow { fill: var(--duo-line-d); }
+.g-w { font: 800 13px var(--f-mono); fill: var(--duo-mute); text-anchor: middle; paint-order: stroke; stroke: var(--duo-bg); stroke-width: 4px; }
+.g-n { fill: var(--duo-bg); stroke: var(--duo-line-d); stroke-width: 3; }
+.g-n.hl { fill: var(--duo-blue-soft); stroke: var(--duo-blue); }
+.g-n.done { fill: var(--duo-green-soft); stroke: var(--duo-green); }
+.g-n.start { fill: var(--duo-green); stroke: var(--duo-green-d); }
+.g-nt { font: 900 16px var(--f-round); fill: var(--duo-ink); text-anchor: middle; }
+.g-nt.start { fill: #fff; }
+/* 내 답 다시 보기 */
+.x-echo { display: inline-block; font: 700 15px var(--f-body); color: #6b4bb5; background: #f3e8ff; border: 2px dashed #ce82ff; border-radius: 10px; padding: 2px 10px; }
+.x-echo::before { content: "내 답 "; font: 900 11px var(--f-round); color: #a568cc; margin-right: 4px; }
+.x-echo.empty { color: var(--duo-faint); background: var(--duo-panel); border-color: var(--duo-line); }
+
 /* 흐름: 1000 → 500 → … */
 .x-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; }
 .x-flow > span { position: relative; font: 800 16px var(--f-mono); padding: 6px 10px; border-radius: 10px; background: var(--duo-panel); border: 2px solid var(--duo-line); }

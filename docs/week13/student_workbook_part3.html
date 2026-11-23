@@ -25,13 +25,7 @@
 
   <div class="x-screen" data-title="GRID 살펴보기">
     <div class="x-given"><span><b>GRID</b>4행 × 5열</span><span><b>S</b>시작 (0, 0)</span><span><b>E</b>도착 (3, 4)</span><span><b>#</b>막힌 칸</span></div>
-    <table class="x-trace">
-      <tr><th>행 \ 열</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
-      <tr><td>0</td><td>S</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
-      <tr><td>1</td><td>.</td><td>#</td><td>.</td><td>#</td><td>.</td></tr>
-      <tr><td>2</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
-      <tr><td>3</td><td>#</td><td>.</td><td>#</td><td>.</td><td>E</td></tr>
-    </table>
+    <div class="x-grid" data-name="GRID" data-rc data-rows="S....|.#.#.|.....|#.#.E"></div>
     <ul class="x-pts"><li>움직임은 <b>오른쪽</b> 또는 <b>아래</b>로만.</li><li>S에서 E까지 가는 길의 수를 표로 세요.</li></ul>
     <div class="quiz" data-answer="2">
       <p class="q">(2, 2) 칸에 바로 직전에 있을 수 있는 칸은?</p>
@@ -63,13 +57,7 @@
   </div>
 
   <div class="x-screen" data-title="GRID dp 표 예측하기">
-    <table class="x-trace">
-      <tr><th>GRID</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
-      <tr><td>0</td><td>S</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
-      <tr><td>1</td><td>.</td><td>#</td><td>.</td><td>#</td><td>.</td></tr>
-      <tr><td>2</td><td>.</td><td>.</td><td>.</td><td>.</td><td>.</td></tr>
-      <tr><td>3</td><td>#</td><td>.</td><td>#</td><td>.</td><td>E</td></tr>
-    </table>
+    <div class="x-grid" data-name="GRID" data-rc data-rows="S....|.#.#.|.....|#.#.E"></div>
     <ul class="x-pts"><li>칸마다 (0, 0)에서 그 칸까지 가는 길의 수. 숫자만.</li><li>막힌 칸은 0. 값 = 위 칸 + 왼쪽 칸.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>r \ c<small>행 \ 열</small></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
@@ -83,6 +71,7 @@
 
   <div class="x-screen" data-title="실행 결과 쓰기">
     <ul class="x-pts"><li>실습 코드 4부 A11에서 <code>grid_paths(GRID)</code>를 실행해요.</li><li>나온 숫자를 그대로 쓰고 예측과 견줘요.</li></ul>
+    <div class="x-line">내 예측 <span class="x-echo" data-echo="A11.cnt.pred"></span></div>
     <div class="x-line">GRID 경로 수 실제 <span class="x-f" data-bind="A11.cnt.real" data-w="xs" data-ph="숫자"></span></div>
   </div>
 
@@ -162,6 +151,7 @@ if grid[r][c] == '#':
   <ul class="x-pts"><li>A12 초안을 다듬고, 알고리즘 고르는 기준표를 만들어요.</li></ul>
 
   <div class="x-screen" data-title="내 초안 다듬기">
+    <div class="x-given"><span><b>A12 주제</b><span class="x-echo" data-echo="A12.c1.topic"></span></span><span><b>A12 초안</b><span class="x-echo" data-echo="A12.c1.draft"></span></span></div>
     <ul class="x-pts"><li>A12 초안을 다시 읽고 점검 4가지를 다 통과하게 고쳐요.</li><li>사례 이름은 개념어로 바꿔요.</li></ul>
     <div class="x-line">주제 <span class="x-f" data-bind="A13.group.topic" data-w="m" data-ph="예: ③ Greedy의 보장과 반례"></span></div>
     <p class="x-q">정제 문장<small>개념 둘 + 관계, 근거 활동, 틀리는 경우를 한 문장에</small></p>
@@ -177,6 +167,7 @@ if grid[r][c] == '#':
   </div>
 
   <div class="x-screen" data-title="알려진 상황 판단하기">
+    <div class="x-given"><span><b>기준 ①</b><span class="x-echo" data-echo="A13.cmp.h1"></span></span><span><b>기준 ②</b><span class="x-echo" data-echo="A13.cmp.h2"></span></span><span><b>기준 ③</b><span class="x-echo" data-echo="A13.cmp.h3"></span></span></div>
     <ul class="x-pts"><li>기준 ①②③은 바로 앞 화면에서 내가 쓴 질문.</li><li>칸마다 <b>예 / 아니오 / 해당 없음</b> + 짧은 이유.</li><li>마지막 칸은 어울리는 방식 이름 + 이유.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>상황</th><th>기준 ①<small>판단 — 이유</small></th><th>기준 ②<small>판단 — 이유</small></th><th>기준 ③<small>판단 — 이유</small></th><th>어울리는 방식<small>이름 — 이유</small></th></tr>
@@ -189,6 +180,7 @@ if grid[r][c] == '#':
   </div>
 
   <div class="x-screen" data-title="새 문제에 써 보기">
+    <div class="x-given"><span><b>기준 ①</b><span class="x-echo" data-echo="A13.cmp.h1"></span></span><span><b>기준 ②</b><span class="x-echo" data-echo="A13.cmp.h2"></span></span><span><b>기준 ③</b><span class="x-echo" data-echo="A13.cmp.h3"></span></span></div>
     <div class="x-given"><span><b>상황 5</b>n개의 계단, 밟으면 안 되는 칸이 있음</span><span><b>이동</b>1칸 또는 2칸씩</span><span><b>구할 것</b>꼭대기에 닿는 방법의 수</span></div>
     <div class="x-flow"><span>0</span><span>1</span><span class="miss">2 (금지)</span><span>3</span><span>…</span><span class="hit">n</span></div>
     <ul class="x-pts"><li>같은 기준 ①②③으로 스스로 판단해요.</li></ul>
