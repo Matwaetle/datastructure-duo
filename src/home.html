@@ -21,7 +21,19 @@ body { margin: 0; background: var(--duo-bg); color: var(--duo-ink); font: 16px/1
 .node { width: 78px; height: 72px; border-radius: 50%; display: grid; place-items: center; text-decoration: none; position: relative;
   background: var(--c); box-shadow: 0 7px 0 var(--cd); font: 900 26px var(--f-round); color: #fff; transition: transform .1s; }
 .node:active { transform: translateY(5px); box-shadow: 0 2px 0 var(--cd); }
-.node.todo { background: var(--duo-line); box-shadow: 0 7px 0 var(--duo-line-d); color: var(--duo-faint); }
+.node.todo { background: var(--cs); box-shadow: 0 7px 0 var(--cd); color: var(--c); }
+/* 종류별: 탐구 활동지(연습·제출 안 함)는 동그라미·초록, 실습 코드(제출)는 네모·보라, 형성평가(제출)는 별 모양 노랑 */
+.k-wb { --c: var(--duo-green); --cd: var(--duo-green-d); --cs: #e5f9d4; }
+.k-code { --c: #9b59e8; --cd: #7a3fc4; --cs: #f1e6ff; }
+.k-form { --c: #ffb800; --cd: #d99a00; --cs: #fff4cc; }
+.k-code .node { border-radius: 22px; }
+.k-form .node { border-radius: 50% 50% 22px 22px; }
+.tag { display: inline-block; font: 900 11px var(--f-round); letter-spacing: .04em; padding: 2px 8px; border-radius: 999px; margin-left: 6px; vertical-align: 2px; }
+.tag.sub { color: #fff; background: #ff4b4b; }
+.tag.prac { color: var(--duo-green-d); background: #e5f9d4; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font: 800 13px var(--f-round); color: var(--duo-mute); margin: -10px 0 8px; }
+.legend i { display: inline-block; width: 16px; height: 16px; margin-right: 6px; vertical-align: -3px; background: var(--c); }
+.legend .k-wb i { border-radius: 50%; } .legend .k-code i { border-radius: 5px; } .legend .k-form i { border-radius: 50% 50% 4px 4px; }
 .node svg { position: absolute; inset: -8px; width: calc(100% + 16px); height: calc(100% + 16px); transform: rotate(-90deg); }
 .node svg circle { fill: none; stroke-width: 6; stroke-linecap: round; }
 .path .t { font: 800 15px var(--f-round); color: var(--duo-ink); max-width: 260px; }
@@ -32,7 +44,8 @@ body { margin: 0; background: var(--duo-bg); color: var(--duo-ink); font: 16px/1
 <body>
 <main class="home">
   <h1>자료구조 활동지</h1>
-  <p>한 걸음씩 풀고, 끝나면 제출 파일(JSON)을 저장해 내요.</p>
+  <p>탐구 활동지는 연습이에요. 실습 코드와 형성평가만 제출 파일(JSON)로 내요.</p>
+  <div class="legend"><span class="k-wb"><i></i>탐구 활동지 · 연습</span><span class="k-code"><i></i>실습 코드 · 제출</span><span class="k-form"><i></i>형성평가 · 제출</span></div>
   <div id="units"></div>
 </main>
 <script>
@@ -40,9 +53,9 @@ var CATALOG = /*CATALOG*/null;
 var KIND = { workbook: "탐구 활동지", code_lab: "실습 코드", formative: "형성평가" };
 function kindOf(f) {
   var part = (f.match(/part(\d)/) || [, "1"])[1];
-  if (f.indexOf("formative") === 0) return { k: "형성평가", icon: "★" };
-  if (f.indexOf("code_lab") >= 0) return { k: "실습 코드 " + part + "부", icon: "</>" };
-  return { k: "탐구 활동지 " + part + "부", icon: "✎" };
+  if (f.indexOf("formative") === 0) return { k: "형성평가", icon: "★", cls: "k-form", sub: true };
+  if (f.indexOf("code_lab") >= 0) return { k: "실습 코드 " + part + "부", icon: "</>", cls: "k-code", sub: true };
+  return { k: "탐구 활동지 " + part + "부", icon: "✎", cls: "k-wb", sub: false };
 }
 function prog(w, f) { try { return JSON.parse(localStorage.getItem("duo:prog:week" + w + "/" + f)) || null; } catch (e) { return null; } }
 var out = "";
@@ -52,10 +65,10 @@ CATALOG.forEach(function (u) {
     var p = prog(u.week, it.file), ratio = p && p.total ? p.filled / p.total : 0;
     if (ratio >= .95) done++;
     var k = kindOf(it.file), circ = 2 * Math.PI * 46;
-    return '<li><a class="node ' + (p ? "" : "todo") + '" href="week' + u.week + "/" + it.file + '" aria-label="' + k.k + '">' +
+    return '<li class="' + k.cls + '"><a class="node ' + (p ? "" : "todo") + '" href="week' + u.week + "/" + it.file + '" aria-label="' + k.k + '">' +
       (p ? '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" stroke="var(--duo-line)"/><circle cx="50" cy="50" r="46" stroke="var(--duo-gold)" stroke-dasharray="' + (circ * ratio) + " " + circ + '"/></svg>' : "") +
       "<span>" + k.icon.replace("<", "&lt;") + "</span></a>" +
-      '<span class="t">' + k.k + '</span><span class="s">' + it.title.replace(/^\d+주차\s*/, "").replace(/</g, "&lt;") + (p ? " · " + p.filled + "/" + p.total + "칸" : "") + "</span></li>";
+      '<span class="t">' + k.k + (k.sub ? '<span class="tag sub">제출</span>' : '<span class="tag prac">연습</span>') + '</span><span class="s">' + it.title.replace(/^\d+주차\s*/, "").replace(/</g, "&lt;") + (p ? " · " + p.filled + "/" + p.total + "칸" : "") + "</span></li>";
   }).join("");
   out += '<section id="week' + u.week + '" class="u' + u.week + 'w"><div class="unit u' + u.week + '"><div><b>' + u.week + '주차</b><span>' + u.files.length + "개 활동 중 " + done + "개 완료</span></div></div>" +
     '<ol class="path">' + items + "</ol></section>";
