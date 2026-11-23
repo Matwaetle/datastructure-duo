@@ -1,0 +1,638 @@
+[
+ {
+  "id": 0,
+  "tag": "h1",
+  "class": "",
+  "html": "13주차 실습 코드 2부 — 거스름돈 두 방법과 반례 탐색기"
+ },
+ {
+  "id": 1,
+  "tag": "p",
+  "class": "lead",
+  "html": "거스름돈을 두 방법으로 구하고, 두 방법이 달라지는 금액을 찾는다. A8 시작 때 쓴다. 실습 과제 안내와 AI 활용 3단계도 이 파일에 있다."
+ },
+ {
+  "id": 2,
+  "tag": "p",
+  "class": "meta",
+  "html": "<span>학번·이름은 위쪽 저장 바에 쓴다.</span>"
+ },
+ {
+  "id": 3,
+  "tag": "h2",
+  "class": "",
+  "html": "사용법<small>#how</small>"
+ },
+ {
+  "id": 4,
+  "tag": "li",
+  "class": "",
+  "html": "편집기에는 필요한 코드가 미리 들어 있다. <code class=\"i\">____4____</code> 같은 자리를 채우고 [&#9654; 실행]을 누른다."
+ },
+ {
+  "id": 5,
+  "tag": "li",
+  "class": "",
+  "html": "[&#10004; 점검]은 내 코드가 맞는지 확인해 준다. [처음 코드로]는 편집기를 처음 상태로 되돌린다."
+ },
+ {
+  "id": 6,
+  "tag": "li",
+  "class": "",
+  "html": "편집기에 쓴 내용은 자동으로 보관된다. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만든다."
+ },
+ {
+  "id": 7,
+  "tag": "summary",
+  "class": "",
+  "html": "단축키와 오류가 날 때"
+ },
+ {
+  "id": 8,
+  "tag": "li",
+  "class": "",
+  "html": "Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기이다."
+ },
+ {
+  "id": 9,
+  "tag": "li",
+  "class": "",
+  "html": "오류가 나면 맨 아래 줄부터 읽는다. <code class=\"i\">NameError: name '____4____' is not defined</code>는 그 번호의 자리가 아직 비어 있다는 뜻이다."
+ },
+ {
+  "id": 10,
+  "tag": "li",
+  "class": "",
+  "html": "같은 쪽의 편집기는 파이썬 환경을 함께 쓴다. A9는 A8 편집기에서 만든 함수를 쓰므로, 쪽을 새로 열었다면 A8 편집기를 먼저 실행한다."
+ },
+ {
+  "id": 11,
+  "tag": "li",
+  "class": "",
+  "html": "실행이 15초를 넘기면 멈춘다. 끝나지 않는 반복이 있는지 확인한다."
+ },
+ {
+  "id": 12,
+  "tag": "h2",
+  "class": "",
+  "html": "A8 · 거스름돈 두 방법을 코드로<small>14분 · 개인(순회 개별 피드백)</small>"
+ },
+ {
+  "id": 13,
+  "tag": "p",
+  "class": "lead",
+  "html": "A4의 규칙과 A5의 표를 코드로 옮겨 보자."
+ },
+ {
+  "id": 14,
+  "tag": "h3",
+  "class": "",
+  "html": "큰 동전부터 내 보기"
+ },
+ {
+  "id": 15,
+  "tag": "p",
+  "class": "",
+  "html": "동전 1원, 5원, 10원으로 17원을 만든다. 큰 동전부터 쓸 수 있는 만큼 쓰고 남은 금액을 넘긴다."
+ },
+ {
+  "id": 16,
+  "tag": "p",
+  "class": "q",
+  "html": "28원이면 10원 동전을 몇 개 쓰고 얼마가 남을까?"
+ },
+ {
+  "id": 17,
+  "tag": "p",
+  "class": "why",
+  "html": "28에서 10을 2번 빼면 8이 남는다."
+ },
+ {
+  "id": 18,
+  "tag": "h3",
+  "class": "",
+  "html": "몫, 나머지, 거꾸로 훑기"
+ },
+ {
+  "id": 19,
+  "tag": "p",
+  "class": "",
+  "html": "몫은 <code class=\"i\">//</code>, 나머지는 <code class=\"i\">%</code>로 구한다. <code class=\"i\">reversed(목록)</code>은 뒤에서부터 하나씩 내준다."
+ },
+ {
+  "id": 20,
+  "tag": "p",
+  "class": "q",
+  "html": "아래 코드의 첫 줄에는 무엇이 나올까?"
+ },
+ {
+  "id": 21,
+  "tag": "h3",
+  "class": "",
+  "html": "큰 동전 함수 채우기 ④⑤"
+ },
+ {
+  "id": 22,
+  "tag": "p",
+  "class": "",
+  "html": "<code class=\"i\">greedy_coins(coins, amount)</code>의 ④⑤를 채우자. 큰 동전부터 쓴 개수를 돌려주는 함수이다. 먼저 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A8\">2부 A8</a>의 6원 예측 칸을 채워 두자."
+ },
+ {
+  "id": 23,
+  "tag": "p",
+  "class": "tip",
+  "html": "④는 큰 동전부터 훑는 목록, ⑤는 남은 금액이다. 실행하면 <code class=\"i\">greedy_coins: 3</code> 뒤에 <code class=\"i\">NameError: ____6____</code>이 나오는 것이 정상이다. dp_coins는 뒤 걸음에서 채운다."
+ },
+ {
+  "id": 24,
+  "tag": "p",
+  "class": "",
+  "html": "아래에서 1걸음의 17원을 확인하자."
+ },
+ {
+  "id": 25,
+  "tag": "h3",
+  "class": "",
+  "html": "만들 수 없는 금액"
+ },
+ {
+  "id": 26,
+  "tag": "p",
+  "class": "",
+  "html": "dp[a]는 a원을 만드는 최소 개수이다. 동전이 [2, 5]뿐이면 1원과 3원은 만들 수 없다. 이런 칸에는 <b>INF</b>(무한대, 아주 큰 값)를 적는다."
+ },
+ {
+  "id": 27,
+  "tag": "p",
+  "class": "q",
+  "html": "dp[3]이 INF인 까닭은?"
+ },
+ {
+  "id": 28,
+  "tag": "p",
+  "class": "why",
+  "html": "2와 5를 몇 개 합쳐도 3이 되지 않는다."
+ },
+ {
+  "id": 29,
+  "tag": "h3",
+  "class": "",
+  "html": "표 시작하기 ⑥⑦"
+ },
+ {
+  "id": 30,
+  "tag": "p",
+  "class": "",
+  "html": "표는 모든 칸을 INF로 시작하고 0원만 0개로 정한다. <code class=\"i\">[x] * k</code>는 x를 k개 늘어놓은 리스트이다."
+ },
+ {
+  "id": 31,
+  "tag": "p",
+  "class": "q",
+  "html": "아래 코드의 둘째 줄에는 무엇이 나올까?"
+ },
+ {
+  "id": 32,
+  "tag": "p",
+  "class": "",
+  "html": "위 편집기의 <code class=\"i\">dp_coins</code>에서 ⑥⑦을 채우자. ⑥은 이미 있는 이름 <code class=\"i\">INF</code>를 쓴다."
+ },
+ {
+  "id": 33,
+  "tag": "h3",
+  "class": "",
+  "html": "칸 채우기 ⑧⑨"
+ },
+ {
+  "id": 34,
+  "tag": "p",
+  "class": "",
+  "html": "동전 c를 마지막으로 쓰면 a원의 개수는 <code class=\"i\">dp[a - c] + 1</code>이다. 이 후보가 지금의 dp[a]보다 작을 때만 바꾼다."
+ },
+ {
+  "id": 35,
+  "tag": "p",
+  "class": "q",
+  "html": "위 표에서 a = 5, c = 5이면 후보는 얼마일까?"
+ },
+ {
+  "id": 36,
+  "tag": "p",
+  "class": "why",
+  "html": "dp[0] + 1 = 1이다."
+ },
+ {
+  "id": 37,
+  "tag": "p",
+  "class": "",
+  "html": "⑧은 후보가 dp[a]보다 작은지 묻는 조건, ⑨는 dp[a]에 넣을 값이다. ⑧을 먼저 정하면 ⑨는 같은 후보이다."
+ },
+ {
+  "id": 38,
+  "tag": "h3",
+  "class": "",
+  "html": "점검하고 6원 비교하기"
+ },
+ {
+  "id": 39,
+  "tag": "p",
+  "class": "",
+  "html": "[&#10004; 점검]을 누르자. <code class=\"i\">A8 점검 통과</code>가 나오면 완성이다."
+ },
+ {
+  "id": 40,
+  "tag": "p",
+  "class": "",
+  "html": "실행 때 맨 끝에 나온 6원 결과 두 줄을 &lsquo;실제&rsquo; 칸에 쓴다."
+ },
+ {
+  "id": 41,
+  "tag": "summary",
+  "class": "",
+  "html": "끝까지 막혔다면 · 빈칸 답"
+ },
+ {
+  "id": 42,
+  "tag": "p",
+  "class": "",
+  "html": "선택 도전: 12주차의 <code class=\"i\">bisect_right(coins, a) - 1</code>은 a 이하의 가장 큰 동전의 자리를 준다. 이 식으로 greedy_coins를 다시 써 보아도 된다."
+ },
+ {
+  "id": 43,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 두 방법을 함수로 옮겼다. 갈라지는 곳과 착수 메모는 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A8\">2부 A8</a>에 적는다."
+ },
+ {
+  "id": 44,
+  "tag": "h2",
+  "class": "",
+  "html": "A9 · 반례 탐색기 만들기<small>13분 · 개인</small>"
+ },
+ {
+  "id": 45,
+  "tag": "p",
+  "class": "lead",
+  "html": "A8에서 두 방법이 6원에서 갈라지는 것을 보았다. 갈라지는 금액을 모두 찾아 주는 함수를 만들어 보자."
+ },
+ {
+  "id": 46,
+  "tag": "h3",
+  "class": "",
+  "html": "갈라지는 금액 하나 보기"
+ },
+ {
+  "id": 47,
+  "tag": "p",
+  "class": "",
+  "html": "[1, 3, 4]로 6원을 만들 때 큰 동전부터 쓰면 4+1+1 = 3개이고, 최소는 3+3 = 2개이다. 이렇게 큰 동전부터 쓴 개수가 최소 개수와 다른 금액을 <b>반례</b>라 부른다."
+ },
+ {
+  "id": 48,
+  "tag": "p",
+  "class": "q",
+  "html": "[1, 3, 4]에서 8원은 반례일까?"
+ },
+ {
+  "id": 49,
+  "tag": "p",
+  "class": "why",
+  "html": "큰 동전부터 하면 4+4 = 2개이다. 동전 하나로는 8원을 만들 수 없으니 2개가 최소이고, 두 개수가 같다."
+ },
+ {
+  "id": 50,
+  "tag": "h3",
+  "class": "",
+  "html": "두 함수 나란히 불러 보기"
+ },
+ {
+  "id": 51,
+  "tag": "p",
+  "class": "",
+  "html": "A8에서 만든 두 함수를 같은 금액에 불러 개수를 나란히 찍어 보자."
+ },
+ {
+  "id": 52,
+  "tag": "p",
+  "class": "q",
+  "html": "5원, 6원, 7원 중 두 숫자가 다른 줄은 어느 것일까?"
+ },
+ {
+  "id": 53,
+  "tag": "p",
+  "class": "tip",
+  "html": "<code class=\"i\">NameError: name 'greedy_coins' is not defined</code>가 나오면 위 A8의 편집기를 먼저 [&#9654; 실행]한다."
+ },
+ {
+  "id": 54,
+  "tag": "h3",
+  "class": "",
+  "html": "목록 함수 채우기 ⑩"
+ },
+ {
+  "id": 55,
+  "tag": "p",
+  "class": "",
+  "html": "1원부터 <code class=\"i\">limit</code>원까지 하나씩 보며 두 개수가 다른 금액만 목록에 모으는 함수이다. ⑩에는 &ldquo;두 개수가 다른가&rdquo;를 묻는 조건을 쓴다."
+ },
+ {
+  "id": 56,
+  "tag": "p",
+  "class": "",
+  "html": "실행해 함수를 정의한 뒤, 아래에서 [1, 3, 4]를 limit 10으로 돌려 보자."
+ },
+ {
+  "id": 57,
+  "tag": "p",
+  "class": "q",
+  "html": "목록에는 금액이 몇 개 들어갈까?"
+ },
+ {
+  "id": 58,
+  "tag": "h3",
+  "class": "",
+  "html": "점검하고 완성하기"
+ },
+ {
+  "id": 59,
+  "tag": "p",
+  "class": "",
+  "html": "[&#10004; 점검]은 A8 편집기에서 만든 <code class=\"i\">greedy_coins</code>와 <code class=\"i\">dp_coins</code>를 쓴다. <code class=\"i\">A9 점검 통과</code>가 나오면 완성이다."
+ },
+ {
+  "id": 60,
+  "tag": "p",
+  "class": "tip",
+  "html": "점검이 실패하면 메시지에서 앞쪽 목록이 내 결과이다."
+ },
+ {
+  "id": 61,
+  "tag": "h3",
+  "class": "",
+  "html": "동전 체계 4개 돌려 보기"
+ },
+ {
+  "id": 62,
+  "tag": "p",
+  "class": "",
+  "html": "동전 체계 4개를 limit 30과 50으로 돌리는 코드가 들어 있다. 먼저 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A9\">2부 A9</a>의 표에 예측을 쓴 뒤 실행하면 8줄이 나온다. 실제 목록은 그 표에 그대로 옮기자."
+ },
+ {
+  "id": 63,
+  "tag": "p",
+  "class": "q",
+  "html": "[1, 5, 10, 20, 25]는 limit 30에서 [], limit 50에서 [40, …]이 나왔다. limit 30에서 못 찾은 까닭은?"
+ },
+ {
+  "id": 64,
+  "tag": "p",
+  "class": "why",
+  "html": "30까지만 시험하면 40원은 보이지 않는다."
+ },
+ {
+  "id": 65,
+  "tag": "h3",
+  "class": "",
+  "html": "내 동전 체계로 돌려 보기"
+ },
+ {
+  "id": 66,
+  "tag": "p",
+  "class": "",
+  "html": "같은 편집기 맨 아래에 줄을 더해 내 체계 두 개를 돌려 보자(이 칸의 내용이 제출된다). 하나는 큰 동전부터가 맞을 것 같은 체계, 하나는 틀릴 것 같은 체계로 한다. 1을 포함해 오름차순으로 쓴다."
+ },
+ {
+  "id": 67,
+  "tag": "p",
+  "class": "",
+  "html": "결과는 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A9\">2부 A9</a>의 &lsquo;내 동전 체계&rsquo; 표에 옮긴다. 반례가 나온 체계 하나로 같은 쪽에서 증명 문장도 써 보자."
+ },
+ {
+  "id": 68,
+  "tag": "summary",
+  "class": "",
+  "html": "끝까지 막혔다면 · ⑩ 답"
+ },
+ {
+  "id": 69,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 두 방법이 달라지는 금액을 찾는 함수를 만들고 여러 체계에 돌려 보았다. 이어서 실습 과제 안내를 읽는다."
+ },
+ {
+  "id": 70,
+  "tag": "h2",
+  "class": "",
+  "html": "실습 과제 안내 · DP 테이블 설계와 반례 도출<small>A8 착수 · A9·A11 이어짐 · A14 마무리 · 잔여는 주간 과제</small>"
+ },
+ {
+  "id": 71,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">min_coins(coins, amount)</code>: 동전을 무한히 쓸 수 있을 때 <code class=\"i\">amount</code>를 만드는 최소 동전 개수를 돌려준다. 만들 수 없으면 <code class=\"i\">-1</code>, <code class=\"i\">amount == 0</code>이면 <code class=\"i\">0</code>이다. <code class=\"i\">coins</code>는 정렬되어 있다고 가정하지 않고 1이 없을 수 있다. 1차원 DP 표로 구현한다."
+ },
+ {
+  "id": 72,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">grid_paths(grid)</code>: 0 = 통행, 1 = 막힘인 R×C 격자에서 좌상단에서 우하단까지 오른쪽·아래로만 가는 경로 수를 돌려준다. 시작이나 도착이 막혀 있으면 0이다. 2차원 DP 표로 구현한다."
+ },
+ {
+  "id": 73,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">greedy_counterexample(coins)</code>: <code class=\"i\">coins</code>는 오름차순이고 1을 포함한다. 큰 동전부터 쓴 개수가 최소 개수와 다른 <b>가장 작은 금액</b>(반례)을 돌려준다. 검사 범위는 1 ~ 2×가장 큰 동전이고, 없으면 <code class=\"i\">None</code>이다."
+ },
+ {
+  "id": 74,
+  "tag": "li",
+  "class": "",
+  "html": "서술(3~5문장): 반례가 나오는 동전 체계 1개를 내가 설계해 금액·두 조합·개수를 쓰고, <code class=\"i\">min_coins</code>의 상태 정의·전이·초기값을 내 말로 적는다."
+ },
+ {
+  "id": 75,
+  "tag": "li",
+  "class": "",
+  "html": "<a class=\"xlink\" href=\"student_code_lab_part4.html#assign\">실습 코드 4부</a>의 &lsquo;실습 과제 작성 칸&rsquo;에 쓰고, 그 쪽의 [저장(JSON)] 한 번으로 낸다. 활동지와 <code class=\"i\">.py</code> 파일은 내지 않는다."
+ },
+ {
+  "id": 76,
+  "tag": "li",
+  "class": "",
+  "html": "코드 3칸(<code class=\"i\">assign.min_coins</code>, <code class=\"i\">assign.grid_paths</code>, <code class=\"i\">assign.greedy_counterexample</code>)과 서술 3칸(<code class=\"i\">assign.essay.*</code>)을 채운다."
+ },
+ {
+  "id": 77,
+  "tag": "li",
+  "class": "",
+  "html": "각 코드의 맨 첫 줄에 구현 계획 한 줄을 주석(<code class=\"i\">#</code>)으로 쓴다. 상태 정의와 목표 비용을 내 말로 적는다."
+ },
+ {
+  "id": 78,
+  "tag": "li",
+  "class": "",
+  "html": "복잡도와 그 근거는 각 과제 코드 칸 첫 줄의 구현 계획 주석에 함께 쓴다(예: <code class=\"i\"># 구현 계획: …, 시간 O(…)·공간 O(…), 까닭 …</code>)."
+ },
+ {
+  "id": 79,
+  "tag": "li",
+  "class": "",
+  "html": "A8·A11에서 만든 코드를 복사해 와서 과제 이름과 요건에 맞게 고친다."
+ },
+ {
+  "id": 80,
+  "tag": "li",
+  "class": "",
+  "html": "A8에서 착수하고 A9·A11에서 이어 쓰며 A14에서 마무리 점검한다. 미완 부분은 주간 과제로 이어진다."
+ },
+ {
+  "id": 81,
+  "tag": "li",
+  "class": "",
+  "html": "요구사항 구현 정확성 50"
+ },
+ {
+  "id": 82,
+  "tag": "li",
+  "class": "",
+  "html": "복잡도 분석 타당성 30"
+ },
+ {
+  "id": 83,
+  "tag": "li",
+  "class": "",
+  "html": "코드 품질 20"
+ },
+ {
+  "id": 84,
+  "tag": "li",
+  "class": "",
+  "html": "4단계 채점기준은 <a href=\"rubric.html\">rubric.html</a>에서 확인한다(A13 직후 공개)."
+ },
+ {
+  "id": 85,
+  "tag": "summary",
+  "class": "",
+  "html": "제출 전 확인과 주의 · A14에서 펼친다"
+ },
+ {
+  "id": 86,
+  "tag": "li",
+  "class": "",
+  "html": "제출 전에 세 코드 칸을 각각 [&#9654; 실행]해 정의되는지, A14 점검 출력이 &lsquo;점검 기대값&rsquo;과 같은지 확인한다. 서술 3칸도 채운다."
+ },
+ {
+  "id": 87,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">min_coins</code>는 <code class=\"i\">amount</code>가 커도(예: 20000) <code class=\"i\">RecursionError</code> 없이 끝나야 한다. 표를 반복문으로 채우는 방식으로 쓴다."
+ },
+ {
+  "id": 88,
+  "tag": "li",
+  "class": "",
+  "html": "세 함수는 입력 리스트를 <b>바꾸지 않는다</b>. 정렬이 필요하면 복사본을 정렬한다."
+ },
+ {
+  "id": 89,
+  "tag": "li",
+  "class": "",
+  "html": "구현 계획 주석에는 <code class=\"i\">min_coins</code>와 <code class=\"i\">grid_paths</code>의 시간·공간 복잡도를 반복문 구조에 근거해 쓴다. 채점기준표의 &ldquo;복잡도 분석 타당성&rdquo;과 같은 문구이다."
+ },
+ {
+  "id": 90,
+  "tag": "li",
+  "class": "",
+  "html": "[앞 쪽 코드 불러오기]는 함수를 실행 환경에만 올리고 편집기 칸을 채우지 않으므로 과제 코드에는 쓰지 않는다."
+ },
+ {
+  "id": 91,
+  "tag": "h2",
+  "class": "",
+  "html": "AI 활용 3단계 · 이 과제에 맞춘 예<small>허용 · 조건부 허용 · 금지</small>"
+ },
+ {
+  "id": 92,
+  "tag": "p",
+  "class": "",
+  "html": "기준은 &ldquo;AI에게 무엇을 시켰는가&rdquo;이다. 개념·용어·오류 원인을 묻는 것은 허용이고, 과제 요구사항·완성된 구현·설계 판단을 시켜 결과물을 받아 제출하는 것은 금지이다."
+ },
+ {
+  "id": 93,
+  "tag": "li",
+  "class": "",
+  "html": "&ldquo;메모이제이션과 타뷸레이션은 무엇이 달라?&rdquo;, &ldquo;탐욕 알고리즘이 최적이 되려면 어떤 성질이 필요해?&rdquo; 같은 개념·용어 질의"
+ },
+ {
+  "id": 94,
+  "tag": "li",
+  "class": "",
+  "html": "&ldquo;RecursionError가 무슨 뜻이야?&rdquo;, &ldquo;IndexError가 왜 나오는지 해설&rdquo; 같은 오류 메시지 해설"
+ },
+ {
+  "id": 95,
+  "tag": "li",
+  "class": "",
+  "html": "&ldquo;dynamic programming이라는 이름은 어디서 유래했어?&rdquo; 같은 용어 번역·개념 요약, 수업 자료 복습 질문(코드는 받지 않음)"
+ },
+ {
+  "id": 96,
+  "tag": "li",
+  "class": "",
+  "html": "내 코드 결과가 TEST와 다를 때 원인 힌트만 요청(수정은 직접 한다)"
+ },
+ {
+  "id": 97,
+  "tag": "li",
+  "class": "",
+  "html": "복잡도 검토 요청: 내가 쓴 분석문과 코드가 맞는지 검토만 맡긴다. 분석을 대신 세우게 하지 않는다"
+ },
+ {
+  "id": 98,
+  "tag": "li",
+  "class": "",
+  "html": "엣지 케이스 브레인스토밍(amount = 0, 만들 수 없는 금액, 동전 1개, 시작이나 도착이 막힌 격자, 1×1 격자)"
+ },
+ {
+  "id": 99,
+  "tag": "li",
+  "class": "",
+  "html": "내 코드의 경계 조건·성능 검토 요청(수정은 직접 한다)"
+ },
+ {
+  "id": 100,
+  "tag": "li",
+  "class": "",
+  "html": "내 코드와 서술의 개선 아이디어 제안 요청(제안만 참고하고 직접 다시 작성)"
+ },
+ {
+  "id": 101,
+  "tag": "li",
+  "class": "",
+  "html": "과제 문장(&ldquo;최소 동전 개수를 구하는 함수, 격자 경로 수를 구하는 함수, 큰 동전부터 쓰는 방식과 최솟값이 달라지는 가장 작은 금액(반례)을 구하는 함수를 작성하라&rdquo;)을 그대로 입력해 전체 코드 생성"
+ },
+ {
+  "id": 102,
+  "tag": "li",
+  "class": "",
+  "html": "AI가 쓴 <code class=\"i\">min_coins</code>/<code class=\"i\">grid_paths</code>/<code class=\"i\">greedy_counterexample</code>를 그대로, 또는 변수명만 바꿔 제출"
+ },
+ {
+  "id": 103,
+  "tag": "li",
+  "class": "",
+  "html": "상태 정의·전이 방정식·초기값·계산 순서 등 DP 설계 판단, 반례가 되는 동전 체계·금액을 AI가 대신 찾음"
+ },
+ {
+  "id": 104,
+  "tag": "li",
+  "class": "",
+  "html": "복잡도 분석이나 구현 계획(상태 정의와 목표 비용 포함)을 AI에게 대신 세우게 하여 제출"
+ },
+ {
+  "id": 105,
+  "tag": "li",
+  "class": "",
+  "html": "상태 정의·전이 설계나 반례 증명 문장을 AI가 대신 쓰게 하여 제출"
+ }
+]

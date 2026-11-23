@@ -1,0 +1,548 @@
+[
+ {
+  "id": 0,
+  "tag": "h1",
+  "class": "",
+  "html": "12주차 실습 코드 4부 — 두 정렬의 비교 횟수와 과제 마무리"
+ },
+ {
+  "id": 1,
+  "tag": "p",
+  "class": "lead",
+  "html": "3차시에 쓴다. A11에서는 두 정렬의 비교 횟수를 코드로 세고, A14에서는 실습 과제를 점검한다. A14 부분은 접혀 있으며 A14 시작 때 연다."
+ },
+ {
+  "id": 2,
+  "tag": "p",
+  "class": "meta",
+  "html": "<span>학번·이름은 위쪽 저장 바에 쓴다.</span>"
+ },
+ {
+  "id": 3,
+  "tag": "h2",
+  "class": "",
+  "html": "사용법<small>#how</small>"
+ },
+ {
+  "id": 4,
+  "tag": "li",
+  "class": "",
+  "html": "편집기에는 필요한 코드가 미리 들어 있다. <code class=\"i\">____12____</code> 같은 자리를 채우고 [&#9654; 실행]을 누른다."
+ },
+ {
+  "id": 5,
+  "tag": "li",
+  "class": "",
+  "html": "[&#10004; 점검]은 내 코드가 맞는지 확인해 준다. [처음 코드로]는 편집기를 처음 상태로 되돌린다."
+ },
+ {
+  "id": 6,
+  "tag": "li",
+  "class": "",
+  "html": "편집기에 쓴 내용은 자동으로 보관된다. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만든다."
+ },
+ {
+  "id": 7,
+  "tag": "summary",
+  "class": "",
+  "html": "단축키와 오류가 날 때"
+ },
+ {
+  "id": 8,
+  "tag": "li",
+  "class": "",
+  "html": "Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기이다."
+ },
+ {
+  "id": 9,
+  "tag": "li",
+  "class": "",
+  "html": "같은 쪽의 편집기는 파이썬 환경을 공유한다. 앞 편집기에서 만든 함수를 뒤 편집기에서 쓸 수 있다."
+ },
+ {
+  "id": 10,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">NameError</code>는 아직 정의하지 않은 이름을 쓴 것이다. 빈칸이 남았거나 앞 편집기를 실행하지 않았는지 본다."
+ },
+ {
+  "id": 11,
+  "tag": "li",
+  "class": "",
+  "html": "점검이 실패하면 <code class=\"i\">AssertionError</code>가 나오고 마지막 줄이 메시지이다. 메시지의 입력을 그대로 넣어 <code class=\"i\">print(count_equal([4, 4, 4], 4))</code>처럼 내 결과를 찍어 본다."
+ },
+ {
+  "id": 12,
+  "tag": "li",
+  "class": "",
+  "html": "실행이 15초를 넘기면 멈춘다. 반복이 끝나지 않는 곳이 있는지 확인한다."
+ },
+ {
+  "id": 13,
+  "tag": "h2",
+  "class": "",
+  "html": "A11 · 정렬 코드와 비교 횟수 측정<small>12분 · 개인</small>"
+ },
+ {
+  "id": 14,
+  "tag": "p",
+  "class": "lead",
+  "html": "A4에서 손으로 한 병합 정렬과 퀵 정렬을 코드로 옮기고, 비교 횟수를 직접 세어 보자."
+ },
+ {
+  "id": 15,
+  "tag": "h3",
+  "class": "",
+  "html": "합칠 때 비교 세기"
+ },
+ {
+  "id": 16,
+  "tag": "p",
+  "class": "",
+  "html": "병합 정렬은 정렬된 두 리스트를 하나로 합친다. 앞에서 한 원소씩 견주어 작은 쪽을 꺼내는데, 이 견주기 한 번이 비교 한 번이다."
+ },
+ {
+  "id": 17,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">l = [1, 2]</code>, <code class=\"i\">r = [3, 4]</code>를 합칠 때 비교는 모두 몇 번일까?"
+ },
+ {
+  "id": 18,
+  "tag": "p",
+  "class": "why",
+  "html": "1과 3, 2와 3을 견준 두 번이다. l이 비면 3과 4는 비교 없이 붙는다."
+ },
+ {
+  "id": 19,
+  "tag": "h3",
+  "class": "",
+  "html": "피벗으로 나누기"
+ },
+ {
+  "id": 20,
+  "tag": "p",
+  "class": "",
+  "html": "퀵 정렬은 첫 원소를 피벗으로 삼는다. 나머지를 피벗보다 작으면 small에, 아니면 big에 담고, 같은 값은 big으로 보낸다. 나머지 원소와 피벗을 견주는 것이 비교 한 번이다."
+ },
+ {
+  "id": 21,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">[3, 1, 2]</code>에서 피벗 3을 고르면 big에 담기는 원소는 몇 개일까?"
+ },
+ {
+  "id": 22,
+  "tag": "p",
+  "class": "why",
+  "html": "1과 2가 모두 3보다 작아 small에 들어간다. big은 비어 있다."
+ },
+ {
+  "id": 23,
+  "tag": "h3",
+  "class": "",
+  "html": "cnt 칸과 리스트 자르기"
+ },
+ {
+  "id": 24,
+  "tag": "p",
+  "class": "",
+  "html": "비교 횟수는 숫자 하나를 담은 리스트 <code class=\"i\">cnt</code>에 센다. 함수 안에서 <code class=\"i\">cnt[0] += 1</code>을 하면 밖의 칸도 늘어난다. 리스트를 자르는 <code class=\"i\">l[i:]</code>와 이어 붙이는 <code class=\"i\">+</code>도 함께 써 보자."
+ },
+ {
+  "id": 25,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">l = [1, 4, 6]</code>, <code class=\"i\">i = 1</code>일 때 <code class=\"i\">l[i:]</code>는 무엇일까?"
+ },
+ {
+  "id": 26,
+  "tag": "p",
+  "class": "why",
+  "html": "l[i:]는 i번째부터 끝까지이다. 출력의 둘째 줄과 같다."
+ },
+ {
+  "id": 27,
+  "tag": "h3",
+  "class": "",
+  "html": "merge_sort 채우기"
+ },
+ {
+  "id": 28,
+  "tag": "p",
+  "class": "",
+  "html": "아래 편집기에 두 정렬의 골격이 들어 있다. 먼저 <code class=\"i\">merge_sort</code>의 ⑫⑬⑭를 채우자. ⑫는 더 쪼갤 수 없을 때의 조건, ⑬은 같으면 왼쪽을 먼저 꺼내는 조건, ⑭는 남은 것을 이어 붙인 결과이다."
+ },
+ {
+  "id": 29,
+  "tag": "p",
+  "class": "tip",
+  "html": "<code class=\"i\">NameError: name '____13____' is not defined</code>가 나오면 그 번호의 자리가 아직 비어 있다는 뜻이다."
+ },
+ {
+  "id": 30,
+  "tag": "p",
+  "class": "",
+  "html": "[&#9654; 실행]을 누르면 출력은 없다. 아래 편집기로 <code class=\"i\">merge_sort</code>를 불러 확인해 보자."
+ },
+ {
+  "id": 31,
+  "tag": "h3",
+  "class": "",
+  "html": "quick_sort 채우기"
+ },
+ {
+  "id": 32,
+  "tag": "p",
+  "class": "",
+  "html": "같은 편집기에서 <code class=\"i\">quick_sort</code>의 ⑮⑯⑰을 채우자. ⑮는 피벗, ⑯은 small에 넣는 조건, ⑰은 small 정렬 결과와 피벗과 big 정렬 결과를 이어 붙인 리스트이다."
+ },
+ {
+  "id": 33,
+  "tag": "p",
+  "class": "tip",
+  "html": "<code class=\"i\">(small if ⑯ else big).append(x)</code>는 조건이 참이면 small에, 아니면 big에 x를 넣는다."
+ },
+ {
+  "id": 34,
+  "tag": "p",
+  "class": "",
+  "html": "채운 뒤 위 편집기를 실행하고 아래 편집기로 확인한다."
+ },
+ {
+  "id": 35,
+  "tag": "h3",
+  "class": "",
+  "html": "점검과 ARR8 횟수"
+ },
+ {
+  "id": 36,
+  "tag": "p",
+  "class": "",
+  "html": "위 편집기의 [&#10004; 점검]을 누르면 내 정렬이 <code class=\"i\">sorted()</code>와 같은 결과를 내는지 본다. <code class=\"i\">A11 점검 통과</code> 다음에 A4의 ARR8을 센 비교 횟수 두 값도 나온다. 두 값은 활동지 <a class=\"xlink\" href=\"student_workbook_part3.html#A11\">3부 A11</a>의 [ARR8] 칸에 쓰고, A4에서 손으로 센 값과 견준다."
+ },
+ {
+  "id": 37,
+  "tag": "p",
+  "class": "tip",
+  "html": "<code class=\"i\">AssertionError</code>의 마지막 줄 끝에 내 정렬이 낸 리스트가 나온다. 그 리스트에서 어디가 틀렸는지 먼저 찾는다."
+ },
+ {
+  "id": 38,
+  "tag": "summary",
+  "class": "",
+  "html": "막히면 · 횟수가 손 계산과 다를 때"
+ },
+ {
+  "id": 39,
+  "tag": "p",
+  "class": "",
+  "html": "<code class=\"i\">cnt[0] += 1</code>이 비교 직전에 한 번만 실행되는 자리에 있는지 본다. A4의 합치기·분할 기록과 한 단계씩 맞대어 본다."
+ },
+ {
+  "id": 40,
+  "tag": "h3",
+  "class": "",
+  "html": "예측하고 측정하기"
+ },
+ {
+  "id": 41,
+  "tag": "p",
+  "class": "",
+  "html": "활동지 <a class=\"xlink\" href=\"student_workbook_part3.html#A11\">3부 A11</a> 표의 [예측] 칸을 먼저 채운 뒤 실행하자. 입력은 시드 12로 고정되어 같은 값이 나온다. 위 편집기를 먼저 실행해 두어야 한다."
+ },
+ {
+  "id": 42,
+  "tag": "p",
+  "class": "q",
+  "html": "정렬된 2000개에 첫 원소 피벗 퀵 정렬을 하면 어떻게 될까?"
+ },
+ {
+  "id": 43,
+  "tag": "p",
+  "class": "",
+  "html": "6줄이 출력되면 병합과 퀵의 값을 [실제] 칸에 옮겨 쓴다. 퀵 칸에 숫자 대신 오류 이름이 나오면 그 이름을 그대로 쓴다."
+ },
+ {
+  "id": 44,
+  "tag": "summary",
+  "class": "",
+  "html": "끝까지 막혔다면 · 빈칸 답 보기"
+ },
+ {
+  "id": 45,
+  "tag": "summary",
+  "class": "",
+  "html": "sorted()와 list.sort()"
+ },
+ {
+  "id": 46,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">sorted(a)</code>는 a를 바꾸지 않고 정렬된 새 리스트를 돌려준다. <code class=\"i\">a.sort()</code>는 a 자신을 제자리에서 정렬하고 None을 돌려준다."
+ },
+ {
+  "id": 47,
+  "tag": "li",
+  "class": "",
+  "html": "위 점검 코드에서 <code class=\"i\">sorted(a)</code>는 내 정렬이 맞는지 비교하는 기준으로 쓰였다."
+ },
+ {
+  "id": 48,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 두 정렬을 코드로 만들고 비교 횟수를 측정했다. 측정값으로 활동지의 관찰·정리를 쓴 뒤, A14에서 실습 과제를 마무리한다."
+ },
+ {
+  "id": 49,
+  "tag": "h2",
+  "class": "",
+  "html": "A14 · 과제 마무리 점검과 밧줄 자르기<small>A14 시작 때 펼침 · 14분 · 개인</small>"
+ },
+ {
+  "id": 50,
+  "tag": "summary",
+  "class": "",
+  "html": "A14 시작 때 펼친다(과제 점검 입력, 요건 안내, 보조 연습 ROPE)"
+ },
+ {
+  "id": 51,
+  "tag": "p",
+  "class": "lead",
+  "html": "실습 과제의 세 함수가 처음 보는 입력과 큰 입력에서도 통하는지 확인하자. 그 뒤 선택 문제로 밧줄 자르기를 풀어 본다."
+ },
+ {
+  "id": 52,
+  "tag": "h3",
+  "class": "",
+  "html": "가까운 값 찾기 보기"
+ },
+ {
+  "id": 53,
+  "tag": "p",
+  "class": "",
+  "html": "정렬된 리스트에서 x와 가장 가까운 원소를 찾는다. 거리가 같으면 작은 값을 고른다."
+ },
+ {
+  "id": 54,
+  "tag": "p",
+  "class": "q",
+  "html": "x = 30이면 가장 가까운 값은 무엇일까?"
+ },
+ {
+  "id": 55,
+  "tag": "p",
+  "class": "why",
+  "html": "20과 40이 모두 거리 10이다. 같으면 작은 값이므로 20이다."
+ },
+ {
+  "id": 56,
+  "tag": "h3",
+  "class": "",
+  "html": "삽입 자리 찍어 보기"
+ },
+ {
+  "id": 57,
+  "tag": "p",
+  "class": "",
+  "html": "<code class=\"i\">bisect_left(S, x)</code>는 x가 들어갈 자리 i를 돌려준다. x를 여러 값으로 바꿔 i를 찍어 보자. i 둘레의 어느 값들을 견주면 가장 가까운 값을 찾을 수 있을지 생각해 본다."
+ },
+ {
+  "id": 58,
+  "tag": "p",
+  "class": "q",
+  "html": "x = 26일 때 i는 얼마일까? (자리 번호는 0부터 센다)"
+ },
+ {
+  "id": 59,
+  "tag": "h3",
+  "class": "",
+  "html": "세 함수 한 칸에 모으기"
+ },
+ {
+  "id": 60,
+  "tag": "p",
+  "class": "",
+  "html": "아래 편집기가 제출하는 칸이다. 실습 코드 2부 <a class=\"xlink\" href=\"student_code_lab_part2.html#A9\">A9</a>의 [내 코드 · A9 (count_equal, count_in_range 작성)] 칸에서 두 함수를 복사해 1) 자리에 붙이고, <code class=\"i\">closest_value</code>를 2) 자리에 쓴다. 쓴 뒤 [&#9654; 실행]을 누른다(출력은 없다)."
+ },
+ {
+  "id": 61,
+  "tag": "li",
+  "class": "",
+  "html": "<code class=\"i\">closest_value(a, x)</code>: <code class=\"i\">x</code>와 가장 가까운 원소를 돌려준다. 거리가 같으면 작은 값, 빈 리스트이면 <code class=\"i\">None</code>이다."
+ },
+ {
+  "id": 62,
+  "tag": "li",
+  "class": "",
+  "html": "세 함수는 <code class=\"i\">bisect</code>로 <b>O(log N)</b>에 구한다. 입력 리스트를 바꾸거나 다시 정렬하지 않는다. 입력은 오름차순이다."
+ },
+ {
+  "id": 63,
+  "tag": "p",
+  "class": "tip",
+  "html": "<code class=\"i\">NameError</code>가 나오면 A9의 두 함수를 편집기 맨 위에 붙이고 칸 전체를 실행했는지 본다."
+ },
+ {
+  "id": 64,
+  "tag": "h3",
+  "class": "",
+  "html": "과제 점검하기"
+ },
+ {
+  "id": 65,
+  "tag": "p",
+  "class": "",
+  "html": "위 편집기의 [&#10004; 점검]은 새 입력 TA에서 count 두 함수를 본다. 값이 하나씩 센 값과 같은가, 입력이 그대로인가, 100만 개에 질의 10만 번이 약 1초 안쪽인가를 확인한다. 통과하면 <code class=\"i\">A14 값 점검 통과</code>와 <code class=\"i\">큰 입력 점검 끝: …초</code>가 나온다."
+ },
+ {
+  "id": 66,
+  "tag": "p",
+  "class": "",
+  "html": "<code class=\"i\">closest_value</code>는 아래 편집기의 [&#10004; 점검]으로 확인한다. 먼저 위 편집기를 실행해 둔다."
+ },
+ {
+  "id": 67,
+  "tag": "p",
+  "class": "",
+  "html": "점검 결과는 활동지 <a class=\"xlink\" href=\"student_workbook_part3.html#A14\">3부 A14</a>의 점검표에 표시한다. 시간이 모자라면 closest_value 점검은 주간 과제에서 한다."
+ },
+ {
+  "id": 68,
+  "tag": "summary",
+  "class": "",
+  "html": "막히면 · 점검이 느리거나 실패할 때"
+ },
+ {
+  "id": 69,
+  "tag": "p",
+  "class": "",
+  "html": "점검이 느리거나 중단되면 100만 개를 하나씩 훑는 코드(<code class=\"i\">list.count</code>나 for 문)가 없는지 본다. 메시지의 r이 내 결과이고 v가 더 알맞은 값이면, 메시지의 x를 작은 리스트에 넣고 bisect_left가 준 i를 찍어 보자. i가 리스트의 맨 앞이거나 맨 뒤일 때 내 코드가 어디를 읽는지 본다. 활동지 2부 A9의 &lsquo;어느 원소들만 보면 되는가&rsquo;도 다시 읽는다."
+ },
+ {
+  "id": 70,
+  "tag": "h3",
+  "class": "",
+  "html": "복잡도 쓰기"
+ },
+ {
+  "id": 71,
+  "tag": "p",
+  "class": "",
+  "html": "쓰기 전에, 후보를 한 번에 절반씩 줄이면 몇 번 만에 다 없어지는지 세어 보자. N을 바꿔 가며 실행해도 좋다."
+ },
+ {
+  "id": 72,
+  "tag": "p",
+  "class": "",
+  "html": "아래 네 칸에 쓴다. 수업 시간에 끝내지 못하면 주간 과제에서 이어서 쓴다."
+ },
+ {
+  "id": 73,
+  "tag": "li",
+  "class": "",
+  "html": "시간: 경계 함수를 몇 번 부르고, 한 번에 몇 번쯤 견주는가?"
+ },
+ {
+  "id": 74,
+  "tag": "li",
+  "class": "",
+  "html": "공간: 새 리스트를 만드는가?"
+ },
+ {
+  "id": 75,
+  "tag": "li",
+  "class": "",
+  "html": "비교: 하나씩 세는 방법은 몇 번 보는가?"
+ },
+ {
+  "id": 76,
+  "tag": "h3",
+  "class": "",
+  "html": "밧줄 자르기 보기 (선택)"
+ },
+ {
+  "id": 77,
+  "tag": "p",
+  "class": "",
+  "html": "밧줄을 모두 같은 길이 L로 자르면 조각 수는 밧줄마다 <code class=\"i\">r // L</code>의 합이다. 조각이 k개 이상이 되는 <b>가장 긴 L</b>을 구하는 선택 문제이고, 채점하지 않는다."
+ },
+ {
+  "id": 78,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">ropes = [10, 7]</code>을 L = 2로 자르면 조각은 몇 개일까?"
+ },
+ {
+  "id": 79,
+  "tag": "p",
+  "class": "why",
+  "html": "10 // 2 = 5와 7 // 2 = 3을 더한 8개이다."
+ },
+ {
+  "id": 80,
+  "tag": "h3",
+  "class": "",
+  "html": "범위 줄이기 (선택)"
+ },
+ {
+  "id": 81,
+  "tag": "p",
+  "class": "",
+  "html": "후보 길이의 범위 [lo, hi]를 절반씩 줄여 가장 긴 L을 찾는다. ⑱은 mid 길이로 잘랐을 때 조각이 충분한지 묻는 조건이고, ⑲는 그렇지 않을 때 hi의 새 값이다. 채운 뒤 [&#9654; 실행]과 [&#10004; 점검]을 누른다."
+ },
+ {
+  "id": 82,
+  "tag": "p",
+  "class": "",
+  "html": "점검이 낸 가장 긴 L과 호출 횟수는 활동지 <a class=\"xlink\" href=\"student_workbook_part3.html#A14\">3부 A14</a>의 [코드 결과] 칸에 쓴다."
+ },
+ {
+  "id": 83,
+  "tag": "summary",
+  "class": "",
+  "html": "끝까지 막혔다면 · 빈칸 답 보기"
+ },
+ {
+  "id": 84,
+  "tag": "p",
+  "class": "",
+  "html": "점검이 끝난 뒤 내 결과를 눈으로 대조하고 싶으면 아래 상자를 연다."
+ },
+ {
+  "id": 85,
+  "tag": "summary",
+  "class": "",
+  "html": "활동을 마친 뒤 열어 확인한다 · TA 점검 기대값"
+ },
+ {
+  "id": 86,
+  "tag": "p",
+  "class": "",
+  "html": "TA = [2, 2, 2, 6, 6, 10, 14, 14, 14, 14, 18]에서 손으로 구한 값이다. 점검 코드는 이 값을 따로 쓰지 않고 하나씩 세어 비교하므로, 내 결과를 눈으로 대조할 때 쓴다."
+ },
+ {
+  "id": 87,
+  "tag": "th",
+  "class": "",
+  "html": "함수"
+ },
+ {
+  "id": 88,
+  "tag": "th",
+  "class": "",
+  "html": "호출 → 값"
+ },
+ {
+  "id": 89,
+  "tag": "p",
+  "class": "",
+  "html": "closest_value(TA, 4)는 2와 6이 같은 거리이므로 작은 값 2이다. 입력 리스트를 정렬하거나 바꾸면 &ldquo;입력 불변&rdquo; 점검에서 걸린다."
+ },
+ {
+  "id": 90,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 세 함수를 점검하고 복잡도를 써 보았다. 활동지 3부 A14에 점검 결과와 밧줄 기록을 정리한다."
+ }
+]

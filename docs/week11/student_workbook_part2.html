@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11주차 탐구 활동지 2부 · A6~A9 기록 (학생용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="stylesheet" href="../assets/codekit.css">
+<script src="../assets/codekit.js" defer></script>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script src="../assets/lesson.js" defer></script>
+<link rel="stylesheet" href="../assets/chatkit.css">
+<script src="../assets/chatkit.js" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/duo.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="prompt">&gt;&gt;&gt; workbook.week(11)  # 학생용 · 탐구 활동지 2부 A6~A9</div>
+  <h1>11주차 탐구 활동지 2부 — 코드 실습 기록 (A6~A9)</h1>
+  <p class="lead">2차시에 써요. 실습 코드를 실행해서 얻은 값을 여기에 적어요. 예측 칸은 실행하기 전에 먼저 써요.</p><p class="meta"><span>제출하지 않고 스스로 공부하는 활동지예요. 쓴 내용은 이 브라우저에 자동으로 저장돼요.</span></p>
+</header>
+<nav><a href="#A6">A6</a><a href="#A7">A7</a><a href="#A8">A8</a><a href="#A9">A9</a><a href="index.html">목록</a></nav>
+
+<section id="A6" class="sheet lesson">
+<h2>A6 · 손 추적과 코드 출력 대조<small>2차시 · 15분 · 개인</small></h2>
+<p class="lead">1부 A6에서 만든 두 함수의 출력을 옮기고, 손으로 따라간 순서와 맞춰 봐요. 쓰는 곳은 세 군데예요.</p>
+<div class="step">
+<h3>3·4걸음 출력 옮기기</h3>
+<p><a class="xlink" href="student_code_lab.html#A6">1부 A6</a>의 3걸음(bfs_order)과 4걸음(dfs_order)에서 나온 리스트를 그대로 옮겨요. 그리고 손 추적과 같은지 골라요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:18%">함수</th><th>코드가 낸 방문 순서</th><th style="width:34%">손 추적과 같은가</th></tr><tr><td class="lab">bfs_order<br><small>비교: A2 큐 규칙</small></td><td class="in-cell"><input type="text" class="in" data-key="A6.bfs.out" placeholder="출력된 리스트 그대로" data-label="A6 bfs_order 출력" autocomplete="off" data-model="[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;, &#x27;E&#x27;]"></td><td class="in-cell"><span class="rg" data-key="A6.bfs.same" data-type="radio" data-label="A6 bfs_order는 손 추적과 같은가"><label><input type="radio" name="r_A6_bfs_same" value="같다"> 같다</label><label><input type="radio" name="r_A6_bfs_same" value="다르다"> 다르다</label><label><input type="radio" name="r_A6_bfs_same" value="아직 완성하지 못했다"> 아직 완성하지 못했다</label></span></td></tr><tr><td class="lab">dfs_order<br><small>비교: A3 재귀</small></td><td class="in-cell"><input type="text" class="in" data-key="A6.dfs.out" placeholder="출력된 리스트 그대로" data-label="A6 dfs_order 출력" autocomplete="off" data-model="[&#x27;A&#x27;, &#x27;B&#x27;, &#x27;D&#x27;, &#x27;C&#x27;, &#x27;E&#x27;]"></td><td class="in-cell"><span class="rg" data-key="A6.dfs.same" data-type="radio" data-label="A6 dfs_order는 손 추적과 같은가"><label><input type="radio" name="r_A6_dfs_same" value="같다"> 같다</label><label><input type="radio" name="r_A6_dfs_same" value="다르다"> 다르다</label><label><input type="radio" name="r_A6_dfs_same" value="아직 완성하지 못했다"> 아직 완성하지 못했다</label></span></td></tr></table></div>
+<p class="qtext">다르다면 어디서부터 다른가요? 같으면 &ldquo;같음&rdquo;이라고 써요.</p>
+<div class="ans-row"><span class="n"></span><textarea class="in" rows="2" data-key="A6.diff" data-label="A6 다르다면 어디가 다른가"></textarea></div>
+</div>
+<div class="step">
+<h3>6걸음 시작 노드 F</h3>
+<p><a class="xlink" href="student_code_lab.html#A6">1부 A6</a>의 6걸음에서 <code class="i">bfs_order(g, "F")</code>를 다뤘어요. 두 함수 모두 실행하기 전에 예측을 쓰고, 실행한 뒤 실제를 써요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:34%">함수</th><th>예측(실행 전)</th><th>실제(실행 결과)</th></tr><tr><td class="lab">bfs_order(g, "F")</td><td class="in-cell"><input type="text" class="in" data-key="A6.f.bfs.pred" placeholder="리스트 모양" data-label="A6 시작 F bfs 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A6.f.bfs.real" placeholder="리스트 모양" data-label="A6 시작 F bfs 실제" autocomplete="off" data-model="[&#x27;F&#x27;]"></td></tr><tr><td class="lab">dfs_order(g, "F", set(), [])</td><td class="in-cell"><input type="text" class="in" data-key="A6.f.dfs.pred" placeholder="리스트 모양" data-label="A6 시작 F dfs 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A6.f.dfs.real" placeholder="리스트 모양" data-label="A6 시작 F dfs 실제" autocomplete="off" data-model="[&#x27;F&#x27;]"></td></tr></table></div>
+<p class="qtext">시작이 F이면 방문되는 노드는 무엇이고, 왜 그럴까요?</p>
+<div class="ans-row"><span class="n"></span><textarea class="in" rows="2" data-key="A6.f.why" data-label="A6 F에서 시작하면 어떤 노드가 방문되는가 왜 그런가"></textarea></div>
+</div>
+<div class="step">
+<h3>6걸음 내 코드의 기록 시점</h3>
+<p>내 코드는 노드를 visited에 언제 적나요? 큐에 넣을 때인가요, 꺼낼 때인가요? 까닭과 함께, A2 손 규칙과 같은 점·다른 점도 써요. 이 차이는 A8 T1에서 다시 만나요.</p>
+<div class="ans-row"><span class="n"></span><textarea class="in" rows="2" data-key="A6.mark" data-label="A6 내 코드에서 visited에 시작 노드를 언제 기록했는가"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · A6 결과 확인</summary>
+<ul>
+<li>G1, 시작 A: bfs_order는 <code class="i">['A', 'B', 'C', 'D', 'E']</code>로 A2 큐 규칙과 같아요. dfs_order는 <code class="i">['A', 'B', 'D', 'C', 'E']</code>로 A3 재귀와 같아요. A2 스택 규칙의 A, C, D, E, B와는 달라요.</li>
+<li>시작 F: 두 함수 모두 <code class="i">['F']</code>예요. 시작 노드는 이웃이 없어도 방문 순서에 기록돼요. 그리고 시작 노드에서 닿는 노드만 방문되기 때문이에요.</li>
+<li>코드의 큐(꺼낸 직후): A → [B, C], B → [C, D], C → [D], D → [E], E → [ ]. A2의 손 규칙에서는 D가 큐에 두 번 들어갔지만, 코드의 큐에는 한 번만 들어가요. 완성형은 &ldquo;넣을 때 기록&rdquo; 방식이에요. ②에서 시작 노드를 visited에 넣고, ⑤에서 이웃을 큐에 넣을 때 함께 기록해요. 손 규칙은 꺼낸 직후 방문 기록에 써요. 두 방식의 차이는 A8 T1에서 확인해요.</li>
+</ul></details>
+</div>
+
+<p class="wrapup"><b>여기까지</b> 출력과 손 추적을 맞춰 봤어요. 다음 A7에서는 미로의 값을 옮겨요.</p>
+</section>
+<section id="A7" class="sheet lesson">
+<h2>A7 · 미로 MAZE 결과 기록<small>2차시 · 13분 · 개인</small></h2>
+<p class="lead">1부 A7의 실행 틀에서 나온 값을 표에 옮겨요. 예측을 먼저 쓰고, 그다음 값을 비교해요.</p>
+<div class="step">
+<h3>실행 틀 값 옮기기</h3>
+<p><a class="xlink" href="student_code_lab.html#A7">1부 A7</a>의 실행 틀을 실행해요. 예측은 실행하기 전에 쓰고, 값은 출력된 모양 그대로 옮겨요. MAZE의 거리는 시작 칸이 0이고, 한 칸 움직일 때마다 1씩 늘어나요.</p>
+<pre class="diagram">S..#...
+.#.#.#.
+.#...#.
+.#####.
+......E</pre>
+<div class="scroll"><table class="fill"><tr><th style="width:36%">실행</th><th style="width:26%">예측(실행 전)</th><th>내 코드의 값</th></tr><tr><td class="lab">MAZE에서 S&rarr;E 거리</td><td class="in-cell"><input type="text" class="in" data-key="A7.maze.pred" placeholder="숫자" data-label="A7 MAZE S에서 E 거리 예측(실행 전)" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.maze" placeholder="숫자" data-label="A7 MAZE S에서 E 거리" autocomplete="off" data-model="10"></td></tr><tr><td class="lab"><code class="i">["S#E"]</code>에서 S&rarr;E</td><td class="in-cell"><input type="text" class="in" data-key="A7.blocked.pred" placeholder="코드가 낼 값" data-label="A7 도달 불가 미로 결과 예측(실행 전)" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.blocked" placeholder="코드가 낸 값 그대로" data-label="A7 도달 불가 미로 결과" autocomplete="off" data-model="-1"></td></tr><tr><td class="lab">MAZE에서 S&rarr;S(시작=도착)</td><td class="in-cell"><input type="text" class="in" data-key="A7.same.pred" placeholder="숫자" data-label="A7 시작=도착 결과 예측(실행 전)" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.same" placeholder="숫자" data-label="A7 시작=도착 결과" autocomplete="off" data-model="0"></td></tr><tr><td class="lab">(0,0)의 이웃 목록</td><td class="in-cell">&mdash;</td><td class="in-cell"><input type="text" class="in" data-key="A7.nb00" placeholder="출력된 목록 그대로" data-label="A7 (0,0)의 이웃 목록" autocomplete="off" data-model="[(0, 1), (1, 0)]"></td></tr><tr><td class="lab">(2,2)의 이웃 목록</td><td class="in-cell">&mdash;</td><td class="in-cell"><input type="text" class="in" data-key="A7.nb22" placeholder="출력된 목록 그대로" data-label="A7 (2,2)의 이웃 목록" autocomplete="off" data-model="[(2, 3), (1, 2)]"></td></tr></table></div>
+</div>
+<div class="step">
+<h3>dist의 역할</h3>
+<p>dist에 이미 있는 칸은 큐에 다시 넣지 않아요.</p>
+<div class="quiz" data-answer="2">
+<p class="q">dist가 하는 두 가지 일은 무엇일까요?</p>
+<div class="opts"><button type="button" data-hint="벽은 grid_neighbors가 걸러 준다. dist에는 무엇이 들어 있나?">벽을 표시하는 일과 거리를 적는 일</button><button type="button">거리를 적는 일과 방문했는지 알려 주는 일</button><button type="button" data-hint="큐에서 꺼내는 것은 popleft이다.">큐를 비우는 일과 거리를 적는 일</button></div>
+<p class="why">dist에 있다는 건 더 이른 거리로 이미 큐에 넣었다는 뜻이에요.</p>
+</div>
+<div class="quiz" data-answer="1">
+<p class="q">시작 칸과 도착 칸이 같으면, 큐에서 처음 꺼낸 칸에서 무슨 일이 일어날까요?</p>
+<div class="opts"><button type="button">곧바로 도착 칸이라 dist[cell]인 0을 돌려준다</button><button type="button" data-hint="도착 칸 검사는 이웃을 보는 for 줄보다 앞에 있는가, 뒤에 있는가?">이웃을 모두 본 뒤에 0을 돌려준다</button><button type="button" data-hint="-1은 큐가 빌 때까지 도착 칸을 만나지 못했을 때이다.">-1을 돌려준다</button></div>
+<p class="why">표의 시작=도착 줄이 0인 까닭이에요.</p>
+</div>
+</div>
+<div class="step">
+<h3>경계와 닮은 점</h3>
+<p class="qtext">(0,0)과 (2,2)의 이웃 개수가 다른 까닭은? grid_neighbors의 경계 검사⑨를 빼면 (0,0)에서 어떤 일이 생길까요?</p>
+<div class="ans-row"><span class="n">1</span><textarea class="in" rows="2" data-key="A7.q2" data-label="A7 격자 가장자리 칸은 이웃이 몇 개인가 경계 검사를 빼면"></textarea></div>
+<p class="qtext">A2의 큐 규칙과 shortest_path_len에서 같은 곳과 다른 곳을 한 가지씩 써요.</p>
+<div class="ans-row"><span class="n">2</span><textarea class="in" rows="2" data-key="A7.q4" data-label="A7 A2의 큐 규칙과 shortest_path_len에서 같은 곳"></textarea></div>
+<p class="qtext">neighbors와 grid_neighbors는 어떤 점이 같은 모양인가요? 그래서 탐색 틀을 고치지 않고 격자에 쓸 수 있는 까닭은?</p>
+<div class="ans-row"><span class="n">3</span><textarea class="in" rows="2" data-key="A7.q5" data-label="A7 10주차 neighbors와 grid_neighbors에서 같은 모양"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · A7 질문 해설</summary>
+<ul>
+<li>dist에 이미 있는 칸은 더 이른 거리로 이미 큐에 넣은 칸이라서 다시 넣지 않아요. dist는 두 가지 일을 해요. 시작에서의 거리 기록, 그리고 방문 기록(visited)이에요.</li>
+<li>(0,0)은 모서리라서 위·왼쪽이 격자 밖이에요. 그래서 이웃이 적어요. (2,2)는 아래·왼쪽이 벽이에요. 행 검사만 빼면 위쪽 음수 행이 아래 끝 행으로 읽혀서 (0,0)의 이웃이 3개로 나와요. 행·열 검사를 모두 빼면 4개로 나와요. 아래·오른쪽 가장자리에서는 IndexError가 나요.</li>
+<li>시작=도착이면 큐에서 처음 꺼낸 칸이 곧 도착 칸이라서 거리 0을 돌려줘요. 도달 불가일 때의 -1은 큐가 빌 때까지 도착 칸을 못 만났을 때 맨 마지막 줄에서 나와요.</li>
+<li>A2 큐 규칙과 같은 곳은 틀이에요. 시작을 넣고, 앞에서 꺼내고, 방문하지 않은 이웃을 뒤에 넣어요. 다른 곳은 두 가지예요. 방문 기록 대신 거리 기록 dist를 쓰고, 도착 칸을 만나면 멈춰요.</li>
+<li>neighbors와 grid_neighbors는 둘 다 yield로 이웃을 하나씩 내줘요. 그래서 호출하는 쪽은 내부 표현(인접 리스트인지 격자인지)을 몰라도 돼요. 탐색 틀을 고치지 않고 쓸 수 있는 까닭이에요.</li>
+</ul></details>
+</div>
+
+<p class="wrapup"><b>여기까지</b> 미로의 값과 두 코드의 닮은 점을 정리했어요. 다음 A8에서는 함정 코드를 예측해 봐요.</p>
+</section>
+<section id="A8" class="sheet lesson">
+<h2>A8 · 함정 코드 예측-실제 표<small>2차시 · 13분 · 개인</small></h2>
+<p class="lead">2부 A8의 걸음마다 예측과 실제를 표에 적어요. 표를 다 채운 뒤에 질문에 답해요.</p>
+<div class="step">
+<h3>표 채우기</h3>
+<p>실습 코드 <a class="xlink" href="student_code_lab_part2.html#A8">2부 A8</a>의 2~6걸음에서 함정 코드(T1-a~T4)를 실행해요. 그 예측과 실제를 마지막에 한꺼번에 옮겨요. 원인은 예측과 달랐을 때만 써요. 같았으면 &ldquo;같음&rdquo;이라고 써요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:23%">코드(실습 코드 걸음)</th><th>예측(실행 전)</th><th>실제(실행 결과)</th><th>원인 한 줄</th></tr><tr><td class="lab">T1-a <small>(실습 코드 2걸음)</small><br><small>방문 표시를 꺼낸 뒤에 하는 BFS를 G1의 A에서 실행한 출력 리스트</small></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r1.c1" data-label="A8 T1-a · 예측(실행 전)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r1.c2" data-label="A8 T1-a · 실제(실행 결과)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r1.c3" data-label="A8 T1-a · 원인 한 줄"></textarea></td></tr><tr><td class="lab">T1-b <small>(실습 코드 3걸음)</small><br><small>4&times;4 격자 BFS에서 큐에 넣은 횟수와 큐의 최대 길이를 센 두 줄. 쓰는 모양은 (횟수, 길이)이고, (20, 5)는 20번 넣었고 큐가 가장 길 때 5개였다는 뜻이다</small></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r2.c1" data-label="A8 T1-b · 예측(실행 전)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r2.c2" data-label="A8 T1-b · 실제(실행 결과)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r2.c3" data-label="A8 T1-b · 원인 한 줄"></textarea></td></tr><tr><td class="lab">T2 <small>(실습 코드 4걸음)</small><br><small>list와 deque로 n개를 앞에서 모두 꺼내는 시간에서, n이 10배가 될 때의 시간 배수. 모양: list 3배, deque 3배</small></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r3.c1" data-label="A8 T2 · 예측(실행 전)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r3.c2" data-label="A8 T2 · 실제(실행 결과)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r3.c3" data-label="A8 T2 · 원인 한 줄"></textarea></td></tr><tr><td class="lab">T3 <small>(실습 코드 5걸음)</small><br><small>한 줄로 이어진 땅(너비 500, 1500)을 재귀로 탐색한 결과. 정상이면 &ldquo;정상&rdquo;, 오류가 나면 오류 이름</small></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r4.c1" data-label="A8 T3 · 예측(실행 전)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r4.c2" data-label="A8 T3 · 실제(실행 결과)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r4.c3" data-label="A8 T3 · 원인 한 줄"></textarea></td></tr><tr><td class="lab">T4(선택) <small>(실습 코드 6걸음)</small><br><small>visited를 기본 인자로 둔 DFS를 세 번 부른 세 줄 출력. 줄 사이는 / 로 구분</small></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r5.c1" data-label="A8 T4(선택) · 예측(실행 전)"></textarea></td><td class="in-cell"><textarea class="in" rows="3" data-key="A8.pred.r5.c2" data-label="A8 T4(선택) · 실제(실행 결과)"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A8.pred.r5.c3" data-label="A8 T4(선택) · 원인 한 줄"></textarea></td></tr></table></div>
+</div>
+<div class="step">
+<h3>정리 질문</h3>
+<p>표의 값을 근거로 답해요.</p>
+<div class="quiz" data-answer="1">
+<p class="q">A2의 큐 규칙에서 D가 큐에 두 번 들어간 일과, T1-a에서 D가 두 번 방문된 일은 원인이 같을까요?</p>
+<div class="opts"><button type="button">같은 원인이다</button><button type="button" data-hint="A2에서 D가 두 번 들어간 까닭과 T1-a에서 D가 두 번 나온 까닭을 각각 떠올려 보자.">다른 원인이다</button></div>
+<p class="why">둘 다 D가 이미 큐에 있는데도 방문 표시가 늦어서 또 넣은 거예요.</p>
+</div>
+<p class="qtext">&lsquo;큐에 넣을 때 표시&rsquo;하면 한 칸이 큐에 한 번만 들어가는 까닭은? T1-b의 (넣은 횟수) 값을 근거로 써요.</p>
+<div class="ans-row"><span class="n">1</span><textarea class="in" rows="2" data-key="A8.q2" data-label="A8 큐에 넣을 때 표시하면 한 번만 들어가는 이유"></textarea></div>
+<p class="qtext">n이 10배가 될 때 list의 <code class="i">pop(0)</code>과 deque의 <code class="i">popleft</code>는 시간이 각각 대략 몇 배가 됐나요? 그 차이는 큰 격자의 BFS에서 어떤 뜻일까요?</p>
+<div class="ans-row"><span class="n">2</span><textarea class="in" rows="2" data-key="A8.q3" data-label="A8 n이 10배가 되면 pop(0) 시간과 deque 시간은 각각 몇 배인가"></textarea></div>
+<p class="qtext">T3의 1&times;1500 입력은 정상 입력인데 왜 실패했을까요? 피하는 방법 한 가지와 그 대가도 써요.</p>
+<div class="ans-row"><span class="n">3</span><textarea class="in" rows="3" data-key="A8.q4" data-label="A8 1x1500 입력은 정상 입력인데 왜 실패하는가 어떻게 피할까"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · T1~T4 결과와 원인</summary>
+<ul>
+<li><b>T1-a</b> <code class="i">['A', 'B', 'C', 'D', 'D', 'E', 'E']</code>. 꺼낸 뒤에야 visited에 넣어서, 큐에 이미 있는 노드도 &ldquo;아직 안 본 노드&rdquo;로 보여요. 그래서 여러 번 들어가요. A2에서 큐에 D가 두 번 들어간 것과 원인이 같아요(이미 큐에 있는 노드를 방문 기록이 없어 또 넣음).</li>
+<li><b>T1-b</b> enqueue (16, 4), dequeue (25, 7). 넣을 때 표시하면 칸이 처음 보일 때 한 번만 큐에 들어가서 16번이에요. 꺼낼 때 표시하면 같은 칸이 여러 번 들어가서 25번이고, 큐도 커져요. 답은 같아도 일이 늘어나요. 약속: BFS는 큐에 넣을 때 표시해요.</li>
+<li><b>T2</b> n이 10배일 때 list.pop(0)은 약 100배(환경에 따라 80~200배), deque.popleft는 약 10배예요. pop(0)은 나머지 원소를 모두 앞으로 당겨요. 그래서 길이 n인 리스트를 앞에서 모두 꺼내면 이동 합이 n(n-1)/2이고, n=1000이면 499,500이에요. popleft는 맨 앞 하나만 떼어 내요. 큰 격자의 BFS에서 큐를 list로 만들면 느려져요. 그래서 deque를 써요.</li>
+<li><b>T3</b> 재귀 한도 1000. 1&times;500은 정상(500칸 방문)이고, 1&times;1500은 RecursionError: maximum recursion depth exceeded예요. 재귀 깊이는 한 갈래의 길이와 같아서 한도를 넘었어요. 한도는 환경에 따라 다를 수 있어서 &ldquo;500은 통과, 1500은 실패&rdquo;만 봐요. 피하는 방법은 재귀 대신 직접 만든 스택(<code class="i">todo = [(r, c)]; todo.pop()</code>)이나 큐로 바꾸는 거예요. 대가는 이웃 처리 순서와 visited 표시를 직접 챙겨야 한다는 점이에요. 한도를 올리는 방법은 생각해 볼 질문 D3에서 다뤄요.</li>
+<li><b>T4</b> <code class="i">['A', 'B', 'D', 'C', 'E']</code> / <code class="i">['A']</code> / <code class="i">['B']</code>. 두 번째 호출부터 기본 인자 set이 이전 기록을 그대로 갖고 있어요.</li>
+</ul></details>
+</div>
+
+<p class="wrapup"><b>여기까지</b> 함정마다 예측과 실제를 맞춰 봤어요. 다음 A9에서는 방향 순서를 바꿔 DFS와 BFS를 비교해요.</p>
+</section>
+<section id="A9" class="sheet lesson">
+<h2>A9 · DIRS 순서를 바꿔 DFS와 BFS 비교<small>2차시 · 9분 · 개인</small></h2>
+<p class="lead">2부 A9에서 24가지를 실행하기 전에 예측해요. 실행한 뒤에는 표 4줄을 옮겨요.</p>
+<div class="step">
+<h3>예측 쓰기</h3>
+<p><a class="xlink" href="student_code_lab_part2.html#A9">2부 A9</a>의 편집기를 실행하기 <b>전에</b> 써요. 24가지 순서 중 DFS 길이가 BFS 거리와 같아지는 순서는 몇 가지일까요? 24가지는 우·하·좌·상 네 방향을 늘어놓는 순서의 수(4&times;3&times;2&times;1)예요.</p>
+<div class="ans-row"><span class="n">예측</span><input type="text" class="in" data-key="A9.pred.count" placeholder="숫자만(0~24)" data-label="A9 실행 전 예측 DFS 길이가 BFS 최단 거리와 같아지는 순서는 몇 가지인가" autocomplete="off" style="width:8em;display:inline-block"></div>
+</div>
+<div class="step">
+<h3>표에 옮기기</h3>
+<p>출력에서 DFS 길이가 BFS와 같은 줄 2개를 1·2번에, 다른 줄 2개를 3·4번에 옮겨요(없으면 &ldquo;없음&rdquo;). BFS 길이는 출력 첫 줄의 값이에요. 길이 칸에는 숫자만 써요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:52px">번호</th><th style="width:44%">DIRS 순서(옮겨 쓴 것)</th><th>DFS 길이</th><th>BFS 길이</th></tr><tr><td class="lab">1</td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r1.c1" placeholder="우하좌상 모양" data-label="A9 DIRS 실험 1 · 내가 정한 방향 순서" autocomplete="off" data-model="하 우 좌 상"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r1.c2" placeholder="숫자만" data-label="A9 DIRS 실험 1 · DFS가 처음 찾은 길의 간선 수" autocomplete="off" data-model="10"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r1.c3" placeholder="숫자만" data-label="A9 DIRS 실험 1 · BFS 최단 거리" autocomplete="off" data-model="10"></td></tr><tr><td class="lab">2</td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r2.c1" placeholder="우하좌상 모양" data-label="A9 DIRS 실험 2 · 내가 정한 방향 순서" autocomplete="off" data-model="하 우 상 좌"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r2.c2" placeholder="숫자만" data-label="A9 DIRS 실험 2 · DFS가 처음 찾은 길의 간선 수" autocomplete="off" data-model="10"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r2.c3" placeholder="숫자만" data-label="A9 DIRS 실험 2 · BFS 최단 거리" autocomplete="off" data-model="10"></td></tr><tr><td class="lab">3</td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r3.c1" placeholder="우하좌상 모양" data-label="A9 DIRS 실험 3 · 내가 정한 방향 순서" autocomplete="off" data-model="우 하 좌 상"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r3.c2" placeholder="숫자만" data-label="A9 DIRS 실험 3 · DFS가 처음 찾은 길의 간선 수" autocomplete="off" data-model="14"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r3.c3" placeholder="숫자만" data-label="A9 DIRS 실험 3 · BFS 최단 거리" autocomplete="off" data-model="10"></td></tr><tr><td class="lab">4</td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r4.c1" placeholder="우하좌상 모양" data-label="A9 DIRS 실험 4 · 내가 정한 방향 순서" autocomplete="off" data-model="좌 우 하 상"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r4.c2" placeholder="숫자만" data-label="A9 DIRS 실험 4 · DFS가 처음 찾은 길의 간선 수" autocomplete="off" data-model="14"></td><td class="in-cell"><input type="text" class="in" data-key="A9.dirs.r4.c3" placeholder="숫자만" data-label="A9 DIRS 실험 4 · BFS 최단 거리" autocomplete="off" data-model="10"></td></tr></table></div>
+</div>
+<div class="step">
+<h3>표를 읽고 답하기</h3>
+<p>표의 값을 근거로 답해요.</p>
+<div class="quiz" data-answer="2">
+<p class="q">표 4줄 가운데 DFS 길이가 BFS 길이보다 긴 줄이 있었나요?</p>
+<div class="opts"><button type="button" data-hint="DFS 길이 칸과 BFS 길이 칸의 숫자를 줄마다 견줘 보자.">없었다</button><button type="button">있었다</button></div>
+<p class="why">DFS가 처음 찾은 길이 최단이라는 보장은 없어요.</p>
+</div>
+<p class="qtext">DIRS를 바꿨을 때 BFS 값은 변했나요? 변했거나 변하지 않은 까닭을 써요.</p>
+<div class="ans-row"><span class="n">1</span><textarea class="in" rows="2" data-key="A9.q2" data-label="A9 BFS 값은 DIRS를 바꿔도 변했는가"></textarea></div>
+<p class="qtext">A4에서 세운 가설은 이 표로 확인됐나요? 확인 / 수정 / 반박 중 하나로 시작하고, 근거가 된 표의 줄을 써요.</p>
+<div class="ans-row"><span class="n">2</span><textarea class="in" rows="3" data-key="A9.q3" data-label="A9 A4에서 세운 가설은 이 표로 확인되었는가"></textarea></div>
+<p class="qtext">(선택) BFS와 같은 DFS 길이가 나온 순서들에 공통점이 있나요? 있다면 MAZE 그림에서 까닭을 찾아 써요. 없으면 &ldquo;없음&rdquo;이라고 써요.</p>
+<div class="ans-row"><span class="n">3</span><textarea class="in" rows="3" data-key="A9.pattern" data-label="A9 BFS와 같은 DFS 길이가 나온 순서들의 공통점과 MAZE 그림에서의 까닭"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · 24가지 결과 읽기</summary>
+<ul>
+<li>BFS 값은 24가지 모두 10이에요. DFS 값은 14가 나온 순서가 12가지, 10이 나온 순서가 12가지예요(예: 우하좌상은 DFS 14, 하우좌상은 DFS 10). DFS 값이 BFS 값과 같아지는 순서는 12가지예요.</li>
+<li>방향 순서를 바꾸면 이웃을 보는 순서가 바뀌어서 DFS가 처음 닿는 길이 달라져요. BFS 값은 바뀌지 않았어요. A4에서 세운 가설(순서에 따라 DFS의 값은 달라지고 큐 규칙의 값은 그대로이다)이 이 표의 14와 10, 10과 맞는지 봐요. 그리고 확인·수정·반박 중 하나를 골라요.</li>
+<li>탐색한 칸 수(도착 칸을 꺼내거나 호출할 때까지): BFS가 꺼낸 칸은 21개, DFS가 호출한 칸은 15개예요. DFS는 더 적은 칸을 보고 끝났지만, 길은 14로 더 길었어요. DFS가 더 좋은지는 목적에 따라 달라요.</li>
+</ul></details>
+</div>
+
+<p class="wrapup"><b>여기까지</b> 방향 순서를 바꾼 24가지 가운데 네 줄을 근거로 DFS와 BFS를 비교했어요.</p>
+</section>
+</div>
+<script id="week11-submit">
+/* week11 학생 입력 저장 (7개 학생용 파일 동일, FILE_KEY만 다름). 규격: schema week11-student-v1 */
+(function(){
+"use strict";
+var FILE_KEY="workbook_part2";
+var FILES={workbook:"student_workbook.html",code_lab:"student_code_lab.html",workbook_part2:"student_workbook_part2.html",code_lab_part2:"student_code_lab_part2.html",code_lab_part3:"student_code_lab_part3.html",workbook_part3:"student_workbook_part3.html",formative:"formative_check.html"};
+var FILE=FILES[FILE_KEY], STORE="week11:"+FILE, SCHEMA="week11-student-v1";
+var bar,idIn,nameIn,msg,autoEl,saveBtn,clearBtn,confirmBox,busy=false,timer=null;
+var loadBtn,fileIn,yesBtn,confirmTxt,pending=null,baseline="";
+
+function q(sel,root){return Array.prototype.slice.call((root||document).querySelectorAll(sel));}
+function kind(el){
+  var t=el.getAttribute("data-type");
+  if(t)return t;
+  var tag=el.tagName.toLowerCase();
+  if(tag==="textarea")return "textarea";
+  if(tag==="select")return "select";
+  if(tag==="input")return el.type==="checkbox"?"checkbox":"text";
+  return "text";
+}
+function labelOf(el){
+  var l=el.getAttribute("data-label");
+  if(l)return l;
+  if(el.labels&&el.labels.length)return el.labels[0].textContent.replace(/\s+/g," ").trim();
+  return el.getAttribute("aria-label")||"";
+}
+function readValue(el,k){
+  if(k==="checkbox")return !!el.checked;
+  if(k==="radio"){var r=el.querySelector("input[type=radio]:checked");return r?r.value:null;}
+  return el.value;
+}
+function collect(){
+  return q("[data-key]").map(function(el){
+    var k=kind(el);
+    return {key:el.getAttribute("data-key"),label:labelOf(el),type:k,value:readValue(el,k)};
+  });
+}
+function studentInfo(){return {id:idIn.value.trim(),name:nameIn.value.trim()};}
+function buildJSON(status){
+  return {schema:SCHEMA,week:11,file:FILE,status:status||"final",student:studentInfo(),savedAt:new Date().toISOString(),answers:collect()};
+}
+function safe(s){return String(s).replace(/[\\\/:*?"<>|\s\u0000-\u001f]+/g,"_").replace(/^\.+/,"_");}
+function fileName(st,draft){return "week11_"+FILE_KEY+"_"+safe(st.id||"학번미입력")+"_"+safe(st.name||"이름미입력")+(draft?"_임시저장":"")+".json";}
+function validate(){
+  var miss=[];
+  [[idIn,"학번"],[nameIn,"이름"]].forEach(function(p){
+    var bad=!p[0].value.trim();
+    p[0].classList.toggle("invalid",bad);
+    p[0].setAttribute("aria-invalid",bad?"true":"false");
+    if(bad)miss.push(p);
+  });
+  return miss;
+}
+function updatePrintId(){
+  var p=document.getElementById("printid");
+  if(!p)return;
+  var s=studentInfo();
+  p.textContent="학번: "+(s.id||"          ")+"   이름: "+(s.name||"          ");
+}
+function say(text,cls){msg.textContent=text;msg.className="sb-msg"+(cls?" "+cls:"");}
+
+function download(draft){
+  var obj=buildJSON(draft?"draft":"final"),name=fileName(obj.student,draft);
+  var blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json;charset=utf-8"});
+  var url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=name;a.style.display="none";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  return name;
+}
+function onSave(){
+  if(busy)return;
+  var miss=validate();
+  if(miss.length){
+    say("학번과 이름을 입력해야 저장할 수 있다. 표시된 칸을 채운 뒤 다시 누른다.","err");
+    miss[0][0].focus();return;
+  }
+  busy=true;saveBtn.disabled=true;
+  try{
+    var n=download();
+    say("저장했다: "+n+" (내려받은 JSON 파일 한 개를 제출한다.)","ok");
+  }catch(e){say("저장하지 못했다. 브라우저를 바꾸어 다시 시도한다.","err");}
+  setTimeout(function(){busy=false;saveBtn.disabled=false;},1200);
+}
+
+/* 이어 쓰기: 저장한 파일 불러오기 */
+function snap(){return JSON.stringify(collect().map(function(a){return a.value;}));}
+function isDirty(){return snap()!==baseline;}
+function ask(text,fn){
+  confirmTxt.textContent=text;pending=fn;confirmBox.hidden=false;
+  clearBtn.disabled=true;loadBtn.disabled=true;
+}
+function closeAsk(){
+  pending=null;confirmBox.hidden=true;clearBtn.disabled=false;loadBtn.disabled=false;
+}
+function applyLoaded(j){
+  if(!j||typeof j!=="object"||Array.isArray(j))return {err:"저장 파일 형식이 아니다."};
+  if(j.schema!==SCHEMA)return {err:"이 워크북의 저장 파일이 아니다(schema 불일치). 이 활동지에서 저장한 JSON 파일을 고른다."};
+  if(j.file!==FILE)return {err:"이 파일은 '"+String(j.file)+"'에서 저장한 것이다. 지금 열린 '"+FILE+"'에서 저장한 파일만 불러올 수 있다."};
+  if(!Array.isArray(j.answers))return {err:"저장 파일에 answers가 없거나 형식이 틀리다."};
+  var vals={};
+  j.answers.forEach(function(a){if(a&&typeof a.key==="string")vals[a.key]=a.value;});
+  var n=0;
+  q("[data-key]").forEach(function(el){
+    var key=el.getAttribute("data-key");
+    if(!Object.prototype.hasOwnProperty.call(vals,key))return;
+    var v=vals[key],t=typeof v;
+    if(v!==null&&t!=="string"&&t!=="boolean")return;
+    setValue(el,v);n++;
+  });
+  if(j.student&&typeof j.student==="object"){
+    idIn.value=typeof j.student.id==="string"?j.student.id:"";
+    nameIn.value=typeof j.student.name==="string"?j.student.name:"";
+    [idIn,nameIn].forEach(function(i){i.classList.remove("invalid");i.setAttribute("aria-invalid","false");});
+  }
+  autosizeAll();updatePrintId();stash();
+  return {n:n,draft:j.status==="draft",at:j.savedAt};
+}
+function onLoadClick(){
+  if(isDirty()||idIn.value.trim()||nameIn.value.trim()){
+    ask("지금 입력한 내용이 불러온 파일의 내용으로 바뀐다. 계속하려면 [불러오기 진행]을 누르고 파일을 고른다.",function(){closeAsk();fileIn.click();});
+    yesBtn.textContent="불러오기 진행";
+  }else{fileIn.click();}
+}
+function onFileChosen(){
+  var f=fileIn.files&&fileIn.files[0];
+  if(!f)return;
+  if(f.size>3*1024*1024){say("파일이 너무 크다(3MB 초과). 이 활동지에서 저장한 JSON 파일이 맞는지 확인한다.","err");fileIn.value="";return;}
+  var r=new FileReader();
+  r.onerror=function(){say("파일을 읽지 못했다. 다시 시도한다.","err");fileIn.value="";};
+  r.onload=function(){
+    var res;
+    try{res=applyLoaded(JSON.parse(String(r.result)));}
+    catch(e){res={err:"JSON 파일을 읽지 못했다. 이 활동지에서 저장한 파일이 맞는지 확인한다."};}
+    if(res.err){say(res.err+" (입력란은 바뀌지 않았다.)","err");}
+    else{say("불러왔다: "+f.name+" ("+res.n+"칸"+(res.at?", 저장 시각 "+res.at.slice(0,16).replace("T"," "):"")+"). 이어서 쓴다."+(res.draft?" (예전 임시 저장 파일이다. 다 쓴 뒤 [저장(JSON)]으로 다시 저장해 낸다.)":""),"ok");}
+    fileIn.value="";
+  };
+  r.readAsText(f,"utf-8");
+}
+
+/* 자동 보관 (localStorage, 모두 try/catch) */
+function stash(){
+  try{
+    var vals={};collect().forEach(function(a){vals[a.key]=a.value;});
+    localStorage.setItem(STORE,JSON.stringify({student:studentInfo(),values:vals,at:Date.now()}));
+    var d=new Date();
+    autoEl.textContent="자동 보관됨 "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2);
+  }catch(e){autoEl.textContent="자동 보관 사용 불가([저장(JSON)]은 가능)";}
+}
+function schedule(){clearTimeout(timer);timer=setTimeout(stash,300);}
+function setValue(el,v){
+  var k=kind(el);
+  if(k==="checkbox"){el.checked=(v===true);}
+  else if(k==="radio"){q("input[type=radio]",el).forEach(function(r){r.checked=(v!==null&&v!==undefined&&r.value===v);});}
+  else{el.value=(v===null||v===undefined)?"":String(v);}
+}
+function restore(){
+  try{
+    var raw=localStorage.getItem(STORE);if(!raw)return;
+    var s=JSON.parse(raw);if(!s)return;
+    if(s.student){idIn.value=s.student.id||"";nameIn.value=s.student.name||"";}
+    var any=false;
+    q("[data-key]").forEach(function(el){var key=el.getAttribute("data-key");if(s.values&&Object.prototype.hasOwnProperty.call(s.values,key)){setValue(el,s.values[key]);any=true;}});
+    autosizeAll();
+    if(any||(s.student&&(s.student.id||s.student.name)))autoEl.textContent="이 브라우저에 자동 보관된 내용을 불러왔다";
+  }catch(e){}
+}
+function resetAll(){
+  q("[data-key]").forEach(function(el){setValue(el,kind(el)==="checkbox"?false:(kind(el)==="radio"?null:""));});
+  idIn.value="";nameIn.value="";
+  [idIn,nameIn].forEach(function(i){i.classList.remove("invalid");i.setAttribute("aria-invalid","false");});
+  autosizeAll();
+}
+function doClear(){
+  try{localStorage.removeItem(STORE);}catch(e){}
+  resetAll();
+  closeAsk();
+  autoEl.textContent="";
+  say("이 브라우저의 자동 보관을 지우고 입력란을 비웠다. (내려받은 JSON 파일은 그대로다.)","ok");
+}
+
+/* 입력란 보조 */
+function autosize(t){if(t.classList.contains("code")||t.classList.contains("draw"))return;t.style.height="auto";if(t.scrollHeight>0)t.style.height=(t.scrollHeight+2)+"px";}
+function autosizeAll(){q("textarea.in").forEach(autosize);}
+function codeKeys(e){
+  var t=e.target;
+  if(!t||!t.classList||!t.classList.contains("code"))return;
+  if(e.key==="Escape"){t._esc=true;return;}
+  if(e.key==="Tab"&&!e.shiftKey&&!e.ctrlKey&&!e.altKey&&!e.metaKey){
+    if(t._esc){t._esc=false;return;}
+    e.preventDefault();
+    var s=t.selectionStart,en=t.selectionEnd;
+    t.setRangeText("    ",s,en,"end");
+    t.dispatchEvent(new Event("input",{bubbles:true}));
+  }else if(e.key!=="Shift"){t._esc=false;}
+}
+function labelControls(){
+  q("[data-key]").forEach(function(el){
+    var l=el.getAttribute("data-label");
+    var isGroup=el.getAttribute("data-type")==="radio";
+    if(isGroup){el.setAttribute("role","radiogroup");if(l)el.setAttribute("aria-label",l);return;}
+    var has=el.labels&&el.labels.length;
+    if(!has&&l&&!el.getAttribute("aria-label"))el.setAttribute("aria-label",l);
+  });
+}
+function buildBar(){
+  bar=document.createElement("div");bar.id="savebar";bar.setAttribute("role","region");bar.setAttribute("aria-label","제출 저장 바");
+  bar.innerHTML='<div class="sb-in"><div class="sb-row">'
+   +'<label for="sb-id">학번 <input type="text" id="sb-id" autocomplete="off" aria-required="true" aria-invalid="false"></label>'
+   +'<label for="sb-name">이름 <input type="text" id="sb-name" autocomplete="off" aria-required="true" aria-invalid="false"></label>'
+   +'<button type="button" id="sb-save">저장(JSON)</button>'
+   +'<button type="button" id="sb-load" class="sec" title="[저장(JSON)]으로 만든 파일을 불러와 이어 쓴다.">불러오기</button>'
+   +'<input type="file" id="sb-file" accept=".json,application/json" hidden aria-label="저장한 JSON 파일 선택">'
+   +'<button type="button" id="sb-clear" class="sec">자동 보관 지우기</button>'
+   +'<button type="button" id="sb-submit" title="제출 사이트를 새 창으로 연다. 먼저 [저장(JSON)]으로 파일을 만든 뒤 그 파일을 올린다.">제출</button>'
+   +'<span class="sb-auto" id="sb-auto"></span></div>'
+   +'<div class="sb-confirm" id="sb-confirm" hidden><span id="sb-ctext"></span>'
+   +'<button type="button" id="sb-yes">확인</button><button type="button" id="sb-no" class="sec">취소</button></div>'
+   +'<div class="sb-msg" id="sb-msg" role="status" aria-live="polite">다 쓰면 학번과 이름을 쓰고 [저장(JSON)]을 눌러 제출 파일 한 개를 만든다. 다 못 썼으면 [저장(JSON)]으로 저장해 두고, 다음에 [불러오기]로 그 파일을 열어 이어 쓴다.</div></div>';
+  document.body.insertBefore(bar,document.body.firstChild);
+  var pid=document.createElement("div");pid.id="printid";pid.setAttribute("aria-hidden","true");
+  document.body.insertBefore(pid,bar.nextSibling);
+  idIn=bar.querySelector("#sb-id");nameIn=bar.querySelector("#sb-name");msg=bar.querySelector("#sb-msg");
+  autoEl=bar.querySelector("#sb-auto");saveBtn=bar.querySelector("#sb-save");clearBtn=bar.querySelector("#sb-clear");confirmBox=bar.querySelector("#sb-confirm");
+  loadBtn=bar.querySelector("#sb-load");fileIn=bar.querySelector("#sb-file");yesBtn=bar.querySelector("#sb-yes");confirmTxt=bar.querySelector("#sb-ctext");
+  saveBtn.addEventListener("click",onSave);
+  loadBtn.addEventListener("click",onLoadClick);
+  fileIn.addEventListener("change",onFileChosen);
+  clearBtn.addEventListener("click",function(){yesBtn.textContent="지우기";ask("이 브라우저의 자동 보관을 지우고 입력란을 모두 비운다. [저장(JSON)]으로 저장하지 않은 내용은 되찾을 수 없다.",doClear);bar.querySelector("#sb-no").focus();});
+  bar.querySelector("#sb-no").addEventListener("click",function(){closeAsk();loadBtn.focus();});
+  yesBtn.addEventListener("click",function(){var f=pending;if(f)f();});
+}
+function init(){
+  buildBar();labelControls();baseline=snap();restore();autosizeAll();
+  document.addEventListener("input",function(e){
+    var t=e.target;
+    if(t.tagName==="TEXTAREA")autosize(t);
+    if(t===idIn||t===nameIn){if(t.value.trim()){t.classList.remove("invalid");t.setAttribute("aria-invalid","false");}}
+    if(t===idIn||t===nameIn)updatePrintId();
+    schedule();
+  });
+  document.addEventListener("change",schedule);
+  document.addEventListener("keydown",codeKeys);
+  window.addEventListener("beforeprint",function(){autosizeAll();updatePrintId();});
+  updatePrintId();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(autosizeAll);
+  window.addEventListener("resize",autosizeAll);
+  window.Week11Submit={buildJSON:buildJSON,collect:collect,validate:validate,fileName:fileName,FILE_KEY:FILE_KEY,applyLoaded:applyLoaded};
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+<script src="../assets/duo.js"></script>
+</body>
+</html>

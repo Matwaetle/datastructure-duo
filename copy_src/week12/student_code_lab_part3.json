@@ -1,0 +1,488 @@
+[
+ {
+  "id": 0,
+  "tag": "h1",
+  "class": "",
+  "html": "12주차 실습 코드 3부 — 함정 탐색 T1~T4"
+ },
+ {
+  "id": 1,
+  "tag": "p",
+  "class": "lead",
+  "html": "A10에서 A9를 마친 뒤 쓴다. 함정 코드를 읽고 결과를 먼저 예측한 뒤, 실행해서 맞춰 보자."
+ },
+ {
+  "id": 2,
+  "tag": "p",
+  "class": "meta",
+  "html": "<span>학번·이름은 위쪽 저장 바에 쓴다.</span>"
+ },
+ {
+  "id": 3,
+  "tag": "h2",
+  "class": "",
+  "html": "사용법<small>#how</small>"
+ },
+ {
+  "id": 4,
+  "tag": "li",
+  "class": "",
+  "html": "편집기에는 실행할 코드가 미리 들어 있다. 코드를 읽고 예측한 뒤 [&#9654; 실행]을 누른다."
+ },
+ {
+  "id": 5,
+  "tag": "li",
+  "class": "",
+  "html": "예측과 실제 값은 활동지 2부 A10의 표에 적는다. 이 쪽은 앞 쪽의 코드가 필요하지 않다."
+ },
+ {
+  "id": 6,
+  "tag": "li",
+  "class": "",
+  "html": "편집기에 쓴 내용은 자동으로 보관된다. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만든다."
+ },
+ {
+  "id": 7,
+  "tag": "summary",
+  "class": "",
+  "html": "단축키와 오류가 날 때"
+ },
+ {
+  "id": 8,
+  "tag": "li",
+  "class": "",
+  "html": "Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기이다. [처음 코드로]는 편집기를 처음 상태로 되돌린다."
+ },
+ {
+  "id": 9,
+  "tag": "li",
+  "class": "",
+  "html": "오류가 나면 맨 아래 줄부터 읽는다. 오류 이름과 까닭이 거기에 있다."
+ },
+ {
+  "id": 10,
+  "tag": "li",
+  "class": "",
+  "html": "이 쪽에는 정답 점검이 없다(T3의 [&#10004; 점검]만 있다). 내 예측과 실제 출력의 차이가 확인 수단이다."
+ },
+ {
+  "id": 11,
+  "tag": "li",
+  "class": "",
+  "html": "실행이 15초를 넘기면 멈춘다. 반복이 끝나지 않는 곳이 있는지 확인한다."
+ },
+ {
+  "id": 12,
+  "tag": "h2",
+  "class": "",
+  "html": "T1 · 순서 없는 리스트에 bisect<small>A10 필수 · 오류가 나는가? 값은?</small>"
+ },
+ {
+  "id": 13,
+  "tag": "p",
+  "class": "lead",
+  "html": "순서 없는 리스트에 <code class=\"i\">bisect_left</code>를 부르면 오류가 날까? <code class=\"i\">list.index</code>와 같은 자리를 줄까?"
+ },
+ {
+  "id": 14,
+  "tag": "h3",
+  "class": "",
+  "html": "정렬된 리스트에서 견주기"
+ },
+ {
+  "id": 15,
+  "tag": "p",
+  "class": "",
+  "html": "<code class=\"i\">bisect_left(a, x)</code>는 이진 탐색으로, <code class=\"i\">a.index(x)</code>는 앞에서부터 하나씩 보며 x의 자리를 찾는다. 정렬된 리스트에서 둘을 불러 보자."
+ },
+ {
+  "id": 16,
+  "tag": "h3",
+  "class": "",
+  "html": "순서 없는 리스트 읽기"
+ },
+ {
+  "id": 17,
+  "tag": "p",
+  "class": "",
+  "html": "이번에는 A3에서 쓴 순서 없는 배열 <code class=\"i\">UNS</code>이다. 같은 두 줄을 UNS에 부른다. 아직 실행하지 말고 읽어 보자."
+ },
+ {
+  "id": 18,
+  "tag": "h3",
+  "class": "",
+  "html": "먼저 예측하기"
+ },
+ {
+  "id": 19,
+  "tag": "p",
+  "class": "q",
+  "html": "위 코드를 실행하면 두 줄은 어떻게 될까?"
+ },
+ {
+  "id": 20,
+  "tag": "p",
+  "class": "",
+  "html": "고른 답을 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A10\">2부 A10</a> 표 T1 행의 [예측] 칸에 한 문장으로 적어 두자."
+ },
+ {
+  "id": 21,
+  "tag": "h3",
+  "class": "",
+  "html": "실행하고 정리하기"
+ },
+ {
+  "id": 22,
+  "tag": "p",
+  "class": "",
+  "html": "위 UNS 편집기에서 [&#9654; 실행]을 눌러 두 줄을 읽자. 출력은 그대로 [실제] 칸에, 왜 그런지는 [원인 한 줄] 칸에 쓴다."
+ },
+ {
+  "id": 23,
+  "tag": "summary",
+  "class": "",
+  "html": "막히면 · 원인 단서"
+ },
+ {
+  "id": 24,
+  "tag": "p",
+  "class": "",
+  "html": "A3에서 UNS에 같은 규칙을 적용했을 때 무슨 일이 있었는지 활동지 1부 A3의 내 기록을 다시 본다. 두 값이 다르다면 bisect_left가 UNS에서 어느 자리들을 차례로 견주는지 lo, hi, mid를 손으로 따라가 본다."
+ },
+ {
+  "id": 25,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> UNS에서 두 줄을 실행해 활동지에 옮겼다. 다음 T2에서는 두 방법의 시간을 재 본다."
+ },
+ {
+  "id": 26,
+  "tag": "h2",
+  "class": "",
+  "html": "T2 · 시간을 재 본다<small>A10 필수 · 상대 비교만</small>"
+ },
+ {
+  "id": 27,
+  "tag": "p",
+  "class": "lead",
+  "html": "100만 개에서 한 번 찾는 데 <code class=\"i\">list.index</code>와 <code class=\"i\">bisect_left</code>는 몇 자릿수나 차이 날까? 시간을 재서 확인해 보자."
+ },
+ {
+  "id": 28,
+  "tag": "h3",
+  "class": "",
+  "html": "e 표기 읽는 법"
+ },
+ {
+  "id": 29,
+  "tag": "p",
+  "class": "",
+  "html": "파이썬은 아주 작은 시간을 <code class=\"i\">2e-05</code>처럼 쓴다. <code class=\"i\">e-05</code>는 소수점을 왼쪽으로 다섯 칸 옮긴다는 뜻이어서 <code class=\"i\">2e-05</code>는 0.00002이다."
+ },
+ {
+  "id": 30,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">3e-03</code>초는 몇 초일까?"
+ },
+ {
+  "id": 31,
+  "tag": "p",
+  "class": "why",
+  "html": "3을 소수점 왼쪽으로 세 칸 옮긴 0.003이다."
+ },
+ {
+  "id": 32,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">3e-03</code>초와 <code class=\"i\">3e-05</code>초는 몇 자릿수 차이일까?"
+ },
+ {
+  "id": 33,
+  "tag": "p",
+  "class": "why",
+  "html": "지수가 2 다르면 100배, 곧 두 자릿수 차이이다."
+ },
+ {
+  "id": 34,
+  "tag": "h3",
+  "class": "",
+  "html": "시간 재는 코드 읽기"
+ },
+ {
+  "id": 35,
+  "tag": "p",
+  "class": "",
+  "html": "정렬된 100만 개에서 맨 끝 값을 찾는다. <code class=\"i\">index</code>는 20번, <code class=\"i\">bisect_left</code>는 2000번 부르고, 한 번에 걸린 평균을 낸다."
+ },
+ {
+  "id": 36,
+  "tag": "h3",
+  "class": "",
+  "html": "먼저 예측하기"
+ },
+ {
+  "id": 37,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">index</code> 한 번은 <code class=\"i\">bisect_left</code> 한 번보다 몇 배쯤 오래 걸릴까?"
+ },
+ {
+  "id": 38,
+  "tag": "p",
+  "class": "",
+  "html": "고른 답을 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A10\">2부 A10</a> 표 T2 행의 [예측] 칸에 적어 두자."
+ },
+ {
+  "id": 39,
+  "tag": "h3",
+  "class": "",
+  "html": "실행하고 정리하기"
+ },
+ {
+  "id": 40,
+  "tag": "p",
+  "class": "",
+  "html": "[&#9654; 실행]을 누르면 몇 초 걸린다. 출력된 두 시간을 [한 번에 걸린 시간] 두 칸에, 크기 차이(자릿수)를 [비율] 칸에 쓴다."
+ },
+ {
+  "id": 41,
+  "tag": "p",
+  "class": "tip",
+  "html": "컴퓨터마다 시간이 다르다. 값이 아니라 두 시간의 크기 차이만 쓴다."
+ },
+ {
+  "id": 42,
+  "tag": "summary",
+  "class": "",
+  "html": "막히면 · 비교와 원인 단서"
+ },
+ {
+  "id": 43,
+  "tag": "p",
+  "class": "",
+  "html": "두 값을 e 표기로 읽고 지수의 차이를 본다. 원인은 100만 개에서 index가 마지막 값을 찾으려 얼마나 많은 원소를 지나는지, bisect_left가 몇 번쯤 견주는지 생각해 본다. 이 차이는 N이 커질수록 어떻게 변할까?"
+ },
+ {
+  "id": 44,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 두 시간을 재서 활동지에 옮겼다. 다음 T3에서는 경계 코드를 한 군데 고쳐 쓴 함수를 살펴본다."
+ },
+ {
+  "id": 45,
+  "tag": "h2",
+  "class": "",
+  "html": "T3 · 경계 코드를 하나 고쳐 썼다<small>A10 필수 · 반복 상한 20회 장치 포함</small>"
+ },
+ {
+  "id": 46,
+  "tag": "p",
+  "class": "lead",
+  "html": "A7의 <code class=\"i\">lower_bound</code>를 한 군데 고쳐 쓰면 어떤 입력에서 반복이 끝나지 않을까? 먼저 예측하고 원인을 찾아 보자."
+ },
+ {
+  "id": 47,
+  "tag": "h3",
+  "class": "",
+  "html": "고쳐 쓴 함수 읽기"
+ },
+ {
+  "id": 48,
+  "tag": "p",
+  "class": "",
+  "html": "아래 함수는 반복이 20번을 넘으면 <code class=\"i\">\"무한 반복\"</code>을 돌려준다. 컴퓨터가 멈추지 않게 하는 장치이다. 이 함수에 x = 12, 0, 4, 20을 차례로 넣는다."
+ },
+ {
+  "id": 49,
+  "tag": "h3",
+  "class": "",
+  "html": "먼저 예측하기"
+ },
+ {
+  "id": 50,
+  "tag": "p",
+  "class": "q",
+  "html": "x = 12를 넣으면 무엇이 출력될까?"
+ },
+ {
+  "id": 51,
+  "tag": "p",
+  "class": "",
+  "html": "x = 12와 x = 0의 결과를 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A10\">2부 A10</a> 표 T3 행의 [예측] 칸에 적어 두자."
+ },
+ {
+  "id": 52,
+  "tag": "h3",
+  "class": "",
+  "html": "실행해서 읽기"
+ },
+ {
+  "id": 53,
+  "tag": "p",
+  "class": "",
+  "html": "위 편집기에서 [&#9654; 실행]을 누르고 네 줄을 읽자. 예측과 같은 줄은 어느 것이고 다른 줄은 어느 것인가?"
+ },
+ {
+  "id": 54,
+  "tag": "h3",
+  "class": "",
+  "html": "반복마다 따라가기"
+ },
+ {
+  "id": 55,
+  "tag": "p",
+  "class": "",
+  "html": "왜 그런지 작은 사례로 따라가 보자. 원소가 하나뿐인 리스트 <code class=\"i\">[5]</code>에서 x = 0을 찾고, 반복마다 lo, hi, mid를 찍는다."
+ },
+ {
+  "id": 56,
+  "tag": "p",
+  "class": "q",
+  "html": "step 0부터 step 3까지 lo, hi, mid는 어떻게 되었을까?"
+ },
+ {
+  "id": 57,
+  "tag": "p",
+  "class": "why",
+  "html": "네 줄 모두 lo = 0, hi = 0, mid = 0이다."
+ },
+ {
+  "id": 58,
+  "tag": "h3",
+  "class": "",
+  "html": "고쳐서 점검하기"
+ },
+ {
+  "id": 59,
+  "tag": "p",
+  "class": "",
+  "html": "첫 편집기의 함수를 고친다. 함수 이름은 그대로 두고, A7의 <code class=\"i\">lower_bound</code>와 줄 단위로 견주어 다른 줄을 찾는다. 고친 뒤 [&#9654; 실행]과 [&#10004; 점검]을 누른다."
+ },
+ {
+  "id": 60,
+  "tag": "p",
+  "class": "",
+  "html": "원인은 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A10\">2부 A10</a> 표 T3 행의 [실제]와 [원인 한 줄] 칸에 쓴다."
+ },
+ {
+  "id": 61,
+  "tag": "summary",
+  "class": "",
+  "html": "A7의 lower_bound 보기"
+ },
+ {
+  "id": 62,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 끝나지 않는 반복의 원인을 찾아 고쳤다. 다음 T4는 선택 과제이다."
+ },
+ {
+  "id": 63,
+  "tag": "h2",
+  "class": "",
+  "html": "T4 · 선택 과제<small>선택 · 3.10 이상 필요(key= 인자)</small>"
+ },
+ {
+  "id": 64,
+  "tag": "p",
+  "class": "lead",
+  "html": "정렬된 쌍의 목록에서도 bisect를 쓸 수 있을까? 값을 계속 끼워 넣으면 시간은 어떻게 될까?"
+ },
+ {
+  "id": 65,
+  "tag": "h3",
+  "class": "",
+  "html": "key= 인자 읽기"
+ },
+ {
+  "id": 66,
+  "tag": "p",
+  "class": "",
+  "html": "(이름, 점수) 쌍이 점수 오름차순으로 놓여 있다. 쌍 전체가 아니라 점수만 견주고 싶을 때 <code class=\"i\">key=</code>에 점수를 꺼내는 함수를 준다. <code class=\"i\">lambda s: s[1]</code>은 s의 두 번째 값을 꺼내는 이름 없는 함수이다."
+ },
+ {
+  "id": 67,
+  "tag": "p",
+  "class": "q",
+  "html": "<code class=\"i\">s = (\"A\", 70)</code>일 때 <code class=\"i\">s[1]</code>은 무엇일까?"
+ },
+ {
+  "id": 68,
+  "tag": "p",
+  "class": "why",
+  "html": "번호는 0부터 세므로 s[1]은 두 번째 값 70이다."
+ },
+ {
+  "id": 69,
+  "tag": "p",
+  "class": "tip",
+  "html": "key= 인자는 파이썬 3.10 이상에서만 돌아간다."
+ },
+ {
+  "id": 70,
+  "tag": "h3",
+  "class": "",
+  "html": "두 코드 읽기"
+ },
+ {
+  "id": 71,
+  "tag": "p",
+  "class": "",
+  "html": "(가)는 점수 70이 들어갈 왼쪽 자리와 오른쪽 자리를 찾는다. (나)는 홀수 2000개를 정렬된 리스트에 하나씩 끼워 넣는 시간을 잰다. <code class=\"i\">insort</code>는 정렬을 유지하며 끼워 넣는 함수이다."
+ },
+ {
+  "id": 72,
+  "tag": "h3",
+  "class": "",
+  "html": "먼저 예측하기"
+ },
+ {
+  "id": 73,
+  "tag": "p",
+  "class": "q",
+  "html": "(가)에서 출력되는 두 값은?"
+ },
+ {
+  "id": 74,
+  "tag": "p",
+  "class": "q",
+  "html": "(나)에서 2000번 끼워 넣는 데 걸리는 시간은?"
+ },
+ {
+  "id": 75,
+  "tag": "p",
+  "class": "",
+  "html": "고른 답은 활동지 <a class=\"xlink\" href=\"student_workbook_part2.html#A10\">2부 A10</a> 표의 T4 줄 &lsquo;예측&rsquo; 칸에 적어 두자."
+ },
+ {
+  "id": 76,
+  "tag": "h3",
+  "class": "",
+  "html": "실행하고 정리하기"
+ },
+ {
+  "id": 77,
+  "tag": "p",
+  "class": "",
+  "html": "[&#9654; 실행]을 누르면 (가)의 두 값이 한 줄, (나)의 시간이 한 줄 나온다. (나)는 15초를 넘기면 멈춘다. 같은 T4 줄의 &lsquo;실제&rsquo;와 &lsquo;원인 한 줄&rsquo; 칸에 적는다."
+ },
+ {
+  "id": 78,
+  "tag": "summary",
+  "class": "",
+  "html": "막히면 · 원인 단서"
+ },
+ {
+  "id": 79,
+  "tag": "p",
+  "class": "",
+  "html": "insort는 자리를 찾는 일과 그 자리에 끼워 넣는 일로 나뉜다. 둘 중 어느 쪽이 리스트 길이에 비례하는지 생각해 본다."
+ },
+ {
+  "id": 80,
+  "tag": "p",
+  "class": "wrapup",
+  "html": "<b>여기까지</b> 함정 탐색 T1~T4를 마쳤다. 다음 A11에서는 두 정렬의 비교 횟수를 코드로 센다."
+ }
+]

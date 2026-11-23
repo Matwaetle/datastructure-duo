@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13주차 탐구 활동지 2부 · A7~A10 기록 (학생용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="stylesheet" href="../assets/codekit.css">
+<script src="../assets/codekit.js" defer></script>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script src="../assets/lesson.js" defer></script>
+<link rel="stylesheet" href="../assets/chatkit.css">
+<script src="../assets/chatkit.js" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/duo.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="prompt">&gt;&gt;&gt; workbook.week(13)  # 학생용 · 탐구 활동지 2부 A7~A10</div>
+  <h1>13주차 탐구 활동지 2부 — 코드 실습 기록 (A7~A10)</h1>
+  <p class="lead">2차시에 쓰는 활동지예요. 실습 코드를 실행해서 얻은 값을 여기에 적어요. 예측 칸은 실행하기 전에 먼저 써요.</p><p class="meta"><span>제출하지 않고 혼자 공부하는 활동지예요. 쓴 내용은 이 브라우저에 자동으로 저장돼요.</span></p>
+</header>
+<nav><a href="#A7">A7</a><a href="#A8">A8</a><a href="#A9">A9</a><a href="#A10">A10</a><a href="index.html">목록</a></nav>
+<section id="A7" class="sheet lesson">
+<h2>A7 · 호출 횟수 예측과 실제<small>2차시 · 11분</small></h2>
+<p class="lead"><a class="xlink" href="student_code_lab.html#A7">1부 A7</a>의 7걸음에서 나온 횟수를 옮겨 적어요. 예측을 먼저 쓰고, 실제와 비교해 봐요.</p>
+<div class="step">
+<h3>예측과 실제 쓰기</h3>
+<p>n = 20, 30일 때 세 방식이 일한 횟수를 먼저 어림해서 써요. 코드를 실행한 뒤 출력된 숫자를 &lsquo;실제&rsquo; 칸에 옮겨요. fib_naive와 fib_memo는 함수가 불린 횟수예요. fib_tab은 칸을 채운 횟수예요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:60px">n</th><th>fib_naive 호출 · 예측</th><th>실제</th><th>fib_memo 호출 · 예측</th><th>실제</th><th>fib_tab 반복 · 예측</th><th>실제</th></tr><tr><td class="lab">20</td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r1.c1" placeholder="어림 가능" data-label="A7 20 fib_naive 호출 · 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r1.c2" placeholder="출력된 숫자" data-label="A7 20 실제" autocomplete="off" data-model="21891"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r1.c3" placeholder="어림 가능" data-label="A7 20 fib_memo 호출 · 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r1.c4" placeholder="출력된 숫자" data-label="A7 20 실제" autocomplete="off" data-model="39"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r1.c5" placeholder="어림 가능" data-label="A7 20 fib_tab 반복 · 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r1.c6" placeholder="출력된 숫자" data-label="A7 20 실제" autocomplete="off" data-model="19"></td></tr><tr><td class="lab">30</td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r2.c1" placeholder="어림 가능" data-label="A7 30 fib_naive 호출 · 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r2.c2" placeholder="출력된 숫자" data-label="A7 30 실제" autocomplete="off" data-model="2692537"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r2.c3" placeholder="어림 가능" data-label="A7 30 fib_memo 호출 · 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r2.c4" placeholder="출력된 숫자" data-label="A7 30 실제" autocomplete="off" data-model="59"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r2.c5" placeholder="어림 가능" data-label="A7 30 fib_tab 반복 · 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A7.pred.r2.c6" placeholder="출력된 숫자" data-label="A7 30 실제" autocomplete="off" data-model="29"></td></tr></table></div>
+<div class="ans-row"><input type="checkbox" data-key="A7.same" data-label="A7 세 방식이 같은 값을 돌려주었다"></div>
+</div>
+<div class="step">
+<h3>왜 그런지 내 말로 쓰기</h3>
+<p class="qtext">fib_memo와 fib_tab은 같은 값을 어떤 순서로 구할까요? 먼저 구하는 값과 나중에 구하는 값을 비교해서 써요.</p><div class="ans-row"><span class="n">1</span><textarea class="in" rows="3" data-key="A7.q1" placeholder="fib_memo는 ~부터 ~ 순서로 구한다. fib_tab은 ~부터 ~ 순서로 구한다" data-label="A7 fib_memo와 fib_tab은 같은 값을 어떤 순서로 구하는가? 먼저 구하는 값과 나중에 구하는 값을 비교해 쓴다."></textarea></div><p class="qtext">dp[0]과 dp[1]은 왜 따로 정해 줘야 할까요? 정해 주지 않으면 무슨 일이 생길까요?</p><div class="ans-row"><span class="n">2</span><textarea class="in" rows="3" data-key="A7.q2" placeholder="이유: ~ / 정해 주지 않으면 ~" data-label="A7 dp[0]과 dp[1]은 왜 따로 정해 주어야 하는가? 정해 주지 않으면 무엇이 일어나는가?"></textarea></div><p class="qtext">예측과 실제가 달랐다면 어느 값이 달랐나요? 왜 달랐다고 생각하나요? 모두 맞았으면 &lsquo;모두 맞았다&rsquo;라고 써요.</p><div class="ans-row"><span class="n">3</span><textarea class="in" rows="3" data-key="A7.q3" placeholder="모두 맞았다 / ~칸이 달랐다. 까닭: ~" data-label="A7 예측과 실제가 달랐다면 어느 값이 달랐고, 그 까닭은 무엇이라 생각하는가?"></textarea></div>
+</div>
+<p class="wrapup"><b>여기까지</b> 세 방식의 횟수를 예측과 비교해서 정리했어요. 다음 A8에서는 거스름돈 두 방법을 코드로 옮겨요.</p>
+</section>
+<section id="A8" class="sheet lesson">
+<h2>A8 · Greedy와 DP 구현 기록<small>2차시 · 14분</small></h2>
+<p class="lead"><a class="xlink" href="student_code_lab_part2.html#A8">2부 A8</a>의 7걸음에서 나온 6원 결과를 옮겨요. 그리고 두 함수가 갈라지는 곳과 과제 시작 메모를 써요.</p>
+<div class="step">
+<h3>6원 예측과 실제</h3>
+<p>동전 [1, 3, 4]로 6원을 만들 때 두 함수의 반환값(동전 개수)을 실행 전에 숫자로 예측해요. 실행한 뒤 실제 값을 쓰고, A4·A5에서 손으로 구한 값과 비교해요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:40%">함수</th><th>예측</th><th>실제</th></tr><tr><td class="lab">greedy_coins([1, 3, 4], 6)</td><td class="in-cell"><input type="text" class="in" data-key="A8.six.r1.c1" placeholder="숫자" data-label="A8 6원 greedy_coins([1, 3, 4], 6) 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A8.six.r1.c2" placeholder="숫자" data-label="A8 6원 greedy_coins([1, 3, 4], 6) 실제" autocomplete="off" data-model="3"></td></tr><tr><td class="lab">dp_coins([1, 3, 4], 6)</td><td class="in-cell"><input type="text" class="in" data-key="A8.six.r2.c1" placeholder="숫자" data-label="A8 6원 dp_coins([1, 3, 4], 6) 예측" autocomplete="off"></td><td class="in-cell"><input type="text" class="in" data-key="A8.six.r2.c2" placeholder="숫자" data-label="A8 6원 dp_coins([1, 3, 4], 6) 실제" autocomplete="off" data-model="2"></td></tr></table></div>
+<div class="ans-row"><span>A4·A5에서 손으로 한 [1, 3, 4] 값과 코드 결과가 </span><span class="rg" data-key="A8.same" data-type="radio" data-label="A8 손 계산과 코드 결과가 같았는가"><label><input type="radio" name="r_A8_same" value="모두 같았다"> 모두 같았다</label><label><input type="radio" name="r_A8_same" value="다른 곳이 있었다"> 다른 곳이 있었다</label></span><span> 다른 곳(다르면 금액): </span><input type="text" class="in" data-key="A8.diff" placeholder="다른 금액: ○원" data-label="A8 손 계산과 코드 결과가 다른 곳" autocomplete="off" style="width:10em;display:inline-block"></div>
+</div>
+<div class="step">
+<h3>갈라지는 곳 쓰기</h3>
+<p class="qtext">6원에서 greedy_coins와 dp_coins의 반환값이 달라요. 두 함수가 코드의 어느 줄에서 갈라지는지 한 곳을 짚고, 그 까닭을 써요.</p><div class="ans-row"><span class="n">1</span><textarea class="in" rows="3" data-key="A8.q2" placeholder="갈라지는 곳: ~ 줄. 까닭: ~" data-label="A8 6원에서 두 함수가 갈라지는 코드 줄과 까닭"></textarea></div>
+</div>
+<div class="step">
+<h3>과제 시작 메모</h3>
+<p>실습 과제의 <code class="i">min_coins</code>를 만든다고 해 봐요. 방금 만든 dp_coins의 표를 떠올려요. 표의 한 칸이 뜻하는 것(상태)과 이 함수가 얼마나 일해야 하는지(목표 비용)를 내 말로 한 줄씩 써요. 6원 결과를 보고 고칠 게 있으면 고쳐요.</p>
+<div class="quiz" data-accept="18" data-hint="금액 a가 1부터 6까지 여섯 값이고, a마다 동전 3개를 하나씩 본다.">
+<p class="q">먼저 세어 봐요. dp_coins([1, 3, 4], 6)에서 안쪽 for문은 모두 몇 번 돌까요?</p>
+<div class="ans"><input type="text" aria-label="안쪽 for문 횟수" placeholder="숫자"><button type="button">확인</button></div>
+<p class="why">6 × 3 = 18번이에요. 금액이나 동전 수가 바뀌면 이 횟수가 어떻게 바뀔지 목표 비용 칸에 써요.</p>
+</div><div class="ans-row"><span class="n">1</span><textarea class="in" rows="2" data-key="A8.plan.state" placeholder="표의 한 칸은 ~를 뜻한다" data-label="A8 과제 착수 메모: min_coins의 상태 정의"></textarea></div><div class="ans-row"><span class="n">2</span><textarea class="in" rows="2" data-key="A8.plan.cost" placeholder="~에 비례해서 일한다" data-label="A8 과제 착수 메모: 목표 비용"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · 6원 결과와 두 함수가 갈라지는 곳</summary>
+<ul>
+<li><code class="i">greedy_coins([1, 3, 4], 6)</code>은 3(4+1+1), <code class="i">dp_coins([1, 3, 4], 6)</code>은 2(3+3)예요. A4·A5에서 손으로 구한 값과 같아야 해요.</li>
+<li>두 함수가 갈라지는 곳: greedy_coins는 큰 동전부터 몫만큼 쓰고 넘어가는 반복문 하나(동전 종류 수만큼)예요. dp_coins는 1원부터 amount원까지 모든 칸을 채워요. 칸마다 모든 동전 후보를 비교해서 가장 작은 값을 골라요. 6원에서 greedy는 처음에 4를 쓰는 것으로 정해져요. 하지만 dp는 4를 마지막에 쓴 후보(3개)와 3을 마지막에 쓴 후보(2개)를 모두 비교하니까 결과가 달라져요.</li>
+<li>INF를 쓰지 않으면 어떤 값이 나오는지는 A10의 T2에서 직접 확인해요.</li>
+<li>시작 메모의 한 예: &ldquo;상태는 dp[a] = a원을 만드는 최소 동전 개수이고, 금액 a마다 동전 수만큼 본다&rdquo;예요. 내 메모와 말이 달라도 뜻이 같으면 돼요. 달라졌다고 느끼면 위 메모 칸을 고쳐 써요.</li>
+</ul>
+</details>
+</div>
+<p class="wrapup"><b>여기까지</b> 6원 결과, 갈라지는 곳, 시작 메모를 정리했어요. 다음 A9에서는 두 방법의 답이 달라지는 금액을 찾아요.</p>
+</section>
+<section id="A9" class="sheet lesson">
+<h2>A9 · 반례 탐색과 내 체계 설계 기록<small>2차시 · 13분</small></h2>
+<p class="lead"><a class="xlink" href="student_code_lab_part2.html#A9">2부 A9</a>의 5걸음과 6걸음에서 나온 목록을 옮겨요. 그리고 반례 증명 문장을 써요.</p>
+<div class="step">
+<h3>체계 4개 예측과 실제</h3>
+<p>limit은 시험할 금액의 상한이에요. 1원부터 limit원까지 시험해요. 칸에는 <code class="i">find_failures</code>가 돌려줄 목록을 <code class="i">[8, 9, …]</code> 꼴로 써요(반례가 없으면 <code class="i">[]</code>). 목록이 길면 앞의 3~5개와 &lsquo;총 ○개&rsquo;를 써요. 예측은 실행 전에 쓰고, 실제는 출력을 그대로 옮겨요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:150px">동전 체계</th><th>limit 30 예측</th><th>limit 30 실제</th><th>limit 50 예측</th><th>limit 50 실제</th></tr><tr><td class="lab">[1, 3, 4]</td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r1.c1" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 3, 4] limit 30 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r1.c2" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 3, 4] limit 30 실제"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r1.c3" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 3, 4] limit 50 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r1.c4" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 3, 4] limit 50 실제"></textarea></td></tr><tr><td class="lab">[1, 4, 6]</td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r2.c1" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 4, 6] limit 30 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r2.c2" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 4, 6] limit 30 실제"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r2.c3" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 4, 6] limit 50 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r2.c4" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 4, 6] limit 50 실제"></textarea></td></tr><tr><td class="lab">한국 동전 [1, 10, 50, 100, 500]</td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r3.c1" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 한국 동전 [1, 10, 50, 100, 500] limit 30 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r3.c2" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 한국 동전 [1, 10, 50, 100, 500] limit 30 실제"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r3.c3" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 한국 동전 [1, 10, 50, 100, 500] limit 50 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r3.c4" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 한국 동전 [1, 10, 50, 100, 500] limit 50 실제"></textarea></td></tr><tr><td class="lab">[1, 5, 10, 20, 25]</td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r4.c1" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 5, 10, 20, 25] limit 30 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r4.c2" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 5, 10, 20, 25] limit 30 실제"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r4.c3" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 5, 10, 20, 25] limit 50 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.sys.r4.c4" placeholder="[…] 또는 [] (길면 앞 몇 개 + 총 ○개)" data-label="A9 체계 [1, 5, 10, 20, 25] limit 50 실제"></textarea></td></tr></table></div>
+</div>
+<div class="step">
+<h3>시험으로 알 수 있는 것</h3>
+<p class="qtext">&ldquo;금액 몇 개를 시험하면 증명이 될까?&rdquo; 내 생각을 써요. 맨 앞에 &lsquo;된다&rsquo; 또는 &lsquo;안 된다&rsquo;를 써요.</p><div class="ans-row"><span class="n">1</span><textarea class="in" rows="3" data-key="A9.q2" placeholder="된다/안 된다. 왜냐하면 ~" data-label="A9 “몇 개 금액을 시험했다고 증명이 되는가?” 내 의견을 쓴다."></textarea></div><p class="qtext">표의 네 체계 중에 limit 50에서 반례가 없는 체계가 있어요. 그 체계와 반례가 나온 체계의 동전 값을 나란히 놓고, 달라 보이는 점을 써요. 이 관찰이 모든 금액에서 맞다는 것을 &lsquo;보장한다&rsquo;와 &lsquo;보장하지 않는다&rsquo; 중 하나로 답하고, 까닭도 써요.</p><div class="ans-row"><span class="n">2</span><textarea class="in" rows="3" data-key="A9.q4" placeholder="① 반례가 없는 체계는 [~] ② 달라 보이는 점: ~ ③ 보장한다/보장하지 않는다. 까닭: ~" data-label="A9 limit 50에서 반례가 없는 체계와 있는 체계의 동전 값 비교 관찰, 보장 여부"></textarea></div>
+</div>
+<div class="step">
+<h3>내 동전 체계 2개</h3>
+<p>1이 들어간 오름차순 목록을 <code class="i">[1, ?, ?]</code> 꼴로 써요. 하나는 큰 동전부터 쓰는 방식이 맞을 것 같은 체계, 다른 하나는 틀릴 것 같은 체계예요. 결과 칸에는 find_failures가 출력한 목록을 그대로 써요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:150px">체계</th><th style="width:30%">동전 목록</th><th style="width:100px">실행한 limit</th><th>find_failures 결과</th></tr><tr><td class="lab">맞을 것 같은 체계</td><td class="in-cell"><input type="text" class="in" data-key="A9.mine.r1.c1" placeholder="[1, …]" data-label="A9 내 체계 맞을 것 같은 체계 동전 목록" autocomplete="off" data-model="[1, 2, 4, 8]"></td><td class="in-cell"><input type="text" class="in" data-key="A9.mine.r1.c2" placeholder="숫자" data-label="A9 내 체계 맞을 것 같은 체계 실행한 limit" autocomplete="off" data-model="30"></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.mine.r1.c3" placeholder="출력된 목록" data-label="A9 내 체계 맞을 것 같은 체계 find_failures 결과"></textarea></td></tr><tr><td class="lab">틀릴 것 같은 체계</td><td class="in-cell"><input type="text" class="in" data-key="A9.mine.r2.c1" placeholder="[1, …]" data-label="A9 내 체계 틀릴 것 같은 체계 동전 목록" autocomplete="off" data-model="[1, 5, 12]"></td><td class="in-cell"><input type="text" class="in" data-key="A9.mine.r2.c2" placeholder="숫자" data-label="A9 내 체계 틀릴 것 같은 체계 실행한 limit" autocomplete="off" data-model="30"></td><td class="in-cell"><textarea class="in" rows="2" data-key="A9.mine.r2.c3" placeholder="출력된 목록" data-label="A9 내 체계 틀릴 것 같은 체계 find_failures 결과"></textarea></td></tr></table></div>
+</div>
+<div class="step">
+<h3>반례 증명 문장</h3>
+<p>반례가 나온 내 체계 하나로 써요. 금액·개수 칸은 숫자만 써요. 조합 칸은 <code class="i">10+5+1</code>처럼 +로 이어요. 그다음 문장 칸에 위 값을 모두 넣어 한 문장으로 다시 써요.</p>
+<pre class="fig">동전 [ ______ ]로 ____원을 만들 때
+큰 동전부터 쓰면 ______ = ____개이고,
+______ = ____개로 더 적게 만들 수 있으므로
+큰 동전부터 쓰는 방식은 이 체계에서 최적이 아니다.</pre>
+<div class="ans-row"><span class="n">증명</span><span>금액 </span><input type="text" class="in" data-key="A9.proof.amount" placeholder="금액" data-label="A9 반례 금액" autocomplete="off" style="width:5em;display:inline-block" data-model="15"><span> 큰 동전부터 </span><input type="text" class="in" data-key="A9.proof.greedy" placeholder="+로 잇기" data-label="A9 큰 동전부터 쓰는 조합" autocomplete="off" style="width:10em;display:inline-block" data-model="12+1+1+1"><span> = </span><input type="text" class="in" data-key="A9.proof.gn" placeholder="숫자" data-label="A9 큰 동전부터 쓰는 개수" autocomplete="off" style="width:3em;display:inline-block" data-model="4"><span>개, 더 나은 조합 </span><input type="text" class="in" data-key="A9.proof.better" placeholder="+로 잇기" data-label="A9 더 나은 조합" autocomplete="off" style="width:10em;display:inline-block" data-model="5+5+5"><span> = </span><input type="text" class="in" data-key="A9.proof.bn" placeholder="숫자" data-label="A9 더 나은 개수" autocomplete="off" style="width:3em;display:inline-block" data-model="3"><span>개</span></div>
+<div class="ans-row"><textarea class="in" rows="3" data-key="A9.proof.text" placeholder="동전 [~]로 ~원을 만들 때 큰 동전부터 쓰면 ~개이고, ~로 하면 ~개이므로 ~" data-label="A9 반례 증명 문장(내 말로)"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · 체계 4개의 실패 금액</summary>
+<div class="scroll"><table><tr><th>동전 체계</th><th>find_failures(coins, 30)</th><th>find_failures(coins, 50)</th></tr>
+<tr><td>[1, 3, 4]</td><td>[6, 10, 14, 18, 22, 26, 30]</td><td>[6, 10, 14, 18, 22, 26, 30, 34, 38, 42, 46, 50]</td></tr>
+<tr><td>[1, 4, 6]</td><td>[8, 9, 14, 15, 20, 21, 26, 27]</td><td>[8, 9, 14, 15, 20, 21, 26, 27, 32, 33, 38, 39, 44, 45, 50]</td></tr>
+<tr><td>[1, 5, 10, 20, 25]</td><td>[]</td><td>[40, 41, 42, 43, 44]</td></tr>
+<tr><td>[1, 10, 50, 100, 500]</td><td>[]</td><td>[] (limit 60에서도 [])</td></tr></table></div>
+<ul>
+<li>[1, 5, 10, 20, 25]는 limit 30에서 []이고, limit 50에서는 40부터 반례가 나와요. 40원은 Greedy로 25+10+5 = 3개인데, 더 나은 조합은 20+20 = 2개예요. 25를 먼저 낸 선택 때문에 남은 15원을 비효율적으로 채우게 돼요. 시험한 금액이 적으면 반례를 놓칠 수 있어요.</li>
+<li>[1, 4, 6]의 반례는 8 이상이면서 6으로 나눈 나머지가 2 또는 3인 금액(8, 9, 14, 15, 20, 21, …)이에요. 6칸마다 같은 모양이 반복돼요.</li>
+<li>한국 동전의 []은 시험한 범위에서 나온 결과예요. 이것이 모든 금액에서 맞는다는 증명인지는 위 q2에 쓴 내 생각을 돌아보고, A13에서 다시 정리해요.</li>
+<li>Greedy가 맞는 체계의 모양(q4)은 위 표의 동전 값을 나란히 놓고 스스로 찾아봐요.</li>
+</ul>
+</details>
+</div>
+<p class="wrapup"><b>여기까지</b> 체계 4개와 내 체계의 반례를 정리했어요. 다음 A10에서는 틀린 코드의 원인을 찾아요.</p>
+</section>
+<section id="A10" class="sheet lesson">
+<h2>A10 · 함정 코드 예측과 원인<small>2차시 · 12분</small></h2>
+<p class="lead">실습 코드 3부의 함정 코드 T1~T3을 실행하기 전에 결과를 예측해요. 실행한 뒤에는 실제 결과와 원인을 써요. 고친 코드는 3부의 &lsquo;고친 코드&rsquo; 칸에 써요.</p>
+<div class="step">
+<h3>T1 fib_t1</h3>
+<p>예측 칸에는 값(숫자)과 이유를 써요. 형식 예: <code class="i">6은 ○번, 20은 ○번. 왜냐하면 …</code></p>
+<div class="scroll"><table class="fill"><tr><th style="width:34%"></th><th>예측</th><th>실제</th></tr><tr><td class="lab">fib_t1(6)과 fib_t1(20)의 호출 횟수</td><td class="in-cell"><textarea class="in" rows="2" data-key="A10.t1.r1.c1" placeholder="6은 ○번, 20은 ○번. 왜냐하면 ~" data-label="A10 T1 fib_t1(6)과 fib_t1(20)의 호출 횟수 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A10.t1.r1.c2" placeholder="출력된 두 숫자" data-label="A10 T1 fib_t1(6)과 fib_t1(20)의 호출 횟수 실제"></textarea></td></tr></table></div><p class="qtext">실행한 뒤, 이 코드가 왜 그렇게 동작했는지 원인을 써요. &lsquo;어느 줄이 무엇을 하는지&rsquo;, &lsquo;그래서 무슨 일이 생겼는지&rsquo; 두 문장으로 써요.</p><div class="ans-row"><span class="n">원인</span><textarea class="in" rows="3" data-key="A10.t1.cause" placeholder="~ 줄이 ~하므로 ~가 일어났다" data-label="A10 T1 원인"></textarea></div>
+</div>
+<div class="step">
+<h3>T2 dp_t2</h3>
+<p>예측 칸에는 두 반환값과 이유를 써요. 형식 예: <code class="i">앞의 것은 ○, 뒤의 것은 ○. 왜냐하면 …</code></p>
+<div class="scroll"><table class="fill"><tr><th style="width:34%"></th><th>예측</th><th>실제</th></tr><tr><td class="lab">dp_t2([1, 3, 4], 6)과 dp_t2([5, 7], 3)의 반환값</td><td class="in-cell"><textarea class="in" rows="2" data-key="A10.t2.r1.c1" placeholder="앞의 것은 ○, 뒤의 것은 ○. 왜냐하면 ~" data-label="A10 T2 dp_t2([1, 3, 4], 6)과 dp_t2([5, 7], 3)의 반환값 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A10.t2.r1.c2" placeholder="출력된 두 값" data-label="A10 T2 dp_t2([1, 3, 4], 6)과 dp_t2([5, 7], 3)의 반환값 실제"></textarea></td></tr></table></div><div class="ans-row"><span class="n">원인</span><textarea class="in" rows="3" data-key="A10.t2.cause" placeholder="~ 줄이 ~하므로 ~가 일어났다" data-label="A10 T2 원인"></textarea></div>
+</div>
+<div class="step">
+<h3>T3 격자 만들기</h3>
+<p>칸 위치는 (행, 열) 번호로 쓰고, 번호는 0부터 세요. 칸이 여러 개면 모두 쓰고 이유도 한 줄 써요. 실제 칸에는 출력에서 1이 나온 칸을 같은 방식으로 써요.</p>
+<div class="scroll"><table class="fill"><tr><th style="width:34%"></th><th>예측</th><th>실제</th></tr><tr><td class="lab">3행 4열 중 어느 칸이 1이 될지</td><td class="in-cell"><textarea class="in" rows="2" data-key="A10.t3.r1.c1" placeholder="(행, 열)… 왜냐하면 ~" data-label="A10 T3 3행 4열 중 어느 칸이 1이 될지 예측"></textarea></td><td class="in-cell"><textarea class="in" rows="2" data-key="A10.t3.r1.c2" placeholder="(행, 열)…" data-label="A10 T3 3행 4열 중 어느 칸이 1이 될지 실제"></textarea></td></tr></table></div><div class="ans-row"><span class="n">원인</span><textarea class="in" rows="3" data-key="A10.t3.cause" placeholder="~ 줄이 ~하므로 ~가 일어났다" data-label="A10 T3 원인"></textarea></div>
+</div>
+<div class="step">
+<h3>내 답 확인하기</h3>
+<p>먼저 위 칸에 내 말로 쓰고 나서 상자를 열어 봐요.</p>
+<details class="learn-box after"><summary>다 쓰고 나서 열어 봐요 · T1~T3의 결과와 원인</summary>
+<div class="scroll"><table><tr><th style="width:14%">코드</th><th>결과</th><th>원인과 고침</th></tr>
+<tr><td>T1</td><td>fib_t1(6)은 호출 25번(값 8), fib_t1(20)은 호출 21,891번(값 6765). 순수 재귀와 같은 횟수이다. 값은 맞다.</td><td>함수가 불릴 때마다 <code class="i">memo = {}</code>가 새로 만들어져 저장이 재사용되지 않는다. memo를 호출 밖에서 한 번 만들고 재귀 호출에 인자로 넘긴다.</td></tr>
+<tr><td>T2</td><td><code class="i">dp_t2([1, 3, 4], 6)</code>은 0(정답 2), <code class="i">dp_t2([5, 7], 3)</code>은 0(정답 -1). <code class="i">dp_t2([1, 3, 4], 0)</code>은 0으로 우연히 맞는다.</td><td>초기값이 0이면 <code class="i">dp[a-c] + 1 &lt; dp[a]</code>, 곧 1 &lt; 0이 한 번도 참이 되지 않아 어떤 칸도 바뀌지 않는다. 만들 수 없는(아직 못 구한) 칸을 INF로 시작해야 min이 동작한다.</td></tr>
+<tr><td>T3</td><td>세 행이 모두 [1, 0, 0, 0]이다.</td><td><code class="i">[[0] * C] * R</code>은 안쪽 리스트 하나를 R번 가리킨다. 한 행을 바꾸면 모든 행이 바뀐다. <code class="i">[[0] * C for _ in range(R)]</code>로 행마다 새 리스트를 만든다.</td></tr>
+</table></div>
+<p>8주차의 <code class="i">memo={}</code> 기본 인자는 반대였어요. 호출 사이에 값이 남아서 공유되는 함정이었죠. T1은 매번 새로 만들어져서 아무것도 남지 않는 함정이에요.</p>
+</details>
+</div>
+<p class="wrapup"><b>여기까지</b> 세 함정 코드의 예측, 실제, 원인을 정리했어요.</p>
+</section>
+</div>
+<script id="week13-submit">
+/* week13 학생 입력 저장 (8개 학생용 파일 동일, FILE_KEY만 다름). 규격: schema week13-student-v1 */
+(function(){
+"use strict";
+var FILE_KEY="workbook_part2";
+var FILES={workbook:"student_workbook.html",code_lab:"student_code_lab.html",workbook_part2:"student_workbook_part2.html",code_lab_part2:"student_code_lab_part2.html",code_lab_part3:"student_code_lab_part3.html",workbook_part3:"student_workbook_part3.html",code_lab_part4:"student_code_lab_part4.html",formative:"formative_check.html"};
+var FILE=FILES[FILE_KEY], STORE="week13:"+FILE, SCHEMA="week13-student-v1";
+var bar,idIn,nameIn,msg,autoEl,saveBtn,clearBtn,confirmBox,busy=false,timer=null;
+var loadBtn,fileIn,yesBtn,confirmTxt,pending=null,baseline="";
+
+function q(sel,root){return Array.prototype.slice.call((root||document).querySelectorAll(sel));}
+function kind(el){
+  var t=el.getAttribute("data-type");
+  if(t)return t;
+  var tag=el.tagName.toLowerCase();
+  if(tag==="textarea")return "textarea";
+  if(tag==="select")return "select";
+  if(tag==="input")return el.type==="checkbox"?"checkbox":"text";
+  return "text";
+}
+function labelOf(el){
+  var l=el.getAttribute("data-label");
+  if(l)return l;
+  if(el.labels&&el.labels.length)return el.labels[0].textContent.replace(/\s+/g," ").trim();
+  return el.getAttribute("aria-label")||"";
+}
+function readValue(el,k){
+  if(k==="checkbox")return !!el.checked;
+  if(k==="radio"){var r=el.querySelector("input[type=radio]:checked");return r?r.value:null;}
+  return el.value;
+}
+function collect(){
+  return q("[data-key]").map(function(el){
+    var k=kind(el);
+    return {key:el.getAttribute("data-key"),label:labelOf(el),type:k,value:readValue(el,k)};
+  });
+}
+function studentInfo(){return {id:idIn.value.trim(),name:nameIn.value.trim()};}
+function buildJSON(status){
+  return {schema:SCHEMA,week:13,file:FILE,status:status||"final",student:studentInfo(),savedAt:new Date().toISOString(),answers:collect()};
+}
+function safe(s){return String(s).replace(/[\\\/:*?"<>|\s\u0000-\u001f]+/g,"_").replace(/^\.+/,"_");}
+function fileName(st,draft){return "week13_"+FILE_KEY+"_"+safe(st.id||"학번미입력")+"_"+safe(st.name||"이름미입력")+(draft?"_임시저장":"")+".json";}
+function validate(){
+  var miss=[];
+  [[idIn,"학번"],[nameIn,"이름"]].forEach(function(p){
+    var bad=!p[0].value.trim();
+    p[0].classList.toggle("invalid",bad);
+    p[0].setAttribute("aria-invalid",bad?"true":"false");
+    if(bad)miss.push(p);
+  });
+  return miss;
+}
+function updatePrintId(){
+  var p=document.getElementById("printid");
+  if(!p)return;
+  var s=studentInfo();
+  p.textContent="학번: "+(s.id||"          ")+"   이름: "+(s.name||"          ");
+}
+function say(text,cls){msg.textContent=text;msg.className="sb-msg"+(cls?" "+cls:"");}
+
+function download(draft){
+  var obj=buildJSON(draft?"draft":"final"),name=fileName(obj.student,draft);
+  var blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json;charset=utf-8"});
+  var url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=name;a.style.display="none";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  return name;
+}
+function onSave(){
+  if(busy)return;
+  var miss=validate();
+  if(miss.length){
+    say("학번과 이름을 입력해야 저장할 수 있다. 표시된 칸을 채운 뒤 다시 누른다.","err");
+    miss[0][0].focus();return;
+  }
+  busy=true;saveBtn.disabled=true;
+  try{
+    var n=download();
+    say("저장했다: "+n+" (내려받은 JSON 파일 한 개를 제출한다.)","ok");
+  }catch(e){say("저장하지 못했다. 브라우저를 바꾸어 다시 시도한다.","err");}
+  setTimeout(function(){busy=false;saveBtn.disabled=false;},1200);
+}
+
+/* 이어 쓰기: 저장한 파일 불러오기 */
+function snap(){return JSON.stringify(collect().map(function(a){return a.value;}));}
+function isDirty(){return snap()!==baseline;}
+function ask(text,fn){
+  confirmTxt.textContent=text;pending=fn;confirmBox.hidden=false;
+  clearBtn.disabled=true;loadBtn.disabled=true;
+}
+function closeAsk(){
+  pending=null;confirmBox.hidden=true;clearBtn.disabled=false;loadBtn.disabled=false;
+}
+function applyLoaded(j){
+  if(!j||typeof j!=="object"||Array.isArray(j))return {err:"저장 파일 형식이 아니다."};
+  if(j.schema!==SCHEMA)return {err:"이 워크북의 저장 파일이 아니다(schema 불일치). 이 활동지에서 저장한 JSON 파일을 고른다."};
+  if(j.file!==FILE)return {err:"이 파일은 '"+String(j.file)+"'에서 저장한 것이다. 지금 열린 '"+FILE+"'에서 저장한 파일만 불러올 수 있다."};
+  if(!Array.isArray(j.answers))return {err:"저장 파일에 answers가 없거나 형식이 틀리다."};
+  var vals={};
+  j.answers.forEach(function(a){if(a&&typeof a.key==="string")vals[a.key]=a.value;});
+  var n=0;
+  q("[data-key]").forEach(function(el){
+    var key=el.getAttribute("data-key");
+    if(!Object.prototype.hasOwnProperty.call(vals,key))return;
+    var v=vals[key],t=typeof v;
+    if(v!==null&&t!=="string"&&t!=="boolean")return;
+    setValue(el,v);n++;
+  });
+  if(j.student&&typeof j.student==="object"){
+    idIn.value=typeof j.student.id==="string"?j.student.id:"";
+    nameIn.value=typeof j.student.name==="string"?j.student.name:"";
+    [idIn,nameIn].forEach(function(i){i.classList.remove("invalid");i.setAttribute("aria-invalid","false");});
+  }
+  autosizeAll();updatePrintId();stash();
+  return {n:n,draft:j.status==="draft",at:j.savedAt};
+}
+function onLoadClick(){
+  if(isDirty()||idIn.value.trim()||nameIn.value.trim()){
+    ask("지금 입력한 내용이 불러온 파일의 내용으로 바뀐다. 계속하려면 [불러오기 진행]을 누르고 파일을 고른다.",function(){closeAsk();fileIn.click();});
+    yesBtn.textContent="불러오기 진행";
+  }else{fileIn.click();}
+}
+function onFileChosen(){
+  var f=fileIn.files&&fileIn.files[0];
+  if(!f)return;
+  if(f.size>3*1024*1024){say("파일이 너무 크다(3MB 초과). 이 활동지에서 저장한 JSON 파일이 맞는지 확인한다.","err");fileIn.value="";return;}
+  var r=new FileReader();
+  r.onerror=function(){say("파일을 읽지 못했다. 다시 시도한다.","err");fileIn.value="";};
+  r.onload=function(){
+    var res;
+    try{res=applyLoaded(JSON.parse(String(r.result)));}
+    catch(e){res={err:"JSON 파일을 읽지 못했다. 이 활동지에서 저장한 파일이 맞는지 확인한다."};}
+    if(res.err){say(res.err+" (입력란은 바뀌지 않았다.)","err");}
+    else{say("불러왔다: "+f.name+" ("+res.n+"칸"+(res.at?", 저장 시각 "+res.at.slice(0,16).replace("T"," "):"")+"). 이어서 쓴다."+(res.draft?" (예전 임시 저장 파일이다. 다 쓴 뒤 [저장(JSON)]으로 다시 저장해 낸다.)":""),"ok");}
+    fileIn.value="";
+  };
+  r.readAsText(f,"utf-8");
+}
+
+/* 자동 보관 (localStorage, 모두 try/catch) */
+function stash(){
+  try{
+    var vals={};collect().forEach(function(a){vals[a.key]=a.value;});
+    localStorage.setItem(STORE,JSON.stringify({student:studentInfo(),values:vals,at:Date.now()}));
+    var d=new Date();
+    autoEl.textContent="자동 보관됨 "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2);
+  }catch(e){autoEl.textContent="자동 보관 사용 불가([저장(JSON)]은 가능)";}
+}
+function schedule(){clearTimeout(timer);timer=setTimeout(stash,300);}
+function setValue(el,v){
+  var k=kind(el);
+  if(k==="checkbox"){el.checked=(v===true);}
+  else if(k==="radio"){q("input[type=radio]",el).forEach(function(r){r.checked=(v!==null&&v!==undefined&&r.value===v);});}
+  else{el.value=(v===null||v===undefined)?"":String(v);}
+}
+function restore(){
+  try{
+    var raw=localStorage.getItem(STORE);if(!raw)return;
+    var s=JSON.parse(raw);if(!s)return;
+    if(s.student){idIn.value=s.student.id||"";nameIn.value=s.student.name||"";}
+    var any=false;
+    q("[data-key]").forEach(function(el){var key=el.getAttribute("data-key");if(s.values&&Object.prototype.hasOwnProperty.call(s.values,key)){setValue(el,s.values[key]);any=true;}});
+    autosizeAll();
+    if(any||(s.student&&(s.student.id||s.student.name)))autoEl.textContent="이 브라우저에 자동 보관된 내용을 불러왔다";
+  }catch(e){}
+}
+function resetAll(){
+  q("[data-key]").forEach(function(el){setValue(el,kind(el)==="checkbox"?false:(kind(el)==="radio"?null:""));});
+  idIn.value="";nameIn.value="";
+  [idIn,nameIn].forEach(function(i){i.classList.remove("invalid");i.setAttribute("aria-invalid","false");});
+  autosizeAll();
+}
+function doClear(){
+  try{localStorage.removeItem(STORE);}catch(e){}
+  resetAll();
+  closeAsk();
+  autoEl.textContent="";
+  say("이 브라우저의 자동 보관을 지우고 입력란을 비웠다. (내려받은 JSON 파일은 그대로다.)","ok");
+}
+
+/* 입력란 보조 */
+function autosize(t){if(t.classList.contains("code")||t.classList.contains("draw"))return;t.style.height="auto";if(t.scrollHeight>0)t.style.height=(t.scrollHeight+2)+"px";}
+function autosizeAll(){q("textarea.in").forEach(autosize);}
+function codeKeys(e){
+  var t=e.target;
+  if(!t||!t.classList||!t.classList.contains("code"))return;
+  if(e.key==="Escape"){t._esc=true;return;}
+  if(e.key==="Tab"&&!e.shiftKey&&!e.ctrlKey&&!e.altKey&&!e.metaKey){
+    if(t._esc){t._esc=false;return;}
+    e.preventDefault();
+    var s=t.selectionStart,en=t.selectionEnd;
+    t.setRangeText("    ",s,en,"end");
+    t.dispatchEvent(new Event("input",{bubbles:true}));
+  }else if(e.key!=="Shift"){t._esc=false;}
+}
+function labelControls(){
+  q("[data-key]").forEach(function(el){
+    var l=el.getAttribute("data-label");
+    var isGroup=el.getAttribute("data-type")==="radio";
+    if(isGroup){el.setAttribute("role","radiogroup");if(l)el.setAttribute("aria-label",l);return;}
+    var has=el.labels&&el.labels.length;
+    if(!has&&l&&!el.getAttribute("aria-label"))el.setAttribute("aria-label",l);
+  });
+}
+function buildBar(){
+  bar=document.createElement("div");bar.id="savebar";bar.setAttribute("role","region");bar.setAttribute("aria-label","제출 저장 바");
+  bar.innerHTML='<div class="sb-in"><div class="sb-row">'
+   +'<label for="sb-id">학번 <input type="text" id="sb-id" autocomplete="off" aria-required="true" aria-invalid="false"></label>'
+   +'<label for="sb-name">이름 <input type="text" id="sb-name" autocomplete="off" aria-required="true" aria-invalid="false"></label>'
+   +'<button type="button" id="sb-save">저장(JSON)</button>'
+   +'<button type="button" id="sb-load" class="sec" title="[저장(JSON)]으로 만든 파일을 불러와 이어 쓴다.">불러오기</button>'
+   +'<input type="file" id="sb-file" accept=".json,application/json" hidden aria-label="저장한 JSON 파일 선택">'
+   +'<button type="button" id="sb-clear" class="sec">자동 보관 지우기</button>'
+   +'<button type="button" id="sb-submit" title="제출 사이트를 새 창으로 연다. 먼저 [저장(JSON)]으로 파일을 만든 뒤 그 파일을 올린다.">제출</button>'
+   +'<span class="sb-auto" id="sb-auto"></span></div>'
+   +'<div class="sb-confirm" id="sb-confirm" hidden><span id="sb-ctext"></span>'
+   +'<button type="button" id="sb-yes">확인</button><button type="button" id="sb-no" class="sec">취소</button></div>'
+   +'<div class="sb-msg" id="sb-msg" role="status" aria-live="polite">다 쓰면 학번과 이름을 쓰고 [저장(JSON)]을 눌러 제출 파일 한 개를 만든다. 다 못 썼으면 [저장(JSON)]으로 저장해 두고, 다음에 [불러오기]로 그 파일을 열어 이어 쓴다.</div></div>';
+  document.body.insertBefore(bar,document.body.firstChild);
+  var pid=document.createElement("div");pid.id="printid";pid.setAttribute("aria-hidden","true");
+  document.body.insertBefore(pid,bar.nextSibling);
+  idIn=bar.querySelector("#sb-id");nameIn=bar.querySelector("#sb-name");msg=bar.querySelector("#sb-msg");
+  autoEl=bar.querySelector("#sb-auto");saveBtn=bar.querySelector("#sb-save");clearBtn=bar.querySelector("#sb-clear");confirmBox=bar.querySelector("#sb-confirm");
+  loadBtn=bar.querySelector("#sb-load");fileIn=bar.querySelector("#sb-file");yesBtn=bar.querySelector("#sb-yes");confirmTxt=bar.querySelector("#sb-ctext");
+  saveBtn.addEventListener("click",onSave);
+  loadBtn.addEventListener("click",onLoadClick);
+  fileIn.addEventListener("change",onFileChosen);
+  clearBtn.addEventListener("click",function(){yesBtn.textContent="지우기";ask("이 브라우저의 자동 보관을 지우고 입력란을 모두 비운다. [저장(JSON)]으로 저장하지 않은 내용은 되찾을 수 없다.",doClear);bar.querySelector("#sb-no").focus();});
+  bar.querySelector("#sb-no").addEventListener("click",function(){closeAsk();loadBtn.focus();});
+  yesBtn.addEventListener("click",function(){var f=pending;if(f)f();});
+}
+function init(){
+  buildBar();labelControls();baseline=snap();restore();autosizeAll();
+  document.addEventListener("input",function(e){
+    var t=e.target;
+    if(t.tagName==="TEXTAREA")autosize(t);
+    if(t===idIn||t===nameIn){if(t.value.trim()){t.classList.remove("invalid");t.setAttribute("aria-invalid","false");}}
+    if(t===idIn||t===nameIn)updatePrintId();
+    schedule();
+  });
+  document.addEventListener("change",schedule);
+  document.addEventListener("keydown",codeKeys);
+  window.addEventListener("beforeprint",function(){autosizeAll();updatePrintId();});
+  updatePrintId();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(autosizeAll);
+  window.addEventListener("resize",autosizeAll);
+  window.Week13Submit={buildJSON:buildJSON,collect:collect,validate:validate,fileName:fileName,FILE_KEY:FILE_KEY,applyLoaded:applyLoaded};
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+<script src="../assets/duo.js"></script>
+</body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>11주차 실습 코드 1부 · 그래프와 격자 탐색 시작 (학생용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="stylesheet" href="../assets/codekit.css">
+<script src="../assets/codekit.js" defer></script>
+<link rel="stylesheet" href="../assets/lesson.css">
+<script src="../assets/lesson.js" defer></script>
+<link rel="stylesheet" href="../assets/chatkit.css">
+<script src="../assets/chatkit.js" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="../assets/duo.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="prompt">&gt;&gt;&gt; lab.week(11)  # 학생용 · 실습 코드 1부와 실습 과제 안내</div>
+  <h1>11주차 실습 코드 1부 — 그래프와 격자 미로</h1>
+  <p class="lead">BFS와 DFS를 코드로 만들고 격자 미로에 써 봐요. 2차시(A6~A7)에 써요.</p><p class="meta"><span>학번·이름은 위쪽 저장 바에 써요.</span></p>
+</header>
+<nav><a href="#how">#사용법</a><a href="#A6">#A6</a><a href="#A7">#A7</a><a href="#assign">#실습과제</a><a href="#ai">#AI활용</a><a href="index.html">목록</a></nav>
+
+<section id="how">
+<h2>사용법<small>#how</small></h2>
+<ul>
+<li>편집기에는 필요한 코드가 미리 들어 있어요. <code class="i">____1____</code> 같은 자리를 채우고 [&#9654; 실행]을 눌러요.</li>
+<li>[&#10004; 점검]을 누르면 내 코드가 맞는지 알려 줘요. [처음 코드로]를 누르면 편집기가 처음 상태로 돌아가요.</li>
+<li>편집기에 쓴 내용은 자동으로 보관돼요. 다 했으면 위의 [저장(JSON)]으로 제출 파일을 만들어요.</li>
+</ul>
+<details class="more"><summary>단축키와 오류가 날 때</summary>
+<ul>
+<li>Ctrl(&#8984;)+Enter는 실행, Tab은 들여쓰기, Shift+Tab은 내어쓰기예요.</li>
+<li>오류가 나면 맨 아래 줄부터 읽어요. 오류 이름과 이유가 거기에 있어요.</li>
+<li>실행이 15초를 넘기면 멈춰요. 끝나지 않는 반복이 있는지 확인해 봐요.</li>
+</ul>
+</details>
+</section>
+<section id="A6" class="sheet lesson">
+<h2>A6 · 손으로 한 탐색을 코드로<small>15분 · 개인</small></h2>
+<p class="lead">A2에서는 통에 넣고 꺼내며 손으로 그래프를 돌았어요. 이제 같은 일을 코드에게 시켜 봐요.</p>
+
+<div class="step">
+<h3>큐를 코드로 써 보기</h3>
+<p>파이썬에서 큐는 <code class="i">deque</code>로 만들어요. 뒤에 넣을 때는 <code class="i">append</code>, 앞에서 꺼낼 때는 <code class="i">popleft</code>를 써요.</p>
+<div class="quiz predict">
+<p class="q">아래 코드를 실행하면 첫 줄에 무엇이 나올까요?</p>
+<div class="opts"><button type="button">A</button><button type="button">B</button><button type="button">C</button></div>
+</div>
+<p>[▶ 실행]을 눌러 확인해 봐요.</p>
+<script type="text/plain" data-id="A6-p1">
+from collections import deque
+
+q = deque(["A"])     # A가 들어 있는 큐를 만든다
+q.append("B")        # 뒤에 B를 넣는다
+q.append("C")        # 뒤에 C를 넣는다
+print(q.popleft())   # 앞에서 하나 꺼낸다
+print(q)             # 남은 큐를 본다
+</script>
+<div class="mycode"><textarea class="in code" rows="8" data-type="code" data-starter="A6-p1" data-label="연습 · 큐 써 보기" spellcheck="false"></textarea></div>
+</div>
+
+<div class="step">
+<h3>손 규칙이 코드로 바뀌면</h3>
+<p>A2에서 돌았던 친구 관계 G1이에요. F는 아무와도 이어져 있지 않아요.</p>
+<pre class="fig">A ─ B
+│   │
+C ─ D ─ E        F
+
+A: [B, C]   B: [A, D]   C: [A, D]   D: [B, C, E]   E: [D]</pre>
+<p>A2의 큐 규칙은 코드에서 이렇게 바뀌어요.</p>
+<table>
+<tr><th>손 규칙</th><th>코드</th></tr>
+<tr><td>시작 노드를 큐에 넣는다</td><td><code class="i">q = deque([start])</code></td></tr>
+<tr><td>빌 때까지 반복한다</td><td><code class="i">while q:</code></td></tr>
+<tr><td>맨 앞에서 하나 꺼낸다</td><td><code class="i">u = q.popleft()</code></td></tr>
+<tr><td>안 본 이웃을 뒤에 넣는다</td><td><code class="i">q.append(v)</code></td></tr>
+</table>
+<div class="quiz" data-accept="ABCDE" data-hint="활동지 1부 A2 (나) 큐 규칙 표의 방문 순서를 다시 보자.">
+<p class="q">G1에서 A부터 큐 규칙으로 돌면 방문 순서는 어떻게 될까요?</p>
+<div class="ans"><input type="text" aria-label="방문 순서" placeholder="예: A, C, …"><button type="button">확인</button></div>
+<p class="why">가까운 B, C를 먼저 보고, 그다음 D, E를 봐요. 내 코드도 이 순서가 나와야 해요.</p>
+</div>
+</div>
+
+<div class="step">
+<h3>큐 틀 채우기</h3>
+<p>아래 편집기에 <code class="i">bfs_order</code>의 틀이 미리 들어 있어요. 위쪽 제공 코드는 읽지 않아도 돼요. &lsquo;여기부터&rsquo; 표시 아래의 ①과 ③을 채워 봐요. 2걸음 표에 있는 코드 두 줄이 그대로 들어가요.</p>
+<p class="tip">② 이후는 다음 걸음에서 채워요. 지금 실행하면 <code class="i">NameError: name '____2____' is not defined</code>가 나오는데, 정상이에요.</p>
+<script type="text/plain" data-id="A6-1">
+# defaultdict: 없는 키를 처음 쓰면 빈 리스트를 만들어 주는 dict
+# deque: 양쪽 끝에서 넣고 꺼내기 쉬운 큐
+from collections import defaultdict, deque
+
+# 10주차 함수(제공). 11주차는 이 함수 위에서 진행한다.
+# 간선 목록을 {노드: [이웃 목록]} 형태의 인접 리스트로 바꾼다.
+def build_graph(edges, directed=False):
+    g = defaultdict(list)  # 키마다 빈 리스트로 시작한다
+    for u, v in edges:  # 간선 (u, v)를 하나씩 꺼낸다
+        g[u].append(v)  # u의 이웃 목록 끝에 v를 붙인다
+        if not directed:  # 무방향이면 반대쪽도 기록한다
+            g[v].append(u)
+    return g
+
+# yield: 값을 하나 내주고 멈췄다가 이어 가는 함수(제네레이터)
+def neighbors(g, u):              # 없는 노드를 물어도 g가 변하지 않는 제네레이터
+    if u in g:  # g에 있는 노드만 꺼낸다
+        yield from g[u]  # 이웃을 차례로 하나씩 내준다
+
+# A2에서 손으로 탐색한 친구 관계 G1(무방향). 이웃 순서는 목록 순서이다.
+G1_EDGES = [("A", "B"), ("A", "C"), ("B", "D"), ("C", "D"), ("D", "E")]
+g = build_graph(G1_EDGES)         # 키 5개. 노드 F는 g에 없다(고립).
+</script>
+<script type="text/plain" data-id="A6-sep">
+# ─────────── 여기부터 내가 채운다 ───────────
+</script>
+<script type="text/plain" data-id="A6-2">
+# 방문한 순서를 리스트로 돌려주는 함수
+def bfs_order(g, start):                    # 시작 상태: 호출마다 새 order, 큐, visited
+    order = []  # 방문 순서를 담을 리스트
+    q = ____1____                           # ① 큐를 만들고 start를 넣는다
+    ____2____                               # ② visited를 준비한다. start를 지금 넣을지 나중에 넣을지는 ⑤와 맞춘다
+    while q:  # 큐가 비지 않은 동안 반복한다
+        u = ____3____                       # ③ 큐에서 하나 꺼낸다(꺼낼 때 기록하는 방식으로 바꿀 때는 이 아래에 한 줄이 더 필요하다)
+        order.append(u)  # 꺼낸 노드를 방문 순서에 기록한다
+        for v in neighbors(g, u):  # u의 이웃을 하나씩 본다
+            if ____4____:                   # ④ v를 큐에 넣어도 되는지 판단하는 조건(visited를 쓴다)
+                ____5____                   # ⑤ 필요한 기록과 큐에 넣기(줄 수는 자유)
+    return order  # 방문 순서를 돌려준다
+
+# 재귀 함수: 함수 안에서 자기 자신을 다시 부르는 방식이다
+def dfs_order(g, u, visited, order):        # 시작 상태: 바깥에서 새 set(), []를 인자로 전달한다
+    ____6____                               # ⑥ (두 줄) 방문 표시와 order 기록
+    for v in neighbors(g, u):  # u의 이웃을 하나씩 본다
+        if ____7____:                       # ⑦ 아직 안 본 노드만
+            ____8____                       # ⑧ 재귀 호출
+    return order  # 방문 순서를 돌려준다
+</script>
+<script type="text/plain" data-id="A6-run">
+# 아래 두 줄이 결과를 출력한다.
+print(bfs_order(g, "A"))
+print(dfs_order(g, "A", set(), []))
+</script>
+<script type="text/plain" data-id="A6-3">
+# A6 점검: 기대 순서는 적혀 있지 않다. 간선 목록에서 계산한 거리와 탐색 규칙으로 내 결과를 검사한다.
+# 이 점검의 비교식이 무엇을 확인하는지는 A12에서 다시 이야기한다. 지금은 읽지 않고 실행만 해도 된다.
+# 기준값: 탐색 규칙과 상관없이 s에서 각 노드까지의 최소 간선 수를 구한다.
+def true_dist(gr, s):
+    # 탐색 순서와 무관하게 s에서 각 노드까지의 최소 간선 수를 구한다(줄여 갈 수 있으면 계속 줄인다)
+    d = {s: 0}  # 딕셔너리 {노드: 거리}. 시작은 0
+    changed = True  # 값이 바뀌면 True로 두고 다시 훑는다
+    while changed:
+        changed = False
+        for u in list(d):  # 훑는 중 d가 바뀌므로 복사해서 쓴다
+            for v in gr.get(u, []):
+                # 아직 거리를 모르는 노드는 아주 큰 값(10 ** 9)으로 본다
+                if d[u] + 1 < d.get(v, 10 ** 9):
+                    d[v] = d[u] + 1
+                    changed = True
+    return d
+
+# 내 BFS 결과 order가 어긋난 곳을 문장 목록으로 돌려준다(빈 목록이면 통과).
+# 아래 if들은 어긋난 점을 하나씩 찾는다. 걸리면 그 문장이 FAIL로 출력된다.
+def bfs_problems(gr, s, order):
+    d = true_dist(gr, s)
+    if not isinstance(order, list):
+        return ["order가 리스트가 아니다(return을 확인한다)"]
+    if len(order) != len(set(order)):
+        return ["같은 노드가 order에 두 번 이상 나온다"]
+    if order[:1] != [s]:
+        return ["order가 시작 노드로 시작하지 않는다"]
+    if set(order) != set(d):
+        return ["방문한 노드의 집합이 시작 노드에서 닿을 수 있는 노드와 다르다"]
+    if any(d[a] > d[b] for a, b in zip(order, order[1:])):
+        return ["방문 순서가 A2에서 손으로 따른 큐 규칙의 순서와 다르다"]
+    # 딕셔너리 컴프리헨션: 노드마다 방문 순번을 기록한다
+    pos = {x: i for i, x in enumerate(order)}
+    keys = []
+    for v in order[1:]:
+        # v의 부모(한 단계 앞 노드 중 가장 먼저 방문된 노드)를 찾는다.
+        # key=lambda u: ...는 비교 기준을 정하는 이름 없는 함수이다.
+        par = min((u for u in gr.get(v, []) if d.get(u) == d[v] - 1), key=lambda u: pos[u])
+        keys.append((d[v], pos[par], gr[par].index(v)))
+    if any(a >= b for a, b in zip(keys, keys[1:])):
+        return ["방문 순서가 A2에서 손으로 따른 큐 규칙의 순서와 다르다(이웃 목록 순서를 확인한다)"]
+    return []  # 어긋난 점이 없다 = 통과
+
+# 내 DFS 결과를 검사한다. 되돌아가는 경로 path를 따로 따라가며 확인한다.
+def dfs_problems(gr, s, order):
+    if not isinstance(order, list):
+        return ["order가 리스트가 아니다(return을 확인한다)"]
+    if len(order) != len(set(order)):
+        return ["같은 노드가 order에 두 번 이상 나온다"]
+    if order[:1] != [s]:
+        return ["order가 시작 노드로 시작하지 않는다"]
+    seen, path = {s}, [s]  # 한 줄에서 두 변수를 함께 정한다
+    for x in order[1:]:
+        while path and all(v in seen for v in gr.get(path[-1], [])):
+            path.pop()
+        if not path:
+            return ["더 갈 곳이 없는데 노드가 더 방문되었다"]
+        first = [v for v in gr.get(path[-1], []) if v not in seen][0]
+        if x != first:
+            return ["%r 다음에 %r을 방문했다. 이웃 목록에서 아직 안 본 첫 이웃을 먼저 가야 한다" % (path[-1], x)]
+        seen.add(x)
+        path.append(x)
+    while path and all(v in seen for v in gr.get(path[-1], [])):
+        path.pop()
+    if path or set(order) != set(true_dist(gr, s)):
+        return ["방문한 노드의 집합이 시작 노드에서 닿을 수 있는 노드와 다르다"]
+    return []
+
+# 함수를 감싸 호출 횟수를 센다. 한도를 넘으면 끝나지 않는 반복으로 보고 멈춘다.
+# (무한 반복으로 컴퓨터가 멈추는 일을 막는 장치이다)
+def limited(real, limit, what):
+    cnt = [0]  # 리스트에 담아야 안쪽 함수가 값을 바꿀 수 있다
+    def wrapped(*a):  # *a: 인자를 몇 개든 그대로 받는다
+        cnt[0] += 1
+        if cnt[0] > limit:
+            raise RuntimeError(what + "를 너무 많이 불렀다(끝나지 않는 반복이 의심된다)")
+        return real(*a)  # 원래 함수를 그대로 실행한다
+    return wrapped
+
+# 검사할 그래프 목록: (이름, 간선 목록, 시작 노드)
+CASES = [
+    ("G1, 시작 A", G1_EDGES, "A"),
+    ("G1, 시작 D", G1_EDGES, "D"),
+    ("G1, 시작 F(고립)", G1_EDGES, "F"),
+    ("고리 모양", [(1, 2), (2, 3), (3, 4), (4, 1)], 1),
+    ("갈래가 많은 그래프", [("x", "y"), ("x", "z"), ("y", "w"), ("z", "w"), ("w", "v"), ("v", "y")], "x"),
+]
+fails = []  # 실패 사유를 모아 둔다
+real_neighbors = neighbors  # 원래 neighbors를 보관해 둔다
+for name, edges, s in CASES:
+    gr = build_graph(edges)
+    # 탐색 전 그래프를 복사해 두고, 끝난 뒤 변하지 않았는지 비교한다
+    keep = {k: list(v) for k, v in gr.items()}
+    # neighbors에 호출 횟수 제한을 건다
+    neighbors = limited(real_neighbors, 300, "neighbors")
+    try:
+        for fn, chk in (("bfs_order", bfs_problems), ("dfs_order", dfs_problems)):
+            try:
+                if fn == "bfs_order":
+                    out = bfs_order(gr, s)
+                else:
+                    out = dfs_order(gr, s, set(), [])
+            except RuntimeError as e:
+                fails.append("%s %s: %s" % (name, fn, e))
+                continue
+            for p in chk(gr, s, out):
+                fails.append("%s %s: %s" % (name, fn, p))
+    # 오류가 나도 원래 neighbors로 되돌린다
+    finally:
+        neighbors = real_neighbors
+    if {k: list(v) for k, v in gr.items()} != keep:
+        fails.append("%s: 탐색하다가 그래프 g가 바뀌었다" % name)
+# 실패 사유를 모두 출력한다
+for f in fails:
+    print("FAIL", f)
+# assert: 조건이 거짓이면 AssertionError로 멈춘다.
+# 실패가 하나라도 있으면 멈추므로, 위에 출력된 FAIL 줄을 읽고 고친다.
+assert not fails, "A6 점검 실패: %s" % fails
+print("A6 점검 통과")
+</script>
+<div class="mycode"><textarea class="in code" rows="24" data-type="code" data-key="A6.mycode" data-starter="A6-1 A6-sep A6-2 A6-run" data-check="A6-3" data-label="A6 (bfs_order, dfs_order 작성) 내 코드" spellcheck="false"></textarea></div>
+</div>
+
+<div class="step">
+<h3>방문 기록 채우기</h3>
+<p>같은 편집기에서 ②④⑤를 채워 봐요. A2에서 손으로 할 때는 꺼낼 때 방문 기록에 적었어요. 이 코드는 큐에 넣을 때 <code class="i">visited</code>에 적어요. 이유는 A8에서 알아봐요.</p>
+<p>먼저 ②에서 <code class="i">start</code>를 적고 시작해요. 그다음 ④의 조건을 정해요. ⑤는 두 줄이에요.</p>
+<p class="tip"><code class="i">visited</code>는 이미 큐에 넣은 노드를 적어 두는 set이에요. 들어 있는지는 <code class="i">v in visited</code>로 확인하고, 적을 때는 <code class="i">visited.add(v)</code>를 써요.</p>
+<p class="tip">첫 줄에 BFS 순서가 나온 뒤 <code class="i">NameError: name '____6____' is not defined</code>가 나오면 정상이에요. DFS는 다음 걸음에서 채워요.</p>
+<p>첫 줄이 2걸음에서 답한 순서와 같나요? 다르면 ④와 ⑤를 다시 봐요.</p>
+</div>
+
+<div class="step">
+<h3>dfs_order 완성하기</h3>
+<p>A3의 재귀를 떠올려 봐요. 한 노드에 오면 방문했다고 적어요. 그리고 안 본 이웃마다 같은 일을 다시 시켜요.</p>
+<p>위 편집기에서 ⑥~⑧을 채우고 다시 실행해 봐요. 둘째 줄에 DFS 순서가 나와요.</p>
+<p class="tip">자기 자신을 다시 부를 때 <code class="i">visited</code>와 <code class="i">order</code>를 그대로 넘겨요. 그래야 기록이 이어져요.</p>
+<div class="quiz" data-answer="2">
+<p class="q">둘째 줄의 순서에서 B 다음에 방문한 노드는 무엇일까요?</p>
+<div class="opts"><button type="button" data-hint="C는 A의 이웃이다. 그런데 DFS는 A로 돌아가기 전에 B에서 더 들어간다.">C</button><button type="button">D</button><button type="button" data-hint="E는 D를 거쳐야 닿는다.">E</button></div>
+<p class="why">DFS는 B에서 멈추지 않고, B의 안 본 이웃 D로 더 들어가요. A3에서 호출이 쌓이던 모습과 같아요.</p>
+</div>
+</div>
+
+<div class="step">
+<h3>점검하기</h3>
+<p>[✔ 점검]을 누르면 그래프 다섯 개로 두 함수를 확인해요. <code class="i">A6 점검 통과</code>가 나오면 완성이에요.</p>
+<p class="tip"><code class="i">FAIL</code>로 시작하는 줄이 나오면 그 줄을 읽어 봐요. 어느 그래프에서 어느 함수가 틀렸는지 적혀 있어요.</p>
+</div>
+
+<div class="step">
+<h3>돌아보기</h3>
+<div class="quiz" data-answer="2">
+<p class="q"><code class="i">bfs_order(g, "F")</code>는 무엇을 돌려줄까요? F는 아무와도 이어져 있지 않아요.</p>
+<div class="opts"><button type="button" data-hint="시작 노드도 방문한 노드이다.">[]</button><button type="button">['F']</button><button type="button" data-hint="neighbors는 g에 없는 노드를 물으면 아무것도 내주지 않는다. 오류는 나지 않는다.">오류가 난다</button></div>
+<p class="why">시작 노드는 언제나 방문해요. 이웃이 없으니 거기서 끝나요. 편집기 맨 아래에 <code class="i">print(bfs_order(g, "F"))</code>를 써서 확인해 봐도 좋아요.</p>
+</div>
+<p>내 코드는 노드를 <code class="i">visited</code>에 언제 적나요? 큐에 넣을 때인가요, 꺼낼 때인가요? 활동지 <a class="xlink" href="student_workbook_part2.html#A6">2부 A6</a>에 적어 둬요. A8에서 이 차이를 다시 만나요.</p>
+<details class="more"><summary>끝까지 막혔다면 · 빈칸 답 보기</summary>
+<p>① <code class="i">deque([start])</code> ② <code class="i">visited = {start}</code> ③ <code class="i">q.popleft()</code> ④ <code class="i">v not in visited</code> ⑤ <code class="i">visited.add(v)</code>와 <code class="i">q.append(v)</code> ⑥ <code class="i">visited.add(u)</code>와 <code class="i">order.append(u)</code> ⑦ <code class="i">v not in visited</code> ⑧ <code class="i">dfs_order(g, v, visited, order)</code></p>
+<p>이 답은 큐에 넣을 때 <code class="i">visited</code>에 적는 방식이에요. 꺼낼 때 적어도 되지만, 그러면 ③ 아래에 확인하는 줄이 하나 더 필요해요.</p>
+</details>
+</div>
+<p class="wrapup"><b>여기까지</b> 그래프를 도는 함수 두 개를 만들었어요. 다음 A7에서는 같은 탐색을 격자 미로에 써 봐요.</p>
+</section>
+<section id="A7" class="sheet lesson">
+<h2>A7 · 격자 미로 탐색하기<small>13분 · 개인</small></h2>
+<p class="lead">A6의 큐 틀은 그래프뿐 아니라 미로에도 쓸 수 있어요. 바뀌는 것은 이웃을 내주는 함수 하나뿐이에요.</p>
+
+<div class="step">
+<h3>칸의 이웃 세기</h3>
+<p>격자의 칸 하나가 노드예요. 상하좌우로 맞닿은 길 칸이 이웃이고요. <code class="i">#</code>은 벽이라 지나갈 수 없어요. 칸은 (행, 열)로 불러요.</p>
+<pre class="fig">     열 0 1 2
+행 0     S . #
+행 1     . . .
+행 2     # . E</pre>
+<div class="quiz" data-answer="2">
+<p class="q">칸 (0, 1)의 이웃은 몇 칸일까요? 격자 밖과 벽으로는 갈 수 없어요.</p>
+<div class="opts"><button type="button" data-hint="(0, 1)의 위쪽은 격자 밖이다. 그림 밖으로 나갈 수 있을까?">1칸</button><button type="button">2칸</button><button type="button" data-hint="오른쪽 (0, 2)는 #이다. 벽도 이웃으로 셀까?">3칸</button><button type="button" data-hint="위쪽은 격자 밖이고 오른쪽은 벽이다.">4칸</button></div>
+<p class="why">왼쪽 (0, 0)과 아래쪽 (1, 1)뿐이에요. 위쪽은 격자 밖이고, 오른쪽은 벽이에요.</p>
+</div>
+</div>
+
+<div class="step">
+<h3>한 칸의 이웃 읽어 보기</h3>
+<p>방향 목록 <code class="i">DIRS</code>로 칸 (1, 1)의 네 이웃 글자를 읽는 코드예요. [&#9654; 실행]한 뒤 <code class="i">r, c = 1, 1</code>을 <code class="i">0, 1</code>로 바꿔 다시 실행해 봐요. 참고로 파이썬에서 <code class="i">-1</code>번은 맨 끝을 뜻해요. 예를 들어 <code class="i">"abc"[-1]</code>은 <code class="i">"c"</code>예요.</p>
+<script type="text/plain" data-id="A7-p1">
+DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]   # 우 하 좌 상
+TINY = ["S.#",
+        "...",
+        "#.E"]
+r, c = 1, 1                                   # 살펴볼 칸
+for dr, dc in DIRS:
+    print((r + dr, c + dc), TINY[r + dr][c + dc])
+</script>
+<div class="mycode"><textarea class="in code" rows="8" data-type="code" data-starter="A7-p1" data-label="연습 · 이웃 칸 읽어 보기" spellcheck="false"></textarea></div>
+<div class="quiz" data-answer="2">
+<p class="q">(0, 1)로 바꿔 실행했을 때, 격자 밖인 (-1, 1)은 어떤 글자로 읽혔을까요?</p>
+<div class="opts"><button type="button" data-hint="-1번은 맨 끝 줄이다. 그림에서 맨 끝 줄의 열 1번 글자를 보자.">#</button><button type="button">.</button><button type="button" data-hint="출력의 마지막 줄을 다시 보자. 오류 메시지가 있었는가?">오류가 난다</button></div>
+<p class="why">-1번 줄은 맨 끝 줄 &quot;#.E&quot;이고, 그 줄의 열 1번 글자가 &lsquo;.&rsquo;이에요. 오류 없이 엉뚱한 칸이 나와요. 그래서 격자 안인지 먼저 따져야 해요.</p>
+</div>
+</div>
+
+<div class="step">
+<h3>격자 안인지, 길인지</h3>
+<p>아래 편집기의 <code class="i">grid_neighbors</code>에서 ⑨와 ⑩을 채워 봐요. ⑨는 행과 열이 격자 안인지, ⑩은 그 칸의 글자가 <code class="i">passable</code>에 들어 있는지예요. ⑪은 다음 걸음에서 채우고 함께 실행해요.</p>
+<p class="tip">⑩의 <code class="i">grid[nr][nc]</code>는 ⑨가 참일 때만 읽혀요. <code class="i">and</code>는 앞이 거짓이면 뒤를 보지 않거든요.</p>
+<script type="text/plain" data-id="A7-0">
+from collections import deque
+
+# 이웃을 보는 방향 목록: (행 변화, 열 변화). 이 순서대로 이웃을 본다.
+DIRS = [(0, 1), (1, 0), (0, -1), (-1, 0)]   # 우 하 좌 상 (제공)
+# 격자는 문자열의 리스트이다. MAZE[행][열]로 한 칸을 읽는다.
+MAZE = ["S..#...",
+        ".#.#.#.",
+        ".#...#.",
+        ".#####.",
+        "......E"]                            # '#' 벽, '.' 길, 'S' 시작, 'E' 도착
+START, GOAL = (0, 0), (4, 6)                  # (행, 열)
+</script>
+<script type="text/plain" data-id="A7-sep">
+# ─────────── 여기부터 내가 채운다 ───────────
+</script>
+<script type="text/plain" data-id="A7-2">
+# 칸 (r, c)의 상하좌우 이웃 칸을 하나씩 내주는 제네레이터.
+# passable은 지나갈 수 있는 칸을 나타내는 문자들이다.
+def grid_neighbors(grid, r, c, passable):
+    for dr, dc in DIRS:  # 방향마다 (행 변화, 열 변화)를 꺼낸다
+        nr, nc = r + dr, c + dc  # 그 방향으로 한 칸 옮긴 위치
+        if ____9____ and ____10____:        # ⑨ 격자 안인가(행·열 범위)  ⑩ 통과할 수 있는 칸인가
+            ____11____                       # ⑪ 이웃 칸을 하나씩 내준다
+</script>
+<script type="text/plain" data-id="A7-2b">
+# 시작 칸에서 도착 칸까지 가는 최소 간선 수를 돌려준다.
+def shortest_path_len(grid, start, goal):
+    dist = {start: 0}                       # dist가 visited 역할도 한다
+    q = deque([start])  # 시작 칸만 든 큐
+    while q:
+        cell = q.popleft()  # 큐의 맨 앞 칸을 꺼낸다
+        if cell == goal:  # 도착 칸에 닿았는가
+            return ____12____               # ⑫ start에서 goal까지의 거리
+        # 'S', 'E', '.'만 지나갈 수 있고 '#'은 벽이다.
+        for n in grid_neighbors(grid, cell[0], cell[1], ".SE"):
+            if ____13____:                  # ⑬ 아직 안 간 칸
+                ____14____                  # ⑭ (두 줄) 거리 기록, 큐에 넣기
+    return -1                               # 닿을 수 없을 때
+</script>
+<script type="text/plain" data-id="A7-run">
+print(list(grid_neighbors(MAZE, 0, 0, ".SE")))
+print(list(grid_neighbors(MAZE, 2, 2, ".SE")))
+print(shortest_path_len(MAZE, START, GOAL))
+print(shortest_path_len(["S#E"], (0, 0), (0, 2)))
+print(shortest_path_len(MAZE, START, START))
+</script>
+<script type="text/plain" data-id="A7-4">
+# A7 점검: 기대 값은 적혀 있지 않다. 격자의 모든 칸을 훑는 다른 계산으로 구한 값과 비교한다.
+import inspect  # 제네레이터인지 검사하는 도구
+
+# 기준값 1: 모든 칸을 훑어 (r, c)와 상하좌우로 맞닿은 통과 가능 칸을 모은다.
+# 집합 컴프리헨션이다. (행 차이 + 열 차이 = 1)이면 맞닿은 칸이다.
+def ref_adj(grid, r, c, passable):
+    # 모든 칸 중 (r, c)와 상하좌우로 맞닿고 통과할 수 있는 칸을 모은다(경계 검사를 따로 쓰지 않는 계산)
+    return {(i, j) for i in range(len(grid)) for j in range(len(grid[0]))
+            if abs(i - r) + abs(j - c) == 1 and grid[i][j] in passable}
+
+# 기준값 2: 시작 칸에서 각 칸까지의 최소 거리를 구한다.
+# 더 짧은 거리가 나오는 동안 되풀이해 훑는다.
+def ref_dist(grid, start):
+    d = {start: 0}  # 딕셔너리 {칸: 거리}. 시작 칸은 0
+    changed = True  # 값이 바뀌면 True로 두고 다시 훑는다
+    while changed:
+        changed = False
+        for cell in list(d):  # 훑는 중 d가 바뀌므로 복사해서 쓴다
+            for n in ref_adj(grid, cell[0], cell[1], ".SE"):
+                # 아직 모르는 칸은 아주 큰 값(10 ** 9)으로 본다
+                if d[cell] + 1 < d.get(n, 10 ** 9):
+                    d[n] = d[cell] + 1
+                    changed = True
+    return d
+
+# 함수를 감싸 호출 횟수를 센다. 한도를 넘으면 끝나지 않는 반복으로 보고 멈춘다.
+# (무한 반복으로 컴퓨터가 멈추는 일을 막는 장치이다)
+def limited(real, limit, what):
+    cnt = [0]  # 리스트에 담아야 안쪽 함수가 값을 바꿀 수 있다
+    def wrapped(*a):  # *a: 인자를 몇 개든 그대로 받는다
+        cnt[0] += 1
+        if cnt[0] > limit:
+            raise RuntimeError(what + "를 너무 많이 불렀다(끝나지 않는 반복이 의심된다)")
+        return real(*a)  # 원래 함수를 그대로 실행한다
+    return wrapped
+
+# 검사할 격자들(미로, 한 줄짜리, 한 칸짜리 등)
+GRIDS = [MAZE, ["S#E"], ["S.E"], ["S"], ["S..", ".#.", "..E"], ["S.#.E", "..#..", "....."], ["S#.", "#..", "..E"]]
+fails = []  # 실패 사유를 모아 둔다
+# yield를 쓰는 제네레이터가 아니면 실패이다
+if not inspect.isgenerator(grid_neighbors(MAZE, 0, 0, ".SE")):
+    fails.append("grid_neighbors가 제네레이터가 아니다(yield로 하나씩 내준다)")
+for k, grid in enumerate(GRIDS):
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            got = list(grid_neighbors(grid, r, c, ".SE"))  # 내 함수가 내준 이웃
+            ref = ref_adj(grid, r, c, ".SE")  # 기준 계산의 이웃
+            # 이웃 칸이 기준과 다르거나, 같은 칸을 중복해서 내주면 실패이다
+            if set(got) != ref or len(got) != len(ref):
+                fails.append("격자 %d의 (%d, %d): 이웃이 다르다" % (k, r, c))
+            # 내준 이웃의 방향 번호가 오름차순이면 DIRS 순서를 지킨 것이다
+            idx = [DIRS.index((a - r, b - c)) for a, b in got if (a - r, b - c) in DIRS]
+            if idx != sorted(idx):
+                fails.append("격자 %d의 (%d, %d): 이웃을 우, 하, 좌, 상 순서로 내주지 않았다" % (k, r, c))
+real_gn = grid_neighbors  # 원래 함수를 보관해 둔다
+try:
+    for k, grid in enumerate(GRIDS):
+        cells = [(r, c) for r in range(len(grid)) for c in range(len(grid[0])) if grid[r][c] in ".SE"]
+        for s0 in cells:
+            d = ref_dist(grid, s0)
+            for t0 in cells:
+                grid_neighbors = limited(real_gn, 200, "grid_neighbors")   # 호출마다 새로 센다
+                try:
+                    got = shortest_path_len(grid, s0, t0)
+                except RuntimeError as e:
+                    fails.append("격자 %d %s->%s: %s" % (k, s0, t0, e))
+                    break
+                # d.get(t0, -1): 닿을 수 없는 칸은 -1로 본다
+                if got != d.get(t0, -1):
+                    fails.append("격자 %d %s->%s: 거리가 다르다" % (k, s0, t0))
+                    break
+            if len(fails) > 12:
+                break
+# 오류가 나도 원래 함수로 되돌린다
+finally:
+    grid_neighbors = real_gn
+# 실패 사유를 앞의 12개까지 출력한다
+for f in fails[:12]:
+    print("FAIL", f)
+# 실패가 하나라도 있으면 AssertionError로 멈춘다. FAIL 줄을 읽고 고친다.
+assert not fails, "A7 점검 실패: %d건" % len(fails)
+print("A7 점검 통과")
+</script>
+<div class="mycode"><textarea class="in code" rows="30" data-type="code" data-key="A7.mycode" data-starter="A7-0 A7-sep A7-2 A7-2b A7-run" data-check="A7-4" data-label="A7 (grid_neighbors, shortest_path_len 작성) 내 코드" spellcheck="false"></textarea></div>
+</div>
+
+<div class="step">
+<h3>yield로 이웃 내주기</h3>
+<p>이웃을 하나씩 내주는 것이 <code class="i">yield</code>예요. 먼저 작은 예를 봐요. 실행하기 전에 결과를 예측해 봐요.</p>
+<script type="text/plain" data-id="A7-p2">
+def three():
+    yield 10
+    yield 20
+    yield 30, 40       # 쉼표로 둘을 쓰면 한 쌍이 된다
+
+print(list(three()))
+</script>
+<div class="mycode"><textarea class="in code" rows="7" data-type="code" data-starter="A7-p2" data-label="연습 · yield 써 보기" spellcheck="false"></textarea></div>
+<div class="quiz predict">
+<p class="q">출력된 리스트에는 값이 몇 개 들어 있을까요?</p>
+<div class="opts"><button type="button">3개</button><button type="button">4개</button></div>
+</div>
+<p>이제 위 편집기의 ⑪을 채우고 실행해 봐요. 이웃 칸의 행과 열을 쌍으로 내줘요.</p>
+<p class="tip">첫 두 줄이 나온 뒤 <code class="i">NameError: name '____13____' is not defined</code>가 나오면 정상이에요. ⑫~⑭는 다음 걸음에서 채워요.</p>
+</div>
+
+<div class="step">
+<h3>shortest_path_len 채우기</h3>
+<p>MAZE에서 S에서 E까지 몇 걸음일까요? 활동지 <a class="xlink" href="student_workbook_part2.html#A7">2부 A7</a>의 예측 칸에 먼저 적어 둬요.</p>
+<pre class="fig">     열 0 1 2 3 4 5 6
+행 0     S . . # . . .
+행 1     . # . # . # .
+행 2     . # . . . # .
+행 3     . # # # # # .
+행 4     . . . . . . E</pre>
+<p>같은 편집기의 둘째 함수예요. A6의 <code class="i">bfs_order</code>와 같은 틀이에요. 다만 <code class="i">visited</code> 대신 <code class="i">dist</code>가 시작에서부터의 걸음 수를 적어요. ⑫~⑭를 채우고 실행하면 아래 세 줄이 거리를 출력해요.</p>
+<p class="tip"><code class="i">dist</code>도 <code class="i">visited</code>처럼 이미 본 칸을 알려 줘요. 들어 있는지는 <code class="i">n in dist</code>로 확인해요.</p>
+</div>
+
+<div class="step">
+<h3>점검하기</h3>
+<p>[&#10004; 점검]을 누르면 여러 격자의 모든 칸으로 두 함수를 확인해요. <code class="i">A7 점검 통과</code>가 나오면 완성이에요.</p>
+<p class="tip"><code class="i">FAIL</code> 줄에는 몇 번째 격자의 어느 칸이 틀렸는지 적혀 있어요. 그 칸으로 <code class="i">print(list(grid_neighbors(...)))</code>를 실행해 봐요. 이웃 순서가 우, 하, 좌, 상인지 확인해요.</p>
+</div>
+
+<div class="step">
+<h3>돌아보기</h3>
+<div class="quiz" data-answer="2">
+<p class="q">A6의 <code class="i">visited</code> 역할을 <code class="i">shortest_path_len</code>에서는 무엇이 맡았을까요?</p>
+<div class="opts"><button type="button" data-hint="q는 다음에 볼 칸을 담는 큐이다. 이미 본 칸을 적는 곳은 따로 있다.">q</button><button type="button">dist</button><button type="button" data-hint="grid는 미로 자체이다. 칸을 기록하는 곳이 아니다.">grid</button></div>
+<p class="why">dist에 든 칸은 이미 본 칸이에요. 거기에 걸음 수까지 함께 적어요.</p>
+</div>
+<p>A2의 큐 규칙과 이 함수는 같은 틀일까요? 활동지 <a class="xlink" href="student_workbook_part2.html#A7">2부 A7</a>의 1~5번에 적어 봐요. 내 코드의 출력 5줄은 그 표에 옮겨요.</p>
+<details class="more"><summary>끝까지 막혔다면 · 빈칸 답 보기</summary>
+<p>⑨ <code class="i">0 &lt;= nr &lt; len(grid) and 0 &lt;= nc &lt; len(grid[0])</code> ⑩ <code class="i">grid[nr][nc] in passable</code> ⑪ <code class="i">yield nr, nc</code> ⑫ <code class="i">dist[cell]</code> ⑬ <code class="i">n not in dist</code> ⑭ <code class="i">dist[n] = dist[cell] + 1</code>과 <code class="i">q.append(n)</code></p>
+<p>값은 MAZE의 S&rarr;E가 10, <code class="i">["S#E"]</code>가 -1(벽 때문에 E를 만나지 못해요), 시작=도착이 0이에요. 이웃은 (0,0)에서 <code class="i">[(0, 1), (1, 0)]</code>, (2,2)에서 <code class="i">[(2, 3), (1, 2)]</code>예요.</p>
+<pre class="diagram">dist 지도(시작에서의 걸음 수)
+ 0  1  2  #  8  9 10
+ 1  #  3  #  7  # 11
+ 2  #  4  5  6  # 12
+ 3  #  #  #  #  # 11
+ 4  5  6  7  8  9 10   (E)</pre>
+</details>
+</div>
+<p class="wrapup"><b>여기까지</b> 이웃을 내주는 함수만 바꿔서 같은 큐 틀을 미로에 썼어요. 이어서 실습 과제 안내를 읽어 봐요.</p>
+</section>
+<section id="assign" class="sheet">
+<h2>실습 과제 안내 · 2차원 Grid 미로 탐색 및 섬의 개수<small>A7 착수 · A10 이어짐 · A13 마무리 · 잔여는 주간 과제</small></h2>
+<div class="grid">
+<div class="card"><b class="h">만들 함수 3개</b><ul>
+<li><code class="i">grid_neighbors(grid, r, c, passable)</code>: 칸 (r, c)의 상하좌우 이웃을 하나씩 내주는 제네레이터예요. 격자 안에 있고 <code class="i">passable</code>에 든 글자의 칸만 내줘요.</li>
+<li><code class="i">shortest_path_len(grid, start, goal)</code>: 시작 칸에서 도착 칸까지 가장 적은 걸음 수를 돌려줘요. 닿을 수 없으면 -1이에요.</li>
+<li><code class="i">count_islands(grid)</code>: 땅 &lsquo;1&rsquo;이 상하좌우로 이어진 덩어리(섬)의 개수를 돌려줘요. 안에서 부르는 <code class="i">explore</code>도 함께 내요.</li>
+<li>A7에서 앞의 두 함수를, A10에서 <code class="i">count_islands</code>를 만들어요. A13에서 마무리 점검을 해요. 다 못 한 부분은 주간 과제로 이어져요.</li>
+</ul></div>
+<div class="card"><b class="h">어디에 내는가</b><ul>
+<li><b>student_code_lab_part3</b> 맨 아래 &lsquo;과제 서술 입력&rsquo;의 [최종 코드] 칸에 위 세 함수(와 <code class="i">explore</code>)를 직접 복사해 붙여 넣어요. 그리고 [저장(JSON)]으로 내요. <code class="i">.py</code> 파일은 내지 않아요.</li>
+<li>같은 곳의 &lsquo;구현 계획 한 줄&rsquo;과 &lsquo;복잡도와 근거&rsquo; 칸도 채워요. 최종 코드 맨 첫 줄에는 구현 계획을 주석(<code class="i">#</code>)으로 써요.</li>
+<li>이 쪽에는 입력 칸이 없어요.</li>
+</ul></div>
+<div class="card"><b class="h">평가 (100점)</b><ul>
+<li>요구사항 구현 정확성 50</li>
+<li>복잡도 분석 타당성 30</li>
+<li>코드 품질 20</li>
+<li>4단계 채점기준은 <a href="rubric.html">rubric.html</a>에서 볼 수 있어요(A13에서 공개).</li>
+</ul></div>
+</div>
+</section>
+<section id="ai" class="sheet">
+<h2>AI 활용 3단계 · 이 과제에 맞춘 예<small>허용 · 조건부 허용 · 금지</small></h2>
+<p>기준은 &ldquo;AI에게 무엇을 시켰는가&rdquo;예요. 개념·문법·오류 원인을 묻는 것은 괜찮아요. 과제 요구사항이나 완성된 구현을 넣어 결과물(코드·글)을 받아 제출하는 것은 금지예요.</p>
+<div class="grid">
+<div class="card" style="--c:#1d7a4f"><b class="h">허용</b><ul><li>&ldquo;BFS와 DFS는 어떤 자료구조를 쓰는지 개념 설명해 줘&rdquo;, &ldquo;deque는 list와 뭐가 달라?&rdquo; 같은 개념·문법 질의</li><li>&ldquo;IndexError: string index out of range가 왜 나오는지 해설&rdquo; 같은 오류 메시지 해설</li><li>&ldquo;격자 탐색에서 4방향 이동은 보통 어떻게 표현해?&rdquo; 같은 용어·설계 배경 설명(코드는 받지 않음)</li><li>점검 결과가 다를 때 원인 <b>힌트</b>만 요청</li><li>용어 번역&middot;개념 요약, 수업 자료 복습 질문</li></ul></div>
+<div class="card" style="--c:#8a6d1f"><b class="h">조건부 허용</b><ul><li>완성한 구현의 엣지 케이스 브레인스토밍(시작=도착, 도달 불가, 한 칸짜리 격자, 모두 바다/모두 땅, 빈 격자)</li><li>내가 쓴 코드의 부작용과 반복 사용 시 동작 검토 요청(수정은 직접 해요)</li><li>내가 쓴 구현의 복잡도 검토 요청. 복잡도는 내가 먼저 쓰고 검토만 받아요</li><li>개선 아이디어 제안 요청(제안만 참고하고 코드는 직접 다시 작성)</li></ul></div>
+<div class="card" style="--c:#b3401f"><b class="h">금지 — 적발 시 계획서의 위반 처리방안 적용</b><ul><li>과제 문장을 그대로 입력해 전체 코드 생성</li><li>AI가 쓴 <code class="i">shortest_path_len</code>/<code class="i">count_islands</code>를 그대로, 또는 변수명만 바꿔 제출</li><li>BFS·DFS 중 무엇을 쓸지, 방문 기록을 어떻게 할지 등 설계 판단을 AI가 대신 내림</li><li>복잡도 분석이나 구현 계획을 AI에게 대신 세우게 하여 제출</li></ul></div>
+</div>
+<div class="note">수업 중 A6~A10·A13~A14는 AI 도움 없이 한다. A14 형성평가는 AI를 쓰지 않는 시험 상황이며 위 위반 처리는 적용하지 않는다. 위 3단계는 주간 과제를 제출할 때 적용된다.</div>
+<div class="note"><b>AI 도우미</b>(화면 오른쪽 아래)는 &lsquo;허용&rsquo; 범위인 개념·문법 설명, 오류 원인, 힌트만 해 주고 과제 코드와 활동지 답은 알려 주지 않는다. 학교 계정으로 로그인해야 하며 질문과 답은 교사가 볼 수 있게 기록된다. 수업 중 AI 금지 활동에서는 교사가 꺼 둔다.</div>
+</section>
+</div>
+<script id="week11-submit">
+/* week11 학생 입력 저장 (7개 학생용 파일 동일, FILE_KEY만 다름). 규격: schema week11-student-v1 */
+(function(){
+"use strict";
+var FILE_KEY="code_lab";
+var FILES={workbook:"student_workbook.html",code_lab:"student_code_lab.html",workbook_part2:"student_workbook_part2.html",code_lab_part2:"student_code_lab_part2.html",code_lab_part3:"student_code_lab_part3.html",workbook_part3:"student_workbook_part3.html",formative:"formative_check.html"};
+var FILE=FILES[FILE_KEY], STORE="week11:"+FILE, SCHEMA="week11-student-v1";
+var bar,idIn,nameIn,msg,autoEl,saveBtn,clearBtn,confirmBox,busy=false,timer=null;
+var loadBtn,fileIn,yesBtn,confirmTxt,pending=null,baseline="";
+
+function q(sel,root){return Array.prototype.slice.call((root||document).querySelectorAll(sel));}
+function kind(el){
+  var t=el.getAttribute("data-type");
+  if(t)return t;
+  var tag=el.tagName.toLowerCase();
+  if(tag==="textarea")return "textarea";
+  if(tag==="select")return "select";
+  if(tag==="input")return el.type==="checkbox"?"checkbox":"text";
+  return "text";
+}
+function labelOf(el){
+  var l=el.getAttribute("data-label");
+  if(l)return l;
+  if(el.labels&&el.labels.length)return el.labels[0].textContent.replace(/\s+/g," ").trim();
+  return el.getAttribute("aria-label")||"";
+}
+function readValue(el,k){
+  if(k==="checkbox")return !!el.checked;
+  if(k==="radio"){var r=el.querySelector("input[type=radio]:checked");return r?r.value:null;}
+  return el.value;
+}
+function collect(){
+  return q("[data-key]").map(function(el){
+    var k=kind(el);
+    return {key:el.getAttribute("data-key"),label:labelOf(el),type:k,value:readValue(el,k)};
+  });
+}
+function studentInfo(){return {id:idIn.value.trim(),name:nameIn.value.trim()};}
+function buildJSON(status){
+  return {schema:SCHEMA,week:11,file:FILE,status:status||"final",student:studentInfo(),savedAt:new Date().toISOString(),answers:collect()};
+}
+function safe(s){return String(s).replace(/[\\\/:*?"<>|\s\u0000-\u001f]+/g,"_").replace(/^\.+/,"_");}
+function fileName(st,draft){return "week11_"+FILE_KEY+"_"+safe(st.id||"학번미입력")+"_"+safe(st.name||"이름미입력")+(draft?"_임시저장":"")+".json";}
+function validate(){
+  var miss=[];
+  [[idIn,"학번"],[nameIn,"이름"]].forEach(function(p){
+    var bad=!p[0].value.trim();
+    p[0].classList.toggle("invalid",bad);
+    p[0].setAttribute("aria-invalid",bad?"true":"false");
+    if(bad)miss.push(p);
+  });
+  return miss;
+}
+function updatePrintId(){
+  var p=document.getElementById("printid");
+  if(!p)return;
+  var s=studentInfo();
+  p.textContent="학번: "+(s.id||"          ")+"   이름: "+(s.name||"          ");
+}
+function say(text,cls){msg.textContent=text;msg.className="sb-msg"+(cls?" "+cls:"");}
+
+function download(draft){
+  var obj=buildJSON(draft?"draft":"final"),name=fileName(obj.student,draft);
+  var blob=new Blob([JSON.stringify(obj,null,2)],{type:"application/json;charset=utf-8"});
+  var url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=name;a.style.display="none";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},1500);
+  return name;
+}
+function onSave(){
+  if(busy)return;
+  var miss=validate();
+  if(miss.length){
+    say("학번과 이름을 입력해야 저장할 수 있다. 표시된 칸을 채운 뒤 다시 누른다.","err");
+    miss[0][0].focus();return;
+  }
+  busy=true;saveBtn.disabled=true;
+  try{
+    var n=download();
+    say("저장했다: "+n+" (내려받은 JSON 파일 한 개를 제출한다.)","ok");
+  }catch(e){say("저장하지 못했다. 브라우저를 바꾸어 다시 시도한다.","err");}
+  setTimeout(function(){busy=false;saveBtn.disabled=false;},1200);
+}
+
+/* 이어 쓰기: 저장한 파일 불러오기 */
+function snap(){return JSON.stringify(collect().map(function(a){return a.value;}));}
+function isDirty(){return snap()!==baseline;}
+function ask(text,fn){
+  confirmTxt.textContent=text;pending=fn;confirmBox.hidden=false;
+  clearBtn.disabled=true;loadBtn.disabled=true;
+}
+function closeAsk(){
+  pending=null;confirmBox.hidden=true;clearBtn.disabled=false;loadBtn.disabled=false;
+}
+function applyLoaded(j){
+  if(!j||typeof j!=="object"||Array.isArray(j))return {err:"저장 파일 형식이 아니다."};
+  if(j.schema!==SCHEMA)return {err:"이 워크북의 저장 파일이 아니다(schema 불일치). 이 활동지에서 저장한 JSON 파일을 고른다."};
+  if(j.file!==FILE)return {err:"이 파일은 '"+String(j.file)+"'에서 저장한 것이다. 지금 열린 '"+FILE+"'에서 저장한 파일만 불러올 수 있다."};
+  if(!Array.isArray(j.answers))return {err:"저장 파일에 answers가 없거나 형식이 틀리다."};
+  var vals={};
+  j.answers.forEach(function(a){if(a&&typeof a.key==="string")vals[a.key]=a.value;});
+  var n=0;
+  q("[data-key]").forEach(function(el){
+    var key=el.getAttribute("data-key");
+    if(!Object.prototype.hasOwnProperty.call(vals,key))return;
+    var v=vals[key],t=typeof v;
+    if(v!==null&&t!=="string"&&t!=="boolean")return;
+    setValue(el,v);n++;
+  });
+  if(j.student&&typeof j.student==="object"){
+    idIn.value=typeof j.student.id==="string"?j.student.id:"";
+    nameIn.value=typeof j.student.name==="string"?j.student.name:"";
+    [idIn,nameIn].forEach(function(i){i.classList.remove("invalid");i.setAttribute("aria-invalid","false");});
+  }
+  autosizeAll();updatePrintId();stash();
+  return {n:n,draft:j.status==="draft",at:j.savedAt};
+}
+function onLoadClick(){
+  if(isDirty()||idIn.value.trim()||nameIn.value.trim()){
+    ask("지금 입력한 내용이 불러온 파일의 내용으로 바뀐다. 계속하려면 [불러오기 진행]을 누르고 파일을 고른다.",function(){closeAsk();fileIn.click();});
+    yesBtn.textContent="불러오기 진행";
+  }else{fileIn.click();}
+}
+function onFileChosen(){
+  var f=fileIn.files&&fileIn.files[0];
+  if(!f)return;
+  if(f.size>3*1024*1024){say("파일이 너무 크다(3MB 초과). 이 활동지에서 저장한 JSON 파일이 맞는지 확인한다.","err");fileIn.value="";return;}
+  var r=new FileReader();
+  r.onerror=function(){say("파일을 읽지 못했다. 다시 시도한다.","err");fileIn.value="";};
+  r.onload=function(){
+    var res;
+    try{res=applyLoaded(JSON.parse(String(r.result)));}
+    catch(e){res={err:"JSON 파일을 읽지 못했다. 이 활동지에서 저장한 파일이 맞는지 확인한다."};}
+    if(res.err){say(res.err+" (입력란은 바뀌지 않았다.)","err");}
+    else{say("불러왔다: "+f.name+" ("+res.n+"칸"+(res.at?", 저장 시각 "+res.at.slice(0,16).replace("T"," "):"")+"). 이어서 쓴다."+(res.draft?" (예전 임시 저장 파일이다. 다 쓴 뒤 [저장(JSON)]으로 다시 저장해 낸다.)":""),"ok");}
+    fileIn.value="";
+  };
+  r.readAsText(f,"utf-8");
+}
+
+/* 자동 보관 (localStorage, 모두 try/catch) */
+function stash(){
+  try{
+    var vals={};collect().forEach(function(a){vals[a.key]=a.value;});
+    localStorage.setItem(STORE,JSON.stringify({student:studentInfo(),values:vals,at:Date.now()}));
+    var d=new Date();
+    autoEl.textContent="자동 보관됨 "+("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+":"+("0"+d.getSeconds()).slice(-2);
+  }catch(e){autoEl.textContent="자동 보관 사용 불가([저장(JSON)]은 가능)";}
+}
+function schedule(){clearTimeout(timer);timer=setTimeout(stash,300);}
+function setValue(el,v){
+  var k=kind(el);
+  if(k==="checkbox"){el.checked=(v===true);}
+  else if(k==="radio"){q("input[type=radio]",el).forEach(function(r){r.checked=(v!==null&&v!==undefined&&r.value===v);});}
+  else{el.value=(v===null||v===undefined)?"":String(v);}
+}
+function restore(){
+  try{
+    var raw=localStorage.getItem(STORE);if(!raw)return;
+    var s=JSON.parse(raw);if(!s)return;
+    if(s.student){idIn.value=s.student.id||"";nameIn.value=s.student.name||"";}
+    var any=false;
+    q("[data-key]").forEach(function(el){var key=el.getAttribute("data-key");if(s.values&&Object.prototype.hasOwnProperty.call(s.values,key)){setValue(el,s.values[key]);any=true;}});
+    autosizeAll();
+    if(any||(s.student&&(s.student.id||s.student.name)))autoEl.textContent="이 브라우저에 자동 보관된 내용을 불러왔다";
+  }catch(e){}
+}
+function resetAll(){
+  q("[data-key]").forEach(function(el){setValue(el,kind(el)==="checkbox"?false:(kind(el)==="radio"?null:""));});
+  idIn.value="";nameIn.value="";
+  [idIn,nameIn].forEach(function(i){i.classList.remove("invalid");i.setAttribute("aria-invalid","false");});
+  autosizeAll();
+}
+function doClear(){
+  try{localStorage.removeItem(STORE);}catch(e){}
+  resetAll();
+  closeAsk();
+  autoEl.textContent="";
+  say("이 브라우저의 자동 보관을 지우고 입력란을 비웠다. (내려받은 JSON 파일은 그대로다.)","ok");
+}
+
+/* 입력란 보조 */
+function autosize(t){if(t.classList.contains("code")||t.classList.contains("draw"))return;t.style.height="auto";if(t.scrollHeight>0)t.style.height=(t.scrollHeight+2)+"px";}
+function autosizeAll(){q("textarea.in").forEach(autosize);}
+function codeKeys(e){
+  var t=e.target;
+  if(!t||!t.classList||!t.classList.contains("code"))return;
+  if(e.key==="Escape"){t._esc=true;return;}
+  if(e.key==="Tab"&&!e.shiftKey&&!e.ctrlKey&&!e.altKey&&!e.metaKey){
+    if(t._esc){t._esc=false;return;}
+    e.preventDefault();
+    var s=t.selectionStart,en=t.selectionEnd;
+    t.setRangeText("    ",s,en,"end");
+    t.dispatchEvent(new Event("input",{bubbles:true}));
+  }else if(e.key!=="Shift"){t._esc=false;}
+}
+function labelControls(){
+  q("[data-key]").forEach(function(el){
+    var l=el.getAttribute("data-label");
+    var isGroup=el.getAttribute("data-type")==="radio";
+    if(isGroup){el.setAttribute("role","radiogroup");if(l)el.setAttribute("aria-label",l);return;}
+    var has=el.labels&&el.labels.length;
+    if(!has&&l&&!el.getAttribute("aria-label"))el.setAttribute("aria-label",l);
+  });
+}
+function buildBar(){
+  bar=document.createElement("div");bar.id="savebar";bar.setAttribute("role","region");bar.setAttribute("aria-label","제출 저장 바");
+  bar.innerHTML='<div class="sb-in"><div class="sb-row">'
+   +'<label for="sb-id">학번 <input type="text" id="sb-id" autocomplete="off" aria-required="true" aria-invalid="false"></label>'
+   +'<label for="sb-name">이름 <input type="text" id="sb-name" autocomplete="off" aria-required="true" aria-invalid="false"></label>'
+   +'<button type="button" id="sb-save">저장(JSON)</button>'
+   +'<button type="button" id="sb-load" class="sec" title="[저장(JSON)]으로 만든 파일을 불러와 이어 쓴다.">불러오기</button>'
+   +'<input type="file" id="sb-file" accept=".json,application/json" hidden aria-label="저장한 JSON 파일 선택">'
+   +'<button type="button" id="sb-clear" class="sec">자동 보관 지우기</button>'
+   +'<button type="button" id="sb-submit" title="제출 사이트를 새 창으로 연다. 먼저 [저장(JSON)]으로 파일을 만든 뒤 그 파일을 올린다.">제출</button>'
+   +'<span class="sb-auto" id="sb-auto"></span></div>'
+   +'<div class="sb-confirm" id="sb-confirm" hidden><span id="sb-ctext"></span>'
+   +'<button type="button" id="sb-yes">확인</button><button type="button" id="sb-no" class="sec">취소</button></div>'
+   +'<div class="sb-msg" id="sb-msg" role="status" aria-live="polite">다 쓰면 학번과 이름을 쓰고 [저장(JSON)]을 눌러 제출 파일 한 개를 만든다. 다 못 썼으면 [저장(JSON)]으로 저장해 두고, 다음에 [불러오기]로 그 파일을 열어 이어 쓴다.</div></div>';
+  document.body.insertBefore(bar,document.body.firstChild);
+  var pid=document.createElement("div");pid.id="printid";pid.setAttribute("aria-hidden","true");
+  document.body.insertBefore(pid,bar.nextSibling);
+  idIn=bar.querySelector("#sb-id");nameIn=bar.querySelector("#sb-name");msg=bar.querySelector("#sb-msg");
+  autoEl=bar.querySelector("#sb-auto");saveBtn=bar.querySelector("#sb-save");clearBtn=bar.querySelector("#sb-clear");confirmBox=bar.querySelector("#sb-confirm");
+  loadBtn=bar.querySelector("#sb-load");fileIn=bar.querySelector("#sb-file");yesBtn=bar.querySelector("#sb-yes");confirmTxt=bar.querySelector("#sb-ctext");
+  saveBtn.addEventListener("click",onSave);
+  loadBtn.addEventListener("click",onLoadClick);
+  fileIn.addEventListener("change",onFileChosen);
+  clearBtn.addEventListener("click",function(){yesBtn.textContent="지우기";ask("이 브라우저의 자동 보관을 지우고 입력란을 모두 비운다. [저장(JSON)]으로 저장하지 않은 내용은 되찾을 수 없다.",doClear);bar.querySelector("#sb-no").focus();});
+  bar.querySelector("#sb-no").addEventListener("click",function(){closeAsk();loadBtn.focus();});
+  yesBtn.addEventListener("click",function(){var f=pending;if(f)f();});
+}
+function init(){
+  buildBar();labelControls();baseline=snap();restore();autosizeAll();
+  document.addEventListener("input",function(e){
+    var t=e.target;
+    if(t.tagName==="TEXTAREA")autosize(t);
+    if(t===idIn||t===nameIn){if(t.value.trim()){t.classList.remove("invalid");t.setAttribute("aria-invalid","false");}}
+    if(t===idIn||t===nameIn)updatePrintId();
+    schedule();
+  });
+  document.addEventListener("change",schedule);
+  document.addEventListener("keydown",codeKeys);
+  window.addEventListener("beforeprint",function(){autosizeAll();updatePrintId();});
+  updatePrintId();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(autosizeAll);
+  window.addEventListener("resize",autosizeAll);
+  window.Week11Submit={buildJSON:buildJSON,collect:collect,validate:validate,fileName:fileName,FILE_KEY:FILE_KEY,applyLoaded:applyLoaded};
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+<script src="../assets/duo.js"></script>
+</body>
+</html>

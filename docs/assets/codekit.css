@@ -1,0 +1,99 @@
+/* codekit.css — 학생용 학습지 공용: 흰 배경 코드 블록, 신택스 하이라이팅, 코드 편집기, 예시 코드 팝업 */
+/* 합자 끄기: -> != <= == 등을 친 글자 그대로 보인다(JetBrains Mono의 화살표·부등호 합자 방지) */
+pre,code,kbd,samp,textarea,input,.ck-hl,.ck-ac{font-variant-ligatures:none;font-feature-settings:"liga" 0,"calt" 0}
+:root{--tk-kw:#cf222e;--tk-str:#0a3069;--tk-cm:#6e7781;--tk-num:#0550ae;--tk-fn:#8250df;--tk-bi:#953800;--tk-cn:#0550ae;--tk-dec:#8250df}
+pre:not(.diagram){background:#fff;color:#1f2328;border:1px solid #cfd6e2}
+.tk-kw{color:var(--tk-kw)}.tk-str{color:var(--tk-str)}.tk-cm{color:var(--tk-cm);font-style:italic}
+.tk-num{color:var(--tk-num)}.tk-fn{color:var(--tk-fn)}.tk-bi{color:var(--tk-bi)}.tk-cn{color:var(--tk-cn);font-weight:600}.tk-dec{color:var(--tk-dec)}
+.copy{background:#fff!important;color:#27364f!important;border:1px solid #9aa7bd!important}
+.copy:hover{background:#eef4fa!important}
+
+/* 편집기 */
+.ck-ed{margin:8px 0 12px;border:1px solid #6b7a94;border-radius:6px;background:#fff;overflow:hidden}
+.ck-ed .ck-bar{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:6px 8px;background:#f0f2f6;border-bottom:1px solid #cfd6e2}
+.ck-ed .ck-bar .ck-title{font-weight:700;font-size:13px;color:#16233b;margin-right:auto}
+.ck-btn{font:600 12px "IBM Plex Sans KR",sans-serif;padding:4px 11px;border-radius:4px;border:1px solid #6b7a94;background:#fff;color:#16233b;cursor:pointer}
+.ck-btn.run{background:#1d7a4f;border-color:#1d7a4f;color:#fff}
+.ck-btn:disabled{opacity:.55;cursor:default}
+.ck-btn:focus-visible{outline:3px solid #3572a5;outline-offset:1px}
+.ck-ed{--ck-lh:20px;--ck-pt:8px;--ck-dash:#d9dde5}
+.ck-area{display:grid;grid-template-columns:auto minmax(0,1fr);position:relative;background:#fff}
+/* 행간 점선: 줄마다 아래쪽 1px을 점선으로 그린다 */
+.ck-area::before{content:"";grid-area:1/1/2/-1;margin-top:var(--ck-pt);pointer-events:none;z-index:2;background:linear-gradient(to right,var(--ck-dash) 50%,transparent 50%) 0 0/6px 100%;-webkit-mask-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ck-lh) - 1px),#000 calc(var(--ck-lh) - 1px),#000 var(--ck-lh));mask-image:repeating-linear-gradient(to bottom,transparent 0,transparent calc(var(--ck-lh) - 1px),#000 calc(var(--ck-lh) - 1px),#000 var(--ck-lh))}
+/* 행번호 */
+.ck-gut{grid-area:1/1;margin:0;min-width:2.8em;padding:var(--ck-pt) 8px var(--ck-pt) 10px;font:11.5px/var(--ck-lh) "JetBrains Mono","D2Coding",Consolas,monospace;text-align:right;white-space:pre;color:#6e7781;background:#f6f8fa;border-right:1px solid #cfd6e2;overflow:hidden;min-height:0;user-select:none;-webkit-user-select:none;font-variant-numeric:tabular-nums}
+.ck-ed .ck-area>pre.ck-hl,.ck-ed .ck-area>textarea.ck-ta{grid-area:1/2;margin:0;font:12.5px/var(--ck-lh) "JetBrains Mono","D2Coding",Consolas,monospace;padding:var(--ck-pt) 10px;border:0;border-radius:0;tab-size:4;white-space:pre;letter-spacing:0;word-spacing:0}
+.ck-ed .ck-area>pre.ck-hl{overflow:hidden;pointer-events:none;color:#1f2328;background:#fff;padding-bottom:28px;min-width:0}
+.ck-ed .ck-area>textarea.ck-ta{background:transparent!important;color:transparent!important;caret-color:#16233b;overflow:auto;resize:vertical;width:100%;min-width:0;position:relative;z-index:1}
+.ck-ed .ck-area>textarea.ck-ta::selection{background:rgba(53,114,165,.28);color:transparent}
+/* 들여쓰기 표시: 공백 4칸마다 세로 안내선(글자 폭에 영향 없음), 탭 문자는 주황 바탕 */
+/* 주석 가리기: 주석 자리에 옅은 #… 만 보인다 */
+.ck-ed.ck-nocm .ck-hl .tk-cmh{color:#b3bac6!important;font-style:normal}
+.ck-btn.cm[aria-pressed=true]{background:#eef4fa;border-color:#3572a5;color:#1f4f78}
+.ck-ig{box-shadow:inset 1px 0 0 var(--ck-guide,#c9d1dc)}
+.ck-tab{background:rgba(207,120,34,.18);box-shadow:inset 1px 0 0 #cf7822}
+/* 자동 완성 목록 */
+.ck-ac{position:fixed;z-index:180;margin:0;padding:4px;list-style:none;min-width:180px;max-width:360px;max-height:216px;overflow:auto;background:#fff;border:1px solid #9aa7bd;border-radius:6px;box-shadow:0 8px 24px rgba(16,24,40,.18);font:12.5px/1.5 "JetBrains Mono","D2Coding",Consolas,monospace;color:#1f2328}
+.ck-ac[hidden]{display:none}
+.ck-ac li{display:flex;align-items:baseline;gap:10px;padding:2px 8px;border-radius:4px;cursor:pointer;white-space:nowrap}
+.ck-ac li b{font-weight:700;color:#0550ae}
+.ck-ac li small{margin-left:auto;font:11px "IBM Plex Sans KR",sans-serif;color:#6e7781}
+.ck-ac li.on{background:#dbe9f7}
+.ck-ac li:hover{background:#eef4fa}
+.ck-ac li.foot{cursor:default;font:11px "IBM Plex Sans KR",sans-serif;color:#6e7781;border-top:1px solid #e1e5ec;border-radius:0;margin-top:3px;padding-top:4px;position:sticky;bottom:-4px;background:inherit}
+.ck-ac li.foot:hover{background:inherit}
+.ck-out{border-top:1px solid #cfd6e2;background:#fff}
+.ck-out[hidden]{display:none}
+.ck-out .ck-ol{font:600 11px "JetBrains Mono",monospace;color:#5b6b85;padding:4px 10px 0}
+.ck-out pre{margin:0;padding:4px 10px 8px;font-size:12.5px;line-height:1.55;white-space:pre-wrap;word-break:break-all;background:#fff!important;color:#1f2328!important;border:0!important;border-radius:0;max-height:320px;overflow:auto}
+.ck-out pre.err{color:#b3401f!important}
+.ck-out pre.ok{color:#1d7a4f!important}
+
+/* 예시 코드 팝업 */
+.ck-modal{position:fixed;inset:0;z-index:200;background:rgba(16,24,40,.55);display:flex;align-items:center;justify-content:center;padding:16px}
+.ck-modal[hidden]{display:none}
+.ck-dlg{background:#fff;border-radius:10px;max-width:860px;width:100%;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.ck-dlg header{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #dfe3ea;margin:0}
+.ck-dlg header h3{margin:0;font-size:15px;margin-right:auto}
+.ck-dlg .ck-body{overflow:auto;padding:8px 16px 16px}
+.ck-dlg .ck-item{margin-top:12px}
+.ck-dlg .ck-item .ck-ih{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.ck-dlg .ck-item .ck-ih b{margin-right:auto;font-size:13px}
+.ck-dlg .ck-item pre{margin:0;max-height:46vh;overflow:auto}
+.ck-dlg .ck-hint{font-size:12px;color:#5b6b85;margin-top:8px}
+@media print{
+  .ck-ac{display:none!important}
+  .ck-ig,.ck-tab{box-shadow:none!important;background:none!important}
+  .ck-bar,.ck-out,.ck-modal,.ck-area::before,.ck-gut{display:none!important}
+  .ck-ed{border:none}
+  pre:not(.diagram){background:#fff!important;color:#111!important;border:1px solid #bbb!important;white-space:pre-wrap;word-break:break-all}
+  .ck-ed .ck-area>textarea.ck-ta{display:none!important}
+  .ck-ed .ck-area>pre.ck-hl{white-space:pre-wrap;word-break:break-all;overflow:visible;padding-bottom:8px}
+  .tk-cm{color:#555}
+}
+
+/* ---------- 학습 내용 상자: 활동에 필요한 설명·그림·규칙을 테두리로 구분한다 ---------- */
+.learn-box{border:2px solid #2b6cb0;border-radius:10px;background:#f4f8fd;margin:14px 0;padding:0 0 10px;overflow:hidden;color:#1a202c}
+.learn-box>.lb-title{display:block;margin:0 0 10px;padding:6px 14px;background:#2b6cb0;color:#fff;font-weight:700;font-size:.95em}
+.learn-box>:not(.lb-title){margin-left:14px;margin-right:14px}
+.learn-box>:last-child{margin-bottom:0}
+.learn-box p{margin:8px 14px}
+.learn-box ul,.learn-box ol{margin:8px 14px;padding-left:22px}
+.learn-box pre{background:#fff}
+/* 활동을 마친 뒤 펼쳐 확인하는 학습 내용(일반화·정리) */
+details.learn-box.after{border-color:#2f855a;background:#f2faf5}
+details.learn-box.after>summary{padding:6px 14px;background:#2f855a;color:#fff;font-weight:700;font-size:.95em;cursor:pointer;margin:0 0 10px}
+details.learn-box.after:not([open])>summary{margin-bottom:0}
+details.learn-box.after>:not(summary){margin-left:14px;margin-right:14px}
+@media print{.learn-box{break-inside:avoid;background:#fff!important}details.learn-box.after:not([open])>:not(summary){display:none}}
+
+/* ---------- 답 가림 모드(t 키): 입력 내용을 가리고, 누른 칸만 보인다. 인쇄에는 적용하지 않는다 ---------- */
+#ans-badge{position:fixed;right:12px;bottom:12px;z-index:120;background:#16233b;color:#fff;font:600 12.5px "IBM Plex Sans KR",sans-serif;padding:7px 12px;border:1px solid #fff;border-radius:6px;box-shadow:0 2px 10px rgba(0,0,0,.3);cursor:pointer;opacity:.55}
+#ans-badge:hover,#ans-badge:focus-visible,#ans-badge[aria-pressed=true]{opacity:1}
+@media print{#ans-badge{display:none!important}}
+@media screen{
+  body.ans-hide textarea[data-key]:not(.ans-on),body.ans-hide input[data-key][type=text]:not(.ans-on),body.ans-hide input[data-key]:not([type]):not(.ans-on),body.ans-hide select[data-key]:not(.ans-on){color:transparent!important;-webkit-text-fill-color:transparent!important;text-shadow:none!important}
+  body.ans-hide input[data-key][type=checkbox]:not(.ans-on),body.ans-hide input[data-key][type=radio]:not(.ans-on){-webkit-appearance:none;appearance:none;width:16px;height:16px;border:2px solid #3572a5;border-radius:3px;background:#fff;vertical-align:middle}
+  body.ans-hide input[data-key][type=radio]:not(.ans-on){border-radius:50%}
+  body.ans-hide .ck-ed:not(.ans-on) .ck-area>pre.ck-hl{visibility:hidden}
+}
