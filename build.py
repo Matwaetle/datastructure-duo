@@ -164,7 +164,12 @@ def dump_segments():
 def transform(src_html, rel_depth="../", page_key=None):
     st = {"prefilled": 0, "checkable": 0, "copy": 0, "copy_skip": 0}
     s = src_html
-    if page_key:
+    authored = ROOT / "pages" / (page_key + ".html") if page_key else None
+    if authored and authored.exists():
+        # 새로 쓴 쪽: 원본 본문은 숨겨 두고(답 칸·저장 스크립트 그대로) 새 화면을 앞에 넣는다.
+        st["authored"] = True
+        s = re.sub(r"(<body\b[^>]*>)", lambda m: m.group(1) + "\n" + authored.read_text(encoding="utf-8") + "\n", s, count=1)
+    elif page_key:
         s, st["copy"], st["copy_skip"] = apply_copy(s, page_key)
     # 원본 화면용 CSS/JS 와 쪽마다 들어 있는 원본 스타일을 뺀다(저장 스크립트는 그대로 둔다).
     for c in DROP_CSS:
@@ -180,10 +185,11 @@ def transform(src_html, rel_depth="../", page_key=None):
     head_add = (
         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900'
         '&family=Noto+Sans+KR:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap">\n'
-        '<link rel="stylesheet" href="%sassets/duo.css">\n' % rel_depth
+        '<link rel="stylesheet" href="%sassets/duo.css">\n'
+        '<link rel="stylesheet" href="%sassets/xkit.css">\n' % (rel_depth, rel_depth)
     )
     s = s.replace("</head>", head_add + "</head>", 1)
-    s = s.replace("</body>", '<script src="%sassets/duo.js"></script>\n</body>' % rel_depth, 1)
+    s = s.replace("</body>", '<script src="%sassets/xkit.js"></script>\n<script src="%sassets/duo.js"></script>\n</body>' % (rel_depth, rel_depth), 1)
     return s, st
 
 

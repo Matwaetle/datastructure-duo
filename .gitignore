@@ -1,3 +1,5 @@
 node_modules/
 copy_draft/
 .claude/
+outline_*.txt
+keys_*.txt

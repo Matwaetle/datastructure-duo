@@ -21,7 +21,13 @@
   function save(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) {} }
 
   /* ---------- 답 칸 ---------- */
+  // 새로 쓴 쪽(x-page)에서는 화면의 답 칸이 .x-f 이고 값은 숨겨 둔 원본 칸에 있다.
+  var AUTHORED = false, FIELD = "[data-key]";
   function fieldValue(f) {
+    if (f.hasAttribute("data-bind")) {
+      var o = document.querySelector('.wrap [data-key="' + f.getAttribute("data-bind") + '"]');
+      return o ? fieldValue(o) : "";
+    }
     if (f.getAttribute("data-type") === "radio") { var r = $("input[type=radio]:checked", f); return r ? r.value : ""; }
     if (f.type === "checkbox") return f.checked ? "1" : "";
     return (f.value || "").trim();
@@ -118,6 +124,27 @@
     }
   }
 
+  function buildAct(act) {
+    var id = act.getAttribute("data-id") || "", title = act.getAttribute("data-title") || id;
+    var label = id ? id + " · " + title : title;
+    var shots = $$(":scope>.x-screen", act);
+    var intro = [].slice.call(act.children).filter(function (k) { return !k.classList.contains("x-screen"); });
+    var head = el("div", "duo-intro-head");
+    head.innerHTML = (id ? '<div class="duo-tag">' + escapeHtml(id) + "</div>" : "") +
+      "<h1>" + escapeHtml(title) + "</h1>" +
+      (act.getAttribute("data-meta") ? '<p class="duo-meta">' + escapeHtml(act.getAttribute("data-meta")) + "</p>" : "") +
+      '<p class="duo-count">' + shots.length + "단계</p>";
+    addScreen("intro", [head].concat(intro), { section: label });
+    shots.forEach(function (sc, i) {
+      var h = sc.getAttribute("data-title");
+      var nodes = [].slice.call(sc.childNodes);
+      if (h) { var h3 = el("h3"); h3.textContent = h; nodes.unshift(h3); }
+      var box = el("div", "step x-step"); nodes.forEach(function (n) { box.appendChild(n); });
+      addScreen($(".x-f", box) ? "step" : "read", [box], { section: label, step: i + 1, steps: shots.length,
+        chip: label + "  ·  " + (i + 1) + " / " + shots.length });
+    });
+  }
+
   function escapeHtml(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   /* ---------- 앱 틀 ---------- */
@@ -188,7 +215,7 @@
 
   function refreshFinish() {
     var rec = screens[screens.length - 1];
-    var all = $$("[data-key]").filter(function (f) { return !f.closest("details:not([open]) .ck-x"); });
+    var all = $$(FIELD);
     var empty = all.filter(isEmpty);
     $(".duo-stats", rec.node).innerHTML =
       '<div class="duo-stat"><b>' + (all.length - empty.length) + "</b><span>쓴 칸</span></div>" +
@@ -250,7 +277,7 @@
         var i = +b.getAttribute("data-go");
         b.classList.toggle("cur", i === cur);
         b.classList.toggle("seen", !!screens[i].seen);
-        var empty = $$("[data-key]", screens[i].node).filter(isEmpty).length;
+        var empty = $$(FIELD, screens[i].node).filter(isEmpty).length;
         b.classList.toggle("has-empty", empty > 0 && !!screens[i].seen);
       });
       var c = $(".cur", toc); if (c) c.scrollIntoView({ block: "center" });
@@ -282,7 +309,7 @@
   }
 
   function checkables(s) {
-    return $$("input[data-model], .rg[data-model]", s.node).filter(function (f) { return !isEmpty(f); });
+    return $$(AUTHORED ? ".x-f[data-model]" : "input[data-model], .rg[data-model]", s.node).filter(function (f) { return !isEmpty(f); });
   }
 
   function setPrimary() {
@@ -329,7 +356,7 @@
   function hideSheet() { sheet.hidden = true; foot.classList.remove("ok", "warn", "info"); }
 
   function emptyIn(s) {
-    return $$("[data-key]", s.node).filter(function (f) {
+    return $$(FIELD, s.node).filter(function (f) {
       if (f.closest("details:not([open])")) return false;
       return isEmpty(f);
     });
@@ -337,7 +364,8 @@
   function focusFirstEmpty() {
     var f = emptyIn(screens[cur])[0];
     if (!f) return;
-    var t = f.getAttribute("data-type") === "radio" ? $("input", f) : (f.closest(".ck-ed") ? $(".ck-ta", f.closest(".ck-ed")) : f);
+    var t = f.hasAttribute("data-bind") ? $("input, textarea, button", f)
+      : f.getAttribute("data-type") === "radio" ? $("input", f) : (f.closest(".ck-ed") ? $(".ck-ta", f.closest(".ck-ed")) : f);
     if (t) { t.focus({ preventScroll: true }); t.scrollIntoView({ block: "center", behavior: "smooth" }); }
   }
 
@@ -402,10 +430,21 @@
     var wrap = $(".wrap");
     if (!wrap) return;
     buildShell();
-    var header = $(":scope>header", wrap);
-    buildStart(header || el("div"));
-    $$(":scope>section", wrap).forEach(buildSection);
-    if (pendingLead.length) addScreen("read", pendingLead, { section: "읽기" });
+    var page = $(".x-page");
+    if (page) {
+      // 새로 쓴 쪽: 원본(.wrap)은 숨긴 채 그대로 두고, x-page 의 화면들을 쓴다.
+      AUTHORED = true; FIELD = ".x-f[data-bind]";
+      var hd = el("header");
+      hd.innerHTML = "<h1>" + (page.getAttribute("data-title") || document.title) + '</h1><p class="lead">' + (page.getAttribute("data-lead") || "") + "</p>";
+      buildStart(hd);
+      $$(":scope>.x-act", page).forEach(buildAct);
+      page.hidden = true;
+    } else {
+      var header = $(":scope>header", wrap);
+      buildStart(header || el("div"));
+      $$(":scope>section", wrap).forEach(buildSection);
+      if (pendingLead.length) addScreen("read", pendingLead, { section: "읽기" });
+    }
     buildFinish();
     screens.forEach(function (s) { stage.appendChild(s.node); });
     wrap.hidden = true;

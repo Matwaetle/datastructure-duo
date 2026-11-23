@@ -59,6 +59,21 @@ for (const [w, f] of pages) {
 
   // 새 쪽 칸에 값을 채워 넣고 JSON 에 그대로 들어가는지 본다.
   const roundtrip = await b.page.evaluate((w) => {
+    if (document.querySelector(".x-page")) {
+      // 새로 쓴 쪽: 화면의 칸(.x-f)으로만 채운다. 모든 원본 칸이 정확히 한 번씩 화면에 있어야 한다.
+      const keys = [...document.querySelectorAll(".wrap [data-key]")].map((e) => e.getAttribute("data-key"));
+      const bound = [...document.querySelectorAll(".x-page .x-f[data-bind], .duo-app .x-f[data-bind]")].map((e) => e.getAttribute("data-bind"));
+      const miss = keys.filter((k) => !bound.includes(k)).map((k) => "화면에 없음 " + k);
+      const dup = bound.filter((k, i) => bound.indexOf(k) !== i).map((k) => "두 번 " + k);
+      const extra = bound.filter((k) => !keys.includes(k)).map((k) => "원본에 없음 " + k);
+      document.querySelectorAll(".x-f[data-bind]").forEach((f, i) => {
+        const opt = f.querySelector(".x-opt, .x-check");
+        if (opt) { opt.click(); return; }
+        f.querySelectorAll("input, textarea").forEach((inp) => { inp.value = "값" + i; inp.dispatchEvent(new Event("input", { bubbles: true })); });
+      });
+      const j = window[`Week${w}Submit`].buildJSON("final");
+      return miss.concat(dup, extra, j.answers.filter((q) => q.value === "" || q.value === null || q.value === false).map((q) => "빈 값 " + q.key));
+    }
     const els = [...document.querySelectorAll("[data-key]")];
     els.forEach((el, i) => {
       const t = el.getAttribute("data-type");

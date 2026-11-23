@@ -1,0 +1,178 @@
+/* xkit.js — 새로 쓴 활동지(x-page)의 그림 부품과 답 칸 연결.
+   답 칸(.x-f[data-bind])은 숨겨 둔 원본 칸(data-key)에 값을 그대로 옮겨 적는다.
+   원본 칸의 위치·순서는 그대로라서 저장되는 JSON 은 원본과 같다. */
+(function () {
+  "use strict";
+  function $(s, r) { return (r || document).querySelector(s); }
+  function $$(s, r) { return [].slice.call((r || document).querySelectorAll(s)); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function orig(key) { return document.querySelector('.wrap [data-key="' + key.replace(/"/g, '\\"') + '"]'); }
+
+  /* ---------- 그림: 배열 ---------- */
+  // data-v="2,5,8"  data-name="a"  data-lo / data-hi / data-mid / data-hit / data-miss (인덱스)
+  // data-cls="0:pivot,1-4:small,5-6:big"  data-noidx  data-label="1단계"
+  function parseRanges(spec) {
+    var m = {};
+    (spec || "").split(",").forEach(function (p) {
+      var kv = p.split(":"); if (kv.length < 2) return;
+      var r = kv[0].split("-"), a = +r[0], b = r.length > 1 ? +r[1] : a;
+      for (var i = a; i <= b; i++) m[i] = (m[i] ? m[i] + " " : "") + kv[1].trim();
+    });
+    return m;
+  }
+  function renderArr(el) {
+    var vals = el.getAttribute("data-v").split(",").map(function (s) { return s.trim(); });
+    var cls = parseRanges(el.getAttribute("data-cls"));
+    var lo = el.getAttribute("data-lo"), hi = el.getAttribute("data-hi"), mid = el.getAttribute("data-mid");
+    var hit = el.getAttribute("data-hit"), miss = el.getAttribute("data-miss");
+    var ptr = {};
+    function addPtr(i, name) { if (i == null || i === "") return; (ptr[i] = ptr[i] || []).push(name); }
+    addPtr(lo, "lo"); addPtr(hi, "hi"); addPtr(mid, "mid");
+    var html = "";
+    if (el.getAttribute("data-name")) html += '<div class="x-arr-name">' + esc(el.getAttribute("data-name")) + "</div>";
+    html += '<div class="x-arr-row">';
+    vals.forEach(function (v, i) {
+      var c = "x-cell " + (cls[i] || "");
+      if (lo != null && hi != null && (i < +lo || i > +hi)) c += " out";
+      if (mid != null && i === +mid) c += " mid";
+      if (hit != null && i === +hit) c += " hit";
+      if (miss != null && i === +miss) c += " miss";
+      html += '<div class="' + c + '">' +
+        (el.hasAttribute("data-noidx") ? "" : '<span class="x-idx">' + i + "</span>") +
+        '<span class="x-val">' + esc(v) + "</span>" +
+        '<span class="x-ptr">' + (ptr[i] ? ptr[i].join(" ") : "") + "</span></div>";
+    });
+    html += "</div>";
+    if (el.getAttribute("data-label")) html = '<div class="x-arr-label">' + esc(el.getAttribute("data-label")) + "</div>" + html;
+    el.innerHTML = html;
+  }
+
+  /* ---------- 그림: 코드 ---------- */
+  // <pre class="x-code">print(a)  #=> 1</pre> : #=> 뒤는 출력으로 오른쪽에 붙인다
+  var KW = /\b(def|return|if|elif|else|for|while|in|not|and|or|import|from|as|None|True|False|break|continue|pass|lambda|class|with|is)\b/g;
+  function hlLine(src) {
+    var out = "", rest = src, cm = "", outv = "";
+    var o = rest.indexOf("#=>");
+    if (o >= 0) { outv = rest.slice(o + 3).trim(); rest = rest.slice(0, o).replace(/\s+$/, ""); }
+    var c = rest.search(/#(?![^"']*["'][^"']*$)/);
+    if (c >= 0) { cm = rest.slice(c); rest = rest.slice(0, c); }
+    out = esc(rest)
+      .replace(/(&quot;[^&]*?&quot;|'[^']*')/g, '<span class="k-str">$1</span>')
+      .replace(KW, '<span class="k-kw">$1</span>')
+      .replace(/\b(print|len|range|sorted|min|max|sum|list|int|str|abs|enumerate|append|pop)\b(?=\()/g, '<span class="k-fn">$1</span>')
+      .replace(/(^|[^\w.])(\d+)(?![\w])/g, '$1<span class="k-num">$2</span>');
+    if (cm) out += '<span class="k-cm">' + esc(cm) + "</span>";
+    if (outv) out += '<span class="k-out">' + esc(outv) + "</span>";
+    return out;
+  }
+  function renderCode(pre) {
+    var lines = pre.textContent.replace(/^\n+|\s+$/g, "").split("\n");
+    pre.innerHTML = lines.map(function (l, i) {
+      return '<span class="x-ln"><i>' + (i + 1) + "</i><span>" + (hlLine(l) || " ") + "</span></span>";
+    }).join("");
+  }
+
+  /* ---------- 답 칸 ---------- */
+  function kind(o) {
+    if (!o) return "missing";
+    if (o.getAttribute("data-type") === "radio") return "radio";
+    if (o.tagName === "SELECT") return "select";
+    if (o.type === "checkbox") return "checkbox";
+    if (o.tagName === "TEXTAREA") return o.getAttribute("data-type") === "code" ? "code" : "area";
+    return "text";
+  }
+  function setOrig(o, v) {
+    var k = kind(o);
+    if (k === "radio") { $$("input[type=radio]", o).forEach(function (r) { r.checked = r.value === v; }); $$("input", o)[0].dispatchEvent(new Event("change", { bubbles: true })); return; }
+    if (k === "checkbox") { o.checked = !!v; o.dispatchEvent(new Event("change", { bubbles: true })); return; }
+    o.value = v; o.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+  function getOrig(o) {
+    var k = kind(o);
+    if (k === "radio") { var r = $("input[type=radio]:checked", o); return r ? r.value : ""; }
+    if (k === "checkbox") return o.checked;
+    return o.value;
+  }
+
+  var bound = [];
+  function renderField(f) {
+    var key = f.getAttribute("data-bind"), o = orig(key), k = kind(o);
+    f.classList.add("x-k-" + k);
+    if (k === "missing") { f.innerHTML = '<span class="x-err">칸 없음: ' + esc(key) + "</span>"; return; }
+    var ph = f.getAttribute("data-ph");
+    if (ph == null) ph = o.getAttribute("placeholder") || "";
+    var model = o.getAttribute("data-model");
+    if (model) f.setAttribute("data-model", model);
+    var rec = { f: f, o: o, k: k };
+    if (k === "radio" || k === "select") {
+      var opts = k === "radio" ? $$("input[type=radio]", o).map(function (r) { return r.value; })
+        : $$("option", o).filter(function (x) { return x.value; }).map(function (x) { return x.value; });
+      f.innerHTML = opts.map(function (v) { return '<button type="button" class="x-opt" data-v="' + esc(v) + '">' + esc(v) + "</button>"; }).join("");
+      f.addEventListener("click", function (e) {
+        var b = e.target.closest(".x-opt"); if (!b) return;
+        if (k === "radio") setOrig(o, b.getAttribute("data-v"));
+        else { o.value = b.getAttribute("data-v"); o.dispatchEvent(new Event("change", { bubbles: true })); }
+        pull(rec);
+      });
+      rec.pull = function () { var v = k === "radio" ? getOrig(o) : o.value; $$(".x-opt", f).forEach(function (b) { b.classList.toggle("on", b.getAttribute("data-v") === v); }); };
+    } else if (k === "checkbox") {
+      var text = f.textContent.trim() || (o.getAttribute("data-label") || "").replace(/^\S+\s+점검:\s*/, "");
+      f.innerHTML = '<button type="button" class="x-check"><i></i><span>' + esc(text) + "</span></button>";
+      f.firstChild.addEventListener("click", function () { setOrig(o, !o.checked); pull(rec); });
+      rec.pull = function () { f.firstChild.classList.toggle("on", o.checked); };
+    } else if (f.hasAttribute("data-parts")) {
+      // 여러 줄 답을 작은 칸 여러 개로 나눠 받고 "이름: 값" 줄로 합쳐 원본 칸에 넣는다.
+      var parts = f.getAttribute("data-parts").split("|");
+      f.innerHTML = parts.map(function (p, i) {
+        var nm = p.split("=")[0], hint = p.split("=")[1] || "";
+        return '<label class="x-part"><span>' + esc(nm) + '</span><input type="text" data-i="' + i + '" placeholder="' + esc(hint) + '" autocomplete="off"></label>';
+      }).join("");
+      var ins = $$("input", f);
+      ins.forEach(function (inp) {
+        inp.addEventListener("input", function () {
+          var v = parts.map(function (p, i) { return ins[i].value.trim() ? p.split("=")[0] + ": " + ins[i].value.trim() : ""; }).filter(Boolean).join("\n");
+          setOrig(o, v);
+        });
+      });
+      rec.pull = function () {
+        var lines = String(o.value || "").split("\n");
+        parts.forEach(function (p, i) {
+          var nm = p.split("=")[0], hit = lines.filter(function (l) { return l.indexOf(nm + ": ") === 0; })[0];
+          ins[i].value = hit ? hit.slice(nm.length + 2) : (i === 0 && lines.length === 1 && !/: /.test(lines[0]) ? lines[0] : "");
+        });
+      };
+    } else {
+      var w = f.getAttribute("data-w") || (k === "area" ? "full" : "m");
+      var el = k === "area" ? document.createElement("textarea") : document.createElement("input");
+      if (k !== "area") { el.type = "text"; el.autocomplete = "off"; }
+      else el.rows = +(f.getAttribute("data-rows") || 2);
+      el.className = "x-in w-" + w;
+      el.placeholder = ph;
+      el.setAttribute("aria-label", o.getAttribute("data-label") || key);
+      if (model) el.setAttribute("data-model", model);
+      f.innerHTML = ""; f.appendChild(el);
+      el.addEventListener("input", function () { setOrig(o, el.value); });
+      rec.pull = function () { if (document.activeElement !== el) el.value = getOrig(o) || ""; };
+    }
+    bound.push(rec);
+  }
+  function pull(rec) { rec.pull && rec.pull(); }
+  function pullAll() { bound.forEach(pull); }
+
+  /* ---------- 시작 ---------- */
+  function boot() {
+    var page = $(".x-page");
+    if (!page) return;
+    document.documentElement.classList.add("x-mode");
+    $$(".x-arr", page).forEach(renderArr);
+    $$("pre.x-code", page).forEach(renderCode);
+    $$(".x-f[data-bind]", page).forEach(renderField);
+    pullAll();
+    // 원본 저장 스크립트가 자동 보관·불러오기로 원본 칸을 바꾸면 새 칸에도 다시 옮긴다.
+    var msg = document.getElementById("sb-msg");
+    if (msg) new MutationObserver(function () { setTimeout(pullAll, 50); }).observe(msg, { childList: true, characterData: true, subtree: true });
+    window.XKit = { pullAll: pullAll, bound: bound };
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(boot, 0); });
+  else setTimeout(boot, 0);
+})();
