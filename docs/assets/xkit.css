@@ -120,6 +120,11 @@
 .g-n.start { fill: var(--duo-green); stroke: var(--duo-green-d); }
 .g-nt { font: 900 16px var(--f-round); fill: var(--duo-ink); text-anchor: middle; }
 .g-nt.start { fill: #fff; }
+/* 모범답 보기(탐구 활동지) */
+.duo-app .duo-model.info { display: block; white-space: pre-line; color: #0b5a85; background: var(--duo-blue-soft); border-radius: 10px; padding: 6px 10px; margin-top: 6px; font: 600 14px/1.5 var(--f-body); }
+td .duo-model.info { font-size: 12.5px; padding: 3px 6px; }
+.duo-foot.show .duo-sheet-t { color: var(--duo-blue-d); }
+.duo-foot.show { background: var(--duo-blue-soft); border-top-color: transparent; }
 /* 내 답 다시 보기 */
 .x-echo { display: inline-block; font: 700 15px var(--f-body); color: #6b4bb5; background: #f3e8ff; border: 2px dashed #ce82ff; border-radius: 10px; padding: 2px 10px; }
 .x-echo::before { content: "내 답 "; font: 900 11px var(--f-round); color: #a568cc; margin-right: 4px; }

@@ -36,7 +36,21 @@ def attr(tag, name):
     return html.unescape(m.group(1)) if m else None
 
 
+# 탐구 활동지는 제출하지 않으므로 모든 칸의 모범답을 [확인] 때 보여 준다(OPEN_ALL).
+# 정답이 하나로 정해진 짧은 칸만 맞다/다르다를 판정한다(data-judge).
+OPEN_ALL = False
+
+
+def judgeable(label, placeholder, model):
+    if not model or len(model) > MAX_MODEL_LEN:
+        return False
+    text = (label or "") + " " + (placeholder or "")
+    return not OPEN_WORDS.search(text)
+
+
 def checkable(label, placeholder, model):
+    if OPEN_ALL and model:
+        return True
     if not model or len(model) > MAX_MODEL_LEN:
         return False
     text = (label or "") + " " + (placeholder or "")
@@ -58,7 +72,8 @@ def strip_inputs(s, st):
             st["prefilled"] += 1
             if checkable(attr(tag, "data-label"), attr(tag, "placeholder"), model.strip()):
                 st["checkable"] += 1
-                tag2 = tag2[:-1].rstrip("/").rstrip() + ' data-model="%s">' % html.escape(model.strip(), quote=True)
+                j = ' data-judge="1"' if judgeable(attr(tag, "data-label"), attr(tag, "placeholder"), model.strip()) else ""
+                tag2 = tag2[:-1].rstrip("/").rstrip() + ' data-model="%s"%s>' % (html.escape(model.strip(), quote=True), j)
         return tag2
     return re.sub(TAG("input"), fix, s)
 
@@ -69,6 +84,10 @@ def strip_textareas(s, st):
         open_tag, body = m.group(1), m.group(2)
         if "data-key=" in open_tag and 'data-type="code"' not in open_tag and body.strip():
             st["prefilled"] += 1
+            if OPEN_ALL:
+                st["checkable"] += 1
+                model = html.unescape(body).strip()
+                return open_tag[:-1] + ' data-model="%s">' % html.escape(model, quote=True) + "</textarea>"
             return open_tag + "</textarea>"
         return m.group(0)
     return re.sub("(" + TAG("textarea") + ")(.*?)</textarea>", fix, s, flags=re.S)
@@ -88,7 +107,8 @@ def strip_radios(s, st):
             st["prefilled"] += 1
             if checkable(attr(open_tag, "data-label"), "", chosen):
                 st["checkable"] += 1
-                new_open = open_tag[:-1] + ' data-model="%s">' % html.escape(chosen, quote=True)
+                j = ' data-judge="1"' if judgeable(attr(open_tag, "data-label"), "", chosen) else ""
+                new_open = open_tag[:-1] + ' data-model="%s"%s>' % (html.escape(chosen, quote=True), j)
                 block = new_open + block[len(open_tag):]
         return block
     return re.sub(r'<span\b(?:[^>"]|"[^"]*")*data-type="radio"(?:[^>"]|"[^"]*")*>.*?</span>', fix, s, flags=re.S)
@@ -162,6 +182,8 @@ def dump_segments():
 
 
 def transform(src_html, rel_depth="../", page_key=None):
+    global OPEN_ALL
+    OPEN_ALL = bool(page_key and "workbook" in page_key)
     st = {"prefilled": 0, "checkable": 0, "copy": 0, "copy_skip": 0}
     s = src_html
     authored = ROOT / "pages" / (page_key + ".html") if page_key else None

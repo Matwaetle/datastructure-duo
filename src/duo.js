@@ -308,9 +308,13 @@
     window.dispatchEvent(new Event("resize")); // 편집기·자동 높이 칸이 새 자리에 맞추게 한다
   }
 
+  // 탐구 활동지(제출 안 함)는 빈 칸까지 모든 칸의 모범답을 보여 준다.
+  var OPEN_ALL = /workbook/.test(PATH);
   function checkables(s) {
-    return $$(AUTHORED ? ".x-f[data-model]" : "input[data-model], .rg[data-model]", s.node).filter(function (f) { return !isEmpty(f); });
+    return $$(AUTHORED ? ".x-f[data-model]" : "input[data-model], .rg[data-model]", s.node)
+      .filter(function (f) { return (AUTHORED && OPEN_ALL) || !isEmpty(f); });
   }
+  function judged(f) { return !AUTHORED || !OPEN_ALL || f.hasAttribute("data-judge"); }
 
   function setPrimary() {
     var s = screens[cur];
@@ -323,23 +327,32 @@
 
   function check() {
     var s = screens[cur];
-    var list = checkables(s), wrong = 0;
+    var list = checkables(s), wrong = 0, right = 0, shown = 0;
     list.forEach(function (f) {
-      var model = f.getAttribute("data-model");
-      var ok = sameAnswer(fieldValue(f), model);
+      var model = f.getAttribute("data-model"), v = fieldValue(f);
       var host = f.closest(".duo-fld") || f;
-      host.classList.toggle("duo-ok", ok);
-      host.classList.toggle("duo-diff", !ok);
       var note = f.parentNode.querySelector(":scope>.duo-model");
-      if (!ok) {
-        wrong++;
+      function say(cls, t) {
         if (!note) { note = el("span", "duo-model"); f.parentNode.insertBefore(note, f.nextSibling); }
-        note.textContent = "선생님 답: " + model;
-      } else if (note) note.remove();
+        note.className = "duo-model " + cls; note.textContent = t;
+      }
+      if (judged(f) && v) {
+        var ok = sameAnswer(v, model);
+        host.classList.toggle("duo-ok", ok);
+        host.classList.toggle("duo-diff", !ok);
+        if (ok) { right++; if (note) note.remove(); }
+        else { wrong++; say("", "정답: " + model); }
+      } else {
+        // 서술형이거나 비어 있는 칸: 맞다/틀리다 대신 모범답을 보여 준다.
+        shown++;
+        host.classList.remove("duo-ok", "duo-diff");
+        say("info", (judged(f) ? "정답: " : "모범답: ") + model);
+      }
     });
     s.checked = true;
-    if (!wrong) showSheet("ok", pick(["정답이에요!", "좋아요!", "완벽해요!", "맞았어요!"]), list.length > 1 ? list.length + "칸 모두 맞았어요." : "");
-    else showSheet("warn", "선생님 답과 다른 칸이 있어요", "칸 아래에 적힌 답과 비교해 보세요. 고쳐 써도 되고, 내 답이 맞다고 생각하면 그대로 두어도 돼요.");
+    if (!wrong && shown) showSheet(right ? "ok" : "show", right ? "맞은 칸 " + right + "개!" : "모범답이 나왔어요", "칸 아래 모범답과 내 답을 비교해 보세요. 고쳐 써도 돼요.");
+    else if (!wrong) showSheet("ok", pick(["정답이에요!", "좋아요!", "완벽해요!", "맞았어요!"]), list.length > 1 ? list.length + "칸 모두 맞았어요." : "");
+    else showSheet("warn", "정답과 다른 칸이 " + wrong + "개 있어요", "칸 아래 정답과 비교해 보세요. 표현만 다르면 맞은 걸로 봐도 돼요.");
     primary.textContent = "계속"; mode = "next";
   }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
@@ -353,7 +366,7 @@
     primary.classList.toggle("ok", kind === "ok");
     primary.classList.toggle("warn", kind !== "ok");
   }
-  function hideSheet() { sheet.hidden = true; foot.classList.remove("ok", "warn", "info"); }
+  function hideSheet() { sheet.hidden = true; foot.classList.remove("ok", "warn", "info", "show"); }
 
   function emptyIn(s) {
     return $$(FIELD, s.node).filter(function (f) {

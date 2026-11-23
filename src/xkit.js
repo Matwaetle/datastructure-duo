@@ -191,6 +191,7 @@
     if (ph == null) ph = o.getAttribute("placeholder") || "";
     var model = o.getAttribute("data-model");
     if (model) f.setAttribute("data-model", model);
+    if (o.hasAttribute("data-judge")) f.setAttribute("data-judge", "1");
     var rec = { f: f, o: o, k: k };
     if (k === "code") {
       // 코드 칸은 원본 편집기(codekit)를 그대로 옮겨 쓴다(실행·불러오기 기능 유지).
