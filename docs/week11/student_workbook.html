@@ -17,72 +17,76 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="11주차 활동지 1부 · 이웃으로 나아가기 (BFS·DFS)" data-lead="꺼내는 위치만 바꾸었을 때 방문 순서가 어떻게 달라지는지 직접 추적합니다.">
+<div class="x-page" hidden data-title="11주차 활동지 1부 · 이웃으로 나아가기 (BFS·DFS)" data-lead="꺼내는 위치만 바꾸었을 때 방문 순서가 어떻게 달라지는지 직접 추적해 봐요.">
 
 <!-- ========== A1 ========== -->
 <section class="x-act" data-id="A1" data-title="어느 이웃부터 갈까" data-meta="7분 · 개인">
-  <ul class="x-pts"><li>미로·소문·지도는 모두 이웃으로 한 걸음씩 나아가는 문제입니다.</li></ul>
+  <ul class="x-pts"><li>미로 찾기, 소문 퍼지기, 지도 길 찾기는 모두 이웃으로 한 걸음씩 나아가는 문제예요.</li><li><b>이웃</b> = 길(선) 하나로 바로 이어진 곳</li></ul>
 
   <div class="x-screen" data-title="작은 미로 보기">
     <div class="x-graph" data-name="작은 미로" data-nodes="입구:0,0 P:1,0 Q:2,0 출구:3,0 R:1,1" data-edges="입구-P,P-Q,Q-출구,P-R"></div>
-    <ul class="x-pts"><li><b>갈림길</b> = 길이 셋 이상 만나는 곳</li></ul>
+    <ul class="x-pts"><li><b>갈림길</b> = 길이 셋 이상 만나는 곳(점)</li><li>그림의 점은 장소, 선은 두 장소를 잇는 길이에요.</li></ul>
     <div class="quiz" data-answer="1">
-      <p class="q">이 미로의 갈림길을 고르십시오.</p>
-      <div class="opts"><button type="button">P</button><button type="button" data-hint="Q에는 길이 둘만 만납니다.">Q</button><button type="button" data-hint="R은 막다른 길입니다.">R</button></div>
-      <p class="why">P에는 입구, Q, R 세 길이 만납니다.</p>
+      <p class="q">이 미로에서 갈림길인 곳을 하나 고르세요.</p>
+      <div class="opts"><button type="button">P</button><button type="button" data-hint="Q에는 길이 둘만 만나요.">Q</button><button type="button" data-hint="R은 길이 하나뿐인 막다른 곳이에요.">R</button></div>
+      <p class="why">P에는 입구, Q, R로 가는 세 길이 만나요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="갈림길에서 고르기">
     <div class="x-graph" data-name="작은 미로" data-nodes="입구:0,0 P:1,0 Q:2,0 출구:3,0 R:1,1" data-edges="입구-P,P-Q,Q-출구,P-R" data-hl="R" data-label="R은 막다른 길"></div>
-    <ul class="x-pts"><li>P에서 R로 들어갔는데 막다른 길이었습니다.</li></ul>
-    <p class="x-q">갈림길에서 어느 쪽으로 가고, 막히면 어떻게 하겠습니까?<small>두 가지를 각각 한 문장으로 쓰십시오</small></p>
-    <div class="x-f" data-bind="A1.fork" data-parts="갈림길에서=예: 먼저 갈 쪽을 고르는 기준|막히면=예: 어디로 돌아가 무엇을 하나"></div>
+    <ul class="x-pts"><li>P에서 R로 들어갔는데 막다른 곳이었어요.</li><li><b>막다른 곳</b> = 들어온 길 말고는 나갈 길이 없는 곳</li></ul>
+    <p class="x-q">갈림길에서 어느 길을 먼저 고르고, 막다른 곳에 닿으면 어떻게 할까요?<small>두 칸에 각각 한 문장으로 쓰세요</small></p>
+    <div class="x-f" data-bind="A1.fork" data-parts="갈림길에서=먼저 갈 길을 고르는 기준|막히면=어디로 돌아가서 무엇을 하는지"></div>
   </div>
 
   <div class="x-screen" data-title="지나온 곳을 또 가면">
     <div class="x-graph" data-nodes="X:0,1 Y:1,0 Z:2,1" data-edges="X-Y,Y-Z,X-Z"></div>
-    <div class="x-given"><span><b>X, Y, Z</b>서로 모두 친구</span><span><b>소문</b>X → Y → Z</span></div>
+    <div class="x-given"><span><b>X, Y, Z</b>세 사람이 서로 모두 친구</span><span><b>소문 전달</b>X → Y → Z → …</span></div>
     <div class="x-flow"><span>X</span><span>Y</span><span>Z</span><span>X</span><span>Y</span><span>…</span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">방문한 곳을 기록하지 않고 계속 이동하면 어떻게 됩니까?</p>
-      <div class="opts"><button type="button">끝나는 때를 알 수 없이 계속 돈다</button><button type="button" data-hint="Z에도 방문하지 않은 것처럼 보이는 이웃이 있습니다.">Z에서 저절로 멈춘다</button><button type="button" data-hint="빨라지지 않고 같은 곳만 반복해서 돕니다.">소문이 더 빨리 퍼진다</button></div>
-      <p class="why">같은 곳을 다시 방문하므로 끝나지 않습니다. 따라서 방문 기록이 필요합니다.</p>
+      <p class="q">이미 들른 사람(방문한 곳)을 기록하지 않고 계속 전달하면 어떻게 될까요?</p>
+      <div class="opts"><button type="button">언제 끝낼지 알 수 없어 계속 돈다</button><button type="button" data-hint="기록이 없으면 Z에게도 아직 안 간 것처럼 보이는 친구(X)가 있어요.">Z에서 저절로 멈춘다</button><button type="button" data-hint="빨라지지 않고 같은 사람들 사이만 반복해서 돌아요.">소문이 더 빨리 퍼진다</button></div>
+      <p class="why">이미 들른 곳을 다시 방문하므로 끝나지 않아요. 그래서 들른 곳을 적어 두는 방문 기록이 필요해요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="소문은 몇 단계">
     <div class="x-flow"><span>A · 0단계</span><span>B</span><span class="hit">C</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">C에게 소문은 몇 단계 만에 닿았습니까?</p>
-      <div class="opts"><button type="button" data-hint="A-B, B-C 두 번 전해졌습니다.">1단계</button><button type="button">2단계</button><button type="button" data-hint="A는 0단계부터 셉니다.">3단계</button></div>
-      <p class="why"><b>단계</b>는 지나온 친구 관계(간선)의 수이므로 2입니다.</p>
+      <p class="q">A가 처음 소문을 냈어요(0단계). 친구에게 한 번 전할 때마다 1단계가 늘어요. C에게는 몇 단계 만에 닿았을까요?</p>
+      <div class="opts"><button type="button" data-hint="A→B, B→C로 두 번 전해졌어요.">1단계</button><button type="button">2단계</button><button type="button" data-hint="A는 0단계부터 세요.">3단계</button></div>
+      <p class="why"><b>단계</b>는 소문이 지나온 친구 관계(선)의 수이므로 2예요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="내 방법 한 문장">
     <div class="x-graph" data-name="작은 미로" data-nodes="입구:0,0 P:1,0 Q:2,0 출구:3,0 R:1,1" data-edges="입구-P,P-Q,Q-출구,P-R"></div>
-    <ul class="x-pts"><li>BFS·DFS 같은 이름은 몰라도 됩니다.</li></ul>
-    <p class="x-q">현재 위치에서 다음에 살펴볼 곳을 정하는 자신의 방법을 쓰십시오.<small>한 문장</small></p>
+    <ul class="x-pts"><li>BFS·DFS 같은 이름은 몰라도 괜찮아요.</li></ul>
+    <p class="x-q">지금 있는 곳에서 다음에 갈 곳을 정하는 나만의 방법을 쓰세요.<small>한 문장</small></p>
     <div class="x-f" data-bind="A1.rule" data-ph="예: 오른쪽 벽을 짚고 따라가고, …"></div>
-    <p class="x-q">(선택) 이 방법이 통하지 않을 만한 경우를 쓰십시오.<small>한 문장, 떠오르지 않으면 비워 두십시오</small></p>
+    <p class="x-q">(선택) 이 방법으로는 출구를 못 찾을 만한 경우를 쓰세요.<small>한 문장, 떠오르지 않으면 비워 두세요</small></p>
     <div class="x-f" data-bind="A1.weak" data-ph="예: 길이 아주 길면 …"></div>
   </div>
 </section>
 
 <!-- ========== A2 ========== -->
 <section class="x-act" data-id="A2" data-title="컨테이너 두 가지로 탐색 추적하기" data-meta="14분 · 개인">
-  <ul class="x-pts"><li>꺼내는 자리만 바꾸면 방문 순서가 달라지겠습니까?</li></ul>
+  <ul class="x-pts"><li>컨테이너에서 꺼내는 자리만 바꾸면 방문 순서가 달라질까요?</li></ul>
 
   <div class="x-screen" data-title="규칙과 작은 그래프 X">
     <div class="x-cards">
-      <div><b>컨테이너</b>앞으로 볼 노드를 담아 두는 곳</div>
-      <div><b>스택</b>맨 위(오른쪽 끝)에서 꺼냄</div>
-      <div><b>큐</b>맨 앞(왼쪽 끝)에서 꺼냄</div>
+      <div><b>노드</b>그래프의 점 (X, Y 같은 곳)</div>
+      <div><b>간선</b>두 노드를 잇는 선</div>
+      <div><b>이웃 목록</b>한 노드와 간선으로 바로 이어진 노드들, 예: X [Y, Z]</div>
+      <div><b>컨테이너</b>앞으로 방문할 노드를 줄 세워 담아 두는 목록</div>
+      <div><b>방문</b>꺼낸 노드를 방문 순서에 적고 방문 기록에 표시하는 일</div>
+      <div><b>스택</b>맨 위(오른쪽 끝)에서 꺼내는 컨테이너</div>
+      <div><b>큐</b>맨 앞(왼쪽 끝)에서 꺼내는 컨테이너</div>
     </div>
-    <div class="x-flow"><span>꺼낸다</span><span>방문한다</span><span>안 가 본 이웃을 목록 순서로 넣는다</span><span class="hit">빌 때까지 반복</span></div>
+    <div class="x-flow"><span>노드 하나를 꺼낸다</span><span>그 노드를 방문한다</span><span>아직 방문하지 않은 이웃을 이웃 목록 순서대로 오른쪽 끝에 넣는다</span><span class="hit">컨테이너가 빌 때까지 반복</span></div>
     <div class="x-graph" data-name="X 그래프" data-nodes="Y:0,1 X:1,0 Z:2,1" data-edges="X-Y,X-Z" data-start="X"></div>
-    <div class="x-given"><span><b>X</b>[Y, Z]</span><span><b>Y</b>[X]</span><span><b>Z</b>[X]</span><span><b>규칙</b>스택, 시작 X</span></div>
+    <div class="x-given"><span><b>X</b>[Y, Z]</span><span><b>Y</b>[X]</span><span><b>Z</b>[X]</span><span><b>규칙</b>스택, 시작 노드 X</span></div>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>단계</th><th>꺼낸 노드</th><th>컨테이너</th></tr>
       <tr><td>시작</td><td>-</td><td>[X]</td></tr>
@@ -91,9 +95,9 @@
       <tr><td>3</td><td>Y (방문)</td><td>[ ]</td></tr>
     </table></div>
     <div class="quiz" data-answer="1">
-      <p class="q">같은 X에서 <b>큐</b> 규칙이면 단계 1 다음에 꺼내는 노드를 고르십시오.</p>
-      <div class="opts"><button type="button">Y</button><button type="button" data-hint="큐는 맨 앞(왼쪽)에서 꺼냅니다.">Z</button></div>
-      <p class="why">큐는 맨 앞의 Y를 꺼냅니다. 따라서 방문 순서는 큐가 X, Y, Z, 스택이 X, Z, Y입니다.</p>
+      <p class="q">같은 X에서 <b>큐</b> 규칙으로 하면, 단계 1 다음(단계 2)에 꺼내는 노드는 무엇일까요?</p>
+      <div class="opts"><button type="button">Y</button><button type="button" data-hint="큐는 맨 앞(왼쪽 끝)에서 꺼내요.">Z</button></div>
+      <p class="why">큐는 맨 앞의 Y를 꺼내요. 그래서 방문 순서는 큐가 X, Y, Z, 스택이 X, Z, Y예요.</p>
     </div>
   </div>
 
@@ -101,18 +105,18 @@
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E"></div>
     <div class="x-given"><span><b>A</b>[B, C]</span><span><b>B</b>[A, D]</span><span><b>C</b>[A, D]</span><span><b>D</b>[B, C, E]</span><span><b>E</b>[D]</span><span><b>F</b>이웃 없음</span></div>
     <ul class="x-pts">
-      <li>F는 어느 노드와도 이어지지 않은 고립된 노드입니다.</li>
-      <li>이웃을 넣을지는 <b>방문 기록만</b> 보고 정합니다. 컨테이너에 이미 있어도 방문 전이면 넣습니다.</li>
-      <li>이미 방문한 노드를 꺼내면 <b>노드 (이미 방문, 버림)</b>으로 쓰고, 이웃은 넣지 않습니다.</li>
+      <li>F는 어느 노드와도 간선으로 이어지지 않은 노드예요.</li>
+      <li><b>방문 기록</b> = 지금까지 방문한 노드의 모음</li><li>이웃을 넣을지는 <b>방문 기록만</b> 보고 정해요. 컨테이너에 이미 있어도 아직 방문 전이면 또 넣어요.</li>
+      <li>이미 방문한 노드를 꺼내면 방문하지 않고 넘어가요. 이것을 <b>버림</b>이라고 해요.</li><li>버린 줄은 <b>노드 (이미 방문, 버림)</b>으로 쓰고, 그 노드의 이웃은 넣지 않아요.</li>
     </ul>
   </div>
 
   <div class="x-screen" data-title="스택 규칙으로 G1 탐색하기">
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="A"></div>
     <div class="x-given"><span><b>A</b>[B, C]</span><span><b>B</b>[A, D]</span><span><b>C</b>[A, D]</span><span><b>D</b>[B, C, E]</span><span><b>E</b>[D]</span></div>
-    <div class="x-given"><span><b>시작</b>컨테이너 [A], 방문 기록 없음</span><span><b>꺼내는 곳</b>맨 위(오른쪽 끝)</span></div>
+    <div class="x-given"><span><b>시작</b>컨테이너 [A], 방문 기록은 비어 있음</span><span><b>꺼내는 곳</b>맨 위(오른쪽 끝)</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>꺼낸 노드<small>노드 (방문) / 노드 (이미 방문, 버림)</small></th><th>컨테이너<small>꺼내고 넣은 직후, 왼쪽→오른쪽</small></th></tr>
+      <tr><th>단계</th><th>꺼낸 노드<small>노드 (방문) / 노드 (이미 방문, 버림)</small></th><th>컨테이너<small>꺼내고 이웃을 넣은 직후의 내용, 왼쪽→오른쪽</small></th></tr>
       <tr class="x-ex"><td>예</td><td>X (방문)</td><td>[Y, Z]</td></tr>
       <tr><td>1</td><td class="wide"><span class="x-f" data-bind="A2.stack.r1.c1" data-ph="예: X (방문)"></span></td><td class="wide"><span class="x-f" data-bind="A2.stack.r1.c2" data-ph="예: [Y, Z]"></span></td></tr>
       <tr><td>2</td><td class="wide"><span class="x-f" data-bind="A2.stack.r2.c1" data-ph="예: X (방문)"></span></td><td class="wide"><span class="x-f" data-bind="A2.stack.r2.c2" data-ph="예: [Y, Z]"></span></td></tr>
@@ -121,15 +125,15 @@
       <tr><td>5</td><td class="wide"><span class="x-f" data-bind="A2.stack.r5.c1" data-ph="예: X (방문)"></span></td><td class="wide"><span class="x-f" data-bind="A2.stack.r5.c2" data-ph="예: [Y, Z]"></span></td></tr>
       <tr><td>6</td><td class="wide"><span class="x-f" data-bind="A2.stack.r6.c1" data-ph="예: Y (이미 방문, 버림)"></span></td><td class="wide"><span class="x-f" data-bind="A2.stack.r6.c2" data-ph="예: [ ]"></span></td></tr>
     </table></div>
-    <div class="x-line">방문 순서 <span class="x-f" data-bind="A2.stack.order" data-w="m" data-ph="예: X, Z, Y"></span></div>
+    <div class="x-line">방문 순서 <span class="x-f" data-bind="A2.stack.order" data-w="m" data-ph="방문한 노드를 쉼표로, 예: X, Z, Y"></span></div>
   </div>
 
   <div class="x-screen" data-title="큐 규칙으로 G1 탐색하기">
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="A"></div>
     <div class="x-given"><span><b>A</b>[B, C]</span><span><b>B</b>[A, D]</span><span><b>C</b>[A, D]</span><span><b>D</b>[B, C, E]</span><span><b>E</b>[D]</span></div>
-    <div class="x-given"><span><b>시작</b>컨테이너 [A], 방문 기록 없음</span><span><b>꺼내는 곳</b>맨 앞(왼쪽 끝)</span></div>
+    <div class="x-given"><span><b>시작</b>컨테이너 [A], 방문 기록은 비어 있음</span><span><b>꺼내는 곳</b>맨 앞(왼쪽 끝)</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>단계</th><th>꺼낸 노드<small>노드 (방문) / 노드 (이미 방문, 버림)</small></th><th>컨테이너<small>꺼내고 넣은 직후, 왼쪽→오른쪽</small></th></tr>
+      <tr><th>단계</th><th>꺼낸 노드<small>노드 (방문) / 노드 (이미 방문, 버림)</small></th><th>컨테이너<small>꺼내고 이웃을 넣은 직후의 내용, 왼쪽→오른쪽</small></th></tr>
       <tr class="x-ex"><td>예</td><td>X (방문)</td><td>[Y, Z]</td></tr>
       <tr><td>1</td><td class="wide"><span class="x-f" data-bind="A2.queue.r1.c1" data-ph="예: X (방문)"></span></td><td class="wide"><span class="x-f" data-bind="A2.queue.r1.c2" data-ph="예: [Y, Z]"></span></td></tr>
       <tr><td>2</td><td class="wide"><span class="x-f" data-bind="A2.queue.r2.c1" data-ph="예: X (방문)"></span></td><td class="wide"><span class="x-f" data-bind="A2.queue.r2.c2" data-ph="예: [Y, Z]"></span></td></tr>
@@ -138,44 +142,45 @@
       <tr><td>5</td><td class="wide"><span class="x-f" data-bind="A2.queue.r5.c1" data-ph="예: Y (이미 방문, 버림)"></span></td><td class="wide"><span class="x-f" data-bind="A2.queue.r5.c2" data-ph="예: [Y, Z]"></span></td></tr>
       <tr><td>6</td><td class="wide"><span class="x-f" data-bind="A2.queue.r6.c1" data-ph="예: Y (이미 방문, 버림)"></span></td><td class="wide"><span class="x-f" data-bind="A2.queue.r6.c2" data-ph="예: [ ]"></span></td></tr>
     </table></div>
-    <div class="x-line">방문 순서 <span class="x-f" data-bind="A2.queue.order" data-w="m" data-ph="예: X, Z, Y"></span></div>
+    <div class="x-line">방문 순서 <span class="x-f" data-bind="A2.queue.order" data-w="m" data-ph="방문한 노드를 쉼표로, 예: X, Z, Y"></span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">이미 방문한 노드를 꺼냈을 때 버리지 않고 또 방문하면 어떻게 됩니까?</p>
-      <div class="opts"><button type="button">그 노드가 방문 순서에 두 번 들어간다</button><button type="button" data-hint="같은 노드를 다시 처리하게 됩니다.">아무 일도 없다</button><button type="button" data-hint="이웃을 다시 넣으므로 오히려 늘어납니다.">큐가 바로 비어 끝난다</button></div>
-      <p class="why">같은 노드를 두 번 처리합니다. 따라서 꺼낸 뒤 방문 기록을 확인하여 버립니다.</p>
+      <p class="q">이미 방문한 노드를 꺼냈을 때, 버리지 않고 또 방문하면 어떻게 될까요?</p>
+      <div class="opts"><button type="button">그 노드가 방문 순서에 두 번 들어간다</button><button type="button" data-hint="같은 노드를 다시 방문하게 돼요.">아무 일도 없다</button><button type="button" data-hint="이웃을 다시 넣으므로 컨테이너는 오히려 늘어나요.">큐가 바로 비어 끝난다</button></div>
+      <p class="why">같은 노드를 두 번 방문해요. 그래서 꺼낸 뒤 방문 기록을 확인하고, 이미 방문했으면 버려요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="F는 왜 빠졌을까">
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="A"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">두 표의 방문 순서에 F가 없는 까닭을 고르십시오.</p>
-      <div class="opts"><button type="button">A에서 이웃을 따라가도 F에 닿는 간선이 없다</button><button type="button" data-hint="거리가 아니라 연결이 문제입니다.">F가 A에서 가장 멀다</button><button type="button" data-hint="컨테이너 크기에는 제한이 없습니다.">컨테이너가 작아서 못 담았다</button></div>
-      <p class="why">시작 노드에서 이웃을 따라 닿는 노드만 방문됩니다.</p>
+      <p class="q">스택·큐 두 표의 방문 순서에 F가 없는 까닭을 고르세요.</p>
+      <div class="opts"><button type="button">A에서 이웃을 따라가도 F에 닿는 간선이 없다</button><button type="button" data-hint="거리가 아니라 간선으로 이어져 있는지가 문제예요.">F가 A에서 가장 멀다</button><button type="button" data-hint="컨테이너 크기에는 제한이 없어요.">컨테이너가 작아서 못 담았다</button></div>
+      <p class="why">시작 노드에서 간선을 따라 닿을 수 있는 노드만 방문돼요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="두 규칙 비교하기">
     <div class="x-given"><span><b>D</b>[B, C, E]</span><span><b>스택</b>맨 위에서 꺼냄</span><span><b>큐</b>맨 앞에서 꺼냄</span></div>
-    <ul class="x-pts"><li>근거로는 자신의 표에 있는 단계 번호와 컨테이너 내용을 씁니다.</li></ul>
+    <ul class="x-pts"><li>근거로는 내 표의 단계 번호와 그 단계의 컨테이너 내용을 써요.</li></ul>
     <div class="x-line">내 스택 표 3단계 컨테이너: <span class="x-echo" data-echo="A2.stack.r3.c2"></span></div>
     <div class="x-line">내 방문 순서: 스택 <span class="x-echo" data-echo="A2.stack.order"></span> / 큐 <span class="x-echo" data-echo="A2.queue.order"></span></div>
-    <p class="x-q">스택 규칙에서 D 다음에 B가 아니라 E가 방문된 까닭을 쓰십시오.<small>3단계 컨테이너 내용을 넣어 1~2문장으로</small></p>
+    <p class="x-q">스택 규칙에서 D 다음에 B가 아니라 E가 방문된 까닭을 쓰세요.<small>내 표 3단계의 컨테이너 내용을 넣어 1~2문장으로</small></p>
     <div class="x-f" data-bind="A2.q2" data-ph="예: 3단계 컨테이너가 [..]이고 맨 위가 …이므로"></div>
-    <p class="x-q">두 규칙의 같은 점 · 다른 점 · 그 결과를 쓰십시오.</p>
-    <div class="x-f" data-bind="A2.q3" data-parts="같은 곳=예: 둘 다 시작 노드를 넣고 …|다른 곳=예: 꺼내는 쪽이 …|달라진 방문 순서=스택 ○, ○, … / 큐 ○, ○, …"></div>
+    <p class="x-q">스택 규칙과 큐 규칙의 같은 점, 다른 점, 그 때문에 달라진 방문 순서를 각 칸에 쓰세요.</p>
+    <div class="x-f" data-bind="A2.q3" data-parts="같은 곳=두 규칙이 똑같이 하는 일|다른 곳=두 규칙에서 다른 한 가지|달라진 방문 순서=스택 ○, ○, … / 큐 ○, ○, …"></div>
   </div>
 </section>
 
 <!-- ========== A3 ========== -->
 <section class="x-act" data-id="A3" data-title="재귀로 돌아보기" data-meta="13분 · 개인">
-  <ul class="x-pts"><li>재귀 호출이 Call Stack에 쌓이는 모습을 추적합니다.</li></ul>
+  <ul class="x-pts"><li><b>재귀</b> = 함수가 실행 도중 자기 자신을 다시 호출하는 것</li><li>재귀 호출이 Call Stack에 쌓이고 빠지는 모습을 추적해요.</li></ul>
 
   <div class="x-screen" data-title="호출이 쌓이는 모습">
     <div class="x-cards">
-      <div><b>enter</b>함수가 시작되는 때</div>
-      <div><b>exit</b>함수가 끝나 돌아오는 때</div>
-      <div><b>Call Stack</b>호출이 쌓이는 곳, 아래→위로 [P, Q]</div>
+      <div><b>enter</b>함수 호출이 시작되는 때</div>
+      <div><b>exit</b>함수 호출이 끝나, 부른 곳으로 돌아가는 때</div>
+      <div><b>Call Stack</b>아직 끝나지 않은 호출들의 목록, 먼저 부른 것부터 [P, Q]처럼 씀 (오른쪽 끝이 맨 위)</div>
+      <div><b>dfs(P)</b>노드 P에서 시작하는 함수 호출, 표에서는 P로 줄여 씀</div>
     </div>
     <div class="x-graph" data-nodes="P:0,0 Q:1,0 R:2,0" data-edges="P-Q,Q-R" data-start="P"></div>
     <div class="x-given"><span><b>P</b>[Q]</span><span><b>Q</b>[P, R]</span><span><b>R</b>[Q]</span><span><b>시작</b>dfs(P)</span></div>
@@ -189,14 +194,14 @@
       <tr><td>6</td><td>exit P</td><td>[ ]</td></tr>
     </table></div>
     <div class="quiz" data-answer="1">
-      <p class="q">순서 5에서 exit Q 직후 Call Stack의 맨 위를 고르십시오.</p>
-      <div class="opts"><button type="button">dfs(P)</button><button type="button" data-hint="Q는 방금 끝나 사라졌습니다.">dfs(Q)</button><button type="button" data-hint="R은 순서 4에서 사라졌습니다.">dfs(R)</button></div>
-      <p class="why">Q가 사라지면 그 아래의 P가 맨 위가 됩니다.</p>
+      <p class="q">순서 5에서 exit Q 직후, Call Stack의 맨 위에 있는 호출은 무엇일까요?</p>
+      <div class="opts"><button type="button">dfs(P)</button><button type="button" data-hint="Q는 방금 끝나서 빠졌어요.">dfs(Q)</button><button type="button" data-hint="R은 순서 4에서 빠졌어요.">dfs(R)</button></div>
+      <p class="why">Q가 빠지면 그 바로 아래의 P가 맨 위가 돼요.</p>
     </div>
     <div class="quiz" data-answer="2">
-      <p class="q">이 Call Stack은 누가 만듭니까?</p>
-      <div class="opts"><button type="button" data-hint="코드에 스택을 만든 줄이 없습니다.">내가 코드로 직접</button><button type="button">파이썬이 호출마다 자동으로</button></div>
-      <p class="why">재귀 호출이 있으면 파이썬이 자동으로 쌓고 제거합니다.</p>
+      <p class="q">이 Call Stack은 누가 만들까요?</p>
+      <div class="opts"><button type="button" data-hint="코드에 스택을 만드는 줄이 없어요.">내가 코드로 직접</button><button type="button">파이썬이 호출마다 자동으로</button></div>
+      <p class="why">함수를 호출할 때마다 파이썬이 자동으로 쌓고, 끝나면 빼요.</p>
     </div>
   </div>
 
@@ -209,11 +214,11 @@
         if v가 visited에 없으면:
             dfs(v)</pre>
     <ul class="x-pts">
-      <li>안 가 본 이웃을 만나면 그 자리에서 바로 호출합니다.</li>
-      <li>exit 줄에는 그 호출이 사라진 직후의 Call Stack을 씁니다. 10줄을 모두 채우십시오.</li>
+      <li><b>visited</b> = 방문한 노드 모음, <b>order</b> = 방문 순서 목록</li><li>아직 방문하지 않은 이웃을 만나면 그 자리에서 바로 dfs를 호출해요.</li>
+      <li>enter 줄에는 호출이 쌓인 직후, exit 줄에는 그 호출이 빠진 직후의 Call Stack을 써요.</li><li>1~10줄을 모두 채우세요.</li>
     </ul>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>순서</th><th>사건<small>enter 또는 exit + 노드</small></th><th>Call Stack<small>[ ] 안에 아래→위</small></th></tr>
+      <tr><th>순서</th><th>사건<small>enter 또는 exit + 노드 이름</small></th><th>Call Stack<small>[ ] 안에 먼저 부른 것부터</small></th></tr>
       <tr class="x-ex"><td>예</td><td>enter P</td><td>[P]</td></tr>
       <tr><td>1</td><td><span class="x-f" data-bind="A3.rec.r1.c1" data-ph="예: enter P"></span></td><td class="wide"><span class="x-f" data-bind="A3.rec.r1.c2" data-ph="예: [P, Q]"></span></td></tr>
       <tr><td>2</td><td><span class="x-f" data-bind="A3.rec.r2.c1" data-ph="예: enter P"></span></td><td class="wide"><span class="x-f" data-bind="A3.rec.r2.c2" data-ph="예: [P, Q]"></span></td></tr>
@@ -226,66 +231,66 @@
       <tr><td>9</td><td><span class="x-f" data-bind="A3.rec.r9.c1" data-ph="예: exit Q"></span></td><td class="wide"><span class="x-f" data-bind="A3.rec.r9.c2" data-ph="예: [P]"></span></td></tr>
       <tr><td>10</td><td><span class="x-f" data-bind="A3.rec.r10.c1" data-ph="예: exit P"></span></td><td class="wide"><span class="x-f" data-bind="A3.rec.r10.c2" data-ph="예: [ ]"></span></td></tr>
     </table></div>
-    <div class="x-line">방문 순서 <span class="x-f" data-bind="A3.order" data-w="m" data-ph="예: P, Q, R"></span></div>
+    <div class="x-line">방문 순서 <span class="x-f" data-bind="A3.order" data-w="m" data-ph="enter한 순서대로 쉼표로, 예: P, Q, R"></span></div>
   </div>
 
   <div class="x-screen" data-title="가장 깊을 때">
-    <ul class="x-pts"><li>내 표에서 Call Stack이 가장 길어진 줄을 찾으십시오.</li></ul>
+    <ul class="x-pts"><li>내 표에서 Call Stack에 든 호출이 가장 많은 줄을 찾으세요.</li></ul>
     <div class="x-scroll"><table class="x-trace"><tr><th>순서</th><th>내가 쓴 Call Stack</th></tr><tr><td>1</td><td><span class="x-echo" data-echo="A3.rec.r1.c2"></span></td></tr><tr><td>2</td><td><span class="x-echo" data-echo="A3.rec.r2.c2"></span></td></tr><tr><td>3</td><td><span class="x-echo" data-echo="A3.rec.r3.c2"></span></td></tr><tr><td>4</td><td><span class="x-echo" data-echo="A3.rec.r4.c2"></span></td></tr><tr><td>5</td><td><span class="x-echo" data-echo="A3.rec.r5.c2"></span></td></tr><tr><td>6</td><td><span class="x-echo" data-echo="A3.rec.r6.c2"></span></td></tr><tr><td>7</td><td><span class="x-echo" data-echo="A3.rec.r7.c2"></span></td></tr><tr><td>8</td><td><span class="x-echo" data-echo="A3.rec.r8.c2"></span></td></tr><tr><td>9</td><td><span class="x-echo" data-echo="A3.rec.r9.c2"></span></td></tr><tr><td>10</td><td><span class="x-echo" data-echo="A3.rec.r10.c2"></span></td></tr></table></div>
     <div class="quiz predict" data-answer="3">
-      <p class="q">가장 많이 쌓였을 때 호출은 몇 개입니까?</p>
+      <p class="q">Call Stack에 호출이 가장 많이 쌓였을 때 몇 개일까요?</p>
       <div class="opts"><button type="button">2개</button><button type="button">3개</button><button type="button">4개</button><button type="button">5개</button></div>
-      <p class="why">내 표에서 가장 긴 Call Stack의 길이와 비교하십시오.</p>
+      <p class="why">내 표에서 가장 긴 Call Stack에 든 호출 수와 비교해 보세요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="스택 규칙과 비교하기">
     <div class="x-given"><span><b>A2 스택 규칙</b><span class="x-echo" data-echo="A2.stack.order"></span></span><span><b>A</b>[B, C]</span></div>
     <div class="x-line">내 재귀 방문 순서: <span class="x-echo" data-echo="A3.order"></span></div>
-    <p class="x-q">재귀의 방문 순서는 A2 스택 규칙과 같습니까?<small>같다/다르다 + 처음 달라지는 자리 + 까닭</small></p>
-    <div class="x-f" data-bind="A3.q3" data-parts="같다/다르다=예: 다르다|처음 달라지는 자리=예: ○번째 방문 노드 (○ 대 ○)|까닭=예: 재귀는 목록의 … , 스택은 …"></div>
+    <p class="x-q">재귀의 방문 순서는 A2 스택 규칙의 방문 순서와 같을까요?<small>세 칸: 같다/다르다, 처음 달라지는 자리, 까닭</small></p>
+    <div class="x-f" data-bind="A3.q3" data-parts="같다/다르다=예: 다르다|처음 달라지는 자리=몇 번째 방문인지와 두 노드, 예: ○번째 (○ 대 ○)|까닭=재귀와 스택이 이웃 목록을 쓰는 방식 차이"></div>
     <div class="x-cards">
-      <div><b>트리</b>8주차 순회: visited 없이도 끝남</div>
-      <div><b>사이클</b>돌아서 제자리로 오는 길</div>
+      <div><b>트리</b>사이클이 없는 그래프, 8주차 순회는 visited 없이도 끝남</div>
+      <div><b>사이클</b>같은 간선을 두 번 쓰지 않고 출발한 노드로 되돌아오는 길</div>
     </div>
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E"></div>
-    <p class="x-q">그래프 순회에는 visited가 왜 필요합니까?</p>
-    <div class="x-f" data-bind="A3.q4" data-parts="구조 차이=예: 트리에는 … 없지만 G1에는 ○-○-○-○-○ 같은 …|visited가 없으면=예: … 하게 된다"></div>
+    <p class="x-q">그래프를 순회할 때는 왜 visited가 필요할까요?</p>
+    <div class="x-f" data-bind="A3.q4" data-parts="구조 차이=트리와 G1의 차이, 예: 트리에는 … 없지만 G1에는 ○-○-○-○-○ 같은 …|visited가 없으면=G1에서 무슨 일이 생기는지"></div>
   </div>
 </section>
 
 <!-- ========== A4 ========== -->
 <section class="x-act" data-id="A4" data-title="그래프 H에서 세 방식 비교" data-meta="14분 · 개인">
-  <ul class="x-pts"><li>규칙과 이웃 순서에 따라 처음 닿는 길이 달라지겠습니까?</li></ul>
+  <ul class="x-pts"><li>세 방식 = 큐 규칙, 스택 규칙, 재귀</li><li>방식과 이웃 목록 순서에 따라, 목표에 처음 닿는 경로가 달라질까요?</li></ul>
 
   <div class="x-screen" data-title="작은 그래프 W">
     <div class="x-graph" data-name="W" data-nodes="A:0,0 S:1,0 B:2,0" data-edges="S-A,S-B" data-start="S"></div>
     <div class="x-given"><span><b>S</b>[A, B]</span><span><b>A</b>[S]</span><span><b>B</b>[S]</span></div>
     <div class="x-given"><span><b>큐</b>S, A, B</span><span><b>스택</b>S, B, A</span><span><b>재귀</b>S, ?, ?</span></div>
     <div class="quiz" data-answer="1">
-      <p class="q">재귀는 S 다음에 어느 노드를 방문하겠습니까?</p>
-      <div class="opts"><button type="button">A</button><button type="button" data-hint="재귀는 넣어 두지 않고 첫 이웃으로 바로 들어갑니다.">B</button></div>
-      <p class="why">재귀는 목록의 첫 이웃 A로 바로 들어갑니다. 스택은 A, B를 넣고 마지막 B를 꺼냈습니다.</p>
+      <p class="q">재귀로 하면 S 다음에 어느 노드를 방문할까요?</p>
+      <div class="opts"><button type="button">A</button><button type="button" data-hint="재귀는 이웃을 컨테이너에 넣어 두지 않고, 아직 방문하지 않은 첫 이웃을 바로 호출해요.">B</button></div>
+      <p class="why">재귀는 이웃 목록의 첫 이웃 A를 바로 호출해요. 스택은 A, B를 넣고 맨 위(마지막)의 B를 꺼냈어요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="경로 되짚기">
     <div class="x-graph" data-nodes="S:0,1 A:1,0 T:2,0 B:1,2" data-edges="S-A,S-B,A-T" data-start="S"></div>
-    <ul class="x-pts"><li>큐로 돌며 노드를 넣을 때마다 <b>누가 넣었는지</b> 기록합니다.</li><li>목표에서 그 기록을 거꾸로 따라가면 경로가 됩니다.</li></ul>
-    <div class="x-given"><span><b>넣은 기록</b>A ← S, B ← S, T ← A</span></div>
+    <ul class="x-pts"><li><b>경로</b> = 시작 노드에서 간선을 따라 목표 노드까지 가는 노드들의 줄, 예: S-A-T</li><li>큐 규칙으로 탐색하며, 노드를 넣을 때마다 <b>어느 노드의 이웃으로 넣었는지</b> 기록해요. 예: A ← S</li><li>목표 T에서 이 기록을 거꾸로 따라가면 경로가 돼요. 이것을 <b>되짚기</b>라고 해요.</li></ul>
+    <div class="x-given"><span><b>넣은 기록</b>A ← S, B ← S, T ← A (A는 S가 넣음)</span></div>
     <div class="x-flow"><span>T</span><span>A</span><span>S</span><span class="hit">경로 S-A-T</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">경로 S-A-T의 간선 수를 고르십시오.</p>
-      <div class="opts"><button type="button">1</button><button type="button">2</button><button type="button" data-hint="노드 수가 아니라 간선 수입니다.">3</button></div>
-      <p class="why">간선 수는 노드 수 − 1이므로 2입니다.</p>
+      <p class="q">경로 S-A-T에 있는 간선은 몇 개일까요?</p>
+      <div class="opts"><button type="button">1</button><button type="button">2</button><button type="button" data-hint="노드 수가 아니라 간선 수예요.">3</button></div>
+      <p class="why">간선 수는 노드 수 − 1이므로 2예요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="H에서 세 방식 실행하기">
     <div class="x-graph" data-name="H" data-nodes="S:0,1 A:1,0 C:2,0 D:3,0 T:4,1 B:2,2" data-edges="S-A,S-B,A-C,C-D,D-T,B-T" data-start="S"></div>
-    <ul class="x-pts"><li>S = 시작, T = 목표</li></ul>
+    <ul class="x-pts"><li>S = 시작 노드, T = 목표 노드</li><li>큐 규칙, 스택 규칙, 재귀를 각각 S에서 시작해 끝까지 실행해요.</li></ul>
     <div class="x-given"><span><b>S</b>[A, B]</span><span><b>A</b>[S, C]</span><span><b>B</b>[S, T]</span><span><b>C</b>[A, D]</span><span><b>D</b>[C, T]</span><span><b>T</b>[D, B]</span></div>
-    <ul class="x-pts"><li><b>T 도착 경로</b> = T가 처음 방문된 때의 경로 (큐·스택은 되짚기, 재귀는 그때 Call Stack)</li><li><b>간선 수</b> = 경로의 노드 수 − 1</li></ul>
+    <ul class="x-pts"><li><b>T 도착 경로</b> = T를 처음 방문했을 때, S에서 T까지 온 경로</li><li>큐·스택은 넣은 기록을 T에서 되짚어 구해요.</li><li>재귀는 T를 enter한 직후의 Call Stack이 그 경로예요.</li><li><b>간선 수</b> = 경로의 노드 수 − 1</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>방식</th><th>방문 순서<small>노드 이름만 쉼표로</small></th><th>T 도착 경로<small>S-…-T 모양</small></th><th>간선 수<small>숫자만</small></th></tr>
       <tr class="x-ex"><td>예 (W, 큐)</td><td>S, A, B</td><td>S-A</td><td>1</td></tr>
@@ -299,16 +304,16 @@
     <div class="x-graph" data-name="H" data-nodes="S:0,1 A:1,0 C:2,0 D:3,0 T:4,1 B:2,2" data-edges="S-A,S-B,A-C,C-D,D-T,B-T" data-start="S"></div>
     <div class="x-given"><span><b>내 큐 방문 순서</b><span class="x-echo" data-echo="A4.h.queue.c1"></span></span><span><b>A</b>[S, C]</span><span><b>S</b>[A, B]</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">C는 S에서 간선 몇 개 떨어져 있습니까?</p>
+      <p class="q">S에서 C까지 가장 짧게 가면 간선 몇 개를 지날까요?</p>
       <div class="opts"><button type="button">1개</button><button type="button">2개</button><button type="button">3개</button></div>
-      <p class="why">S-A-C이므로 2개입니다. T도 S-B-T로 2개입니다.</p>
+      <p class="why">S-A-C이므로 2개예요. T도 S-B-T로 2개예요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="이웃 순서 바꿔 보기">
     <div class="x-graph" data-name="H" data-nodes="S:0,1 A:1,0 C:2,0 D:3,0 T:4,1 B:2,2" data-edges="S-A,S-B,A-C,C-D,D-T,B-T" data-start="S"></div>
     <div class="x-given"><span><b>S</b>[B, A] (바뀜)</span><span><b>A</b>[S, C]</span><span><b>B</b>[S, T]</span><span><b>C</b>[A, D]</span><span><b>D</b>[C, T]</span><span><b>T</b>[D, B]</span></div>
-    <ul class="x-pts"><li>다시 실행하기 전에 어느 줄이 바뀔지 먼저 예측하십시오.</li></ul>
+    <ul class="x-pts"><li>S의 이웃 목록만 [B, A]로 바꾸고, 세 방식을 다시 실행해요.</li><li>실행하기 전에 표의 어느 줄이 바뀔지 먼저 예측해 보세요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>방식</th><th>T 도착 경로<small>S-…-T 모양</small></th><th>간선 수<small>숫자만</small></th></tr>
       <tr class="x-ex"><td>예</td><td>S-A-T</td><td>2</td></tr>
@@ -320,41 +325,41 @@
 
   <div class="x-screen" data-title="가설 메모 세 줄">
     <div class="x-scroll"><table class="x-trace"><tr><th>내 표</th><th>S [A, B] 경로 · 간선</th><th>S [B, A] 경로 · 간선</th></tr><tr><td>큐</td><td><span class="x-echo" data-echo="A4.h.queue.c2"></span> · <span class="x-echo" data-echo="A4.h.queue.c3"></span></td><td><span class="x-echo" data-echo="A4.re.queue.c1"></span> · <span class="x-echo" data-echo="A4.re.queue.c2"></span></td></tr><tr><td>스택</td><td><span class="x-echo" data-echo="A4.h.stack.c2"></span> · <span class="x-echo" data-echo="A4.h.stack.c3"></span></td><td><span class="x-echo" data-echo="A4.re.stack.c1"></span> · <span class="x-echo" data-echo="A4.re.stack.c2"></span></td></tr><tr><td>재귀</td><td><span class="x-echo" data-echo="A4.h.rec.c2"></span> · <span class="x-echo" data-echo="A4.h.rec.c3"></span></td><td><span class="x-echo" data-echo="A4.re.rec.c1"></span> · <span class="x-echo" data-echo="A4.re.rec.c2"></span></td></tr></table></div>
-    <ul class="x-pts"><li><b>가설</b> = 아직 확인하지 않은 내 생각</li><li>세 줄에는 서로 다른 내용을 쓰십시오. 더 없으면 ‘없음’이라고 쓰십시오.</li></ul>
+    <ul class="x-pts"><li><b>가설</b> = 위 표를 보고 세운, 아직 확인하지 않은 내 생각</li><li>세 줄에 서로 다른 내용을 아래 틀에 맞춰 쓰세요.</li><li>쓸 내용이 더 없으면 ‘없음’이라고 쓰세요.</li></ul>
     <div class="x-given"><span><b>틀</b>(바꾼 것)을 바꾸었더니 (방식)의 (값)이 (변했다/그대로였다). 근거: 표의 (칸) (값)</span></div>
     <div class="x-line">1 <span class="x-f" data-bind="A4.hyp1" data-ph="예: 이웃 순서를 바꾸었더니 ○ 규칙의 간선 수가 … 근거: 표의 … " style="flex:1"></span></div>
-    <div class="x-line">2 <span class="x-f" data-bind="A4.hyp2" data-ph="같은 틀로 1과 다른 내용" style="flex:1"></span></div>
+    <div class="x-line">2 <span class="x-f" data-bind="A4.hyp2" data-ph="같은 틀로, 1과 다른 내용" style="flex:1"></span></div>
     <div class="x-line">3 <span class="x-f" data-bind="A4.hyp3" data-ph="같은 틀로 한 문장 (없으면 ‘없음’)" style="flex:1"></span></div>
   </div>
 </section>
 
 <!-- ========== A5 ========== -->
 <section class="x-act" data-id="A5" data-title="정리와 exit ticket" data-meta="2분 · 개인">
-  <ul class="x-pts"><li>오늘 쓴 규칙에 이름을 붙입니다.</li></ul>
+  <ul class="x-pts"><li>오늘 쓴 규칙들의 정식 이름을 알아봐요.</li></ul>
 
   <div class="x-screen" data-title="이름 붙이기">
     <div class="x-cards">
       <div><b>너비 우선 탐색 (BFS)</b>큐 규칙</div>
       <div><b>깊이 우선 탐색 (DFS)</b>스택 규칙 · 재귀</div>
     </div>
-    <ul class="x-pts"><li>이름일 뿐이며, 어느 쪽이 더 좋다는 뜻은 아닙니다.</li></ul>
+    <ul class="x-pts"><li>이름일 뿐이고, 어느 쪽이 더 좋다는 뜻은 아니에요.</li></ul>
     <div class="quiz" data-answer="1">
       <div class="x-line">내 큐 규칙 방문 순서: <span class="x-echo" data-echo="A2.queue.order"></span></div>
-      <p class="q">A2에서 큐 규칙으로 얻은 방문 순서는 어느 탐색의 결과입니까?</p>
-      <div class="opts"><button type="button">BFS</button><button type="button" data-hint="스택·재귀가 DFS입니다.">DFS</button></div>
-      <p class="why">큐 규칙은 BFS입니다.</p>
+      <p class="q">A2에서 큐 규칙으로 얻은 방문 순서는 어느 탐색의 결과일까요?</p>
+      <div class="opts"><button type="button">BFS</button><button type="button" data-hint="스택 규칙과 재귀가 DFS예요.">DFS</button></div>
+      <p class="why">큐 규칙은 BFS예요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="exit ticket">
     <div class="x-given"><span><b>A</b>[B, C]</span><span><b>B</b>[A, D]</span><span><b>C</b>[A, D]</span><span><b>D</b>[B, C, E]</span><span><b>E</b>[D]</span></div>
 <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-start="D"></div>
-    <ul class="x-pts"><li>G1에서 시작을 <b>D</b>로 바꿔 큐 규칙(BFS)을 처음부터 적용하십시오.</li><li>버려진 줄은 순서에 세지 않습니다.</li></ul>
-    <div class="x-line">D가 1번째일 때 A는 <span class="x-f" data-bind="A5.ticket" data-w="xs" data-ph="숫자"></span> 번째</div>
+    <ul class="x-pts"><li>G1에서 시작 노드를 <b>D</b>로 바꿔, 큐 규칙(BFS)을 처음부터 직접 추적하세요.</li><li>이미 방문해서 버린 노드는 방문 순서에 세지 않아요.</li></ul>
+    <div class="x-line">방문 순서에서 D가 1번째일 때 A는 <span class="x-f" data-bind="A5.ticket" data-w="xs" data-ph="숫자"></span> 번째</div>
   </div>
 
   <div class="x-screen" data-title="헷갈린 점">
-    <p class="x-q">오늘 가장 헷갈린 점을 쓰십시오.<small>활동 번호 + 한두 문장, 없으면 ‘없음’</small></p>
+    <p class="x-q">오늘 가장 헷갈린 점을 쓰세요.<small>활동 번호와 한두 문장, 없으면 ‘없음’</small></p>
     <div class="x-f" data-bind="A5.muddy" data-ph="예: A3, 재귀의 exit 줄이 헷갈린다"></div>
   </div>
 </section>
@@ -1006,5 +1011,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 <script src="../assets/xkit.js"></script>
 <script src="../assets/duo.js"></script>
+<script src="../assets/vsed.js"></script>
 </body>
 </html>

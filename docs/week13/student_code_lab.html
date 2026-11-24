@@ -17,23 +17,24 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="13주차 실습 코드 1부 · 피보나치 세 방식" data-lead="같은 피보나치 값을 세 방식으로 구하고, 작업 횟수를 비교합니다.">
+<div class="x-page" hidden data-title="13주차 실습 코드 1부 · 피보나치 세 방식" data-lead="같은 피보나치 값을 세 방식으로 구하고, 각 방식의 호출·반복 횟수를 비교해요.">
 
 <section class="x-act" data-id="A7" data-title="세 가지 방식으로 구하고 횟수 측정하기" data-meta="11분 · 개인">
-  <ul class="x-pts"><li>정의대로 · 메모 · 표, 세 방식의 작업 횟수를 측정합니다.</li></ul>
+  <ul class="x-pts"><li>세 방식: 정의대로 재귀(fib_naive), 메모 재귀(fib_memo), 표 채우기(fib_tab)예요.</li><li>각 방식이 일을 몇 번 하는지 세어 비교해요.</li></ul>
 
   <div class="x-screen" data-title="편집기 사용법">
     <div class="x-cards">
-      <div><b>▶ 실행</b>Ctrl(⌘)+Enter</div>
+      <div><b>▶ 실행</b>코드를 실행해요. 단축키 Ctrl(⌘)+Enter</div>
       <div><b>✔ 점검</b>작성한 코드가 맞는지 확인합니다.</div>
-      <div><b>____1____</b>채울 자리입니다. 비어 있으면 NameError가 납니다.</div>
-      <div><b>15초</b>넘으면 중단됩니다. 무한 반복을 확인하십시오.</div>
+      <div><b>____1____</b>여러분이 채울 빈칸이에요. 채우지 않고 실행하면 NameError가 나요.</div>
+      <div><b>15초</b>실행이 15초를 넘으면 멈춰요. 끝나지 않는 반복이 있는지 보세요.</div>
     </div>
-    <ul class="x-pts"><li>같은 쪽의 편집기는 파이썬 환경을 공유합니다.</li><li>마치면 상단의 [저장(JSON)]으로 제출 파일을 만드십시오.</li></ul>
+    <ul class="x-pts"><li>한 쪽(페이지) 안의 편집기들은 변수와 함수를 함께 써요.</li><li>마치면 화면 위쪽 [저장(JSON)]으로 제출 파일을 만드세요.</li></ul>
   </div>
 
   <div class="x-screen" data-title="호출 구조 그림">
     <div class="x-given"><span><b>fib(n)</b>fib(n−1) + fib(n−2)</span><span><b>n &lt; 2</b>n 그대로</span></div>
+    <ul class="x-pts"><li><b>호출</b>: 함수를 한 번 실행시키는 것이에요. 그림의 칸 하나가 호출 한 번이에요.</li></ul>
     <ul class="x-tree"><li><span>fib(4)</span><ul>
       <li><span>fib(3)</span><ul>
         <li><span>fib(2)</span><ul><li><span>fib(1)</span></li><li><span>fib(0)</span></li></ul></li>
@@ -41,24 +42,24 @@
       <li><span>fib(2)</span><ul><li><span>fib(1)</span></li><li><span>fib(0)</span></li></ul></li>
     </ul></li></ul>
     <div class="quiz" data-answer="2">
-      <p class="q">그림에서 fib(2)는 몇 번 나옵니까?</p>
-      <div class="opts"><button type="button" data-hint="왼쪽 아래와 오른쪽을 모두 세십시오.">1번</button><button type="button">2번</button><button type="button" data-hint="fib(2)라고 쓰인 칸만 세십시오.">3번</button></div>
-      <p class="why">같은 fib(2)를 두 번 계산합니다. 호출은 모두 9번입니다.</p>
+      <p class="q">그림에서 fib(2)라고 쓰인 칸은 몇 개일까요?</p>
+      <div class="opts"><button type="button" data-hint="왼쪽 아래와 오른쪽을 모두 세어 보세요.">1번</button><button type="button">2번</button><button type="button" data-hint="fib(2)라고 쓰인 칸만 세어 보세요.">3번</button></div>
+      <p class="why">같은 fib(2)를 두 번 계산해요. 그림의 칸은 모두 9개, 즉 호출은 9번이에요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="호출 수 측정하기">
-    <ul class="x-pts"><li><b>cnt</b>는 함수가 호출된 횟수입니다.</li><li>n = 4, 5, 6에서 측정하십시오.</li></ul>
+    <ul class="x-pts"><li><b>cnt</b>는 함수가 호출된 횟수를 세는 변수예요.</li><li>아래 편집기를 실행해 n = 4, 5, 6의 cnt를 확인하세요.</li></ul>
     <div class="quiz predict" data-answer="2">
-      <p class="q">n = 5에서 호출은 몇 번이라고 예측합니까?</p>
+      <p class="q">실행하기 전에 예측해 보세요. n = 5에서 호출은 몇 번일까요?</p>
       <div class="opts"><button type="button">11번</button><button type="button">15번</button><button type="button">18번</button></div>
-      <p class="why">실행하여 확인하십시오. n = 4의 결과가 그림의 9와 같은지도 확인하십시오.</p>
+      <p class="why">실행해서 확인하세요. n = 4의 결과가 그림의 9와 같은지도 보세요.</p>
     </div>
     <div class="x-ed" data-starter="A7-p1"></div>
   </div>
 
   <div class="x-screen" data-title="한 번 구한 답을 저장하기">
-    <div class="x-cards"><div><b>메모 (memo)</b>구한 답을 저장해 두는 사전입니다.</div></div>
+    <div class="x-cards"><div><b>메모 (memo)</b>fib(n)의 답을 구하면 키 n에 저장해 두는 사전(dict)이에요.</div><div><b>저장된 값 사용</b>다시 계산하지 않고 memo에서 꺼내 쓴 호출이에요.</div></div>
     <ul class="x-tree"><li><span>fib(4)</span><ul>
       <li><span>fib(3)</span><ul>
         <li><span>fib(2)</span><ul><li><span>fib(1)</span></li><li><span>fib(0)</span></li></ul></li>
@@ -66,9 +67,9 @@
       <li><span>fib(2) <em>저장된 값 사용</em></span></li>
     </ul></li></ul>
     <div class="quiz" data-answer="2">
-      <p class="q">저장된 값을 꺼내 사용한 곳은 몇 곳입니까?</p>
-      <div class="opts"><button type="button">1곳</button><button type="button">2곳</button><button type="button" data-hint="&lt;em&gt; 꼬리표를 세십시오.">3곳</button></div>
-      <p class="why">두 곳입니다. 그 아래 호출이 사라져 모두 7번만 호출됩니다.</p>
+      <p class="q">그림에서 ‘저장된 값 사용’이라고 적힌 칸은 몇 곳일까요?</p>
+      <div class="opts"><button type="button">1곳</button><button type="button">2곳</button><button type="button" data-hint="‘저장된 값 사용’ 글자가 붙은 칸만 세어 보세요.">3곳</button></div>
+      <p class="why">두 곳이에요. 그 칸 아래의 호출이 없어져 호출은 모두 7번이에요.</p>
     </div>
   </div>
 
@@ -78,9 +79,9 @@ m[2] = 1          # 키 2에 값 1을 적는다
 print(5 in m)     # 키가 있는지 묻기
 print(m[2])       #=> 1</pre>
     <div class="quiz predict" data-answer="1">
-      <p class="q">아래 코드를 실행하면 첫 줄 <code>print(2 in m)</code>의 결과는 무엇입니까?</p>
+      <p class="q">아래 편집기 코드의 첫 줄 <code>print(2 in m)</code>은 무엇을 출력할까요?</p>
       <div class="opts"><button type="button">True</button><button type="button">False</button><button type="button">오류</button></div>
-      <p class="why">실행하여 확인하십시오.</p>
+      <p class="why">실행해서 확인하세요.</p>
     </div>
     <div class="x-ed" data-starter="A7-p2"></div>
   </div>
@@ -88,9 +89,9 @@ print(m[2])       #=> 1</pre>
   <div class="x-screen" data-title="fib_memo ①② 채우기">
     <ul class="x-pts">
       <li><b>할 일</b>: <code>fib_memo(n, memo)</code> 의 ①②, <code>fib_tab(n)</code> 의 ③을 채웁니다.</li>
-      <li><b>①</b> “n의 답이 memo에 저장되어 있는가”를 나타내는 조건입니다.</li>
-      <li><b>②</b> fib_naive의 마지막 줄과 같되, memo도 함께 넘기십시오.</li>
-      <li>③을 채우기 전 <code>NameError: ____3____</code>가 나는 것은 정상입니다.</li>
+      <li><b>①</b> “n의 답이 memo에 저장되어 있는가”를 나타내는 조건이에요.</li>
+      <li><b>②</b> fib_naive의 마지막 줄과 같은 식이되, 재귀 호출에 memo도 함께 넘기세요.</li>
+      <li>①②③은 아래 ‘세 방식 코드 (채점)’ 편집기에서 채워요.</li><li>③을 채우기 전 <code>NameError: ____3____</code>가 나는 것은 정상이에요.</li>
     </ul>
     <pre class="x-code">def fib_memo(n, memo):    # memo: 푼 답을 적는 dict
 fib_memo(4, {})           #=> 3   (호출 7번)
@@ -98,12 +99,12 @@ fib_memo(10, {})          #=> 55</pre>
   </div>
 
   <div class="x-screen" data-title="fib_tab ③ 채우기">
-    <ul class="x-pts"><li><b>dp[i]</b> = fib(i)입니다. 작은 i부터 표를 채웁니다.</li><li><b>steps</b>는 칸을 하나 채울 때마다 1씩 늘어납니다.</li></ul>
+    <ul class="x-pts"><li><b>dp</b>는 답을 칸마다 적어 두는 리스트(표)예요. <b>dp[i]</b> = fib(i)예요.</li><li>i = 0, 1, 2, … 순서로 작은 i부터 채워요.</li><li><b>steps</b>는 칸을 하나 채울 때마다 1씩 늘어나는 변수예요.</li></ul>
     <div class="x-arr" data-name="dp" data-v="0,1,1,2,3,5"></div>
     <div class="quiz" data-answer="1">
-      <p class="q">dp[4]는 어느 두 칸의 합입니까?</p>
-      <div class="opts"><button type="button">dp[3] + dp[2]</button><button type="button" data-hint="바로 앞의 두 칸입니다.">dp[2] + dp[1]</button><button type="button" data-hint="4번 칸 자신의 값은 아직 알 수 없습니다.">dp[4] + dp[3]</button></div>
-      <p class="why">2 + 1 = 3입니다. ③도 같은 형태입니다.</p>
+      <p class="q">dp[4]는 어느 두 칸을 더한 값일까요?</p>
+      <div class="opts"><button type="button">dp[3] + dp[2]</button><button type="button" data-hint="4번 칸 바로 앞의 두 칸이에요.">dp[2] + dp[1]</button><button type="button" data-hint="4번 칸 자신의 값은 아직 알 수 없어요.">dp[4] + dp[3]</button></div>
+      <p class="why">2 + 1 = 3이에요. ③도 같은 꼴의 식이에요.</p>
     </div>
     <pre class="x-code">def fib_tab(n):
 fib_tab(5)     #=> 5   (steps 4)
@@ -112,9 +113,9 @@ fib_tab(0)     #=> 0</pre>
 
   <div class="x-screen" data-title="세 방식 코드 (채점)">
     <ul class="x-pts">
-      <li>①②③을 채우고 [▶ 실행]을 누르면 n = 20, 30의 횟수 두 줄이 출력됩니다.</li>
-      <li>실행 전에 활동지 2부 A7 표에 예측값을 먼저 쓰십시오.</li>
-      <li>[✔ 점검]에서 <b>A7 점검 통과</b>가 나오면 완성입니다.</li>
+      <li>①②③을 채우고 [▶ 실행]을 누르면 n = 20, 30의 횟수 두 줄이 나와요.</li>
+      <li>실행 전에 활동지 2부 A7 표에 예측한 횟수를 먼저 쓰세요.</li>
+      <li>[✔ 점검]에서 <b>A7 점검 통과</b>가 나오면 완성이에요.</li>
     </ul>
     <pre class="x-code">fib_naive(n) == fib_memo(n, {}) == fib_tab(n)   # n = 0~25 모두
 # 출력 꼴
@@ -123,17 +124,17 @@ n = 20  값: … … …  fib_naive 호출: …  fib_memo 호출: …  fib_tab �
   </div>
 
   <div class="x-screen" data-title="작게 확인하기">
-    <ul class="x-pts"><li>위 편집기를 실행한 뒤 함수를 호출하십시오.</li></ul>
+    <ul class="x-pts"><li>위 ‘세 방식 코드’ 편집기를 먼저 실행한 뒤, 아래 편집기를 실행하세요.</li><li><b>calls</b>는 fib_memo의 호출 횟수, <b>steps</b>는 fib_tab이 칸을 채운 횟수예요.</li></ul>
     <pre class="x-code">print(fib_memo(4, {}), calls)   #=> 3 7
 print(fib_tab(5), steps)        #=> 5 4</pre>
     <div class="x-ed" data-starter="A7-p3"></div>
     <div class="x-ed" data-starter="A7-p4"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">fib_tab의 steps는 무엇을 센 값입니까?</p>
+      <p class="q">fib_tab의 steps는 무엇을 센 값일까요?</p>
       <div class="opts"><button type="button" data-hint="fib_tab은 자기 자신을 다시 호출하지 않습니다.">함수가 호출된 횟수</button><button type="button">표의 칸을 채운 횟수</button></div>
-      <p class="why">칸을 하나 채울 때마다 1씩 셉니다.</p>
+      <p class="why">칸을 하나 채울 때마다 1씩 세요.</p>
     </div>
-    <ul class="x-pts"><li>실행 결과의 횟수는 활동지 2부 A7 ‘실제’ 칸에 옮겨 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>실행 결과의 횟수는 활동지 2부 A7 ‘실제’ 칸에 옮겨 쓰세요.</li></ul>
   </div>
 </section>
 </div>
@@ -625,5 +626,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 <script src="../assets/xkit.js"></script>
 <script src="../assets/duo.js"></script>
+<script src="../assets/vsed.js"></script>
 </body>
 </html>

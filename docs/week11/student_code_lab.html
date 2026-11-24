@@ -17,44 +17,45 @@
 <link rel="stylesheet" href="../assets/xkit.css">
 </head>
 <body>
-<div class="x-page" hidden data-title="11주차 실습 코드 1부 · BFS·DFS를 코드로" data-lead="앞에서 정한 큐 규칙과 재귀를 함수로 구현하고, 같은 틀을 격자 미로에 적용합니다.">
+<div class="x-page" hidden data-title="11주차 실습 코드 1부 · BFS·DFS를 코드로" data-lead="A2의 큐 규칙과 A3의 재귀를 함수로 만들고, 같은 틀을 격자 미로에 적용해요.">
 
 <!-- ========== A6 ========== -->
 <section class="x-act" data-id="A6" data-title="직접 추적한 탐색을 코드로" data-meta="15분 · 개인">
-  <ul class="x-pts"><li>A2에서 직접 추적한 큐 규칙과 A3의 재귀를 함수로 작성하십시오.</li><li>____1____ 같은 빈칸을 채우고 [▶ 실행]을 누르십시오. 모두 채우면 [✔ 점검]을 누르십시오.</li></ul>
+  <ul class="x-pts"><li>A2에서 직접 추적한 큐 규칙(BFS)과 A3의 재귀(DFS)를 함수로 작성하세요.</li><li>코드 속 ____1____ 같은 빈칸을 채우고 [▶ 실행]을 누르세요.</li><li>빈칸을 모두 채우면 [✔ 점검]을 누르세요.</li></ul>
 
   <div class="x-screen" data-title="큐를 코드로">
     <div class="x-cards">
-      <div><b>deque</b>파이썬의 큐</div>
-      <div><b>append(x)</b>뒤에 추가</div>
-      <div><b>popleft()</b>앞에서 꺼냄</div>
+      <div><b>큐</b>먼저 넣은 것을 먼저 꺼내는 줄 서기 구조</div>
+      <div><b>deque</b>파이썬에서 큐로 쓰는 자료형</div>
+      <div><b>append(x)</b>x를 맨 뒤에 넣음</div>
+      <div><b>popleft()</b>맨 앞 원소를 꺼내 반환함</div>
     </div>
     <div class="x-ed" data-starter="A6-p1"></div>
     <div class="quiz predict" data-answer="1">
-      <p class="q">실행하면 첫 줄에 무엇이 출력됩니까? (A를 넣고 B, C를 뒤에 넣은 뒤 popleft)</p>
-      <div class="opts"><button type="button">A</button><button type="button" data-hint="popleft는 앞에서 꺼냅니다.">B</button><button type="button" data-hint="C는 맨 뒤에 있습니다.">C</button></div>
-      <p class="why">맨 앞의 A가 꺼내집니다. [▶ 실행]으로 확인하십시오.</p>
+      <p class="q">A를 넣고 B, C를 뒤에 넣은 뒤 popleft()를 하면, 첫 줄에 무엇이 출력될까요?</p>
+      <div class="opts"><button type="button">A</button><button type="button" data-hint="popleft는 맨 앞에서 꺼내요.">B</button><button type="button" data-hint="C는 맨 뒤에 있어요.">C</button></div>
+      <p class="why">맨 앞의 A가 꺼내져요. [▶ 실행]으로 확인하세요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="앞에서 정한 규칙과 코드의 대응">
-    <div class="x-given"><span><b>G1</b>A2의 친구 관계(무방향)</span><span><b>간선</b>A-B, A-C, B-D, C-D, D-E</span><span><b>F</b>어느 노드와도 연결되지 않음</span></div>
+    <div class="x-given"><span><b>G1</b>A2에서 쓴 친구 관계 그래프(무방향: 양쪽으로 오갈 수 있음)</span><span><b>간선</b>A-B, A-C, B-D, C-D, D-E</span><span><b>F</b>어느 노드와도 연결되지 않은 노드</span></div>
     <div class="x-graph" data-name="G1" data-nodes="A:0,1 B:1,0 C:1,2 D:2,1 E:3,1 F:4,0" data-edges="A-B,A-C,B-D,C-D,D-E"></div>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>노드</th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th></tr>
-      <tr><td>이웃<small>목록 순서</small></td><td>B, C</td><td>A, D</td><td>A, D</td><td>B, C, E</td><td>D</td></tr>
+      <tr><td>이웃<small>확인하는 순서</small></td><td>B, C</td><td>A, D</td><td>A, D</td><td>B, C, E</td><td>D</td></tr>
     </table></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>앞에서 정한 규칙</th><th>코드</th></tr>
-      <tr><td>시작 노드를 큐에 넣습니다</td><td><code>q = deque([start])</code></td></tr>
-      <tr><td>큐가 빌 때까지 반복합니다</td><td><code>while q:</code></td></tr>
-      <tr><td>맨 앞에서 하나를 꺼냅니다</td><td><code>u = q.popleft()</code></td></tr>
-      <tr><td>방문하지 않은 이웃을 뒤에 넣습니다</td><td><code>q.append(v)</code></td></tr>
+      <tr><th>A2에서 정한 큐 규칙</th><th>코드</th></tr>
+      <tr><td>시작 노드를 큐에 넣어요</td><td><code>q = deque([start])</code></td></tr>
+      <tr><td>큐가 빌 때까지 반복해요</td><td><code>while q:</code></td></tr>
+      <tr><td>큐 맨 앞에서 노드 하나를 꺼내요</td><td><code>u = q.popleft()</code></td></tr>
+      <tr><td>방문하지 않은 이웃을 큐 뒤에 넣어요</td><td><code>q.append(v)</code></td></tr>
     </table></div>
     <div class="quiz predict" data-answer="2">
-      <p class="q">G1에서 A부터 큐 규칙으로 탐색할 때의 방문 순서를 고르십시오.</p>
-      <div class="opts"><button type="button" data-hint="큐는 가까운 노드부터 확인합니다.">A, B, D, C, E</button><button type="button">A, B, C, D, E</button><button type="button" data-hint="E는 D를 거쳐야 도달합니다.">A, B, C, E, D</button></div>
-      <p class="why">가까운 B, C를 먼저 방문하고, 그다음 D, E를 방문합니다. 작성한 코드도 이 순서를 출력해야 합니다.</p>
+      <p class="q">G1에서 A부터 큐 규칙으로 탐색할 때 방문 순서는 무엇일까요?</p>
+      <div class="opts"><button type="button" data-hint="큐는 시작에서 가까운 노드부터 꺼내요.">A, B, D, C, E</button><button type="button">A, B, C, D, E</button><button type="button" data-hint="E는 D를 거쳐야 도달해요.">A, B, C, E, D</button></div>
+      <p class="why">A와 바로 이어진 B, C를 먼저 방문하고, 그다음 D, E를 방문해요. 작성한 코드도 이 순서를 출력해야 해요.</p>
     </div>
   </div>
 
@@ -71,11 +72,11 @@
                 ____5____     # ⑤ 기록 + 큐에 넣기 (두 줄)
     return order</pre>
     <ol class="x-rules">
-      <li class="r1"><b>①③ 큐 만들기·꺼내기</b><div class="fx"><span>앞 화면 표의 코드 두 줄이 그대로 들어갑니다.</span></div></li>
-      <li class="r2"><b>② visited</b><div class="fx"><span>이미 <b>큐에 넣은</b> 노드를 기록하는 set입니다. start를 기록하며 시작합니다.</span></div></li>
-      <li class="r3"><b>④⑤ 넣을 때 기록</b><div class="fx"><code>v in visited</code><span>포함 여부 확인</span></div><div class="fx"><code>visited.add(v)</code><span>기록</span></div></li>
+      <li class="r1"><b>①③ 큐 만들기·꺼내기</b><div class="fx"><span>앞 화면 표의 오른쪽 열에 있는 코드가 그대로 들어가요.</span></div></li>
+      <li class="r2"><b>② visited</b><div class="fx"><span>이미 <b>큐에 넣은</b> 노드를 기록하는 집합(set)이에요. 처음부터 start를 넣어 두고 시작해요.</span></div></li>
+      <li class="r3"><b>④⑤ 큐에 넣을 때 기록</b><div class="fx"><code>v in visited</code><span>v가 visited에 들어 있는지 확인</span></div><div class="fx"><code>visited.add(v)</code><span>v를 visited에 기록</span></div></li>
     </ol>
-    <ul class="x-pts"><li>①③만 채우고 실행하면 <code>NameError: '____2____'</code>가 출력됩니다. 정상입니다.</li><li>②④⑤까지 채우면 첫 줄에 BFS 순서가, 그다음 <code>'____6____'</code> 오류가 출력됩니다. 정상입니다.</li></ul>
+    <ul class="x-pts"><li>①③만 채우고 실행하면 <code>NameError: '____2____'</code>가 출력돼요. 아직 ②를 안 채웠다는 뜻이라 정상이에요.</li><li>②④⑤까지 채우면 첫 줄에 BFS 순서가 나오고, 이어서 <code>'____6____'</code> 오류가 나와요. ⑥은 다음 화면에서 채우므로 정상이에요.</li></ul>
   </div>
 
   <div class="x-screen" data-title="dfs_order 빈칸 ⑥~⑧">
@@ -86,21 +87,23 @@
             ____8____         # ⑧ 재귀 호출
     return order</pre>
     <ol class="x-rules">
-      <li class="r1"><b>⑥ 도착하면 기록</b><div class="fx"><span>u를 visited와 order에 기록합니다.</span></div></li>
-      <li class="r2"><b>⑦⑧ 방문하지 않은 이웃마다 같은 작업</b><div class="fx"><span>자기 자신을 호출할 때 visited, order를 <b>그대로</b> 넘깁니다.</span></div></li>
+      <li class="r1"><b>⑥ 도착하면 기록</b><div class="fx"><span>지금 노드 u를 visited와 order에 각각 기록해요.</span></div></li>
+      <li class="r2"><b>⑦⑧ 방문하지 않은 이웃마다 같은 작업</b><div class="fx"><span>재귀 호출: dfs_order가 자기 자신을 다시 부르는 것. 이때 visited, order를 <b>그대로</b> 넘겨요.</span></div></li>
     </ol>
     <div class="quiz predict" data-answer="2">
-      <p class="q">G1에서 A부터 DFS를 수행할 때 B 다음에 방문하는 노드를 고르십시오. (B의 이웃: A, D)</p>
-      <div class="opts"><button type="button" data-hint="DFS는 B의 방문하지 않은 이웃으로 더 깊이 진입합니다.">C</button><button type="button">D</button><button type="button" data-hint="E는 D의 이웃입니다.">E</button></div>
-      <p class="why">B에서 멈추지 않고 방문하지 않은 이웃 D로 진입합니다. A3의 호출 스택 쌓기와 같습니다.</p>
+      <p class="q">G1에서 A부터 DFS를 할 때, B 다음에 방문하는 노드는 무엇일까요? (B의 이웃: A, D)</p>
+      <div class="opts"><button type="button" data-hint="DFS는 B의 방문하지 않은 이웃으로 더 깊이 들어가요.">C</button><button type="button">D</button><button type="button" data-hint="E는 D의 이웃이에요.">E</button></div>
+      <p class="why">B에서 멈추지 않고, 방문하지 않은 이웃 D로 들어가요. A3에서 호출 스택이 쌓이던 것과 같아요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="코드 완성 및 점검">
     <ul class="x-pts">
-      <li>‘여기부터’ 아래의 ①~⑧을 채우십시오. 위쪽 제공 코드는 읽지 않아도 됩니다.</li>
-      <li>[▶ 실행] 출력의 1줄은 BFS 순서, 2줄은 DFS 순서입니다.</li>
-      <li>[✔ 점검] 결과가 <b>A6 점검 통과</b>이면 완성입니다. <b>FAIL</b> 줄은 해당 그래프와 함수를 알려 줍니다.</li>
+      <li>편집기의 ‘여기부터’ 줄 아래에 있는 ①~⑧을 채우세요.</li>
+      <li>‘여기부터’ 위쪽은 미리 준비된 코드라 읽지 않아도 돼요.</li>
+      <li>[▶ 실행] 출력의 1줄은 BFS 순서, 2줄은 DFS 순서예요.</li>
+      <li>[✔ 점검] 결과가 <b>A6 점검 통과</b>이면 완성이에요.</li>
+      <li><b>FAIL</b> 줄에는 틀린 결과가 나온 그래프와 함수 이름이 나와요.</li>
     </ul>
     <div class="x-f" data-bind="A6.mycode"></div>
   </div>
@@ -108,47 +111,47 @@
   <div class="x-screen" data-title="정리">
     <div class="x-given"><span><b>F</b>G1에서 어느 노드와도 연결되지 않은 노드</span></div>
     <div class="quiz" data-answer="2">
-      <p class="q">bfs_order(g, "F")의 반환값을 고르십시오.</p>
-      <div class="opts"><button type="button" data-hint="시작 노드는 항상 방문합니다.">[]</button><button type="button">['F']</button><button type="button" data-hint="neighbors는 없는 노드도 오류 없이 처리합니다.">오류가 난다</button></div>
-      <p class="why">시작 노드를 방문한 뒤 이웃이 없으므로 종료합니다. 편집기 맨 아래에서 print(bfs_order(g, "F"))로 확인할 수 있습니다.</p>
+      <p class="q">bfs_order(g, "F")는 무엇을 반환할까요?</p>
+      <div class="opts"><button type="button" data-hint="시작 노드는 항상 방문해요.">[]</button><button type="button">['F']</button><button type="button" data-hint="neighbors는 이웃이 없는 노드도 오류 없이 처리해요.">오류가 난다</button></div>
+      <p class="why">시작 노드 F를 방문한 뒤 이웃이 없으니 끝나요. 편집기 맨 아래에 print(bfs_order(g, "F"))를 넣어 확인할 수 있어요.</p>
     </div>
-    <ul class="x-pts"><li>작성한 코드는 visited에 <b>넣을 때</b> 기록합니까, <b>꺼낼 때</b> 기록합니까? 활동지 2부 A6에 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>작성한 코드는 노드를 큐에 <b>넣을 때</b> visited에 기록하나요, <b>꺼낼 때</b> 기록하나요?</li><li>답을 활동지 2부 A6에 쓰세요.</li></ul>
   </div>
 </section>
 
 <!-- ========== A7 ========== -->
 <section class="x-act" data-id="A7" data-title="격자 미로 탐색하기" data-meta="13분 · 개인">
-  <ul class="x-pts"><li>A6의 큐 틀을 미로에 적용하십시오. 바뀌는 것은 이웃을 반환하는 함수뿐입니다.</li></ul>
+  <ul class="x-pts"><li>A6의 BFS 코드 틀을 미로에 그대로 적용해요.</li><li>바뀌는 것은 이웃 칸을 돌려주는 함수 하나뿐이에요.</li></ul>
 
   <div class="x-screen" data-title="칸의 이웃 개수">
-    <div class="x-cards"><div><b>노드</b>격자의 칸 하나, (행, 열)로 표기</div><div><b>이웃</b>상하좌우로 맞닿은 길 칸</div><div><b>#</b>벽, 지나갈 수 없음</div></div>
+    <div class="x-cards"><div><b>노드</b>격자의 칸 하나, (행, 열)로 표기하고 0부터 셈</div><div><b>이웃</b>상하좌우로 맞닿은 길 칸(대각선 제외)</div><div><b>#</b>벽, 지나갈 수 없음</div><div><b>S, E</b>시작 칸, 도착 칸(둘 다 지나갈 수 있음)</div></div>
     <div class="x-grid" data-name="TINY" data-rc data-rows="S.#|...|#.E" data-mark="0,1:cur"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">칸 (0, 1)의 이웃은 몇 칸입니까? (격자 밖과 벽으로는 이동할 수 없습니다)</p>
-      <div class="opts"><button type="button" data-hint="왼쪽과 아래를 확인하십시오.">1칸</button><button type="button">2칸</button><button type="button" data-hint="오른쪽 (0, 2)는 벽입니다.">3칸</button><button type="button" data-hint="위쪽은 격자 밖입니다.">4칸</button></div>
-      <p class="why">왼쪽 (0, 0)과 아래 (1, 1)뿐입니다.</p>
+      <p class="q">칸 (0, 1)의 이웃은 몇 칸일까요? (격자 밖과 벽으로는 이동할 수 없어요)</p>
+      <div class="opts"><button type="button" data-hint="왼쪽과 아래를 확인하세요.">1칸</button><button type="button">2칸</button><button type="button" data-hint="오른쪽 (0, 2)는 벽이에요.">3칸</button><button type="button" data-hint="위쪽은 격자 밖이에요.">4칸</button></div>
+      <p class="why">왼쪽 (0, 0)과 아래 (1, 1)뿐이에요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="방향 목록으로 이웃 읽기">
-    <div class="x-given"><span><b>DIRS</b>[(0,1), (1,0), (0,−1), (−1,0)]</span><span><b>순서</b>우 → 하 → 좌 → 상</span></div>
+    <div class="x-given"><span><b>DIRS</b>[(0,1), (1,0), (0,−1), (−1,0)]</span><span><b>한 항목</b>(행 변화량, 열 변화량)</span><span><b>순서</b>우 → 하 → 좌 → 상</span></div>
     <div class="x-grid" data-name="TINY" data-rc data-rows="S.#|...|#.E"></div>
-    <ul class="x-pts"><li>실행한 뒤 <code>r, c = 1, 1</code>을 <code>0, 1</code>로 바꾸어 다시 실행하십시오.</li><li>파이썬에서 −1번 인덱스는 맨 끝을 가리킵니다. 예: <code>"abc"[-1]</code> 은 <code>"c"</code></li></ul>
+    <ul class="x-pts"><li>먼저 실행하세요. 그다음 <code>r, c = 1, 1</code>을 <code>0, 1</code>로 바꿔 다시 실행하세요.</li><li>파이썬에서 −1번 인덱스는 맨 끝 원소를 가리켜요. 예: <code>"abc"[-1]</code> 은 <code>"c"</code></li></ul>
     <div class="x-ed" data-starter="A7-p1"></div>
     <div class="quiz" data-answer="2">
-      <p class="q">(0, 1)로 바꾼 실행에서 격자 밖 (−1, 1)은 어떤 글자로 읽혔습니까?</p>
-      <div class="opts"><button type="button" data-hint="−1번 줄은 맨 끝 줄 &quot;#.E&quot;입니다.">#</button><button type="button">.</button><button type="button" data-hint="−1은 오류 없이 맨 끝을 가리킵니다.">오류가 난다</button></div>
-      <p class="why">오류 없이 엉뚱한 칸이 읽힙니다. 따라서 격자 안인지 먼저 확인해야 합니다.</p>
+      <p class="q">(0, 1)로 바꾼 실행에서, 격자 밖 칸 (−1, 1)은 어떤 글자로 읽혔나요?</p>
+      <div class="opts"><button type="button" data-hint="−1번 줄은 맨 끝 줄 &quot;#.E&quot;예요.">#</button><button type="button">.</button><button type="button" data-hint="−1은 오류 없이 맨 끝을 가리켜요.">오류가 난다</button></div>
+      <p class="why">오류 없이 격자 반대편 칸이 읽혀요. 그래서 새 칸이 격자 안인지 먼저 확인해야 해요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="yield로 하나씩 반환하기">
-    <div class="x-cards"><div><b>yield</b>값을 하나 반환하고 멈춘 뒤 이어서 실행</div><div><b>yield a, b</b>두 값을 한 쌍으로 반환</div></div>
+    <div class="x-cards"><div><b>yield</b>값을 하나 내보내고 멈췄다가, 다음 값을 달라고 하면 이어서 실행</div><div><b>yield a, b</b>두 값을 한 쌍(튜플)으로 내보냄</div></div>
     <div class="x-ed" data-starter="A7-p2"></div>
     <div class="quiz predict" data-answer="1">
-      <p class="q">실행 전에 예측하십시오. 출력 리스트에 값은 몇 개입니까?</p>
-      <div class="opts"><button type="button">3개</button><button type="button" data-hint="30, 40은 한 쌍입니다.">4개</button></div>
-      <p class="why">[10, 20, (30, 40)] — 쌍 하나가 값 하나입니다.</p>
+      <p class="q">실행하기 전에 예측해 보세요. 출력 리스트에 값은 몇 개 있을까요?</p>
+      <div class="opts"><button type="button">3개</button><button type="button" data-hint="30, 40은 한 쌍이에요.">4개</button></div>
+      <p class="why">[10, 20, (30, 40)] — 쌍 하나가 값 하나예요.</p>
     </div>
   </div>
 
@@ -158,12 +161,13 @@
         nr, nc = r + dr, c + dc
         if ____9____ and ____10____:
             ____11____</pre>
+    <ul class="x-pts"><li>passable: 지나갈 수 있는 칸 글자를 모은 문자열이에요. 예: 길(.)·S·E를 지나갈 수 있으면 ".SE".</li></ul>
     <ol class="x-rules">
-      <li class="r1"><b>⑨ 격자 안인가</b><div class="fx"><span>행 nr, 열 nc가 각각 범위 안에 있는지 확인</span></div></li>
-      <li class="r2"><b>⑩ 지나갈 수 있는가</b><div class="fx"><span>그 칸의 글자가 passable에 포함되는지 확인</span></div></li>
-      <li class="r3"><b>⑪ 반환하기</b><div class="fx"><span>이웃 칸의 행과 열을 <b>쌍</b>으로 yield합니다</span></div></li>
+      <li class="r1"><b>⑨ 격자 안인가</b><div class="fx"><span>행 nr이 0 이상 행 수 미만, 열 nc가 0 이상 열 수 미만인지 확인</span></div></li>
+      <li class="r2"><b>⑩ 지나갈 수 있는가</b><div class="fx"><span>칸 (nr, nc)의 글자가 passable 안에 있는지 확인</span></div></li>
+      <li class="r3"><b>⑪ 내보내기</b><div class="fx"><span>이웃 칸의 행과 열을 <b>쌍</b>으로 yield해요</span></div></li>
     </ol>
-    <ul class="x-pts"><li><code>and</code>는 앞이 거짓이면 뒤를 평가하지 않습니다. ⑨가 먼저 있으므로 ⑩이 안전합니다.</li><li>⑪까지 채우면 첫 두 줄 뒤에 <code>'____13____'</code> 오류가 출력됩니다. 정상입니다.</li></ul>
+    <ul class="x-pts"><li><code>and</code>는 앞 조건이 거짓이면 뒤 조건을 계산하지 않아요. ⑨가 앞에 있으니 ⑩에서 격자 밖 칸을 읽지 않아요.</li><li>⑪까지 채우면 출력 두 줄 뒤에 <code>'____13____'</code> 오류가 나와요. ⑬은 다음 화면에서 채우므로 정상이에요.</li></ul>
   </div>
 
   <div class="x-screen" data-title="shortest_path_len 빈칸 ⑫~⑭">
@@ -180,26 +184,27 @@
             if ____13____:        # ⑬ 아직 안 간 칸
                 ____14____        # ⑭ (두 줄) 거리 기록, 큐에 넣기
     return -1</pre>
-    <ul class="x-pts"><li>먼저 S→E 걸음 수를 예측하여 활동지 2부 A7 예측 입력란에 쓰십시오.</li><li>아직 가지 않은 칸인지는 <code>n in dist</code>로 확인합니다.</li></ul>
+    <ul class="x-pts"><li>dist: 칸을 키로, start에서 그 칸까지 걸음 수를 값으로 담은 딕셔너리예요.</li><li>코드를 채우기 전에 S→E 걸음 수를 예측해 활동지 2부 A7 ‘예측’ 칸에 쓰세요.</li><li>아직 가지 않은 칸인지는 <code>n in dist</code>로 확인해요.</li></ul>
   </div>
 
   <div class="x-screen" data-title="코드 완성 및 점검">
     <ul class="x-pts">
-      <li>‘여기부터’ 아래의 ⑨~⑭를 채우십시오.</li>
-      <li>[▶ 실행] 출력은 5줄이며, 두 칸의 이웃 목록과 거리 세 개입니다.</li>
-      <li>[✔ 점검] 결과가 <b>A7 점검 통과</b>이면 완성입니다.</li>
-      <li>FAIL이면 그 칸으로 <code>print(list(grid_neighbors(...)))</code>를 실행하여 우·하·좌·상 순서인지 확인하십시오.</li>
+      <li>편집기의 ‘여기부터’ 줄 아래에 있는 ⑨~⑭를 채우세요.</li>
+      <li>[▶ 실행] 출력은 5줄이에요: 두 칸의 이웃 목록 2줄, 거리 3줄.</li>
+      <li>[✔ 점검] 결과가 <b>A7 점검 통과</b>이면 완성이에요.</li>
+      <li>FAIL이 나오면 그 줄에 적힌 칸으로 <code>print(list(grid_neighbors(...)))</code>를 실행하세요.</li>
+      <li>이웃이 우·하·좌·상 순서로 나오는지 확인하세요.</li>
     </ul>
     <div class="x-f" data-bind="A7.mycode"></div>
   </div>
 
   <div class="x-screen" data-title="정리">
     <div class="quiz" data-answer="2">
-      <p class="q">A6의 visited 역할을 shortest_path_len에서는 무엇이 맡습니까?</p>
-      <div class="opts"><button type="button" data-hint="q는 앞으로 확인할 칸입니다.">q</button><button type="button">dist</button><button type="button" data-hint="grid는 지도입니다.">grid</button></div>
-      <p class="why">dist에 들어 있는 칸은 이미 방문한 칸이며, 걸음 수도 함께 기록합니다.</p>
+      <p class="q">A6의 visited가 하던 일을 shortest_path_len에서는 무엇이 맡을까요?</p>
+      <div class="opts"><button type="button" data-hint="q는 앞으로 꺼내 볼 칸이에요.">q</button><button type="button">dist</button><button type="button" data-hint="grid는 지도예요.">grid</button></div>
+      <p class="why">dist에 들어 있는 칸은 이미 큐에 넣은 칸이고, 걸음 수도 함께 기록돼요.</p>
     </div>
-    <ul class="x-pts"><li>작성한 코드의 출력 5줄을 활동지 2부 A7 표에 옮겨 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>[▶ 실행] 출력 5줄을 활동지 2부 A7 표에 옮겨 쓰세요.</li></ul>
   </div>
 </section>
 
@@ -207,21 +212,21 @@
 <section class="x-act" data-id="과제" data-title="실습 과제 안내" data-meta="A7 착수 · A10 · A13 마무리">
   <div class="x-screen" data-title="만들 함수 3개와 평가">
     <div class="x-cards">
-      <div><b>grid_neighbors</b>격자 안 · passable 칸의 상하좌우 이웃을 yield</div>
-      <div><b>shortest_path_len</b>최소 걸음 수, 닿을 수 없으면 −1</div>
-      <div><b>count_islands</b>‘1’이 이어진 섬 개수 (explore도 함께)</div>
+      <div><b>grid_neighbors</b>격자 안에 있고 passable에 속하는 상하좌우 이웃 칸을 yield</div>
+      <div><b>shortest_path_len</b>시작에서 도착까지 최소 걸음 수, 닿을 수 없으면 −1</div>
+      <div><b>count_islands</b>‘1’(땅)이 상하좌우로 이어진 섬의 개수 (도우미 함수 explore도 함께)</div>
     </div>
     <div class="x-flow"><span>A7: 앞의 두 함수</span><span>A10: count_islands</span><span class="hit">A13: 마무리 점검</span></div>
-    <ul class="x-pts"><li>실습 코드 3부 맨 아래 [최종 코드] 입력란에 붙여 넣고 [저장(JSON)]을 누르십시오.</li><li>최종 코드의 첫 줄에는 구현 계획을 주석(#)으로 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>완성한 코드는 실습 코드 3부 맨 아래 [최종 코드] 입력란에 붙여 넣으세요.</li><li>그다음 [저장(JSON)]을 누르세요.</li><li>최종 코드 첫 줄에는 구현 계획(어떤 탐색으로 무엇에 기록하는지)을 주석(#)으로 쓰세요.</li></ul>
     <div class="x-given"><span><b>정확성</b>50</span><span><b>복잡도 분석</b>30</span><span><b>코드 품질</b>20</span></div>
   </div>
   <div class="x-screen" data-title="AI 활용 3단계">
     <div class="x-cards">
       <div><b>허용</b>개념·문법 질문, 오류 메시지 해설, 원인 힌트</div>
-      <div><b>조건부</b>작성한 코드의 엣지 케이스·복잡도 검토 (수정은 직접)</div>
-      <div><b>금지</b>과제 문장을 입력한 코드 생성, AI 코드 제출, 설계 판단 위임</div>
+      <div><b>조건부</b>직접 작성한 코드의 엣지 케이스(빈 격자 같은 극단 입력)·복잡도 검토. 수정은 직접</div>
+      <div><b>금지</b>과제 문장을 넣어 코드 생성, AI가 쓴 코드 제출, 설계 판단 맡기기</div>
     </div>
-    <ul class="x-pts"><li>수업 중 A6~A10, A13~A14는 AI를 사용하지 않고 수행하십시오.</li></ul>
+    <ul class="x-pts"><li>수업 중 A6~A10, A13~A14는 AI 없이 하세요.</li></ul>
   </div>
 </section>
 </div>
@@ -1046,5 +1051,6 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script>
 <script src="../assets/xkit.js"></script>
 <script src="../assets/duo.js"></script>
+<script src="../assets/vsed.js"></script>
 </body>
 </html>

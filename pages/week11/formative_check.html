@@ -1,94 +1,97 @@
-<div class="x-page" hidden data-title="11주차 형성 평가 · BFS와 DFS 구별" data-lead="상황에 맞는 탐색을 고르고, 방문 순서와 visited 함정을 직접 추적합니다.">
+<div class="x-page" hidden data-title="11주차 형성 평가 · BFS와 DFS 구별" data-lead="상황에 맞는 탐색 방법을 고르고, 방문 순서와 visited 함정을 직접 추적해요.">
 
 <!-- ========== Q1 ========== -->
 <section class="x-act" data-id="Q1" data-title="상황별 구별" data-meta="수업 A14 · 6분 · 개인">
-  <ul class="x-pts"><li>평가 문항입니다. AI를 사용하지 않고 직접 추적하여 푸십시오.</li><li>값은 수업 때와 다릅니다.</li><li>시간이 부족하면 (c)(d)(e)의 근거는 비워 두어도 됩니다. (e)는 선택 문항입니다.</li></ul>
+  <ul class="x-pts"><li>평가 문항이에요. AI를 쓰지 말고 직접 추적해서 푸세요.</li><li>그래프와 값은 수업 때와 달라요.</li><li>시간이 부족하면 (c)(d)(e)의 근거 칸은 비워 두어도 돼요.</li><li>(e)는 선택 문항이에요.</li></ul>
 
   <div class="x-screen" data-title="작성 방법">
-    <div class="x-given"><span><b>선택</b>BFS / DFS / 둘 다 가능</span><span><b>근거</b>조건을 넣은 한 문장</span></div>
+    <div class="x-given"><span><b>선택</b>BFS / DFS / 둘 다 가능 중 하나</span><span><b>근거</b>상황의 조건을 넣은 한 문장</span></div>
     <div class="x-cards">
-      <div><b>최단 거리 보장</b>걸음 수가 가장 적은 길이 필요한가</div>
-      <div><b>연결 요소 추적</b>이어진 묶음을 모두 찾거나 세는가</div>
+      <div><b>BFS(너비 우선 탐색)</b>시작에서 가까운 노드부터 차례로 방문하는 탐색</div>
+      <div><b>DFS(깊이 우선 탐색)</b>한 길로 끝까지 들어갔다가 되돌아오는 탐색</div>
+      <div><b>최단 거리 보장</b>걸음 수가 가장 적은 길을 꼭 찾아야 하는 상황</div>
+      <div><b>연결 요소</b>서로 길로 이어진 칸(노드)의 묶음 하나</div>
+      <div><b>연결 요소 추적</b>이어진 묶음을 모두 찾거나 개수를 세는 상황</div>
     </div>
-    <ul class="x-pts"><li>“빠르다”와 같은 표현만으로 근거를 쓰지 마십시오.</li><li>(e)에서만 <b>메모리</b>를 근거로 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>“빠르다”처럼 조건이 없는 말만으로 근거를 쓰지 마세요.</li><li><b>메모리</b>를 근거로 쓰는 것은 (e)에서만 해요.</li></ul>
   </div>
 
   <div class="x-screen" data-title="(a) 출구까지 최소 걸음">
-    <div class="x-given"><span><b>상황</b>창문 없는 건물에서 출구까지 최소 몇 걸음인가</span></div>
+    <div class="x-given"><span><b>상황</b>창문 없는 건물에서 출구까지 최소 몇 걸음인가요?</span></div>
     <div class="x-f" data-bind="Q1.a.choice"></div>
-    <div class="x-f" data-bind="Q1.a.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+    <div class="x-f" data-bind="Q1.a.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 골라요"></div>
   </div>
 
   <div class="x-screen" data-title="(b) 호수의 개수">
-    <div class="x-given"><span><b>상황</b>격자 지도에서 호수가 몇 개인가</span><span><b>호수</b>연결된 물 칸 묶음</span></div>
+    <div class="x-given"><span><b>상황</b>격자 지도에 호수가 몇 개인가요?</span><span><b>호수</b>상하좌우로 이어진 물 칸의 묶음 하나</span></div>
     <div class="x-f" data-bind="Q1.b.choice"></div>
-    <div class="x-f" data-bind="Q1.b.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+    <div class="x-f" data-bind="Q1.b.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 골라요"></div>
   </div>
 
   <div class="x-screen" data-title="(c) 3단계 이내 소문">
-    <div class="x-given"><span><b>상황</b>소문이 3단계 이내에 닿는 친구는 누구인가</span></div>
+    <div class="x-given"><span><b>상황</b>소문이 3단계 이내에 닿는 친구는 누구인가요?</span><span><b>1단계</b>친구 한 명에게서 그 친구에게 소문이 전해지는 것</span></div>
     <div class="x-f" data-bind="Q1.c.choice"></div>
-    <div class="x-f" data-bind="Q1.c.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+    <div class="x-f" data-bind="Q1.c.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 골라요"></div>
   </div>
 
   <div class="x-screen" data-title="(d) 이어져 있는가">
-    <div class="x-given"><span><b>상황</b>두 지점이 어떤 길로든 이어져 있는가</span></div>
+    <div class="x-given"><span><b>상황</b>두 지점이 어떤 길로든 이어져 있나요?</span></div>
     <div class="x-f" data-bind="Q1.d.choice"></div>
-    <div class="x-f" data-bind="Q1.d.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 고른다"></div>
+    <div class="x-f" data-bind="Q1.d.why" data-ph="예: ○○ 조건이 필요하므로 ○○를 골라요"></div>
   </div>
 
   <div class="x-screen" data-title="(e) (선택) 메모리를 덜 쓰는 쪽">
-    <div class="x-given"><span><b>구조</b>갈래가 수천 개로 넓음</span><span><b>깊이</b>20 이하</span><span><b>목적</b>닿는 곳이 있는지만</span></div>
-    <ul class="x-pts"><li>메모리를 덜 쓰는 쪽을 고르십시오. 근거도 메모리를 기준으로 쓰십시오.</li></ul>
+    <div class="x-given"><span><b>구조</b>한 노드에서 갈 수 있는 갈래가 수천 개</span><span><b>깊이</b>시작에서 가장 먼 노드까지 20단계 이하</span><span><b>목적</b>목표에 닿을 수 있는지만 확인</span></div>
+    <ul class="x-pts"><li>BFS와 DFS 중 메모리를 덜 쓰는 쪽을 고르세요.</li><li>근거도 메모리를 기준으로 쓰세요.</li></ul>
     <div class="x-f" data-bind="Q1.e.choice"></div>
-    <div class="x-f" data-bind="Q1.e.why" data-ph="예: ○○는 한 번에 ○○만 기억하므로 메모리를 덜 쓴다"></div>
+    <div class="x-f" data-bind="Q1.e.why" data-ph="예: ○○는 한 번에 ○○만 기억하므로 메모리를 덜 써요"></div>
   </div>
 </section>
 
 <!-- ========== Q2 ========== -->
 <section class="x-act" data-id="Q2" data-title="방문 순서와 경로 추적" data-meta="개인">
-  <ul class="x-pts"><li>그래프 F에서 BFS와 재귀 DFS의 실행 과정을 직접 추적하십시오.</li></ul>
+  <ul class="x-pts"><li>그래프 F에서 BFS와 재귀 DFS가 실행되는 과정을 직접 추적하세요.</li></ul>
 
   <div class="x-screen" data-title="그래프 F">
     <div class="x-graph" data-name="F" data-nodes="P:0,1 Q:1,0 R:1,2 S:2,1 T:2,3 U:3,2" data-edges="P-Q,P-R,Q-S,R-S,R-T,S-U,T-U"></div>
-    <div class="x-given"><span><b>무방향</b>양쪽으로 갈 수 있음</span></div>
+    <div class="x-given"><span><b>무방향 그래프</b>간선(선)으로 이어진 두 노드는 양쪽으로 오갈 수 있음</span></div>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>노드</th><th>이웃 목록<small>이 순서대로 확인함</small></th></tr>
+      <tr><th>노드</th><th>이웃 목록<small>이 순서대로 확인해요</small></th></tr>
       <tr><td>P</td><td>Q, R</td></tr><tr><td>Q</td><td>P, S</td></tr><tr><td>R</td><td>P, S, T</td></tr>
       <tr><td>S</td><td>Q, R, U</td></tr><tr><td>T</td><td>R, U</td></tr><tr><td>U</td><td>S, T</td></tr>
     </table></div>
     <ol class="x-rules">
-      <li class="r1"><b>큐 규칙(BFS)</b><div class="fx"><span>앞에서 꺼내 방문 기록 → 방문하지 않은 이웃을 목록 순서대로 뒤에 추가</span></div></li>
-      <li class="r2"><b>재귀 DFS</b><div class="fx"><span>목록 앞부터, 방문하지 않은 이웃으로 즉시 진입</span></div></li>
-      <li class="r3"><b>간선 수</b><div class="fx"><span>시작에서 지나는 간선 개수</span></div></li>
+      <li class="r1"><b>큐 규칙(BFS)</b><div class="fx"><span>큐 맨 앞 노드를 꺼내 방문 순서에 적고, 방문하지 않은 이웃을 목록 순서대로 큐 뒤에 넣어요</span></div></li>
+      <li class="r2"><b>재귀 DFS</b><div class="fx"><span>이웃 목록 앞부터 보다가, 방문하지 않은 이웃이 나오면 바로 그 노드로 들어가요</span></div></li>
+      <li class="r3"><b>간선 수</b><div class="fx"><span>시작 노드에서 그 노드까지 경로가 지나는 선의 개수</span></div></li>
     </ol>
   </div>
 
   <div class="x-screen" data-title="BFS: 시작 P">
     <div class="x-graph" data-name="F" data-nodes="P:0,1 Q:1,0 R:1,2 S:2,1 T:2,3 U:3,2" data-edges="P-Q,P-R,Q-S,R-S,R-T,S-U,T-U" data-start="P"></div>
     <div class="x-given"><span><b>시작</b>P</span><span><b>목표</b>U</span><span><b>이웃</b>P:[Q,R] Q:[P,S] R:[P,S,T] S:[Q,R,U] T:[R,U] U:[S,T]</span></div>
-    <div class="x-line">방문 순서 <span class="x-f" data-bind="Q2.bfs.order" data-w="l" data-ph="예: A, B, C, D"></span></div>
-    <div class="x-line">P→U 최소 간선 수 <span class="x-f" data-bind="Q2.bfs.len" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">방문 순서(노드 6개를 쉼표로 구분) <span class="x-f" data-bind="Q2.bfs.order" data-w="l" data-ph="예: A, B, C, D"></span></div>
+    <div class="x-line">P→U 최소 간선 수(숫자) <span class="x-f" data-bind="Q2.bfs.len" data-w="xs" data-ph="숫자"></span></div>
   </div>
 
   <div class="x-screen" data-title="재귀 DFS: 시작 P">
     <div class="x-graph" data-name="F" data-nodes="P:0,1 Q:1,0 R:1,2 S:2,1 T:2,3 U:3,2" data-edges="P-Q,P-R,Q-S,R-S,R-T,S-U,T-U" data-start="P"></div>
     <div class="x-given"><span><b>시작</b>P</span><span><b>목표</b>U</span><span><b>이웃</b>P:[Q,R] Q:[P,S] R:[P,S,T] S:[Q,R,U] T:[R,U] U:[S,T]</span></div>
-    <ul class="x-pts"><li>U에 처음 도달하는 순간의 호출 경로를 쓰십시오.</li></ul>
-    <div class="x-line">처음 찾은 P→U 경로 <span class="x-f" data-bind="Q2.dfs.path" data-w="l" data-ph="예: A-B-C"></span></div>
-    <div class="x-line">그 경로의 간선 수 <span class="x-f" data-bind="Q2.dfs.len" data-w="xs" data-ph="숫자"></span></div>
+    <ul class="x-pts"><li>호출 경로: P에서 시작해 재귀 호출로 들어간 노드를 차례로 이은 것이에요.</li><li>U에 처음 도달한 순간의 호출 경로를 쓰세요.</li></ul>
+    <div class="x-line">처음 찾은 P→U 경로(노드를 - 로 연결) <span class="x-f" data-bind="Q2.dfs.path" data-w="l" data-ph="예: A-B-C"></span></div>
+    <div class="x-line">그 경로의 간선 수(숫자) <span class="x-f" data-bind="Q2.dfs.len" data-w="xs" data-ph="숫자"></span></div>
   </div>
 
   <div class="x-screen" data-title="두 값이 다른 이유">
     <div class="x-line">내 답: BFS <span class="x-echo" data-echo="Q2.bfs.len"></span> · 재귀 DFS <span class="x-echo" data-echo="Q2.dfs.len"></span> (<span class="x-echo" data-echo="Q2.dfs.path"></span>)</div>
-    <p class="x-q">BFS와 재귀 DFS의 P→U 간선 수가 다른 이유<small>한 문장: 어느 쪽이 더 큰지 + 그 까닭</small></p>
-    <div class="x-f" data-bind="Q2.why" data-ph="예: ○○가 더 큰데, ○○는 … 하기 때문이다"></div>
+    <p class="x-q">BFS와 재귀 DFS의 P→U 간선 수가 다른 이유는 무엇인가요?<small>한 문장: 어느 탐색의 값이 더 큰지 + 그 까닭</small></p>
+    <div class="x-f" data-bind="Q2.why" data-ph="예: ○○가 더 큰데, ○○는 … 하기 때문이에요"></div>
   </div>
 </section>
 
 <!-- ========== Q3 ========== -->
 <section class="x-act" data-id="Q3" data-title="visited 함정" data-meta="개인">
-  <ul class="x-pts"><li>코드를 줄 단위로 추적하며 큐의 내용을 확인하십시오.</li></ul>
+  <ul class="x-pts"><li>visited: 이미 큐에 넣은 노드를 기록하는 집합(set)이에요.</li><li>코드를 한 줄씩 추적하면서 큐에 무엇이 들어 있는지 확인하세요.</li></ul>
 
   <div class="x-screen" data-title="시작 노드를 표시하지 않는 BFS">
     <pre class="x-code">F = {"P": ["Q", "R"], "Q": ["P", "S"], "R": ["P", "S", "T"],
@@ -108,44 +111,44 @@ def bfs_nostart(g, start):
     return order
 
 print(bfs_nostart(F, "P"))</pre>
-    <div class="x-given"><span><b>시작 상태</b>큐 [P], visited 비어 있음</span><span><b>출력</b>order에 쓰인 순서</span></div>
-    <div class="x-line">출력 <span class="x-f" data-bind="Q3.out" data-w="full" data-ph="예: ['X', 'Y', 'Z']"></span></div>
+    <div class="x-given"><span><b>시작 상태</b>큐 [P], visited는 비어 있음</span><span><b>출력</b>order 리스트(꺼낸 순서)를 그대로 출력</span></div>
+    <div class="x-line">출력(파이썬 리스트 형식 그대로) <span class="x-f" data-bind="Q3.out" data-w="full" data-ph="예: ['X', 'Y', 'Z']"></span></div>
   </div>
 
   <div class="x-screen" data-title="원인과 수정 방법">
-    <div class="x-given"><span><b>문제 줄</b>visited = set()</span><span><b>시작 상태</b>큐 [P], visited 비어 있음</span></div>
-    <p class="x-q">중복이 생기는 이유<small>한 문장</small></p>
-    <div class="x-f" data-bind="Q3.why" data-ph="예: ○○가 visited에 없어서 … 때 다시 들어간다"></div>
-    <p class="x-q">고치는 방법<small>한 문장. 시간이 부족하면 비워 두어도 됩니다.</small></p>
-    <div class="x-f" data-bind="Q3.fix" data-ph="예: ○○ 줄을 … 로 바꾼다"></div>
-    <div class="x-f" data-bind="Q.noai">AI를 사용하지 않고 풀었습니다.</div>
+    <div class="x-given"><span><b>문제 줄</b>visited = set()</span><span><b>시작 상태</b>큐 [P], visited는 비어 있음</span></div>
+    <p class="x-q">출력에 같은 노드가 두 번 나오는 이유는 무엇인가요?<small>한 문장</small></p>
+    <div class="x-f" data-bind="Q3.why" data-ph="예: ○○가 visited에 없어서 … 때 다시 들어가요"></div>
+    <p class="x-q">코드를 어떻게 고치면 되나요?<small>한 문장. 시간이 부족하면 비워 두어도 돼요.</small></p>
+    <div class="x-f" data-bind="Q3.fix" data-ph="예: ○○ 줄을 … 로 바꿔요"></div>
+    <div class="x-f" data-bind="Q.noai">AI를 사용하지 않고 풀었어요.</div>
   </div>
 </section>
 
 <!-- ========== Q4 ========== -->
 <section class="x-act" data-id="Q4" data-title="보조 문항: 격자 적용" data-meta="수업 밖 · 선택·과제">
-  <ul class="x-pts"><li>수업 외 선택 문항입니다. 코드 실행과 직접 추적 모두 허용됩니다.</li></ul>
+  <ul class="x-pts"><li>수업 밖에서 푸는 선택 문항이에요.</li><li>코드를 실행해도 되고 직접 추적해도 돼요.</li></ul>
 
   <div class="x-screen" data-title="격자 FM">
-    <div class="x-given"><span><b>S</b>(0,0)</span><span><b>E</b>(4,5)</span><span><b>#</b>벽</span><span><b>방향 순서</b>우 → 하 → 좌 → 상</span></div>
+    <div class="x-given"><span><b>S</b>시작 칸 (0,0)</span><span><b>E</b>도착 칸 (4,5)</span><span><b>#</b>벽(지나갈 수 없음)</span><span><b>방향 순서</b>우 → 하 → 좌 → 상(이웃 칸을 확인하는 순서)</span></div>
     <div class="x-grid" data-name="FM" data-rc data-rows="S.....|......|...#..|.##.##|.....E"></div>
-    <div class="x-given"><span><b>거리</b>간선(한 칸 이동) 수</span></div>
-    <div class="x-line">BFS 최단 거리 <span class="x-f" data-bind="Q4.bfs" data-w="xs" data-ph="숫자"></span></div>
-    <div class="x-line">재귀 DFS가 처음 찾은 길의 간선 수 <span class="x-f" data-bind="Q4.dfs" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-given"><span><b>거리</b>한 칸 이동을 간선 1개로 셀 때의 간선 수</span><span><b>칸 표기</b>(행, 열), 0부터 셈</span></div>
+    <div class="x-line">S→E BFS 최단 거리(숫자) <span class="x-f" data-bind="Q4.bfs" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">재귀 DFS가 처음 찾은 S→E 길의 간선 수(숫자) <span class="x-f" data-bind="Q4.dfs" data-w="xs" data-ph="숫자"></span></div>
   </div>
 
   <div class="x-screen" data-title="두 값의 차이">
     <div class="x-grid" data-name="FM" data-rc data-rows="S.....|......|...#..|.##.##|.....E"></div>
     <div class="x-given"><span><b>방향 순서</b>우 하 좌 상</span></div>
     <div class="x-line">내 답: BFS <span class="x-echo" data-echo="Q4.bfs"></span> · DFS <span class="x-echo" data-echo="Q4.dfs"></span></div>
-    <p class="x-q">차이가 생긴 까닭<small>1~2문장. 같으면 ‘같다’ + 까닭</small></p>
-    <div class="x-f" data-bind="Q4.why" data-ph="예: DFS는 ○쪽부터 … 해서 돌아갔다"></div>
+    <p class="x-q">두 값에 차이가 생긴 까닭은 무엇인가요?<small>1~2문장. 두 값이 같으면 ‘같다’와 그 까닭</small></p>
+    <div class="x-f" data-bind="Q4.why" data-ph="예: DFS는 ○쪽부터 … 해서 돌아갔어요"></div>
   </div>
 
   <div class="x-screen" data-title="(선택 보조) 섬 격자 FI">
-    <div class="x-given"><span><b>1</b>땅</span><span><b>0</b>바다</span><span><b>이웃</b>4방향(상하좌우)</span></div>
+    <div class="x-given"><span><b>1</b>땅</span><span><b>0</b>바다</span><span><b>이웃</b>상하좌우 4방향(대각선은 이웃이 아님)</span><span><b>섬</b>이웃으로 이어진 땅 칸의 묶음 하나</span></div>
     <div class="x-grid" data-name="FI" data-rc data-rows="110010|100011|001000|011010|000011"></div>
-    <div class="x-line">섬 개수 <span class="x-f" data-bind="Q4.isl" data-w="xs" data-ph="숫자"></span></div>
+    <div class="x-line">섬 개수(숫자) <span class="x-f" data-bind="Q4.isl" data-w="xs" data-ph="숫자"></span></div>
   </div>
 </section>
 </div>

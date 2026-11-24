@@ -184,7 +184,7 @@
     box.appendChild(h);
     if (lead) { var p = el("p", "duo-lead"); p.innerHTML = lead.innerHTML; box.appendChild(p); }
     var who = el("div", "duo-who");
-    who.innerHTML = '<p class="duo-who-t">제출 파일에 기록될 학번과 이름을 입력하십시오.</p>';
+    who.innerHTML = '<p class="duo-who-t">제출 파일에 들어갈 학번과 이름을 입력하세요.</p>';
     var idL = $("#sb-id") && $("#sb-id").closest("label"), nmL = $("#sb-name") && $("#sb-name").closest("label");
     if (idL) { $("#sb-id").placeholder = "예: 2213"; who.appendChild(idL); }
     if (nmL) who.appendChild(nmL);
@@ -196,7 +196,7 @@
   function buildFinish() {
     var box = el("div", "duo-finish");
     box.innerHTML = '<div class="duo-mascot big" aria-hidden="true">' + mascot(true) + "</div>" +
-      "<h1>모든 단계를 마쳤습니다</h1><p class=\"duo-lead\">아래에서 제출 파일(JSON)을 저장한 뒤 제출하십시오.</p>" +
+      "<h1>모든 단계를 마쳤어요</h1><p class=\"duo-lead\">아래 단추로 제출 파일(JSON)을 저장한 뒤 제출하세요.</p>" +
       '<div class="duo-stats"></div><div class="duo-left"></div>';
     var savebar = $("#savebar");
     var actions = el("div", "duo-save");
@@ -221,16 +221,16 @@
       '<div class="duo-stat"><b>' + (all.length - empty.length) + "</b><span>작성한 입력란</span></div>" +
       '<div class="duo-stat"><b>' + empty.length + "</b><span>빈 입력란</span></div>" +
       '<div class="duo-stat"><b>' + screens.filter(function (s) { return s.seen; }).length + "/" + screens.length + "</b><span>확인한 화면</span></div>";
-    $("h1", rec.node).textContent = empty.length ? "작성하지 않은 입력란이 있습니다" : "모든 단계를 마쳤습니다";
+    $("h1", rec.node).textContent = empty.length ? "아직 비어 있는 입력란이 있어요" : "모든 단계를 마쳤어요";
     $(".duo-lead", rec.node).textContent = empty.length
-      ? "빈 입력란을 작성한 뒤 제출 파일(JSON)을 저장하십시오. 작성을 마치지 못한 경우 지금 저장해 두고 이후에 이어서 작성할 수 있습니다."
-      : "아래에서 제출 파일(JSON)을 저장한 뒤 제출하십시오.";
+      ? "빈 입력란을 채운 뒤 제출 파일(JSON)을 저장하세요. 다 채우지 못했다면 지금 저장해 두고, 나중에 그 파일을 불러와 이어서 작성할 수 있어요."
+      : "아래 단추로 제출 파일(JSON)을 저장한 뒤 제출하세요.";
     var left = $(".duo-left", rec.node);
     left.innerHTML = "";
     if (!empty.length) return;
     var bySc = {};
     empty.forEach(function (f) { var i = indexOfNode(f); if (i >= 0) (bySc[i] = bySc[i] || []).push(f); });
-    var h = el("p", "duo-left-t", "작성하지 않은 입력란");
+    var h = el("p", "duo-left-t", "아직 비어 있는 입력란");
     left.appendChild(h);
     Object.keys(bySc).forEach(function (i) {
       var s = screens[i];
@@ -350,9 +350,9 @@
       }
     });
     s.checked = true;
-    if (!wrong && shown) showSheet(right ? "ok" : "show", right ? "정답 " + right + "개" : "모범 답안을 표시했습니다", "각 입력란 아래의 모범 답안과 작성한 답을 비교하십시오. 답은 수정할 수 있습니다.");
-    else if (!wrong) showSheet("ok", "정답입니다", list.length > 1 ? "입력란 " + list.length + "개가 모두 정답입니다." : "");
-    else showSheet("warn", "정답과 다른 입력란이 " + wrong + "개 있습니다", "각 입력란 아래의 정답과 비교하십시오. 표현만 다르고 뜻이 같으면 정답으로 인정합니다.");
+    if (!wrong && shown) showSheet(right ? "ok" : "show", right ? "정답 " + right + "개" : "모범 답안을 보여 드려요", "입력란 아래에 나온 모범 답안과 내 답을 비교해 보세요. 답은 고칠 수 있어요.");
+    else if (!wrong) showSheet("ok", "정답이에요", list.length > 1 ? "입력란 " + list.length + "개가 모두 정답이에요." : "");
+    else showSheet("warn", "정답과 다른 입력란이 " + wrong + "개 있어요", "입력란 아래에 나온 정답과 비교해 보세요. 표현만 다르고 뜻이 같으면 맞은 답이에요.");
     primary.textContent = "계속"; mode = "next";
   }
   function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
@@ -386,7 +386,7 @@
     if (mode === "start") {
       var id = $("#sb-id"), nm = $("#sb-name");
       if (id && nm && (!id.value.trim() || !nm.value.trim())) {
-        showSheet("warn", "학번과 이름을 먼저 입력하십시오", "제출 파일 이름과 채점에 사용됩니다.");
+        showSheet("warn", "학번과 이름을 먼저 입력하세요", "제출 파일 이름과 채점에 쓰여요.");
         (id.value.trim() ? nm : id).focus();
         return;
       }
@@ -399,7 +399,7 @@
     var empty = emptyIn(screens[cur]);
     if (empty.length && !warnedEmpty && screens[cur].kind === "step") {
       warnedEmpty = true;
-      showSheet("info", "작성하지 않은 입력란이 " + empty.length + "개 있습니다", "이후에 돌아와 작성할 수 있습니다. 한 번 더 누르면 다음 화면으로 이동합니다.");
+      showSheet("info", "아직 비어 있는 입력란이 " + empty.length + "개 있어요", "나중에 이 화면으로 돌아와 채울 수 있어요. 한 번 더 누르면 다음 화면으로 넘어가요.");
       primary.textContent = "다음으로 이동";
       // 포커스를 옮기면 경고가 바로 꺼지므로, 빈 칸은 보이게 스크롤하고 반짝이기만 한다.
       empty.forEach(function (f) {

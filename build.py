@@ -211,7 +211,7 @@ def transform(src_html, rel_depth="../", page_key=None):
         '<link rel="stylesheet" href="%sassets/xkit.css">\n' % (rel_depth, rel_depth)
     )
     s = s.replace("</head>", head_add + "</head>", 1)
-    s = s.replace("</body>", '<script src="%sassets/xkit.js"></script>\n<script src="%sassets/duo.js"></script>\n</body>' % (rel_depth, rel_depth), 1)
+    s = s.replace("</body>", '<script src="%sassets/xkit.js"></script>\n<script src="%sassets/duo.js"></script>\n<script src="%sassets/vsed.js"></script>\n</body>' % (rel_depth, rel_depth, rel_depth), 1)
     return s, st
 
 

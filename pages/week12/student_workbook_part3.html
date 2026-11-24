@@ -1,18 +1,20 @@
-<div class="x-page" hidden data-title="12주차 활동지 3부 · 측정, 일반화, 전이" data-lead="두 정렬의 비교 횟수를 측정하고, 이번 주의 생각을 한 문장으로 다듬습니다.">
+<div class="x-page" hidden data-title="12주차 활동지 3부 · 측정, 일반화, 전이" data-lead="병합 정렬과 퀵 정렬의 비교 횟수를 코드로 측정하고, 이번 주에 배운 것을 여러 경우에 통하는 문장으로 정리해요.">
 
 <!-- ========== A11 ========== -->
 <section class="x-act" data-id="A11" data-title="비교 횟수 예측과 측정" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>먼저 어림한 뒤, 코드로 센 값과 비교합니다.</li></ul>
+  <ul class="x-pts"><li>비교 횟수를 먼저 어림한 뒤, 코드로 센 값과 견줘 봐요.</li><li><b>비교 횟수</b>: 정렬하는 동안 두 원소의 크기를 비교한 횟수</li></ul>
 
-  <div class="x-screen" data-title="먼저 예측 쓰기">
+  <div class="x-screen" data-title="실행 전에 예측 쓰기">
     <div class="x-cards">
-      <div><b>병합</b>항상 절반으로 쪼개 합치기</div>
-      <div><b>퀵</b>첫 원소를 피벗으로 가르기</div>
+      <div><b>병합</b>병합 정렬. 리스트를 항상 절반씩 쪼갠 뒤 정렬하며 합치기</div>
+      <div><b>퀵</b>퀵 정렬. 첫 원소를 피벗(기준값)으로 삼아, 작은 값과 나머지로 가르기</div>
+      <div><b>섞은 / 정렬된</b>입력 순서가 무작위인 리스트 / 이미 작은 것부터 놓인 리스트</div>
     </div>
     <ul class="x-pts">
-      <li>실습 코드 4부 A11 <b>[예측하고 측정하기]</b> 실행 <b>전에</b> 쓰십시오.</li>
-      <li>비교 횟수를 어림한 숫자를 쓰십시오. 정렬된 2000개 퀵에서 무슨 일이 생길지도 쓰십시오.</li>
-      <li>틀려도 나중에 고치지 않습니다.</li>
+      <li>실습 코드 4부 A11 <b>[예측하고 측정하기]</b>를 실행하기 <b>전에</b> 쓰세요.</li>
+      <li>각 칸에 비교 횟수를 어림한 숫자를 쓰세요.</li>
+      <li>정렬된 2000개의 퀵 칸에는 실행하면 무슨 일이 생길지도 써도 돼요.</li>
+      <li>예측이 틀렸어도 나중에 고치지 않아요.</li>
     </ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>입력</th><th>병합 예측<small>비교 횟수 어림</small></th><th>퀵 예측<small>비교 횟수 어림</small></th></tr>
@@ -28,8 +30,8 @@
 
   <div class="x-screen" data-title="측정값 옮기기">
     <ul class="x-pts">
-      <li>코드가 출력한 6줄의 값을 그대로 옮기십시오.</li>
-      <li>퀵 칸에 숫자 대신 <b>오류 이름</b>이 나오면 그 이름을 그대로 쓰십시오.</li>
+      <li>실습 코드 4부 A11이 출력한 6줄의 값을 그대로 옮기세요.</li>
+      <li>퀵 칸에 숫자 대신 <b>오류 이름</b>이 나오면 그 이름을 그대로 쓰세요.</li>
     </ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>입력</th><th>병합 실제<small>출력된 숫자</small></th><th>퀵 실제<small>출력된 숫자 / 오류 이름</small></th></tr>
@@ -43,124 +45,126 @@
     </table></div>
   </div>
 
-  <div class="x-screen" data-title="ARR8 횟수 견주기">
+  <div class="x-screen" data-title="ARR8 비교 횟수 견주기">
     <div class="x-arr" data-name="ARR8" data-v="38,27,43,3,9,82,10,15"></div>
-    <ul class="x-pts"><li>코드 4부 <b>[✔ 점검]</b>이 낸 ARR8의 두 횟수를 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>실습 코드 4부 <b>[✔ 점검]</b>이 출력한 ARR8의 비교 횟수 두 개(병합, 퀵)를 쓰세요.</li></ul>
     <div class="x-line">병합 <span class="x-f" data-bind="A11.arr8.merge" data-w="s" data-ph="숫자"></span> 회</div>
     <div class="x-line">퀵 <span class="x-f" data-bind="A11.arr8.quick" data-w="s" data-ph="숫자"></span> 회</div>
-    <p class="x-q">A4에서 직접 추적한 합계와 같습니까?</p>
+    <p class="x-q">A4에서 직접 추적해 구한 비교 횟수 합계와 같은가요?</p>
     <div class="x-f" data-bind="A11.arr8.same"></div>
   </div>
 
   <div class="x-screen" data-title="작은 사례로 생각하기">
     <div class="x-arr" data-v="1,2,3,4" data-cls="0:pivot,1-3:big"></div>
-    <ul class="x-pts"><li>첫 원소 피벗 퀵, 이미 정렬된 [1, 2, 3, 4]</li><li>x &lt; 피벗 → small, 아니면 big</li></ul>
+    <ul class="x-pts"><li>이미 정렬된 [1, 2, 3, 4]를 첫 원소 피벗 퀵으로 정렬해요.</li><li><b>small · big</b>: 피벗보다 작은 값을 모은 리스트 · 나머지를 모은 리스트</li><li>각 원소 x가 x &lt; 피벗이면 small, 아니면 big에 들어가요.</li></ul>
     <div class="quiz" data-answer="3">
-      <p class="q">피벗 1로 가르면 big에는 몇 개가 들어갑니까?</p>
-      <div class="opts"><button type="button" data-hint="1보다 작은 값이 있습니까?">0개</button><button type="button" data-hint="2만 보는 것이 아닙니다.">1개</button><button type="button">3개</button></div>
-      <p class="why">2, 3, 4가 모두 1보다 작지 않으므로 big으로 갑니다.</p>
+      <p class="q">피벗 1로 가르면 big에는 원소가 몇 개 들어가나요?</p>
+      <div class="opts"><button type="button" data-hint="1보다 작은 값이 있나요?">0개</button><button type="button" data-hint="2만 보는 것이 아니에요.">1개</button><button type="button">3개</button></div>
+      <p class="why">2, 3, 4는 모두 1보다 작지 않으므로 big으로 가요.</p>
     </div>
     <ul class="x-tree"><li><span>[1, 2, 3, 4] <em>비교 3</em></span>
       <ul><li><span><b class="sm">[ ]</b></span></li><li><span><b class="bg">[2, 3, 4]</b> <em>비교 2</em></span>
         <ul><li><span><b class="sm">[ ]</b></span></li><li><span><b class="bg">[3, 4]</b> <em>비교 1</em></span></li></ul></li></ul></li></ul>
   </div>
 
-  <div class="x-screen" data-title="정렬된 입력의 퀵">
-    <ul class="x-pts"><li>방금 그림처럼 한쪽이 항상 비어 있습니다.</li><li>측정값 표의 정렬된 200개 · 500개 값을 사용하여 배수를 구하십시오.</li></ul>
-    <div class="x-given"><span><b>N</b>200 → 500 (2.5배)</span></div>
+  <div class="x-screen" data-title="정렬된 입력에서 퀵 정렬">
+    <ul class="x-pts"><li>정렬된 입력에서는 방금 그림처럼 small이 항상 비어 있어요.</li><li><b>배수</b>: 500개일 때 비교 횟수 ÷ 200개일 때 비교 횟수</li><li>아래 표(측정값 표에 내가 쓴 값)의 정렬된 200개 · 500개 값으로 구하세요.</li></ul>
+    <div class="x-given"><span><b>N</b>입력 원소 수. 200 → 500 (2.5배)</span></div>
     <div class="x-scroll"><table class="x-trace"><tr><th>입력</th><th>병합 실제<small>내가 쓴 값</small></th><th>퀵 실제<small>내가 쓴 값</small></th></tr><tr><td>정렬된 200개</td><td><span class="x-echo" data-echo="A11.o200.c2"></span></td><td><span class="x-echo" data-echo="A11.o200.c4"></span></td></tr><tr><td>정렬된 500개</td><td><span class="x-echo" data-echo="A11.o500.c2"></span></td><td><span class="x-echo" data-echo="A11.o500.c4"></span></td></tr><tr><td>정렬된 2000개</td><td><span class="x-echo" data-echo="A11.o2000.c2"></span></td><td><span class="x-echo" data-echo="A11.o2000.c4"></span></td></tr></table></div>
-    <p class="x-q">퀵 횟수가 병합보다 훨씬 큰 까닭과 배수<small>배수는 측정값 ÷ 측정값으로, 소수 첫째 자리까지 구하십시오</small></p>
-    <div class="x-f" data-bind="A11.q1" data-parts="퀵이 훨씬 큰 까닭=예: 피벗이 늘 … 이라 … 쪽이 비어서|배수=예: 퀵 약 ○.○배, 병합 약 ○.○배"></div>
-    <p class="x-q">정렬된 2000개에서 무슨 일이 있었습니까?</p>
+    <p class="x-q">정렬된 입력에서 퀵의 비교 횟수가 병합보다 훨씬 많은 까닭과, 두 방법의 배수<small>배수는 소수 첫째 자리까지 구하세요</small></p>
+    <div class="x-f" data-bind="A11.q1" data-parts="퀵이 훨씬 많은 까닭=예: 피벗이 늘 … 이라 … 쪽이 비어서|배수=예: 퀵 약 ○.○배, 병합 약 ○.○배"></div>
+    <p class="x-q">정렬된 2000개를 퀵으로 정렬했을 때 무슨 일이 있었나요?</p>
     <div class="x-f" data-bind="A11.q2" data-parts="일어난 일=예: 오류 이름과 그 까닭|8주차 재귀와의 연결=예: 8주차에서 본 … 와 같다"></div>
   </div>
 
-  <div class="x-screen" data-title="실전이라면 어느 정렬?">
+  <div class="x-screen" data-title="실제로 쓴다면 어느 정렬을 고를까요?">
     <div class="x-cards">
-      <div><b>(가)</b>항상 섞여 있다</div>
-      <div><b>(나)</b>이미 정렬되어 있을 가능성이 높다</div>
-      <div><b>(다)</b>메모리가 매우 부족하다</div>
+      <div><b>(가)</b>입력이 항상 무작위로 섞여 있다</div>
+      <div><b>(나)</b>입력이 이미 정렬되어 있을 가능성이 높다</div>
+      <div><b>(다)</b>정렬에 쓸 수 있는 추가 메모리가 매우 적다</div>
     </div>
-    <p class="x-q">하나를 골라 쓸 정렬과 이유</p>
+    <p class="x-q">(가)~(다) 중 상황 하나를 골라, 그 상황에서 쓸 정렬과 이유를 쓰세요</p>
     <div class="x-f" data-bind="A11.q3" data-parts="고른 상황=(가)/(나)/(다) 중 하나|쓸 정렬=예: 병합 / 퀵 / sorted()|이유=예: 이 상황에서 … 가 … 되기 때문"></div>
   </div>
 
   <div class="x-screen" data-title="더 해 보기 (선택)">
-    <ul class="x-pts"><li>섞은 입력에서도 비교 횟수는 병합이 더 적습니다.</li><li>그런데도 퀵이 널리 쓰이는 까닭은 무엇입니까?</li></ul>
+    <ul class="x-pts"><li>섞은 입력에서도 비교 횟수는 병합이 더 적어요.</li><li>그런데도 퀵이 널리 쓰이는 까닭은 무엇일까요? 가설 두 개를 세워 보세요.</li><li><b>가설</b>: 아직 확인하지 않은, 그럴 것 같은 설명</li></ul>
     <div class="x-f" data-bind="A11.q4" data-parts="가설 1=예: … 때문일 것이다|가설 2=가설 1과 다른 까닭|확인 방법=예: … 를 측정한다|약점 줄이기=예: 코드의 … 부분을 … 로 바꾼다"></div>
-    <ul class="x-pts"><li>측정값(최대 2000개)의 배수로 8만 개를 어림하여, A5에서 한 예측과 비교하십시오.</li></ul>
+    <ul class="x-pts"><li>측정값이 원소 수에 따라 몇 배로 느는지를 이용해 8만 개일 때를 어림하세요.</li><li>그 어림을 A5에서 8만 개에 대해 한 예측과 비교하세요.</li></ul>
     <div class="x-f" data-bind="A11.q5" data-parts="맞은 점=예: A5에서 … 라고 했는데 측정도 …|틀린 점=예: … 는 생각보다 … (없으면 없음)"></div>
   </div>
 </section>
 
 <!-- ========== A12 ========== -->
 <section class="x-act" data-id="A12" data-title="일반화 초안 카드" data-meta="3분 · 개인">
-  <ul class="x-pts"><li>여러 사례에 통하는 한 문장을 쓰십시오. 완성도는 평가하지 않습니다.</li></ul>
+  <ul class="x-pts"><li>여러 사례에 통하는 한 문장(일반화)의 초안을 써요.</li><li><b>초안</b>: 나중에 다듬을 첫 문장. 완성도는 평가하지 않아요.</li></ul>
 
   <div class="x-screen" data-title="일반화 문장 알아보기">
-    <div class="x-cards"><div><b>일반화</b>개념 + 개념 + 관계, 사례 이름 없이</div></div>
+    <div class="x-cards"><div><b>일반화</b>특정 사례 이름 없이, 개념과 개념 사이의 관계로 쓴 문장</div><div><b>사례 이름</b>G1, SORTED처럼 한 예시만 가리키는 이름</div></div>
     <div class="x-cards">
       <div><b>(가)</b>G1에서 A부터 BFS를 하면 B, C, D 순으로 방문했다.</div>
       <div><b>(나)</b>BFS는 가까운 정점부터 한 겹씩 방문하므로, 가중치 없는 그래프에서 최소 간선 수를 구할 수 있다.</div>
     </div>
     <div class="quiz" data-answer="2">
-      <p class="q">일반화는 어느 쪽입니까?</p>
-      <div class="opts"><button type="button" data-hint="G1이라는 한 사례에 관한 이야기입니다.">(가)</button><button type="button">(나)</button></div>
-      <p class="why">(나)는 사례 이름 없이 개념과 관계로 썼습니다.</p>
+      <p class="q">(가)와 (나) 중 일반화 문장은 어느 것인가요?</p>
+      <div class="opts"><button type="button" data-hint="G1이라는 한 사례에 관한 이야기예요.">(가)</button><button type="button">(나)</button></div>
+      <p class="why">(나)는 사례 이름 없이 개념과 관계로 썼어요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="내 말로 한 문장 쓰기">
-    <ul class="x-pts"><li>A1~A11에서 생각이 가장 크게 바뀐 주제 하나를 고르십시오.</li></ul>
+    <ul class="x-pts"><li>A1~A11에서 생각이 가장 크게 바뀐 주제 하나를 골라 아래에 쓰세요.</li></ul>
     <div class="x-f" data-bind="A12.topic"></div>
     <div class="x-given"><span><b>틀</b>개념 ○○와(과) 개념 ○○는 ○○한 관계가 있다</span></div>
-    <p class="x-q">고른 주제로 한 문장<small>사례 이름이 들어가도 됩니다</small></p>
+    <p class="x-q">고른 주제로 위 틀에 맞춰 한 문장을 쓰세요<small>이 단계에서는 사례 이름이 들어가도 돼요</small></p>
     <div class="x-f" data-bind="A12.draft" data-ph="예: 병합 정렬과 보조 메모리는 … 한 관계가 있다"></div>
   </div>
 
   <div class="x-screen" data-title="예시 이름 지우기">
-    <ul class="x-pts"><li>‘SORTED’, ‘사전’ 같은 한 예시의 이름을 지워도 문장이 성립합니까?</li><li>성립하면 지운 채로 다시 쓰십시오. 지울 이름이 없으면 “그대로 둔다”라고 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>앞 화면에서 쓴 문장에서 ‘SORTED’, ‘사전’ 같은 한 예시의 이름을 지워도 문장이 맞나요?</li><li>맞으면 그 이름을 개념어로 바꿔 다시 쓰세요.</li><li>지울 이름이 없으면 “그대로 둔다”라고 쓰세요.</li></ul>
     <div class="x-f" data-bind="A12.draft2" data-ph="예: 다시 쓴 한 문장 / 그대로 둔다"></div>
   </div>
 </section>
 
 <!-- ========== A13 ========== -->
 <section class="x-act" data-id="A13" data-title="일반화 정리와 구별 기준표" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>A12 초안을 새 상황에서도 통하도록 다듬습니다.</li></ul>
+  <ul class="x-pts"><li>A12에서 쓴 초안을 새 상황에서도 맞는 문장이 되도록 다듬어요.</li></ul>
 
   <div class="x-screen" data-title="초안에 던질 질문">
-    <div class="x-cards"><div><b>정제</b>사례 이름 → 개념어, 빠진 조건 채우기</div></div>
+    <div class="x-cards"><div><b>정제</b>문장 다듬기. 사례 이름을 개념어로 바꾸고, 빠진 조건을 채우는 일</div><div><b>질의</b>‘이 값이 있나?’처럼 데이터에 묻는 한 번의 찾기</div><div><b>성립 조건</b>문장이 맞으려면 꼭 필요한 조건</div></div>
     <ul class="x-pts">
-      <li>‘정렬된 숫자 배열’을 지워도 성립합니까?</li>
-      <li>질의가 1번뿐이어도 사용하겠습니까?</li>
-      <li>값이 여럿이거나 없으면 어떻습니까? 정렬되어 있지 않으면 어떻습니까?</li>
+      <li>‘정렬된 숫자 배열’ 같은 구체적인 말을 지워도 맞나요?</li>
+      <li>질의가 1번뿐이어도 그 방법을 쓰겠나요?</li>
+      <li>찾는 값이 여러 개이거나 없으면 어떨까요?</li>
+      <li>데이터가 정렬되어 있지 않으면 어떨까요?</li>
     </ul>
     <div class="quiz" data-answer="2">
-      <p class="q">정제할 때 하지 않는 일은 무엇입니까?</p>
-      <div class="opts"><button type="button" data-hint="그것이 정제의 첫 단계입니다.">사례 이름을 개념어로</button><button type="button">사례 값을 더 많이 넣기</button><button type="button" data-hint="빠진 조건을 채우는 것도 정제입니다.">성립 조건 덧붙이기</button></div>
-      <p class="why">사례가 아니라 개념과 조건으로 씁니다.</p>
+      <p class="q">정제할 때 하지 않는 일은 무엇인가요?</p>
+      <div class="opts"><button type="button" data-hint="사례 이름을 개념어로 바꾸는 것이 정제의 첫 단계예요.">사례 이름을 개념어로</button><button type="button">사례 값을 더 많이 넣기</button><button type="button" data-hint="빠진 조건을 채우는 것도 정제입니다.">성립 조건 덧붙이기</button></div>
+      <p class="why">일반화는 사례 값이 아니라 개념과 조건으로 써요.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="G1~G2 쓰기">
+  <div class="x-screen" data-title="일반화 문장 G1~G2 쓰기">
     <div class="x-cards">
-      <div><b>G1</b>성립 조건과 속도</div>
-      <div><b>G2</b>분할 균형</div>
-      <div><b>G3</b>경계와 개수</div>
-      <div><b>G4</b>정렬 투자와 질의 횟수</div>
+      <div><b>G1</b>성립 조건과 속도: 이진 탐색이 맞게·빠르게 동작하는 조건</div>
+      <div><b>G2</b>분할 균형: 정렬에서 리스트를 얼마나 고르게 나누는지와 비교 횟수</div>
+      <div><b>G3</b>경계와 개수: lower·upper 경계로 같은 값의 개수 세기</div>
+      <div><b>G4</b>정렬 투자와 질의 횟수: 먼저 정렬하는 비용과 찾는 횟수의 관계</div>
     </div>
-    <ul class="x-pts"><li>사례 이름(SORTED 등)은 쓰지 않습니다.</li><li>A12 주제가 G3·G4이면 그 칸은 선택 화면에서도 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>G1과 G2를 각각 문장으로 다듬어 쓰세요. 사례 이름(SORTED 등)은 쓰지 않아요.</li><li>A12에서 고른 주제가 G3·G4이면, 뒤의 선택 화면에 있는 그 칸도 쓰세요.</li></ul>
     <p class="x-q">G1 · 성립 조건과 속도<small>다듬은 문장 1~2개</small></p>
     <div class="x-f" data-bind="A13.g1" data-ph="예: ○○는 ○○라는 성질 덕분에 …지만, 그 성질이 없으면 …"></div>
     <p class="x-q">G2 · 분할 균형<small>다듬은 문장 1~2개</small></p>
     <div class="x-f" data-bind="A13.g2" data-ph="예: 나누는 균형이 … 하면 … 이고, 치우치면 …"></div>
   </div>
 
-  <div class="x-screen" data-title="구별 기준표 상황 1~2">
+  <div class="x-screen" data-title="구별 기준표: 상황 1~2">
     <ul class="x-pts">
-      <li>상황은 <b>내가 새로</b> 만드십시오.</li>
-      <li>이진 탐색·bisect를 쓸 수 있는지 고르십시오.</li>
-      <li>근거는 정렬 전제 · 질의 횟수 · 경계 정의 중 하나로 쓰십시오.</li>
+      <li><b>구별 기준표</b>: 어떤 상황에서 이진 탐색을 쓸 수 있는지 가려 적는 표</li>
+      <li>상황은 수업에 나온 예가 아닌 것으로 <b>내가 새로</b> 만드세요.</li>
+      <li>그 상황에서 이진 탐색·bisect를 쓸 수 있는지 고르세요.</li>
+      <li>근거는 세 기준 중 하나로 쓰세요: 데이터가 정렬되어 있는가 · 질의가 몇 번인가 · 찾을 경계가 분명한가</li>
     </ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>번호</th><th>상황<small>데이터와 하려는 일</small></th><th>쓸 수 있는가<small>가능 / 불가 / 조건부</small></th><th>근거<small>세 기준 중 하나로 한 문장</small></th></tr>
@@ -172,16 +176,17 @@
 
   <div class="x-screen" data-title="수정 이력">
     <ul class="x-pts">
-      <li>다시 볼 질문: 사례를 지워도 성립합니까? O(log N)에는 어떤 전제가 필요합니까? 질의가 1번이면 어떻습니까?</li>
-      <li>남의 문장을 베끼지 말고 <b>내 문장</b>에서 고친 곳을 쓰십시오.</li>
+      <li>G1·G2 문장을 다시 보며 고친 곳 하나를 기록해요.</li>
+      <li>다시 볼 질문: 사례 이름을 지워도 맞나요? O(log N)으로 찾으려면 어떤 전제가 필요한가요? 질의가 1번이면 어떨까요?</li>
+      <li>남의 문장을 베끼지 말고 <b>내 문장</b>에서 고친 곳을 쓰세요.</li>
     </ul>
     <div class="x-f" data-bind="A13.history" data-parts="무엇을=예: G2의 ‘ARR8에서’ 라는 말|어떻게=예: ‘섞인 입력에서’ 로 바꿨다|왜=예: 사례 이름이라서 (고칠 곳 없으면 고칠 곳 없음)"></div>
   </div>
 
   <div class="x-screen" data-title="더 해 보기 (선택) · G3·G4">
     <div class="x-cards">
-      <div><b>lower bound</b>처음 x 이상이 나오는 자리</div>
-      <div><b>upper bound</b>처음 x 초과가 나오는 자리</div>
+      <div><b>lower bound</b>정렬된 배열에서 처음 x 이상인 값이 나오는 칸 번호</div>
+      <div><b>upper bound</b>정렬된 배열에서 처음 x 초과인 값이 나오는 칸 번호</div>
     </div>
     <p class="x-q">G3 · 경계와 개수<small>다듬은 문장 1~2개</small></p>
     <div class="x-f" data-bind="A13.g3" data-ph="예: 개수는 두 경계의 … 로 구하고, …"></div>
@@ -189,8 +194,8 @@
     <div class="x-f" data-bind="A13.g4" data-ph="예: 정렬 비용은 … 이라 질의가 … 할 때 이득이다"></div>
   </div>
 
-  <div class="x-screen" data-title="더 해 보기 (선택) · 상황 3~4">
-    <ul class="x-pts"><li>이번에는 ‘조건부’가 나올 만한 상황을 만드십시오.</li></ul>
+  <div class="x-screen" data-title="더 해 보기 (선택) · 구별 기준표 상황 3~4">
+    <ul class="x-pts"><li>이번에는 ‘조건부’(어떤 조건이 맞을 때만 쓸 수 있음)가 나올 만한 상황을 만드세요.</li><li>근거 기준: 정렬되어 있는가 · 질의가 몇 번인가 · 경계가 분명한가</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>번호</th><th>상황<small>데이터와 하려는 일</small></th><th>쓸 수 있는가<small>가능 / 불가 / 조건부</small></th><th>근거<small>세 기준 중 하나로 한 문장</small></th></tr>
       <tr class="x-ex"><td>예</td><td>가나다 순 단어장에서 단어 하나 찾기</td><td>가능</td><td>정렬되어 있어 절반씩 버릴 수 있다</td></tr>
@@ -201,90 +206,90 @@
 
   <div class="x-screen" data-title="더 해 보기 (선택) · 입장 카드">
     <div class="x-arr" data-v="1,3,3,3,7" data-cls="1-3:hit"></div>
-    <p class="x-q">카드 1 · 3이 여럿일 때 어느 자리를 돌려주어야 합니까?<small>입장, 이유, 개수·삽입 자리를 물을 때</small></p>
+    <p class="x-q">카드 1 · 배열 [1, 3, 3, 3, 7]에서 3을 찾을 때, 3이 있는 칸 중 어느 칸 번호를 돌려줘야 할까요?<small>내 입장, 이유, 그리고 개수나 끼워 넣을 자리를 물을 때는 어떤지</small></p>
     <div class="x-f" data-bind="A13.debate1" data-parts="내 입장=예: 아무 3이나 / 가장 왼쪽 / 가장 오른쪽|이유=예: … 이기 때문|개수·삽입을 물으면=예: … 쪽이어야 한다"></div>
-    <p class="x-q">카드 2 · “정렬은 언제나 이득이다”</p>
+    <p class="x-q">카드 2 · “찾기 전에 먼저 정렬해 두는 것은 언제나 이득이다”에 대한 입장</p>
     <div class="x-f" data-bind="A13.debate2" data-parts="입장=동의 / 반대 / 조건부|이유=예: 정렬 비용 O(N log N) 이 …|반례 상황=예: … 하는 경우"></div>
   </div>
 </section>
 
 <!-- ========== A14 ========== -->
 <section class="x-act" data-id="A14" data-title="과제 점검과 전이 기록" data-meta="14분 · 개인">
-  <ul class="x-pts"><li>나의 과제 코드가 새 입력에도 통하는지 점검하고, 밧줄 문제에 적용합니다.</li></ul>
+  <ul class="x-pts"><li>내 과제 코드가 처음 보는 입력에도 맞게 동작하는지 점검해요.</li><li>이진 탐색을 밧줄 자르기 문제에 적용해요.</li></ul>
 
   <div class="x-screen" data-title="점검 결과 표시하기">
-    <ul class="x-pts"><li>실습 코드 4부 A14 점검 결과를 표시하십시오. 실행하지 못했으면 비워 두십시오.</li></ul>
+    <ul class="x-pts"><li>실습 코드 4부 A14 점검을 실행하고, 통과한 항목에 표시하세요.</li><li>실행하지 못했으면 비워 두세요.</li></ul>
     <div class="x-f" data-bind="A14.chk.eq">count_equal 점검을 통과했다</div>
     <div class="x-f" data-bind="A14.chk.rg">count_in_range 점검을 통과했다</div>
     <div class="x-f" data-bind="A14.chk.cl">closest_value 점검을 통과했다</div>
-    <div class="x-f" data-bind="A14.chk.nofix">코드를 고치지 않고 새 입력에서 통과했다</div>
-    <p class="x-q">고쳐야 했던 곳<small>없으면 “없었다”</small></p>
+    <div class="x-f" data-bind="A14.chk.nofix">코드를 고치지 않고도 점검의 새 입력을 모두 통과했다</div>
+    <p class="x-q">점검을 통과하려고 고쳐야 했던 곳<small>없으면 “없었다”라고 쓰세요</small></p>
     <div class="x-f" data-bind="A14.fixed" data-parts="함수=예: count_equal|고친 부분=예: 빈 리스트일 때 …|방법=예: … 를 추가했다"></div>
   </div>
 
-  <div class="x-screen" data-title="새 입력 점검 줄마다">
+  <div class="x-screen" data-title="특수한 입력 세 가지 점검">
     <div class="x-cards">
       <div><b>빈 리스트</b>a = [ ]</div>
-      <div><b>lo &gt; hi</b>구간이 거꾸로</div>
-      <div><b>값이 없을 때</b>찾는 값이 리스트에 없음</div>
+      <div><b>lo &gt; hi</b>구간의 시작 값이 끝 값보다 큼 (예: [7, 3])</div>
+      <div><b>값이 없을 때</b>찾는 값이 리스트에 하나도 없음</div>
     </div>
-    <p class="x-q">세 경우를 점검했는지 줄마다</p>
+    <p class="x-q">위 세 경우를 점검했는지와 그 결과를 줄마다 쓰세요</p>
     <div class="x-f" data-bind="A14.rope.q3" data-parts="빈 리스트=점검했다 / 점검하지 않았다, 결과|lo &gt; hi=점검했다 / 점검하지 않았다, 결과|값이 없을 때=점검했다 / 점검하지 않았다, 결과"></div>
   </div>
 
   <div class="x-screen" data-title="밧줄 조각 수 직접 추적하기">
     <div class="x-arr" data-name="ropes" data-v="120,85,47,63" data-label="밧줄 4개의 길이"></div>
-    <div class="x-given"><span><b>k</b>9 (필요한 조각 수)</span><span><b>L</b>모두 같게 자를 길이</span></div>
+    <div class="x-given"><span><b>k</b>9 (필요한 조각 수)</span><span><b>L</b>모든 밧줄을 자를 한 조각의 길이 (정수)</span></div>
     <pre class="x-code">조각 수 = 각 r // L 의 합
 # 예: L = 50 → 2 + 1 + 0 + 1 = 4</pre>
-    <ul class="x-pts"><li>목표: 조각이 9개 이상인 가장 긴 L</li><li>코드를 보기 전에 구하십시오. 구하지 못하면 “모름”이라고 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>각 밧줄을 길이 L씩 잘라 조각을 만들어요. 길이가 L보다 짧게 남은 부분은 버려요.</li><li>목표: 조각이 9개 이상 나오는 L 중 가장 긴 값</li><li>아래 칸은 코드를 보기 전에 직접 구하세요. 구하지 못하면 “모름”이라고 쓰세요.</li></ul>
     <div class="x-line">L = 5 → <span class="x-f" data-bind="A14.rope.p5" data-w="s" data-ph="숫자"></span> 개</div>
     <div class="x-line">L = 10 → <span class="x-f" data-bind="A14.rope.p10" data-w="s" data-ph="숫자"></span> 개</div>
     <div class="x-line">L = 20 → <span class="x-f" data-bind="A14.rope.p20" data-w="s" data-ph="숫자"></span> 개</div>
     <div class="quiz" data-answer="2">
-      <p class="q">L을 5 → 10 → 20으로 키우면 조각 수는 어떻게 됩니까?</p>
-      <div class="opts"><button type="button" data-hint="세 값을 다시 확인하십시오.">늘어난다</button><button type="button">줄어든다</button><button type="button" data-hint="세 값이 같았습니까?">그대로</button></div>
-      <p class="why">길게 자를수록 조각은 줄어듭니다.</p>
+      <p class="q">L을 5 → 10 → 20으로 키우면 조각 수는 어떻게 되나요?</p>
+      <div class="opts"><button type="button" data-hint="위에 쓴 세 값을 다시 확인하세요.">늘어난다</button><button type="button">줄어든다</button><button type="button" data-hint="세 값이 같았나요?">그대로</button></div>
+      <p class="why">L이 길수록 조각 수는 줄어들어요.</p>
     </div>
   </div>
 
-  <div class="x-screen" data-title="L = 30, 40도 세기">
+  <div class="x-screen" data-title="L = 30, 40일 때 조각 수 세기">
     <div class="x-arr" data-name="ropes" data-v="120,85,47,63"></div>
-    <div class="x-given"><span><b>조각 수</b>각 r // L 의 합</span><span><b>k</b>9</span></div>
+    <div class="x-given"><span><b>조각 수</b>각 밧줄 길이 r에 대해 r // L 을 더한 값</span><span><b>k</b>9</span></div>
     <div class="x-line">L = 30 → <span class="x-f" data-bind="A14.rope.p30" data-w="s" data-ph="숫자"></span> 개</div>
     <div class="x-line">L = 40 → <span class="x-f" data-bind="A14.rope.p40" data-w="s" data-ph="숫자"></span> 개</div>
   </div>
 
   <div class="x-screen" data-title="코드 결과 쓰기">
-    <ul class="x-pts"><li>실습 코드 4부 밧줄 점검이 낸 값을 그대로 쓰십시오.</li><li><b>가장 긴 L</b> = 조각이 9개 이상인 L 중 가장 큰 값</li></ul>
+    <ul class="x-pts"><li>실습 코드 4부 밧줄 점검이 출력한 값을 그대로 쓰세요.</li><li><b>가장 긴 L</b> = 조각이 9개 이상인 L 중 가장 큰 값</li><li><b>count_pieces</b>: L을 받아 조각 수를 돌려주는 함수</li></ul>
     <div class="x-line">가장 긴 L <span class="x-f" data-bind="A14.rope.best" data-w="s" data-ph="숫자"></span></div>
     <div class="x-line">count_pieces 호출 <span class="x-f" data-bind="A14.rope.calls" data-w="s" data-ph="숫자"></span> 번</div>
-    <div class="x-flow"><span>후보 1~120</span><span>가운데 L 확인</span><span>절반 버림</span><span>…</span><span class="hit">답</span></div>
-    <p class="x-q">몇 번 만에 답을 찾았습니까?<small>위 호출 횟수를 근거로 한 문장으로 쓰십시오</small></p>
-    <div class="x-f" data-bind="A14.rope.q2" data-ph="예: 후보 범위 ○~○에서 … 해 count_pieces를 ○번 불렀다"></div>
+    <div class="x-flow"><span>L의 탐색 범위 1~120</span><span>범위의 가운데 L로 조각 수 계산</span><span>답이 될 수 없는 절반을 범위에서 뺌</span><span>…</span><span class="hit">답</span></div>
+    <p class="x-q">코드는 L을 몇 번 확인해 답을 찾았나요?<small>위 count_pieces 호출 횟수를 근거로 한 문장으로 쓰세요</small></p>
+    <div class="x-f" data-bind="A14.rope.q2" data-ph="예: 탐색 범위 ○~○에서 … 해 count_pieces를 ○번 불렀다"></div>
   </div>
 
   <div class="x-screen" data-title="더 해 보기 (선택) · 참과 거짓">
-    <div class="x-given"><span><b>조건</b>조각 수 ≥ 9</span><span><b>L</b>5, 10, 20, 30, 40</span></div>
-    <div class="x-f" data-bind="A14.rope.pattern" data-parts="참/거짓=예: L=5 참, L=10 …|늘어선 모양=예: 참이 이어지다 …|이용하는 방법=예: 가운데 L을 확인해 …"></div>
-    <p class="x-q">밧줄 문제에서 ‘정렬된 배열’은 어디에 있다고 할 수 있습니까?<small>한두 문장으로 쓰십시오</small></p>
-    <div class="x-f" data-bind="A14.rope.q1" data-ph="예: 배열은 따로 없지만 … 가 정렬된 후보처럼 …"></div>
+    <div class="x-given"><span><b>조건</b>조각 수 ≥ 9 (맞으면 참, 아니면 거짓)</span><span><b>L</b>5, 10, 20, 30, 40</span></div>
+    <div class="x-f" data-bind="A14.rope.pattern" data-parts="참/거짓=L마다 조건이 참인지 · 예: L=5 참, L=10 …|늘어선 모양=L이 커질 때 참·거짓이 놓인 모양 · 예: 참이 이어지다 …|이용하는 방법=이 모양으로 답을 빨리 찾는 법 · 예: 가운데 L을 확인해 …"></div>
+    <p class="x-q">이진 탐색에는 정렬된 배열이 필요했어요. 밧줄 문제에서는 무엇이 그 ‘정렬된 배열’ 역할을 하나요?<small>한두 문장으로 쓰세요</small></p>
+    <div class="x-f" data-bind="A14.rope.q1" data-ph="예: 배열은 따로 없지만 … 가 정렬된 배열처럼 …"></div>
   </div>
 
   <div class="x-screen" data-title="더 해 보기 (선택) · mid의 +1">
     <pre class="x-code">mid = (lo + hi + 1) // 2   # 밧줄 코드
 mid = (lo + hi) // 2       # lower_bound
 # 조건이 참이면 lo = mid</pre>
-    <div class="x-f" data-bind="A14.rope.q4" data-parts="+1을 하는 이유=예: 조건이 참일 때 … 이므로|끝나지 않는 입력=예: lo=○, hi=○ 이면 mid=○ 이라 …"></div>
+    <div class="x-f" data-bind="A14.rope.q4" data-parts="밧줄 코드에서 +1을 하는 이유=예: 조건이 참일 때 … 이므로|+1이 없으면 끝나지 않는 lo, hi=예: lo=○, hi=○ 이면 mid=○ 이라 …"></div>
   </div>
 </section>
 
 <!-- ========== A16 ========== -->
 <section class="x-act" data-id="A16" data-title="오개념 점검과 다음 주" data-meta="3분 · 개인">
-  <ul class="x-pts"><li>맞는 말과 틀린 말이 섞여 있습니다.</li></ul>
+  <ul class="x-pts"><li><b>오개념</b>: 많이들 잘못 알고 있는 생각</li><li>아래 문장에는 맞는 말과 틀린 말이 섞여 있어요. 문장마다 맞는지 판단해요.</li></ul>
 
   <div class="x-screen" data-title="오개념 점검 1~3">
-    <ul class="x-pts"><li>판단을 고르고, 이유는 한 문장으로 쓰십시오.</li><li>이유에 활동에서 본 값(T1 결과, A11 표 등)을 하나 이상 넣으십시오.</li></ul>
+    <ul class="x-pts"><li>문장마다 위 칸에서 맞다/틀리다 판단을 고르고, 아래 칸에 이유를 한 문장으로 쓰세요.</li><li>이유에는 활동에서 본 값(T1 결과, A11 표 등)을 하나 이상 넣으세요.</li></ul>
     <p class="x-q">1 · 정렬이 안 된 데이터에도 bisect를 쓸 수 있다.</p>
     <div class="x-f" data-bind="A16.mis1.v"></div>
     <div class="x-f" data-bind="A16.mis1.why" data-ph="예: ○○에서 ○○를 넣었더니 ○가 나왔다"></div>
@@ -297,7 +302,7 @@ mid = (lo + hi) // 2       # lower_bound
   </div>
 
   <div class="x-screen" data-title="오개념 점검 4~6">
-    <ul class="x-pts"><li>같은 방식으로 답하십시오. 아래는 A11에 내가 쓴 측정값입니다.</li></ul>
+    <ul class="x-pts"><li>앞 화면과 같은 방식으로 판단과 이유를 쓰세요.</li><li>아래 표는 A11에 내가 쓴 측정값이에요.</li></ul>
     <div class="x-scroll"><table class="x-trace"><tr><th>입력</th><th>병합 실제<small>내가 쓴 값</small></th><th>퀵 실제<small>내가 쓴 값</small></th></tr><tr><td>섞은 200개</td><td><span class="x-echo" data-echo="A11.s200.c2"></span></td><td><span class="x-echo" data-echo="A11.s200.c4"></span></td></tr><tr><td>섞은 500개</td><td><span class="x-echo" data-echo="A11.s500.c2"></span></td><td><span class="x-echo" data-echo="A11.s500.c4"></span></td></tr><tr><td>섞은 1000개</td><td><span class="x-echo" data-echo="A11.s1000.c2"></span></td><td><span class="x-echo" data-echo="A11.s1000.c4"></span></td></tr><tr><td>정렬된 200개</td><td><span class="x-echo" data-echo="A11.o200.c2"></span></td><td><span class="x-echo" data-echo="A11.o200.c4"></span></td></tr><tr><td>정렬된 500개</td><td><span class="x-echo" data-echo="A11.o500.c2"></span></td><td><span class="x-echo" data-echo="A11.o500.c4"></span></td></tr><tr><td>정렬된 2000개</td><td><span class="x-echo" data-echo="A11.o2000.c2"></span></td><td><span class="x-echo" data-echo="A11.o2000.c4"></span></td></tr></table></div>
     <p class="x-q">4 · 퀵 정렬은 항상 병합 정렬보다 빠르다.</p>
     <div class="x-f" data-bind="A16.mis3.v"></div>
@@ -312,7 +317,7 @@ mid = (lo + hi) // 2       # lower_bound
 
   <div class="x-screen" data-title="14주차 도구 목록">
     <div class="x-flow"><span>13주차 · DP</span><span class="hit">14주차 · 문제 해결 수행평가 90분</span></div>
-    <p class="x-q">14주차에 쓸 도구 3개 이상<small>도구 이름(언제 쓰는지)을 쉼표로 구분하여 쓰십시오</small></p>
+    <p class="x-q">14주차 수행평가에서 쓸 수 있는 도구(알고리즘·함수)를 3개 이상 쓰세요<small>‘도구 이름(언제 쓰는지)’ 꼴로, 쉼표로 구분해 쓰세요</small></p>
     <div class="x-f" data-bind="A16.tools" data-ph="예: 선형 탐색(정렬 안 된 데이터에서 한 번 찾을 때), …"></div>
   </div>
 </section>

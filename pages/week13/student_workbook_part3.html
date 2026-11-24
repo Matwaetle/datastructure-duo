@@ -1,45 +1,45 @@
-<div class="x-page" hidden data-title="13주차 활동지 3부 · 2차원 DP, 일반화, 과제 점검" data-lead="격자 경로의 수를 표로 구하고, 오늘 배운 내용을 한 문장과 기준표로 정리합니다.">
+<div class="x-page" hidden data-title="13주차 활동지 3부 · 2차원 DP, 일반화, 과제 점검" data-lead="격자 경로의 수를 표로 구하고, 오늘 배운 내용을 한 문장과 기준표로 정리해요.">
 
 <!-- ========== A11 ========== -->
 <section class="x-act" data-id="A11" data-title="2차원 DP 설계와 기록" data-meta="10분 · 개인">
-  <ul class="x-pts"><li>코드를 보기 전에 설계를 먼저 문장으로 쓰십시오.</li><li>실습 코드 4부 A11과 함께 사용합니다.</li></ul>
+  <ul class="x-pts"><li><b>2차원 DP</b>: 칸을 dp[r][c]처럼 두 번호로 가리키는 표를 채우는 DP예요.</li><li>코드를 보기 전에 설계를 먼저 문장으로 쓰세요.</li><li>실습 코드 4부 A11과 함께 사용해요.</li></ul>
 
   <div class="x-screen" data-title="GRID 살펴보기">
     <div class="x-given"><span><b>GRID</b>4행 × 5열</span><span><b>S</b>시작 (0, 0)</span><span><b>E</b>도착 (3, 4)</span><span><b>#</b>막힌 칸</span></div>
     <div class="x-grid" data-name="GRID" data-rc data-rows="S....|.#.#.|.....|#.#.E"></div>
-    <ul class="x-pts"><li>움직임은 <b>오른쪽</b> 또는 <b>아래</b>로만 움직입니다.</li><li>S에서 E까지 가는 경로의 수를 표로 세십시오.</li></ul>
+    <ul class="x-pts"><li>한 번에 <b>오른쪽</b> 또는 <b>아래</b>로 한 칸만 움직여요. # 칸은 지나갈 수 없어요.</li><li><b>경로</b>: S에서 E까지 가는 이동 순서 하나예요.</li><li>S에서 E까지 가는 경로의 수를 표로 셀 거예요.</li></ul>
     <div class="quiz" data-answer="2">
-      <p class="q">(2, 2) 칸에 오기 바로 직전에 있을 수 있는 칸은 무엇입니까?</p>
-      <div class="opts"><button type="button" data-hint="왼쪽·위로는 움직일 수 없습니다. 거꾸로 생각해 보십시오.">(2, 3)과 (3, 2)</button><button type="button">(1, 2)와 (2, 1)</button><button type="button" data-hint="대각선 이동은 없습니다.">(1, 1)</button></div>
-      <p class="why">아래로 왔으면 위 칸, 오른쪽으로 왔으면 왼쪽 칸에서 옵니다.</p>
+      <p class="q">(2, 2) 칸에 오기 바로 직전에 있을 수 있는 칸은 어디일까요?</p>
+      <div class="opts"><button type="button" data-hint="왼쪽·위로는 움직일 수 없어요. (2, 2)에서 거꾸로 생각해 보세요.">(2, 3)과 (3, 2)</button><button type="button">(1, 2)와 (2, 1)</button><button type="button" data-hint="대각선 이동은 없어요.">(1, 1)</button></div>
+      <p class="why">아래로 왔으면 위 칸, 오른쪽으로 왔으면 왼쪽 칸에서 와요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="설계 네 가지를 문장으로 쓰기">
     <div class="x-given"><span><b>dp[r][c]</b>r행 c열 칸에 대한 값</span><span><b>GRID</b>4×5, # 막힘</span><span><b>이동</b>오른쪽·아래만</span></div>
     <div class="x-cards">
-      <div><b>상태</b>dp[r][c]가 뜻하는 것</div>
-      <div><b>전이</b>값을 가져오는 칸</div>
-      <div><b>초기값</b>따로 정할 칸</div>
-      <div><b>계산 순서</b>표를 채우는 순서</div>
+      <div><b>상태</b>표의 칸 dp[r][c] 하나에 저장하는 값이 무엇인지</div>
+      <div><b>전이</b>dp[r][c]를 이미 구한 다른 칸의 값으로 계산하는 식</div>
+      <div><b>초기값</b>전이식을 쓰지 않고 처음에 직접 정하는 칸과 그 값</div>
+      <div><b>계산 순서</b>표의 칸을 어떤 차례로 채울지</div>
     </div>
-    <p class="x-q">상태 정의<small>한 문장</small></p>
+    <p class="x-q">상태 정의<small>dp[r][c]가 무엇의 수인지 한 문장으로 쓰세요.</small></p>
     <div class="x-f" data-bind="A11.design.r1.c1" data-ph="예: dp[r][c]는 (0, 0)에서 … 까지 … 의 수이다"></div>
-    <p class="x-q">전이<small>식 또는 문장, 막힌 칸 처리 포함</small></p>
+    <p class="x-q">전이<small>식 또는 문장으로 쓰고, 막힌 칸(#)일 때도 포함하세요.</small></p>
     <div class="x-f" data-bind="A11.design.r2.c1" data-ph="예: 막힌 칸이면 …, 아니면 dp[r][c] = … + …"></div>
   </div>
 
   <div class="x-screen" data-title="초기값과 계산 순서">
-    <div class="x-given"><span><b>dp[r][c]</b>r행 c열 칸에 대한 값</span><span><b>참조</b>위 칸, 왼쪽 칸</span></div>
-    <p class="x-q">초기값<small>어느 칸을 몇으로, 시작이 막힌 경우도</small></p>
+    <div class="x-given"><span><b>dp[r][c]</b>r행 c열 칸에 대한 값</span><span><b>참조</b>dp[r][c]는 위 칸과 왼쪽 칸의 값을 가져다 써요</span></div>
+    <p class="x-q">초기값<small>어느 칸을 몇으로 정하는지 쓰세요. 시작 칸이 막힌 경우도 쓰세요.</small></p>
     <div class="x-f" data-bind="A11.design.r3.c1" data-ph="예: dp[○][○] = ○ (시작이 막히면 …)"></div>
-    <p class="x-q">계산 순서<small>방향과, 그 순서여야 하는 이유</small></p>
+    <p class="x-q">계산 순서<small>표를 채우는 방향과, 그 순서여야 하는 이유를 쓰세요.</small></p>
     <div class="x-f" data-bind="A11.design.r4.c1" data-ph="예: … 에서 … 방향으로 채운다. 그래야 … 이(가) 먼저 채워진다"></div>
   </div>
 
   <div class="x-screen" data-title="GRID dp 표 예측하기">
     <div class="x-grid" data-name="GRID" data-rc data-rows="S....|.#.#.|.....|#.#.E"></div>
-    <ul class="x-pts"><li>칸마다 (0, 0)에서 그 칸까지 가는 경로의 수를 숫자로만 쓰십시오.</li><li>막힌 칸은 0입니다. 값 = 위 칸 + 왼쪽 칸입니다.</li></ul>
+    <ul class="x-pts"><li>칸마다 (0, 0)에서 그 칸까지 가는 경로의 수를 숫자로만 쓰세요.</li><li>막힌 칸(#)은 0이에요. 나머지 칸의 값 = 위 칸 값 + 왼쪽 칸 값이에요.</li><li>표 밖의 칸(맨 윗줄의 위, 맨 왼쪽 열의 왼쪽)은 0으로 봐요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>r \ c<small>행 \ 열</small></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
       <tr><td>0</td><td><span class="x-f" data-bind="A11.pred.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.pred.r1.c2" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.pred.r1.c3" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.pred.r1.c4" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A11.pred.r1.c5" data-ph="숫자"></span></td></tr>
@@ -51,52 +51,52 @@
   </div>
 
   <div class="x-screen" data-title="실행 결과 쓰기">
-    <ul class="x-pts"><li>실습 코드 4부 A11에서 <code>grid_paths(GRID)</code>를 실행하십시오.</li><li>출력된 숫자를 그대로 쓰고 예측값과 비교하십시오.</li></ul>
+    <ul class="x-pts"><li>실습 코드 4부 A11에서 <code>grid_paths(GRID)</code>를 실행하세요.</li><li>출력된 숫자를 그대로 쓰고 예측값과 비교하세요.</li></ul>
     <div class="x-line">자신의 예측값 <span class="x-echo" data-echo="A11.cnt.pred"></span></div>
     <div class="x-line">GRID 경로 수 실제 <span class="x-f" data-bind="A11.cnt.real" data-w="xs" data-ph="숫자"></span></div>
   </div>
 
   <div class="x-screen" data-title="점검 질문">
     <div class="quiz" data-answer="1">
-      <p class="q">dp[r][c]를 구할 때 위 칸과 왼쪽 칸만 보는 이유는 무엇입니까?</p>
-      <div class="opts"><button type="button">(r, c)에 닿기 직전 칸이 그 둘뿐이라서</button><button type="button" data-hint="표 크기와는 관계가 없습니다.">표가 R×C 크기라서</button><button type="button" data-hint="막힌 칸의 위치와는 관계가 없습니다.">막힌 칸이 위·왼쪽에만 있어서</button></div>
-      <p class="why">마지막 걸음이 아래이면 위 칸, 오른쪽이면 왼쪽 칸에서 옵니다.</p>
+      <p class="q">dp[r][c]를 구할 때 위 칸과 왼쪽 칸만 보는 이유는 무엇일까요?</p>
+      <div class="opts"><button type="button">(r, c)에 닿기 직전 칸이 그 둘뿐이라서</button><button type="button" data-hint="표 크기와는 관계가 없어요.">표가 R×C 크기라서</button><button type="button" data-hint="막힌 칸의 위치와는 관계가 없어요.">막힌 칸이 위·왼쪽에만 있어서</button></div>
+      <p class="why">마지막 걸음이 아래이면 위 칸, 오른쪽이면 왼쪽 칸에서 와요.</p>
     </div>
     <div class="quiz" data-answer="2">
-      <p class="q">막힌 칸의 dp를 0으로 두는 이유는 무엇입니까?</p>
-      <div class="opts"><button type="button" data-hint="계산은 할 수 있습니다.">계산할 수 없어서</button><button type="button">지나갈 수 없어 오는 길이 0가지라서</button><button type="button" data-hint="반복 횟수는 같습니다.">반복이 빨리 끝나서</button></div>
-      <p class="why">그 칸은 뒤 칸에도 경로를 더해 주지 못합니다.</p>
+      <p class="q">막힌 칸의 dp 값을 0으로 두는 이유는 무엇일까요?</p>
+      <div class="opts"><button type="button" data-hint="계산은 할 수 있어요.">계산할 수 없어서</button><button type="button">지나갈 수 없어 오는 길이 0가지라서</button><button type="button" data-hint="반복 횟수는 같아요.">반복이 빨리 끝나서</button></div>
+      <p class="why">막힌 칸은 그 오른쪽·아래 칸에도 경로를 더해 주지 못해요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="계산 순서와 ⑫번 줄">
-    <div class="x-given"><span><b>1차원 코인 표</b>dp[a] 금액별</span><span><b>2차원 GRID 표</b>dp[r][c] 칸별</span></div>
-    <p class="x-q">두 표에서 계산 순서를 정하는 규칙은 어떤 점이 같습니까?<small>1~2문장으로 쓰십시오.</small></p>
+    <div class="x-given"><span><b>1차원 동전 표</b>dp[a]: 금액 a마다 한 칸</span><span><b>2차원 GRID 표</b>dp[r][c]: 격자 칸마다 한 칸</span></div>
+    <p class="x-q">두 표에서 계산 순서를 정하는 규칙은 어떤 점이 같을까요?<small>1~2문장으로 쓰세요.</small></p>
     <div class="x-f" data-bind="A11.q3" data-ph="예: … 이(가) 같다. 1차원은 …, 2차원은 …"></div>
     <pre class="x-code">dp = [[0] * C for _ in range(R)]   # 0으로 시작
 ...
 if grid[r][c] == '#':
     dp[r][c] = 0                    # ⑫ 막힌 칸은 0</pre>
-    <p class="x-q">⑫는 있어도 없어도 같은 값이 나옵니다. 그 이유는 무엇이며, 그럼에도 쓰는 이유는 무엇입니까?</p>
+    <p class="x-q">⑫번 줄은 있어도 없어도 같은 값이 나와요. 왜 같은 값이 나올까요? 그런데도 ⑫번 줄을 쓰는 이유는 무엇일까요?</p>
     <div class="x-f" data-bind="A11.q4" data-parts="같은 이유=예: dp를 … 로 시작했으므로 …|그래도 쓰는 이유=예: … 을 코드에 드러내려고"></div>
   </div>
 </section>
 
 <!-- ========== A12 ========== -->
 <section class="x-act" data-id="A12" data-title="일반화 초안 카드" data-meta="5분 · 개인">
-  <ul class="x-pts"><li>오늘 배운 내용을 사례 이름 없이도 성립하는 한 문장으로 쓰십시오.</li></ul>
+  <ul class="x-pts"><li>오늘 배운 내용을 사례 이름(fib, [1, 3, 4] 등) 없이도 성립하는 한 문장으로 쓰세요.</li></ul>
 
   <div class="x-screen" data-title="일반화에 해당하는 문장">
-    <div class="x-cards"><div><b>일반화</b>다른 경우에도 성립하는 문장</div><div><b>형식</b>개념 + 개념 + 관계(동사)</div></div>
+    <div class="x-cards"><div><b>일반화</b>특정 사례가 아니라 같은 조건의 다른 경우에도 성립하는 문장</div><div><b>형식</b>개념 + 개념 + 둘의 관계를 나타내는 동사</div><div><b>개념</b>이진 탐색, 정렬, 호출 수처럼 여러 사례에 두루 쓰는 이름</div></div>
     <div class="quiz" data-answer="2">
-      <p class="q">일반화에 해당하는 것은 어느 쪽입니까?</p>
-      <div class="opts"><button type="button" data-hint="한 사례의 값 하나입니다.">(가) 정렬된 [1, 3, 5, 7]에서 5는 인덱스 2에 있다</button><button type="button">(나) 이진 탐색은 정렬돼 있을 때 후보를 절반씩 줄여 비교를 줄인다</button></div>
-      <p class="why">(나)는 값 없이 개념과 관계(줄인다)로 썼습니다.</p>
+      <p class="q">일반화에 해당하는 것은 어느 쪽일까요?</p>
+      <div class="opts"><button type="button" data-hint="한 사례의 값 하나예요.">(가) 정렬된 [1, 3, 5, 7]에서 5는 인덱스 2에 있다</button><button type="button">(나) 이진 탐색은 정렬돼 있을 때 후보를 절반씩 줄여 비교를 줄인다</button></div>
+      <p class="why">(나)는 특정 값 없이 개념과 관계(줄인다)로 썼어요. 여기서 후보는 아직 답일 가능성이 남은 위치들이에요.</p>
     </div>
   </div>
 
   <div class="x-screen" data-title="주제 고르기">
-    <ul class="x-pts"><li>A2~A11 중 생각이 가장 크게 바뀐 주제 하나를 고르십시오.</li></ul>
+    <ul class="x-pts"><li>A2~A11 중 생각이 가장 크게 바뀐 주제 하나를 고르세요.</li><li>‘근거로 쓸 활동’은 그 주제의 문장을 뒷받침할 활동 번호예요.</li></ul>
     <table class="x-trace">
       <tr><th>주제</th><th>근거로 쓸 활동</th></tr>
       <tr><td>① 겹침과 기억</td><td>A2, A3, A7</td></tr>
@@ -110,38 +110,38 @@ if grid[r][c] == '#':
   <div class="x-screen" data-title="자신의 문장 쓰기">
     <ol class="x-rules"><li class="r1"><b>문장틀 (구조만, 정답 아님)</b>
       <div class="fx"><code>[개념 A]는 [조건]일 때 [개념 B]와 [관계].</code><span>왜냐하면 ____ (A__). 틀리는 경우: ____</span></div></li></ol>
-    <ul class="x-pts"><li>fib, [1, 3, 4] 같은 사례 이름은 빼십시오.</li><li>확신이 없어도 현재 생각을 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>fib, [1, 3, 4] 같은 사례 이름은 빼세요.</li><li>[ ] 안은 자신의 말로 채울 자리예요.</li><li>확신이 없어도 현재 생각을 쓰세요.</li></ul>
     <div class="x-f" data-bind="A12.c1.draft" data-parts="문장=예: [개념]은 [조건]일 때 [개념]을 [동사]|근거=예: 왜냐하면 … (A○)|틀리는 경우=예: … 이면 틀릴 수 있다"></div>
   </div>
 
   <div class="x-screen" data-title="점검 재료: A3 떠올리기">
     <ol class="x-rules">
-      <li class="r1"><b>점검 1</b><div class="fx"><span>사례 이름·값을 지워도 문장이 성립하는가?</span></div></li>
-      <li class="r2"><b>점검 2</b><div class="fx"><span>개념 둘 이상과 동사로 쓴 관계가 있는가?</span></div></li>
-      <li class="r3"><b>점검 3</b><div class="fx"><span>근거 활동 번호가 있는가?</span></div></li>
-      <li class="r4"><b>점검 4</b><div class="fx"><span>틀리는 경우를 고려하였는가?</span></div></li>
+      <li class="r1"><b>점검 1</b><div class="fx"><span>사례 이름·값을 지워도 문장이 성립하나요?</span></div></li>
+      <li class="r2"><b>점검 2</b><div class="fx"><span>개념 둘 이상과, 둘을 잇는 동사가 있나요?</span></div></li>
+      <li class="r3"><b>점검 3</b><div class="fx"><span>근거가 된 활동 번호(A○)가 있나요?</span></div></li>
+      <li class="r4"><b>점검 4</b><div class="fx"><span>문장이 틀리는 경우를 함께 썼나요?</span></div></li>
     </ol>
-    <div class="x-given"><span><b>A3</b>fib(6) 호출 수, 기억 전과 후</span></div>
-    <p class="x-q">A3에서 기억해 두었을 때 무엇이 왜 줄었습니까? 줄지 않는 경우는 무엇입니까?<small>3개 입력란에 각각 한 문장으로 쓰십시오.</small></p>
+    <div class="x-given"><span><b>A3</b>fib(6) 호출 수: 값을 메모에 기록하기 전(A2)과 후(A3)</span></div>
+    <p class="x-q">A3에서 값을 메모에 기록해 두었을 때 무엇이 왜 줄었나요? 줄지 않는 경우는 무엇일까요?<small>3개 입력란에 각각 한 문장으로 쓰세요.</small></p>
     <div class="x-f" data-bind="A12.q1" data-parts="줄어든 것=예: … 이 ○번에서 ○번으로|줄어든 이유=예: 같은 … 을 다시 …|줄지 않는 경우=예: … 처럼 … 이면"></div>
   </div>
 </section>
 
 <!-- ========== A13 ========== -->
 <section class="x-act" data-id="A13" data-title="일반화 정제와 구별 기준표" data-meta="9분 · 개인">
-  <ul class="x-pts"><li>A12 초안을 다듬고, 알고리즘을 고르는 기준표를 만드십시오.</li></ul>
+  <ul class="x-pts"><li><b>정제</b>: A12에서 쓴 초안 문장을 점검 4가지에 맞게 다듬는 일이에요.</li><li><b>구별 기준표</b>: 상황마다 어떤 알고리즘이 맞는지 가르는 질문을 모은 표예요.</li></ul>
 
   <div class="x-screen" data-title="자신의 초안 다듬기">
     <div class="x-given"><span><b>A12 주제</b><span class="x-echo" data-echo="A12.c1.topic"></span></span><span><b>A12 초안</b><span class="x-echo" data-echo="A12.c1.draft"></span></span></div>
-    <ul class="x-pts"><li>A12 초안을 다시 읽고 점검 4가지를 모두 통과하도록 고치십시오.</li><li>사례 이름은 개념어로 바꾸십시오.</li></ul>
+    <ul class="x-pts"><li>A12 초안을 다시 읽고 점검 4가지(A12 마지막 화면)를 모두 통과하도록 고치세요.</li><li>사례 이름(fib 등)은 개념을 나타내는 말로 바꾸세요.</li></ul>
     <div class="x-line">주제 <span class="x-f" data-bind="A13.group.topic" data-w="m" data-ph="예: ③ Greedy의 보장과 반례"></span></div>
-    <p class="x-q">정제 문장<small>개념 둘과 관계, 근거 활동, 틀리는 경우를 한 문장에 담으십시오.</small></p>
+    <p class="x-q">정제 문장<small>개념 둘과 관계, 근거 활동, 틀리는 경우를 한 문장에 담으세요.</small></p>
     <div class="x-f" data-bind="A13.group.draft" data-ph="예: [개념]은 [조건]일 때 … 하지만, … 이면 …"></div>
   </div>
 
   <div class="x-screen" data-title="기준 세 개 정하기">
-    <ul class="x-pts"><li>상황을 구분하는 질문 3개를 ‘~인가?’ 형식으로 쓰십시오.</li><li>서로 다른 것을 묻도록 하십시오. 이름은 나중에 고쳐도 됩니다.</li></ul>
-    <div class="x-cards"><div><b>참고할 개념</b>겹침 · 선택 · 반례</div></div>
+    <ul class="x-pts"><li><b>기준</b>: 문제 상황에 어떤 알고리즘이 맞는지 가르는 예/아니오 질문이에요.</li><li>기준 3개를 ‘~인가?’ 형식으로 쓰세요.</li><li>세 질문이 서로 다른 것을 묻게 하세요. 문구는 나중에 고쳐도 돼요.</li></ul>
+    <div class="x-cards"><div><b>참고할 개념</b>겹침(같은 부분 문제가 반복됨) · 선택(한 번 고르면 되돌리지 않음) · 반례(주장이 틀리는 예)</div></div>
     <div class="x-line">① <span class="x-f" data-bind="A13.cmp.h1" data-w="l" data-ph="예: 입력이 정렬돼 있는가?"></span></div>
     <div class="x-line">② <span class="x-f" data-bind="A13.cmp.h2" data-w="l" data-ph="예: ~인가?"></span></div>
     <div class="x-line">③ <span class="x-f" data-bind="A13.cmp.h3" data-w="l" data-ph="예: ~인가?"></span></div>
@@ -149,10 +149,10 @@ if grid[r][c] == '#':
 
   <div class="x-screen" data-title="알려진 상황 판단하기">
     <div class="x-given"><span><b>기준 ①</b><span class="x-echo" data-echo="A13.cmp.h1"></span></span><span><b>기준 ②</b><span class="x-echo" data-echo="A13.cmp.h2"></span></span><span><b>기준 ③</b><span class="x-echo" data-echo="A13.cmp.h3"></span></span></div>
-    <ul class="x-pts"><li>기준 ①②③은 바로 앞 화면에서 자신이 쓴 질문입니다.</li><li>각 칸에 <b>예 / 아니오 / 해당 없음</b> 와 짧은 이유를 쓰십시오.</li><li>마지막 칸에는 어울리는 방식 이름과 이유를 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>기준 ①②③은 바로 앞 화면에서 자신이 쓴 질문이에요.</li><li>각 칸에 <b>예 / 아니오 / 해당 없음</b> 중 하나와 짧은 이유를 쓰세요.</li><li>마지막 칸에는 그 상황에 어울리는 알고리즘 이름과 이유를 쓰세요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>상황</th><th>기준 ①<small>판단 — 이유</small></th><th>기준 ②<small>판단 — 이유</small></th><th>기준 ③<small>판단 — 이유</small></th><th>어울리는 방식<small>이름 — 이유</small></th></tr>
-      <tr class="x-ex"><td>예: 정렬된 목록에서 찾기</td><td>예 — 정렬돼 있음</td><td>해당 없음</td><td>해당 없음</td><td>이진 탐색 — 절반씩 버림</td></tr>
+      <tr class="x-ex"><td>예: 정렬된 목록에서 찾기</td><td>예 — 정렬돼 있음</td><td>해당 없음</td><td>해당 없음</td><td>이진 탐색 — 답이 없는 절반을 매번 뺌</td></tr>
       <tr><td>1 병합 정렬 (12주차)</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r1.c2" data-ph="예: 예 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r1.c3" data-ph="예: 해당 없음 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r1.c4" data-ph="예: 아니오 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r1.c5" data-ph="예: 방식 이름 — …"></div></td></tr>
       <tr><td>2 fib 호출 (오늘)</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r2.c2" data-ph="예: 예 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r2.c3" data-ph="예: 해당 없음 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r2.c4" data-ph="예: 아니오 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r2.c5" data-ph="예: 방식 이름 — …"></div></td></tr>
       <tr><td>3 동전 [1, 3, 4]</td><td class="wide"><div class="x-f" data-bind="A13.cmp.r3.c2" data-ph="예: 예 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r3.c3" data-ph="예: 해당 없음 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r3.c4" data-ph="예: 아니오 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r3.c5" data-ph="예: 방식 이름 — …"></div></td></tr>
@@ -164,7 +164,7 @@ if grid[r][c] == '#':
     <div class="x-given"><span><b>기준 ①</b><span class="x-echo" data-echo="A13.cmp.h1"></span></span><span><b>기준 ②</b><span class="x-echo" data-echo="A13.cmp.h2"></span></span><span><b>기준 ③</b><span class="x-echo" data-echo="A13.cmp.h3"></span></span></div>
     <div class="x-given"><span><b>상황 5</b>n개의 계단, 밟으면 안 되는 칸이 있음</span><span><b>이동</b>1칸 또는 2칸씩</span><span><b>구할 것</b>꼭대기에 닿는 방법의 수</span></div>
     <div class="x-flow"><span>0</span><span>1</span><span class="miss">2 (금지)</span><span>3</span><span>…</span><span class="hit">n</span></div>
-    <ul class="x-pts"><li>같은 기준 ①②③으로 스스로 판단하십시오.</li></ul>
+    <ul class="x-pts"><li>앞 화면과 같은 기준 ①②③으로 상황 5를 판단하세요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>기준 ①<small>판단 — 이유</small></th><th>기준 ②<small>판단 — 이유</small></th><th>기준 ③<small>판단 — 이유</small></th><th>어울리는 방식<small>이름 — 이유</small></th></tr>
       <tr><td class="wide"><div class="x-f" data-bind="A13.cmp.r5.c2" data-ph="예: 예 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r5.c3" data-ph="예: 해당 없음 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r5.c4" data-ph="예: 아니오 — …"></div></td><td class="wide"><div class="x-f" data-bind="A13.cmp.r5.c5" data-ph="예: 방식 이름 — …"></div></td></tr>
@@ -172,26 +172,26 @@ if grid[r][c] == '#':
   </div>
 
   <div class="x-screen" data-title="정리 문장 G1과 대조">
-    <div class="x-cards"><div><b>G1 겹침과 기억</b>같은 부분 문제가 반복되면 결과를 기억하여 비용이 ‘호출 수’ → ‘서로 다른 부분 문제 수’로 줄어듭니다. 겹치지 않는 분할(병합 정렬)에는 이득이 없습니다.</div></div>
+    <div class="x-cards"><div><b>G1 겹침과 기억</b>같은 부분 문제가 반복되면 결과를 기억해서, 비용이 ‘호출 수’에서 ‘서로 다른 부분 문제 수’로 줄어요. 부분 문제가 겹치지 않는 분할(병합 정렬)에는 이득이 없어요.</div><div><b>부분 문제</b>원래 문제를 풀려고 푸는 더 작은 문제 (예: fib(6)을 위한 fib(4))</div><div><b>정리 문장</b>수업에서 준비한 일반화 문장. 자신의 문장과 비교해요</div></div>
     <ul class="x-tree"><li><span>fib(5) 호출 15개 <em>같은 n 반복</em></span><ul><li><span>fib(3) 2번 · fib(2) 3번 · fib(1) 5번</span></li></ul></li>
       <li><span>병합 정렬 8개 구간 15개 <em>모두 다름</em></span></li></ul>
-    <ul class="x-pts"><li>정리 문장에 맞추려고 고치지 말고 빠진 것을 찾으십시오.</li><li>살필 낱말: ‘겹친다’, ‘저장한다’</li></ul>
+    <ul class="x-pts"><li>자신의 A13 정제 문장을 G1과 비교하세요.</li><li>G1에 맞추려고 고치지 말고, 자신의 문장에 빠진 것을 찾으세요.</li><li>살필 낱말: ‘겹친다’, ‘저장한다’</li></ul>
     <div class="x-f" data-bind="A13.memo.g1" data-parts="같은 점=예: 둘 다 … 을 말한다|다른 점=예: G1에는 … 이 더 있다"></div>
   </div>
 
   <div class="x-screen" data-title="정리 문장 G3과 대조">
-    <div class="x-cards"><div><b>G3 Greedy</b>매 단계 최선을 고르고 되돌리지 않으므로 빠릅니다. 현재의 최선이 전체의 최선임이 보장될 때만 최적입니다. 반례 하나면 반증되며, 맞는 금액 몇 개는 증명이 아닙니다.</div></div>
-    <ul class="x-pts"><li>살필 낱말: ‘선택을 되돌리지 않는다’</li><li>A9에서 자신이 한 일은 증명입니까, 반례 찾기입니까?</li></ul>
+    <div class="x-cards"><div><b>G3 Greedy</b>매 단계 지금 가장 좋아 보이는 것을 고르고 되돌리지 않아서 빨라요. 그 선택이 전체에서도 가장 좋다고 보장될 때만 최적이에요. 반례 하나면 틀렸음이 드러나고, 맞는 금액 몇 개로는 증명이 되지 않아요.</div><div><b>최적</b>가능한 답 중 가장 좋은 답 (동전 문제에서는 개수가 가장 적은 것)</div></div>
+    <ul class="x-pts"><li>자신의 A13 정제 문장을 G3과 비교하세요.</li><li>살필 낱말: ‘선택을 되돌리지 않는다’</li><li>A9에서 자신이 한 일은 증명일까요, 반례 찾기일까요?</li></ul>
     <div class="x-f" data-bind="A13.memo.g3" data-parts="같은 점=예: 둘 다 … 을 말한다|다른 점=예: G3에는 … 이 더 있다"></div>
   </div>
 </section>
 
 <!-- ========== A14 ========== -->
 <section class="x-act" data-id="A14" data-title="과제 점검과 회의 선택 기록" data-meta="12분 · 개인">
-  <ul class="x-pts"><li>실습 코드 4부 A14를 수행하면서 작성하십시오.</li></ul>
+  <ul class="x-pts"><li>실습 코드 4부 A14를 실행하면서 작성하세요.</li><li><b>점검 출력</b>: 과제 함수에 정해진 입력을 넣어 나온 결과예요. 번호가 붙어 있어요.</li><li><b>기대값</b>: 그 번호의 입력에서 나와야 하는 올바른 결과예요.</li></ul>
 
   <div class="x-screen" data-title="min_coins 점검">
-    <ul class="x-pts"><li>점검 출력을 번호별로 기대값과 비교하십시오.</li><li>같은 번호만 체크하십시오. 다르면 상태·전이·초기값 중 어디가 문제인지 확인하여 고치십시오.</li></ul>
+    <ul class="x-pts"><li>점검 출력을 번호별로 기대값과 비교하세요.</li><li>같은 번호만 체크하세요.</li><li>다르면 상태(dp 칸의 뜻)·전이(칸을 구하는 식)·초기값 중 어디가 문제인지 찾아 고치세요.</li></ul>
     <div class="x-f" data-bind="A14.min.r1.c1">1번 기대값과 같음</div>
     <div class="x-f" data-bind="A14.min.r2.c1">2번 기대값과 같음</div>
     <div class="x-f" data-bind="A14.min.r3.c1">3번 기대값과 같음</div>
@@ -230,13 +230,13 @@ if grid[r][c] == '#':
   </div>
 
   <div class="x-screen" data-title="요건 두 가지">
-    <div class="x-f" data-bind="A14.req.mut">① 세 함수가 입력 리스트를 바꾸지 않는다</div>
-    <div class="x-f" data-bind="A14.req.big">② amount 20000에서도 RecursionError 없이 끝난다</div>
+    <div class="x-f" data-bind="A14.req.mut">① 세 과제 함수가 인자로 받은 리스트를 바꾸지 않아요</div>
+    <div class="x-f" data-bind="A14.req.big">② amount 20000에서도 RecursionError(재귀가 너무 깊을 때 나는 오류) 없이 끝나요</div>
   </div>
 
   <div class="x-screen" data-title="상태·전이 다듬기">
-    <div class="x-given"><span><b>min_coins</b>(coins, amount)</span><span><b>구할 것</b>amount원을 만드는 최소 동전 수</span><span><b>INF</b>만들 수 없음 표시</span></div>
-    <ul class="x-pts"><li>연습용 입력란입니다. 과제 서술을 표기로 다듬어 보십시오.</li></ul>
+    <div class="x-given"><span><b>min_coins</b>(coins, amount)</span><span><b>구할 것</b>amount원을 만드는 최소 동전 수</span><span><b>INF</b>아주 큰 수. 그 금액을 만들 수 없다는 표시</span></div>
+    <ul class="x-pts"><li>연습용 입력란이에요. 과제에서 말로 쓴 설계를 dp 기호와 식으로 다시 써 보세요.</li><li>상태: dp 칸 하나의 뜻 · 전이: 칸을 구하는 식 · 초기값: 처음에 직접 정하는 칸</li></ul>
     <div class="x-f" data-bind="A14.essay.state" data-parts="상태=예: dp[a]는 … (만들 수 없으면 …)|전이=예: dp[a] = …(dp[…] …) (조건 …)|초기값=예: dp[○] = ○, 나머지는 …"></div>
   </div>
 
@@ -244,12 +244,12 @@ if grid[r][c] == '#':
     <pre class="x-code">for a in range(1, amount + 1):    # 바깥 반복
     for c in coins:               # 안쪽 반복
         ...</pre>
-    <ul class="x-pts"><li>각 반복이 몇 번인지 변수(amount, 동전 수)로 세십시오.</li><li>제출할 때는 코드 첫 줄 계획 주석에 함께 쓰십시오.</li></ul>
+    <ul class="x-pts"><li><b>복잡도</b>: 입력이 커질 때 실행 시간(시간)과 메모리(공간)가 얼마나 늘어나는지예요.</li><li>각 반복이 몇 번 도는지 변수(amount, 동전 개수)로 세세요.</li><li>제출할 때는 코드 첫 줄의 계획 주석에도 함께 쓰세요.</li></ul>
     <div class="x-f" data-bind="A14.essay.cost" data-parts="시간=예: O(… × …), 근거: … 마다 … 를 봄|공간=예: O(…), 근거: … 하나"></div>
   </div>
 
   <div class="x-screen" data-title="회의 선택 기록하기">
-    <ul class="x-pts"><li>실습 코드 4부 A14에서 ⑮를 규칙마다 바꾸어 MEET로 실행하십시오.</li><li>출력된 두 숫자를 쓰십시오.</li><li>같으면 ‘같다’, 다르면 ‘다르다’와 반례가 되는 회의를 쓰십시오.</li><li>같더라도 증명은 아닙니다.</li></ul>
+    <ul class="x-pts"><li><b>회의 선택 문제</b>: 시간이 겹치지 않게 회의를 가장 많이 고르는 문제예요.</li><li><b>후보 규칙</b>: 회의를 어떤 순서로 정렬해 앞에서부터 고를지 정하는, 시험해 볼 greedy 규칙이에요.</li><li>실습 코드 4부 A14에서 ⑮번 줄의 정렬 기준을 규칙마다 바꾸어, 입력 MEET로 실행하세요.</li><li>출력된 두 숫자(선택 수, 최댓값)를 쓰세요.</li><li>같으면 ‘같다’, 다르면 ‘다르다’와 반례가 되는 회의를 쓰세요.</li><li>이 입력에서 같았더라도 증명은 아니에요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
       <tr><th>후보 규칙<small>정렬 기준</small></th><th>선택 수<small>규칙이 고른 회의 개수</small></th><th>최댓값<small>모든 경우를 따진 결과</small></th><th>같다 / 다르다<small>다르면 반례 회의</small></th></tr>
       <tr class="x-ex"><td>예: 늦게 시작 순</td><td>2</td><td>4</td><td>다르다. (2, 9)가 … 을 막는다</td></tr>
@@ -261,18 +261,18 @@ if grid[r][c] == '#':
 
   <div class="x-screen" data-title="한 번의 선택이 남기는 것">
     <div class="quiz predict" data-answer="1">
-      <p class="q">세 규칙 중 선택 수가 최댓값과 달랐던 규칙은 무엇입니까?</p>
+      <p class="q">세 규칙 중 선택 수가 최댓값과 달랐던 규칙은 무엇일까요?</p>
       <div class="opts"><button type="button">시작이 빠른 순</button><button type="button">짧은 회의 순</button><button type="button">끝이 빠른 순</button><button type="button">셋 모두 같았다</button></div>
-      <p class="why">이 입력(MEET)에서는 시작이 빠른 순만 최댓값에 미치지 못했습니다.</p>
+      <p class="why">이 입력(MEET)에서는 시작이 빠른 순만 최댓값에 미치지 못했어요.</p>
     </div>
-    <p class="x-q">한 번의 선택이 이후 선택에 주는 영향<small>2개 입력란에 각각 한 문장으로 쓰십시오.</small></p>
+    <p class="x-q">회의 하나를 고르면 이후에 고를 수 있는 회의에 어떤 영향을 줄까요?<small>2개 입력란에 각각 한 문장으로 쓰세요.</small></p>
     <div class="x-f" data-bind="A14.q3" data-parts="선택하면 남는 것=예: 한 회의를 고르면 … 이 줄어든다|이후 선택에 주는 영향=예: 그래서 … 순으로 고르면 …"></div>
   </div>
 </section>
 
 <!-- ========== A16 ========== -->
 <section class="x-act" data-id="A16" data-title="오개념 점검과 14주차 연결" data-meta="6분 · 개인">
-  <ul class="x-pts"><li>A15 형성평가 제출 후에 푸십시오.</li><li>근거는 직접 수행한 활동(A3, A9, A10, A14 등)에서 찾으십시오.</li></ul>
+  <ul class="x-pts"><li>A15 형성평가를 제출한 뒤에 푸세요.</li><li><b>오개념</b>: 그럴듯하지만 틀린 생각이에요. 아래 문장마다 맞는지 판단하세요.</li><li>근거는 직접 수행한 활동(A3, A9, A10, A14 등)에서 찾으세요.</li></ul>
 
   <div class="x-screen" data-title="문장 1, 2">
     <div class="x-cards"><div><b>문장 1</b>DP는 항상 재귀 함수로 작성한다.</div></div>
@@ -292,18 +292,18 @@ if grid[r][c] == '#':
 
   <div class="x-screen" data-title="14주차와 연결하기">
     <div class="x-given"><span><b>14주차</b>알고리즘 문제 해결 수행평가 90분</span></div>
-    <ul class="x-pts"><li>새 문제를 받으면 먼저 던질 질문 1~2개를 ‘~인가?’ 형식으로 쓰십시오.</li><li>질문한 뒤 할 일을 한 문장으로 쓰십시오.</li></ul>
+    <ul class="x-pts"><li>새 문제를 받으면 먼저 스스로 던질 질문 1~2개를 ‘~인가?’ 형식으로 쓰세요.</li><li>그 질문에 답한 뒤 할 일을 한 문장으로 쓰세요.</li></ul>
     <div class="x-f" data-bind="A16.next" data-parts="질문=예: … 인가? … 인가?|그다음 할 일=예: 그다음 … 하겠다"></div>
   </div>
 
   <div class="x-screen" data-title="용어 정리">
     <div class="x-cards">
-      <div><b>메모이제이션</b>위→아래 재귀, 구한 답을 dict에 저장하기</div>
-      <div><b>타뷸레이션</b>아래→위 반복문으로 표 채우기</div>
+      <div><b>메모이제이션</b>재귀로 큰 문제에서 작은 문제로 내려가며, 구한 답을 dict에 저장해 다시 쓰는 방법</div>
+      <div><b>타뷸레이션</b>반복문으로 작은 문제부터 큰 문제 순서로 표를 채우는 방법</div>
       <div><b>최적 부분 구조</b>최적해가 작은 문제의 최적해로 이루어짐</div>
       <div><b>겹치는 부분 문제</b>같은 작은 문제가 여러 번 나옴</div>
       <div><b>반례</b>주장이 틀림을 보이는 단 하나의 예</div>
-      <div><b>DP 일의 양</b>상태 수 × 상태마다 따지는 후보 수</div>
+      <div><b>DP 일의 양</b>상태 수 × 상태마다 따지는 후보 수</div><div><b>상태</b>dp 표의 칸 하나가 나타내는 작은 문제</div><div><b>후보</b>한 칸의 값이 될 수 있는 경우 하나 (예: 동전 c마다 dp[a − c] + 1)</div>
     </div>
   </div>
 </section>

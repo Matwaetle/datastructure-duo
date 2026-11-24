@@ -259,3 +259,13 @@ td .duo-model { font-size: 13px; }
 body.duo-on #ck-chat-fab { bottom: calc(110px + env(safe-area-inset-bottom, 0px)) !important; }
 body.duo-on #ck-chat { bottom: calc(160px + env(safe-area-inset-bottom, 0px)) !important; }
 body.duo-on #ans-badge { display: none !important; }
+
+/* Monaco(VS Code) 편집기로 바꾼 뒤: 원래 겹쳐 그리던 층은 숨긴다(textarea 는 값 보관용으로 남김) */
+.ck-ed.vs-on .ck-area { display: block; }
+.ck-ed.vs-on .ck-area > .ck-gut, .ck-ed.vs-on .ck-area > pre.ck-hl { display: none !important; }
+.ck-ed.vs-on .ck-area > textarea.ck-ta { position: absolute !important; width: 1px !important; height: 1px !important; opacity: 0; pointer-events: none; overflow: hidden; }
+.ck-ed.vs-on .ck-btn.cm { display: none; }
+.ck-ed .vs-host { width: 100%; min-height: 100px; background: #1e1e1e; }
+.duo-app .ck-ed.vs-on, .duo-app .ck-ed.vs-on .ck-area { background: #1e1e1e; }
+.duo-app .ck-ed.vs-on { overflow: hidden; }
+.ck-ed .vs-host .monaco-editor .suggest-widget { font-family: var(--f-round, sans-serif); }
