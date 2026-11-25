@@ -181,11 +181,23 @@ def dump_segments():
             print(out.relative_to(ROOT), len(rows))
 
 
+CODE_FIX = [
+    ("# A2에서 손으로 탐색한 친구 관계 G1(무방향).", "# A2에서 직접 추적한 친구 관계 G1(무방향)."),
+    ("# ⑨ lo > hi일 때의 처리. 처음에는 pass로 두고 5걸음에서 바꾼다",
+     "# ⑨ lo > hi일 때의 처리. 처음에는 pass로 두고, 'lo > hi 일 때' 화면에서 바꾼다"),
+    ("# A4에서 손으로 줄 세운 그 8개이다", "# A4에서 직접 정렬해 본 그 8개이다"),
+    ("(A4에서 손으로 센 값과 같은지 비교한다.", "(A4에서 직접 센 값과 같은지 비교한다."),
+    ("# 1걸음의 손 계산과 같은가", "# 직접 계산한 값과 같은가"),
+]
+
+
 def transform(src_html, rel_depth="../", page_key=None):
     global OPEN_ALL
     OPEN_ALL = bool(page_key and "workbook" in page_key)
     st = {"prefilled": 0, "checkable": 0, "copy": 0, "copy_skip": 0}
     s = src_html
+    for a, b in CODE_FIX:   # 시작 코드 주석 중 원본 단계 번호·종이 전제 표현만 고친다(코드 자체는 그대로)
+        s = s.replace(a, b)
     authored = ROOT / "pages" / (page_key + ".html") if page_key else None
     if authored and authored.exists():
         # 새로 쓴 쪽: 원본 본문은 숨겨 두고(답 칸·저장 스크립트 그대로) 새 화면을 앞에 넣는다.

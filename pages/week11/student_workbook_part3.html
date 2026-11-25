@@ -21,14 +21,14 @@
 
   <div class="x-screen" data-title="예측-실제 표">
     <div class="x-grid" data-name="ISLE" data-rc data-rows="1100010|1100011|0010000|0001100|1000100|1000001" data-mark="0,0:a;0,1:a;0,5:a;1,0:a;1,1:a;1,5:a;1,6:a;2,2:a;3,3:a;3,4:a;4,0:a;4,4:a;5,0:a;5,6:a" data-label="1 = 땅 · 0 = 바다"></div>
-    <ul class="x-pts"><li><b>예측</b> = 실행 전에 짐작한 개수 · <b>실제</b> = 실행한 뒤 나온 개수</li><li><b>걸음</b> = 실습 코드 화면의 단계 번호</li><li>4번 줄은 선택이에요. 하지 않으면 비워 두세요.</li></ul>
+    <ul class="x-pts"><li><b>예측</b> = 실행 전에 짐작한 개수 · <b>실제</b> = 실행한 뒤 나온 개수</li><li>4번 줄은 선택이에요. 하지 않으면 비워 두세요.</li></ul>
     <div class="x-scroll"><table class="x-trace">
-      <tr><th>줄<small>실습 코드의 걸음</small></th><th>예측<small>섬 개수, 숫자</small></th><th>실제<small>섬 개수, 숫자</small></th></tr>
+      <tr><th>줄<small>실습 코드 3부 A10에서 할 일</small></th><th>예측<small>섬 개수, 숫자</small></th><th>실제<small>섬 개수, 숫자</small></th></tr>
       <tr class="x-ex"><td>예: 다른 격자</td><td>3</td><td>3</td></tr>
-      <tr><td>1. 직접 추적하여 센 섬 (2걸음)</td><td><span class="x-f" data-bind="A10.pred.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r1.c2" data-ph="숫자"></span></td></tr>
-      <tr><td>2. count_islands(ISLE) (4걸음)</td><td><span class="x-f" data-bind="A10.pred.r2.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r2.c2" data-ph="숫자"></span></td></tr>
-      <tr><td>3. 꺼내는 줄 popleft()를 pop()으로 바꿈 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r3.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r3.c2" data-ph="숫자"></span></td></tr>
-      <tr class="opt"><td>4. (선택) 대각선까지 8방향을 이웃으로 (6걸음)</td><td><span class="x-f" data-bind="A10.pred.r4.c1" data-ph="하지 않으면 비워 두세요"></span></td><td><span class="x-f" data-bind="A10.pred.r4.c2" data-ph="하지 않으면 비워 두세요"></span></td></tr>
+      <tr><td>1. 직접 추적하여 센 섬</td><td><span class="x-f" data-bind="A10.pred.r1.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r1.c2" data-ph="숫자"></span></td></tr>
+      <tr><td>2. count_islands(ISLE)</td><td><span class="x-f" data-bind="A10.pred.r2.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r2.c2" data-ph="숫자"></span></td></tr>
+      <tr><td>3. 꺼내는 줄 popleft()를 pop()으로 바꿈</td><td><span class="x-f" data-bind="A10.pred.r3.c1" data-ph="숫자"></span></td><td><span class="x-f" data-bind="A10.pred.r3.c2" data-ph="숫자"></span></td></tr>
+      <tr class="opt"><td>4. (선택) 대각선까지 8방향을 이웃으로</td><td><span class="x-f" data-bind="A10.pred.r4.c1" data-ph="하지 않으면 비워 두세요"></span></td><td><span class="x-f" data-bind="A10.pred.r4.c2" data-ph="하지 않으면 비워 두세요"></span></td></tr>
     </table></div>
   </div>
 

@@ -51,9 +51,9 @@
 
 /* 규칙 카드: 단계마다 번호·이름·식·작은 그림 */
 .x-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: r; }
-.x-rules > li { counter-increment: r; display: grid; grid-template-columns: 44px 1fr; gap: 4px 14px; align-items: start; max-width: none;
+.x-rules > li { counter-increment: r; position: relative; display: flex; flex-direction: column; align-items: stretch; gap: 4px; min-height: 72px; max-width: none; padding-left: 74px !important;
   border: 2px solid var(--duo-line); border-bottom-width: 4px; border-radius: 18px; padding: 14px 16px; background: var(--duo-bg); }
-.x-rules > li::before { content: counter(r); grid-row: span 3; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
+.x-rules > li::before { content: counter(r); position: absolute; left: 16px; top: 14px; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center;
   font: 900 20px var(--f-round); color: #fff; background: var(--rc, var(--duo-blue)); box-shadow: 0 3px 0 rgba(0,0,0,.15); }
 .x-rules > li > b { font: 900 18px var(--f-round); color: var(--duo-ink); }
 .x-rules > li > .x-arr { margin-top: 4px; }

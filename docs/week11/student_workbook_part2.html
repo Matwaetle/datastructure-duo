@@ -34,14 +34,14 @@
     <ul class="x-pts"><li>활동지 1부에 기록한 방문 순서를 함께 열어 두세요.</li></ul>
   </div>
 
-  <div class="x-screen" data-title="bfs_order 출력 (3걸음)">
+  <div class="x-screen" data-title="bfs_order 출력">
     <div class="x-given"><span><b>호출</b>bfs_order(g, "A")</span><span><b>비교 대상</b>A2 큐 규칙 방문 순서</span></div>
     <div class="x-line">출력 <span class="x-f" data-bind="A6.bfs.out" data-w="l" data-ph="출력을 그대로, 예: ['X', 'Y']"></span></div>
     <p class="x-q">A2 큐 규칙으로 직접 추적한 방문 순서와 같을까요?<small>같다/다르다, 다르면 어디가 다른지</small></p>
     <div class="x-f" data-bind="A6.bfs.same"></div>
   </div>
 
-  <div class="x-screen" data-title="dfs_order 출력 (4걸음)">
+  <div class="x-screen" data-title="dfs_order 출력">
     <div class="x-given"><span><b>호출</b>dfs_order(g, "A", set(), [])</span><span><b>비교 대상</b>A3 재귀 방문 순서</span></div>
     <div class="x-line">출력 <span class="x-f" data-bind="A6.dfs.out" data-w="l" data-ph="출력을 그대로, 예: ['X', 'Y']"></span></div>
     <p class="x-q">A3 재귀로 직접 추적한 방문 순서와 같을까요?<small>같다/다르다</small></p>
@@ -50,7 +50,7 @@
     <div class="x-f" data-bind="A6.diff" data-ph="예: 같음. 다만 스택 규칙과는 ○번째 노드부터 다르다"></div>
   </div>
 
-  <div class="x-screen" data-title="시작 노드 F (6걸음)">
+  <div class="x-screen" data-title="시작 노드 F">
     <div class="x-graph" data-name="G1" data-nodes="A:0,0 B:1,0 C:0,1 D:1,1 E:2,1 F:3,0" data-edges="A-B,A-C,B-D,C-D,D-E" data-hl="F"></div>
     <div class="x-given"><span><b>F</b>간선 없음, 그래프 딕셔너리 g에 키 "F"도 없음</span></div>
     <ul class="x-pts"><li>실행 <b>전</b>에 예측한 출력을, 실행 <b>후</b>에 실제 출력을 쓰세요.</li></ul>
@@ -135,15 +135,15 @@
 
 <!-- ========== A8 ========== -->
 <section class="x-act" data-id="A8" data-title="함정 코드 예측과 실제" data-meta="13분 · 개인">
-  <ul class="x-pts"><li><b>함정 코드</b> = 그럴듯해 보이지만 예상과 다르게 동작하는 코드</li><li>실습 코드 2부 A8의 2~6걸음 함정 코드를 실행하고, 출력을 옮겨 적어요.</li></ul>
+  <ul class="x-pts"><li><b>함정 코드</b> = 그럴듯해 보이지만 예상과 다르게 동작하는 코드</li><li>실습 코드 2부 A8의 함정 코드(T1-a~T4)를 실행하고, 출력을 옮겨 적어요.</li></ul>
 
   <div class="x-screen" data-title="다섯 함정">
     <ol class="x-rules">
-      <li class="r1"><b>T1-a · 2걸음</b><div class="fx"><span>큐에서 꺼낸 뒤에 visited에 표시하는 BFS, G1 시작 A → 방문 순서 리스트</span></div></li>
-      <li class="r2"><b>T1-b · 3걸음</b><div class="fx"><span>4×4 격자 BFS, 표시 시점 두 가지(모드)마다 (큐에 넣은 횟수, 큐 최대 길이) → 두 줄</span></div></li>
-      <li class="r3"><b>T2 · 4걸음</b><div class="fx"><span>list.pop(0)과 deque.popleft로 맨 앞 꺼내기, 데이터 개수 n이 10배일 때 걸린 시간은 몇 배인지</span></div></li>
-      <li class="r4"><b>T3 · 5걸음</b><div class="fx"><span>1줄짜리 땅(너비 500, 1500)을 재귀 DFS로 탐색 → 정상 또는 오류 이름</span></div></li>
-      <li class="r1"><b>T4 (선택) · 6걸음</b><div class="fx"><span>visited를 기본 인자(def f(v=set()) 꼴)로 둔 DFS를 세 번 호출 → 세 출력을 / 로 구분</span></div></li>
+      <li class="r1"><b>T1-a</b><div class="fx"><span>큐에서 꺼낸 뒤에 visited에 표시하는 BFS, G1 시작 A → 방문 순서 리스트</span></div></li>
+      <li class="r2"><b>T1-b</b><div class="fx"><span>4×4 격자 BFS, 표시 시점 두 가지(모드)마다 (큐에 넣은 횟수, 큐 최대 길이) → 두 줄</span></div></li>
+      <li class="r3"><b>T2</b><div class="fx"><span>list.pop(0)과 deque.popleft로 맨 앞 꺼내기, 데이터 개수 n이 10배일 때 걸린 시간은 몇 배인지</span></div></li>
+      <li class="r4"><b>T3</b><div class="fx"><span>1줄짜리 땅(너비 500, 1500)을 재귀 DFS로 탐색 → 정상 또는 오류 이름</span></div></li>
+      <li class="r1"><b>T4 (선택)</b><div class="fx"><span>visited를 기본 인자(def f(v=set()) 꼴)로 둔 DFS를 세 번 호출 → 세 출력을 / 로 구분</span></div></li>
     </ol>
     <ul class="x-pts"><li>원인 칸은 예측과 실제가 달랐을 때만 그 까닭을 써요.</li><li>같았으면 ‘같음’이라고 쓰세요.</li></ul>
   </div>
